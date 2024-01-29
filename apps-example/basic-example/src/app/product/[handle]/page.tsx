@@ -9,7 +9,8 @@ import VariantSelector from '@/components/VariantSelector';
 import AddToCart from '@/components/cart/AddToCart';
 import { getProduct, getProductRecommendations } from '@/services/product/service';
 import { theme } from '@/styles/theme';
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
+
 import Link from 'next/link';
 
 /**

@@ -1,6 +1,7 @@
 'use client';
 
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
+
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 type Props = {

@@ -1,4 +1,5 @@
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
+
 import Price from './Price';
 
 type Props<T extends React.ElementType = 'div'> = {

@@ -1,4 +1,5 @@
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
+
 import MobileMenu from './MobileMenu';
 import { Bars3BottomLeftIcon } from '@heroicons/react/24/outline';
 

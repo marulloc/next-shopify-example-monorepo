@@ -1,6 +1,7 @@
 'use client';
 
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';

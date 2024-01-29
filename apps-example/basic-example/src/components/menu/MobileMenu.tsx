@@ -1,6 +1,7 @@
 'use client';
 
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
+
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import SearchTriggerInput from '../search/SearchTriggerInput';
 import Drawer from '@marulloc/components-library/Drawer';

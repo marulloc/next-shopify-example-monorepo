@@ -1,7 +1,8 @@
 import ProductCard from '@/components/ProductCard';
 import { getProductsSearch } from '@/services/search/service';
 import { theme } from '@/styles/theme';
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
+
 import Link from 'next/link';
 import Sort from '../../components/Sort';
 import { SortKey } from '@/services/search/type';

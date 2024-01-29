@@ -1,4 +1,4 @@
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
 
 type Props = {
   currencyCode: string;

@@ -1,5 +1,6 @@
 import { getCollections } from '@/services/collection/service';
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
+
 import CollectionLink from './CollectionLink';
 
 const CollectionNavigation = async () => {

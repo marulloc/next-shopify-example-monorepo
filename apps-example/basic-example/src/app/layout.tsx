@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
+
 import { theme } from '@/styles/theme';
 import { getMenu } from '@/services/common/service';
 import Header from '@/components/layout/Header';

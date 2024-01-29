@@ -1,4 +1,4 @@
-import { classNames } from './utils';
+import { classNames } from '@marulloc/components-library/utils';
 
 export const theme = {
   // color : background

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
 
 const Logo = async () => {
   // Get Logo

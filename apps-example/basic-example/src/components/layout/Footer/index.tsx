@@ -1,5 +1,5 @@
 import { theme } from '@/styles/theme';
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
 
 const Footer = () => {
   return (

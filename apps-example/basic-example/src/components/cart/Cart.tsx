@@ -1,6 +1,7 @@
 'use client';
 
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
+
 import Drawer from '@marulloc/components-library/Drawer';
 import { useCartContext } from './context';
 import { XMarkIcon } from '@heroicons/react/24/outline';

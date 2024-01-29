@@ -1,5 +1,4 @@
-import { Card } from '@repo/ui/card';
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
 import { theme } from '@/styles/theme';
 import { getCollectionProducts } from '@/services/collection/service';
 import Link from 'next/link';

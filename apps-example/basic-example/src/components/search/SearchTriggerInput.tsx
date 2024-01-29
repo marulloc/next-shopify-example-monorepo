@@ -1,6 +1,7 @@
 'use client';
 
-import { classNames } from '@/styles/utils';
+import { classNames } from '@marulloc/components-library/utils';
+
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import Search from './Search';
 import { useSearchParams } from 'next/navigation';
