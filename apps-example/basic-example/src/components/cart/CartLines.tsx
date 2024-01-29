@@ -3,7 +3,7 @@ import { CartContextType } from './context';
 import { MinusIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import Image from 'next/image';
-import Price from '../Price';
+import Price from '../Price'; 
 
 type Props = {
   lines: CartLine[];

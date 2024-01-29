@@ -1,0 +1,17 @@
+{
+  "name": "@marulloc/components-library",
+  "private": true,
+  "exports" : {
+    "./Drawer" : "./src/compound-components/Drawer/index.tsx",
+    "./Dropdown" : "./src/compound-components/Dropdown",
+    "./Modal" : "./src/compound-components/Modal", 
+    "./utils" : "./src/utils.ts",
+    "./portal-hoc" : "./src/portal-hoc.tsx"
+  },
+  "dependencies": { 
+    "typescript": "^5",
+    "react": "^18.2.0",
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.18"
+  }
+}

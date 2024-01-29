@@ -1,5 +1,5 @@
 {
-  "name": "Marulloc-shopify-headless-monorepo",
+  "name": "marulloc-shopify-headless-monorepo",
   "private": true,
   "scripts": {
     "build": "turbo build",
