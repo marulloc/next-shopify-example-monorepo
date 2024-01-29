@@ -1,10 +1,10 @@
 'use client';
 
-import { Dropdown } from '@/components/@marulloc-compound-components/Dropdown';
-import { classNames } from '@/styles/utils';
+ import { classNames } from '@/styles/utils';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
+import Dropdown from "@marulloc/components-library/Dropdown"
 
 const sortKeys = [
   { name: 'sort', title: 'Relavance', value: 'relevance' },

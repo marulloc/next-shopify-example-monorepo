@@ -3,8 +3,8 @@
   "private": true,
   "exports" : {
     "./Drawer" : "./src/compound-components/Drawer/index.tsx",
-    "./Dropdown" : "./src/compound-components/Dropdown",
-    "./Modal" : "./src/compound-components/Modal", 
+    "./Dropdown" : "./src/compound-components/Dropdown/index.tsx",
+    "./Modal" : "./src/compound-components/Modal/index.tsx", 
     "./utils" : "./src/utils.ts",
     "./portal-hoc" : "./src/portal-hoc.tsx"
   },

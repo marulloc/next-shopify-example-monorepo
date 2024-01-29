@@ -1,7 +1,6 @@
 'use client';
 
-import { classNames } from '@/styles/utils';
-import { Modal } from '../@marulloc-compound-components/Modal';
+import { classNames } from '@/styles/utils'; 
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -10,8 +9,8 @@ import ProductPrice from '@/components/ProductPrice';
 import { throttle } from '@/components/utils';
 import { getPredictiveSearch } from '@/services/search/service';
 import { PredictiveSearch } from '@/services/search/type';
-import { ArrowRightIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import ClientCompo from '../ClientCompo';
+import { ArrowRightIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'; 
+import Modal from "@marulloc/components-library/Modal"
 
 type Props = {
   Trigger: React.ReactNode;
