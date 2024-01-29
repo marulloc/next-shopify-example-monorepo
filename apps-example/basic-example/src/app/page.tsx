@@ -1,5 +1,4 @@
-
-import { Card } from "@repo/ui/card";
+import { Card } from '@repo/ui/card';
 import { classNames } from '@/styles/utils';
 import { theme } from '@/styles/theme';
 import { getCollectionProducts } from '@/services/collection/service';

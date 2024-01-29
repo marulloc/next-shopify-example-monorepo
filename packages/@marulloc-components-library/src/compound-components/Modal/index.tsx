@@ -51,4 +51,4 @@ const Modal = Object.assign(withPortalRoot(ModalRoot, MODAL_PORTAL_ID), {
   Backdrop: ModalBackdrop,
 });
 
-export default Modal
+export default Modal;

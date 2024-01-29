@@ -52,5 +52,4 @@ const Drawer = Object.assign(withPortalRoot(DrawerRoot, DRAWER_PORTAL_ID), {
   Backdrop: DrawerBackdrop,
 });
 
-
-export default Drawer
+export default Drawer;

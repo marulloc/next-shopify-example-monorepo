@@ -63,5 +63,4 @@ const Dropdown = Object.assign(withPortalRoot(DropdownRoot, DROPDOWN_PORTAL_ID),
   Contents: DropdownContents,
 });
 
-
-export default Dropdown
+export default Dropdown;

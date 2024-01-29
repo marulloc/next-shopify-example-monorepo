@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
- 
+
 export function withPortalRoot<T extends React.ComponentType<any>>(
   Component: T,
   portalId: string,

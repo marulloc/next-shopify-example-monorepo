@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { DrawerContextType, useDrawerContext } from './context';
-import ReactDOM from 'react-dom'; 
+import ReactDOM from 'react-dom';
 import { DRAWER_PORTAL_ID } from './constant';
 import { classNames } from '../../utils';
 
