@@ -1,4 +1,4 @@
-import { ShopifyLocalization } from './types/shopify-common';
+import { ShopifyLocalization } from './@shopify-types/shopify-shop';
 
 const query = `
 query getLocale {
