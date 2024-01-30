@@ -1,0 +1,52 @@
+.dropdown-contents {
+  /* .absolute */
+  position: absolute;
+
+  /* .transition-all */
+  transition: all 0.3s ease-out;
+
+  /* .duration-300 */
+  transition-duration: 300ms;
+
+  /* .ease-out */
+  transition-timing-function: ease-out;
+
+  /* .z-30 */
+  z-index: 30;
+}
+
+.dropdown-contents-visible {
+  /* .visible */
+  visibility: visible;
+
+  /* .opacity-100 */
+  opacity: 1;
+
+  /* .translate-y-0 */
+  transform: translateY(0);
+}
+
+.dropdown-contents-invisible {
+  /* .invisible */
+  visibility: hidden;
+
+  /* .opacity-0 */
+  opacity: 0;
+
+  /* .-translate-y-4 */
+  transform: translateY(-1rem); /* Tailwind의 기본 spacing scale을 가정할 때 */
+}
+
+.backdrop {
+  /* .fixed */
+  position: fixed;
+
+  /* .inset-0 */
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  /* .z-0 */
+  z-index: 0;
+}

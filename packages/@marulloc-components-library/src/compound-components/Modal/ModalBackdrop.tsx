@@ -5,6 +5,7 @@ import { ModalContextType, useModalContext } from './context';
 import ReactDOM from 'react-dom';
 import { classNames } from '../../utils';
 import { MODAL_PORTAL_ID } from './constant';
+import './modal-styles.css';
 
 type ModalBackdropProps<T extends React.ElementType = 'div'> = {
   children: (props: ModalContextType) => React.ReactNode;
@@ -38,8 +39,8 @@ const ModalBackdrop = <T extends React.ElementType = 'div'>({
     <Component
       {...rest}
       className={classNames(
-        'fixed z-30 top-0 left-0 w-screen h-screen transition-all transform duration-300 ease-in-out ',
-        isOpen ? 'visible opacity-100' : 'invisible opacity-0',
+        'modal-backdrop',
+        isOpen ? 'modal-backdrop-visible' : 'modal-backdrop-invisible',
         className,
       )}
       onClick={(e: any) => {

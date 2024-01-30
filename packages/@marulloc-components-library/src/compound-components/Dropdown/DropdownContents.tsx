@@ -56,14 +56,14 @@ const DropdownContents = ({ children, className, matchTriggerWidth = true, ...re
         {...rest}
         id={dropdownId}
         className={classNames(
-          'absolute   transition-all duration-300 ease-out z-30 ',
-          isOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-4',
+          'dropdown-contents',
+          isOpen ? 'dropdown-contents-visible' : 'dropdown-contents-invisible',
           className,
         )}
       >
         <>{children({ dropdownId, triggerId, isOpen, ...restContext })}</>
       </div>
-      <div className={classNames(isOpen ? 'visible' : 'invisible', '  fixed inset-0 z-0')}></div>
+      <div className={`backdrop ${isOpen ? 'visible' : 'invisible'}`}></div>
     </>,
     document.getElementById(DROPDOWN_PORTAL_ID)!,
   );

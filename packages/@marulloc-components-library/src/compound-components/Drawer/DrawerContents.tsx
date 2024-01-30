@@ -5,6 +5,7 @@ import { DrawerContextType, useDrawerContext } from './context';
 import { classNames } from '../../utils';
 import ReactDOM from 'react-dom';
 import { DRAWER_PORTAL_ID } from './constant';
+import './drawer-styles.css';
 
 type DrawerContentsProps<T extends React.ElementType = 'aside'> = {
   children: (props: DrawerContextType) => React.ReactNode;
@@ -24,47 +25,16 @@ const DrawerContents = <T extends React.ElementType = 'aside'>({
     setIsMounted(true);
   }, []);
 
-  const classNameWithAnchor = useMemo(() => {
-    switch (anchor) {
-      case 'top':
-        return classNames(
-          'top-0 left-0 right-0 ',
-          'w-screen overflow-x-auto overflow-y-auto',
-          isOpen ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-full opacity-0',
-        );
-
-      case 'left':
-        return classNames(
-          'left-0 top-0 bottom-0',
-          'h-screen overflow-y-auto',
-          isOpen ? 'visible translate-x-0 opacity-100' : 'invisible -translate-x-full opacity-0',
-        );
-
-      case 'bottom':
-        return classNames(
-          'bottom-0 left-0 right-0',
-          'w-screen overflow-x-auto overflow-y-auto',
-          isOpen ? 'visible translate-y-0 opacity-100' : 'invisible translate-y-full opacity-0',
-        );
-
-      case 'right':
-        return classNames(
-          'right-0 top-0 bottom-0',
-          'h-screen overflow-y-auto',
-          isOpen ? 'visible translate-x-0 opacity-100' : 'invisible translate-x-full opacity-0',
-        );
-    }
-  }, [anchor, isOpen]);
+  if (!isMounted) return null;
 
   const Component = as ?? 'aside';
-
-  if (!isMounted) return null;
   return ReactDOM.createPortal(
     <Component
       {...rest}
       className={classNames(
-        'fixed z-40 transition-all transform duration-300 ease-in-out',
-        classNameWithAnchor,
+        'drawer',
+        `drawer-${anchor}`,
+        isOpen ? `drawer-${anchor}-open` : `drawer-${anchor}-closed`,
         className,
       )}
     >

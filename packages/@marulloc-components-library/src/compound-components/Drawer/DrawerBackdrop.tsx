@@ -5,6 +5,7 @@ import { DrawerContextType, useDrawerContext } from './context';
 import ReactDOM from 'react-dom';
 import { DRAWER_PORTAL_ID } from './constant';
 import { classNames } from '../../utils';
+import './drawer-styles.css';
 
 type DrawerBackdropProps<T extends React.ElementType = 'div'> = {
   children: (props: DrawerContextType) => React.ReactNode;
@@ -31,17 +32,13 @@ const DrawerBackdrop = <T extends React.ElementType = 'div'>({
     else document.body.style.overflow = 'visible';
   }, [isOpen]);
 
-  const Component = as ?? 'div';
-
   if (!isMounted) return null;
+
+  const Component = as ?? 'div';
   return ReactDOM.createPortal(
     <Component
       {...rest}
-      className={classNames(
-        'fixed z-30 top-0 left-0 w-screen h-screen transition-all transform duration-300 ease-in-out ',
-        isOpen ? 'visible opacity-100' : 'invisible opacity-0',
-        className,
-      )}
+      className={classNames('drawer-backdrop', isOpen ? 'drawer-backdrop-open' : 'drawer-backdrop-closed', className)}
       onClick={() => closeDrawer()}
     >
       {children({ ...restContext, isOpen, closeDrawer })}

@@ -6,6 +6,7 @@ import DropdownTrigger from './DropdownTrigger';
 import DropdownContents from './DropdownContents';
 import { withPortalRoot } from '../../portal-hoc';
 import { DROPDOWN_PORTAL_ID } from './constant';
+import './dropdown-styles.css';
 
 type DropdownRootProps = {
   id: string;

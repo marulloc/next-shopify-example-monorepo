@@ -1,0 +1,46 @@
+.modal-contents {
+  /* 공통 클래스 */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 40;
+  transition: all 0.3s ease-in-out; /* transition-all, duration-300, ease-in-out */
+  transform: translate(0, 0); /* 기본 transform 값 */
+}
+
+/* 가시성과 위치 조정 */
+.modal-contents-visible {
+  visibility: visible; /* .visible */
+  opacity: 1; /* .opacity-100 */
+  transform: translateY(0); /* translate-y-0 */
+}
+
+.modal-contents-invisible {
+  visibility: hidden; /* .invisible */
+  opacity: 0; /* .opacity-0 */
+  transform: translateY(-1rem); /* -translate-y-4, Tailwind 기본 scale을 가정 */
+}
+
+.modal-backdrop {
+  /* 공통 속성 */
+  position: fixed;
+  z-index: 30;
+  top: 0;
+  left: 0;
+  width: 100vw; /* w-screen */
+  height: 100vh; /* h-screen */
+  transition: all 0.3s ease-in-out; /* transition-all, duration-300, ease-in-out */
+}
+
+/* 가시성 클래스 */
+.modal-backdrop-visible {
+  visibility: visible; /* visible */
+  opacity: 1; /* opacity-100 */
+}
+
+.modal-backdrop-invisible {
+  visibility: hidden; /* invisible */
+  opacity: 0; /* opacity-0 */
+}

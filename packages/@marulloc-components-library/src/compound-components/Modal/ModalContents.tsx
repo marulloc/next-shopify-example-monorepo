@@ -5,6 +5,7 @@ import { ModalContextType, useModalContext } from './context';
 import ReactDOM from 'react-dom';
 import { classNames } from '../../utils';
 import { MODAL_PORTAL_ID } from './constant';
+import './modal-styles.css';
 
 type ModalContentsProps<T extends React.ElementType = 'div'> = {
   children: (props: ModalContextType) => React.ReactNode;
@@ -32,9 +33,9 @@ const ModalContents = <T extends React.ElementType = 'div'>({
       {...rest}
       id="modal-contents-wrapper"
       className={classNames(
-        'fixed inset-0 z-40',
-        'transition-all transform duration-300 ease-in-out',
-        isOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-4',
+        'modal-contents',
+        isOpen ? 'modal-contents-visible' : 'modal-contents-invisible',
+        className,
       )}
       onClick={(e: any) => {
         if (e.target.id === 'modal-contents-wrapper') closeModal();

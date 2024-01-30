@@ -1,0 +1,107 @@
+.drawer {
+  /* 공통 클래스 */
+  position: fixed;
+  z-index: 40;
+  transition: all 0.3s ease-in-out;
+  transform: translate(0, 0); /* 기본 transform 값 */
+  opacity: 1; /* 기본 opacity 값 */
+}
+
+/* 위치 및 가시성을 위한 조건부 스타일 */
+.drawer-top {
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw; /* w-screen */
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.drawer-top-open {
+  visibility: visible; /* visible */
+  transform: translateY(0); /* translate-y-0 */
+  opacity: 1; /* opacity-100 */
+}
+.drawer-top-closed {
+  visibility: hidden; /* invisible */
+  transform: translateY(-100%); /* -translate-y-full */
+  opacity: 0; /* opacity-0 */
+}
+
+.drawer-left {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 100vh; /* h-screen */
+  overflow-y: auto;
+}
+.drawer-left-open {
+  visibility: visible;
+  transform: translateX(0);
+  opacity: 1;
+}
+.drawer-left-closed {
+  visibility: hidden;
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.drawer-bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.drawer-bottom-open {
+  visibility: visible;
+  transform: translateY(0);
+  opacity: 1;
+}
+.drawer-bottom-closed {
+  visibility: hidden;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.drawer-right {
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+.drawer-right-open {
+  visibility: visible;
+  transform: translateX(0);
+  opacity: 1;
+}
+.drawer-right-closed {
+  visibility: hidden;
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.drawer-backdrop {
+  /* 공통 클래스 */
+  position: fixed;
+  z-index: 30;
+  top: 0;
+  left: 0;
+  width: 100vw; /* w-screen */
+  height: 100vh; /* h-screen */
+  transition: all 0.3s ease-in-out; /* transition-all, duration-300, ease-in-out */
+  /* .transform - 이 경우 사용되지 않지만, 변형을 위한 준비를 합니다. */
+  transform: translate(0, 0);
+  /* 가시성에 관한 클래스는 상태에 따라 조정됩니다. */
+}
+
+.drawer-backdrop-open {
+  visibility: visible; /* .visible */
+  opacity: 1; /* .opacity-100 */
+}
+
+.drawer-backdrop-closed {
+  visibility: hidden; /* .invisible */
+  opacity: 0; /* .opacity-0 */
+}
