@@ -7,3 +7,10 @@ export type ShopifyPredictiveSearch = {
 };
 
 export type ShopifySortKey = 'PRICE' | 'RELEVANCE' | null;
+
+export type ShopifyProductFilter =
+  | { variantOption: { name: string; value: string } }
+  | { productType: string }
+  // | { price: PriceRangeFilter }
+  | { tag: string }
+  | null;
