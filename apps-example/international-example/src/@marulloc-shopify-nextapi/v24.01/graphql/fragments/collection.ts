@@ -1,6 +1,6 @@
 import { seoFragment } from './common';
 
-export const collectionFragment = `
+export const collectionWithoutSEOFragment = `
   fragment collection on Collection {
     id
     handle
@@ -10,7 +10,7 @@ export const collectionFragment = `
   }
 `;
 
-export const collectionWithSeoFragment = `
+export const collectionFragment = `
   fragment collection on Collection {
     id
     handle

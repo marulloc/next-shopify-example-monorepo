@@ -1,5 +1,5 @@
-import { collectionFragment, collectionWithSeoFragment } from '../fragments/collection';
-import { productFragment } from '../fragments/product';
+import { collectionWithoutSEOFragment, collectionFragment } from '../fragments/collection';
+import { productWithoutSEOFragment } from '../fragments/product';
 
 export const getCollectionQuery = `
   query getCollection($handle: String!) {
@@ -7,7 +7,7 @@ export const getCollectionQuery = `
       ...collection
     }
   }
-  ${collectionWithSeoFragment}
+  ${collectionFragment}
 `;
 
 export const getCollectionsQuery = `
@@ -20,7 +20,7 @@ export const getCollectionsQuery = `
       }
     }
   }
-  ${collectionFragment}
+  ${collectionWithoutSEOFragment}
 `;
 
 export const getCollectionProductsQuery = `
@@ -41,6 +41,6 @@ export const getCollectionProductsQuery = `
       }
     }
   }
-  ${collectionWithSeoFragment}
-  ${productFragment}
+  ${collectionWithoutSEOFragment}
+  ${productWithoutSEOFragment}
 `;

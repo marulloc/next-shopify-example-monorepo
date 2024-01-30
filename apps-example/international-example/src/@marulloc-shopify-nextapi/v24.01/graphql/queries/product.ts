@@ -1,4 +1,4 @@
-import { productFragment, productWithSeoFragment } from '../fragments/product';
+import { productWithoutSEOFragment, productFragment } from '../fragments/product';
 
 export const getProductQuery = /* GraphQL */ `
   query getProduct($handle: String!) {
@@ -6,7 +6,7 @@ export const getProductQuery = /* GraphQL */ `
       ...product
     }
   }
-  ${productWithSeoFragment}
+  ${productFragment}
 `;
 
 export const getProductsQuery = /* GraphQL */ `
@@ -19,7 +19,7 @@ export const getProductsQuery = /* GraphQL */ `
       }
     }
   }
-  ${productFragment}
+  ${productWithoutSEOFragment}
 `;
 
 export const getProductRecommendationsQuery = /* GraphQL */ `
@@ -28,5 +28,5 @@ export const getProductRecommendationsQuery = /* GraphQL */ `
       ...product
     }
   }
-  ${productFragment}
+  ${productWithoutSEOFragment}
 `;

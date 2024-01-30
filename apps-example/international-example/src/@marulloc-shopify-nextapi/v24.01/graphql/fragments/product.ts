@@ -1,6 +1,6 @@
 import { imageFragment, seoFragment } from './common';
 
-export const productFragment = `
+export const productWithoutSEOFragment = `
   fragment product on Product {
     id
     handle
@@ -56,7 +56,7 @@ export const productFragment = `
   ${imageFragment} 
 `;
 
-export const productWithSeoFragment = `
+export const productFragment = `
   fragment product on Product {
     id
     handle

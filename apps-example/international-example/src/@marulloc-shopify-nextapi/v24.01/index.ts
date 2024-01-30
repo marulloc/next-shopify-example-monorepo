@@ -1,4 +1,4 @@
-import { StoreFetchParams } from './types/marulloc-shopify-utils';
+import { StoreFetchParams } from './types/marulloc-utils';
 
 const storeDomain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || '';
 const apiVersion = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION || '';

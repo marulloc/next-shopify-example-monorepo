@@ -1,5 +1,5 @@
-import { collectionFragment } from '../fragments/collection';
-import { productFragment } from '../fragments/product';
+import { collectionWithoutSEOFragment } from '../fragments/collection';
+import { productWithoutSEOFragment } from '../fragments/product';
 
 export const getPredictiveSearchQuery = `
   query getPredictiveSearch($query: String!) {
@@ -18,8 +18,8 @@ export const getPredictiveSearchQuery = `
       }
     }
   }
-  ${collectionFragment}
-  ${productFragment}
+  ${collectionWithoutSEOFragment}
+  ${productWithoutSEOFragment}
 `;
 
 export const getSearchResultQuery = `
@@ -34,5 +34,5 @@ export const getSearchResultQuery = `
       }
     }
   }
-  ${productFragment}
+  ${productWithoutSEOFragment}
 `;

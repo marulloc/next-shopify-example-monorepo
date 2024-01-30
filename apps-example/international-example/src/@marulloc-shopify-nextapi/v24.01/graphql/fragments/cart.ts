@@ -1,4 +1,4 @@
-import { productFragment } from './product';
+import { productWithoutSEOFragment } from './product';
 
 export const cartFragment = `
   fragment cart on Cart {
@@ -47,5 +47,5 @@ export const cartFragment = `
     }
     totalQuantity
   }
-  ${productFragment}
+  ${productWithoutSEOFragment}
 `;
