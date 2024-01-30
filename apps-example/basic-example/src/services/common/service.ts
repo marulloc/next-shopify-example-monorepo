@@ -6,7 +6,7 @@ import { parseMenuRoute } from './parser';
 export const getMenu = async (handle: string): Promise<Menu> => {
   const res = await storeFetch<GetMenuService>({
     query: getMenuQuery,
-    // tags: [TAGS.collections],
+    // tags: [TAGS.collections]
     variables: {
       handle,
     },

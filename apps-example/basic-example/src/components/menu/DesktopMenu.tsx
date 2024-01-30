@@ -1,21 +1,26 @@
+import { getMenu } from '@/services/common/service';
 import { classNames } from '@marulloc/components-library/utils';
+import ClientCompo from '../ClientCompo';
+import Link from 'next/link';
 
-const DesktopMenu = async () => {
-  // const menu = await getMenu('custom-storefront-menu');
-
+type Props = {
+  menu: Menu;
+};
+const DesktopMenu = ({ menu }: Props) => {
   return (
     <nav>
+      <ClientCompo data={menu} />
       <ul className="flex space-x-2">
-        <li className={classNames('hover:text-zinc-100 text-zinc-300', 'cursor-pointer', 'text-sm', 'p-2 group')}>
-          <span className=" ">All</span>
-        </li>
-        <li className={classNames('hover:text-zinc-100 text-zinc-300', 'cursor-pointer', 'text-sm', 'p-2 group')}>
-          <span className=" ">Abstract</span>
-        </li>
-
-        <li className={classNames('hover:text-zinc-100 text-zinc-300', 'cursor-pointer', 'text-sm', 'p-2 group')}>
-          <span className=" ">Landscape</span>
-        </li>
+        {menu.map(({ title, url }) => (
+          <li
+            key={`nav-${title}`}
+            className={classNames('hover:text-zinc-100 text-zinc-300', 'cursor-pointer', 'text-sm', '  group')}
+          >
+            <Link href={url} className="w-full  p-2">
+              <span className=" ">{title}</span>
+            </Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );

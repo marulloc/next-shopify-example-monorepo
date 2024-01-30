@@ -5,12 +5,14 @@ import { classNames } from '@marulloc/components-library/utils';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import SearchTriggerInput from '../search/SearchTriggerInput';
 import Drawer from '@marulloc/components-library/Drawer';
+import Link from 'next/link';
 
 type Props = {
   Trigger: React.ReactNode;
+  menu: Menu;
 };
 
-const MobileMenu = ({ Trigger }: Props) => {
+const MobileMenu = ({ Trigger, menu }: Props) => {
   return (
     <Drawer anchor="bottom">
       <Drawer.Trigger>
@@ -51,19 +53,19 @@ const MobileMenu = ({ Trigger }: Props) => {
 
             <nav>
               <ul className="  space-y-3">
-                <li
-                  onClick={() => closeDrawer()}
-                  className={classNames(
-                    'hover:text-zinc-100 text-zinc-300',
-                    'cursor-pointer',
-                    'text-base',
-                    'p-2 group',
-                  )}
-                >
-                  <span className=" ">All</span>
-                </li>
+                {menu.map(({ title, url }) => (
+                  <li
+                    key={`side-menu-${title}`}
+                    onClick={() => closeDrawer()}
+                    className={classNames('hover:text-zinc-100 text-zinc-300', 'cursor-pointer', 'text-base', ' group')}
+                  >
+                    <Link href={url} className="p-2 ">
+                      <span>{title}</span>
+                    </Link>
+                  </li>
+                ))}
 
-                <li
+                {/* <li
                   onClick={() => closeDrawer()}
                   className={classNames(
                     'hover:text-zinc-100 text-zinc-300',
@@ -85,7 +87,7 @@ const MobileMenu = ({ Trigger }: Props) => {
                   )}
                 >
                   <span className=" ">Landscape</span>
-                </li>
+                </li> */}
               </ul>
             </nav>
           </div>
