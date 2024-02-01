@@ -1,18 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getLocale } from './@marulloc-shopify-nextapi/v24.01/services/shop/service';
-import { ToolkitLocale } from './@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
-import Negotiator from 'negotiator';
-
-function createNegotiatorFromNextRequest(request: NextRequest) {
-  // NextRequest의 헤더를 { [key: string]: string | string[]; } 형태로 변환
-  const headers: any = {};
-  request.headers.forEach((value, key) => {
-    headers[key] = value;
-  });
-
-  // 변환된 헤더를 사용하여 Negotiator 인스턴스 생성
-  return new Negotiator({ headers });
-}
+import { createNegotiatorFromNextRequest } from './negitoator';
 
 const middleware = async (request: NextRequest) => {
   const { locales: supportedLocales, supportedCountries, supportedLanguages } = await getLocale();
@@ -22,14 +10,16 @@ const middleware = async (request: NextRequest) => {
   const hasLocale = supportedLocales.some((locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`);
   if (hasLocale) return;
 
-  const country = request.geo?.country; // GeoIP를 통한 국가 코드 추출
+  // 국가코드 결정
+  const entryCountry = request.geo?.country; // GeoIP를 통한 국가 코드 추출
+  const country = supportedCountries.find((isoCode) => isoCode === entryCountry) || 'us';
 
-  // const negotiator = new Negotiator(request);
+  // 언어코드 결정
   const negotiator = createNegotiatorFromNextRequest(request);
+  const language = negotiator.language(supportedLanguages);
 
-  const countrySupport = supportedCountries.find((isoCode) => isoCode === country) || 'us';
-  const languageSupport = negotiator.language(supportedLanguages);
-  const locale = `${countrySupport}-${languageSupport}`;
+  // 확정된 로케일
+  const locale = `${country}-${language}`;
 
   // 요청된 URL에 로케일을 설정합니다.
   request.nextUrl.pathname = `/${locale}${pathname === '/' ? '' : pathname}`;
