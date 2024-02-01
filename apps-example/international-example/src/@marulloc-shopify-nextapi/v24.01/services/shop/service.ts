@@ -1,8 +1,8 @@
-import { getLocaleQuery, getMenuQuery } from '../../@shopify-graphql/queries/shop';
+import { getLocaleQuery, getMenuQuery, getShopInfoQuery } from '../../@shopify-graphql/queries/shop';
 import { storeFetch } from '../../utils/storeFetch';
-import { ToolkitLocale, ToolkitMenu } from '../@toolkit-types/toolkit-shop';
+import { ToolkitLocale, ToolkitMenu, ToolkitShopInfo } from '../@toolkit-types/toolkit-shop';
 import { parseLocale, parseMenu } from './parser';
-import { GetLocaleService, GetMenuService } from './types';
+import { GetLocaleService, GetMenuService, GetShopInfoService } from './types';
 
 export const getMenu = async (handle: string): Promise<ToolkitMenu> => {
   const res = await storeFetch<GetMenuService>({
@@ -22,4 +22,12 @@ export const getLocale = async (): Promise<ToolkitLocale> => {
   });
 
   return parseLocale(res.body.data.localization);
+};
+
+export const getShopInfo = async (): Promise<ToolkitShopInfo> => {
+  const res = await storeFetch<GetShopInfoService>({
+    query: getShopInfoQuery,
+  });
+
+  return res.body.data.shop;
 };

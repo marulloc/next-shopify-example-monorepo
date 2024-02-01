@@ -1,4 +1,4 @@
-import { ShopifyLocalization, ShopifyMenuItem } from '../../@shopify-types/shopify-shop';
+import { ShopifyLocalization, ShopifyMenuItem, ShopifyShopInfo } from '../../@shopify-types/shopify-shop';
 
 export type ToolkitMenu = Array<ShopifyMenuItem>;
 
@@ -7,3 +7,5 @@ export type ToolkitLocale = ShopifyLocalization & {
   supportedCountries: Array<string>;
   supportedLanguages: Array<string>;
 };
+
+export type ToolkitShopInfo = ShopifyShopInfo;

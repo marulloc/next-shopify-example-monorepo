@@ -1,4 +1,4 @@
-import { ShopifyLocalization, ShopifyMenuItem } from '../../@shopify-types/shopify-shop';
+import { ShopifyLocalization, ShopifyMenuItem, ShopifyShopInfo } from '../../@shopify-types/shopify-shop';
 
 export type GetMenuService = {
   data: {
@@ -14,5 +14,11 @@ export type GetMenuService = {
 export type GetLocaleService = {
   data: {
     localization: ShopifyLocalization;
+  };
+};
+
+export type GetShopInfoService = {
+  data: {
+    shop: ShopifyShopInfo;
   };
 };
