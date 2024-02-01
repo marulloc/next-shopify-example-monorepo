@@ -20,5 +20,7 @@ export const parseLocale = (locale: ShopifyLocalization) => {
     availableLanguages,
     availableCountries,
     locales: combinations,
+    supportedCountries: availableCountries.map(({ isoCode }) => isoCode.toLowerCase()),
+    supportedLanguages: availableLanguages.map(({ isoCode }) => isoCode.toLowerCase()),
   };
 };
