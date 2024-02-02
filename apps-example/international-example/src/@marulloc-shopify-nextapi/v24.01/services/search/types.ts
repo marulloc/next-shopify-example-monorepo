@@ -1,5 +1,5 @@
 import { ShopifyCollection } from '../../@shopify-types/shopify-collection';
-import { Connection } from '../../@shopify-types/shopify-common';
+import { Connection, ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
 import { ShopifyProduct } from '../../@shopify-types/shopify-product';
 import { ShopifyProductFilter, ShopifySortKey } from '../../@shopify-types/shopify-search';
 
@@ -12,7 +12,7 @@ export type GetPredictiveSearchService = {
   };
   variables: {
     query: string;
-  };
+  } & ShopifyLocaleContext;
 };
 
 export type GetProductsSearchService = {
@@ -24,5 +24,5 @@ export type GetProductsSearchService = {
     productFilters: ShopifyProductFilter[];
     sortKey?: ShopifySortKey;
     reverse?: boolean;
-  };
+  } & ShopifyLocaleContext;
 };

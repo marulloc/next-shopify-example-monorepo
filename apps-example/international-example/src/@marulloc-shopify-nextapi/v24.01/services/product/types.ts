@@ -1,11 +1,11 @@
-import { Connection } from '../../@shopify-types/shopify-common';
+import { Connection, ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
 import { ShopifyProduct } from '../../@shopify-types/shopify-product';
 
 export type GetProductService = {
   data: { product: ShopifyProduct };
   variables: {
     handle: string;
-  };
+  } & ShopifyLocaleContext;
 };
 
 export type GetProductRecommendationsService = {
@@ -14,7 +14,7 @@ export type GetProductRecommendationsService = {
   };
   variables: {
     productId: string;
-  };
+  } & ShopifyLocaleContext;
 };
 
 export type GetProductsService = {
@@ -25,5 +25,5 @@ export type GetProductsService = {
     query?: string;
     reverse?: boolean;
     sortKey?: string;
-  };
+  } & ShopifyLocaleContext;
 };

@@ -37,3 +37,8 @@ export type ShopifyMoney = {
   amount: string;
   currencyCode: string;
 };
+
+export type ShopifyLocaleContext = {
+  country?: string;
+  language?: string;
+};

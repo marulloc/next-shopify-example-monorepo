@@ -1,4 +1,5 @@
 import { getPredictiveSearchQuery } from '../../@shopify-graphql/queries/search';
+import { ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
 import { ShopifyProductFilter } from '../../@shopify-types/shopify-search';
 import { flatConnection } from '../../utils/flat';
 import { storeFetch } from '../../utils/storeFetch';
@@ -8,11 +9,16 @@ import { parseProducts } from '../product/parser';
 import { parsePredictiveSearch, parseSortParams } from './parser';
 import { GetPredictiveSearchService, GetProductsSearchService } from './types';
 
-export const getPredictiveSearch = async (query: string): Promise<ToolkitPredictiveSearch> => {
+export const getPredictiveSearch = async (
+  query: string,
+  locale?: ShopifyLocaleContext,
+): Promise<ToolkitPredictiveSearch> => {
   const res = await storeFetch<GetPredictiveSearchService>({
     query: getPredictiveSearchQuery,
     variables: {
       query,
+      country: locale?.country?.toUpperCase(),
+      language: locale?.language?.toUpperCase(),
     },
   });
 
@@ -23,10 +29,12 @@ export const getProductsSearch = async ({
   query,
   filters,
   sortKey: sort,
+  locale,
 }: {
   query: string;
   filters: ShopifyProductFilter[];
   sortKey?: ToolkitSortKey;
+  locale?: ShopifyLocaleContext;
 }): Promise<ToolkitProduct[]> => {
   const { sortKey, reverse } = parseSortParams(sort || 'relevance');
 
@@ -37,6 +45,8 @@ export const getProductsSearch = async ({
       productFilters: filters,
       sortKey,
       reverse,
+      country: locale?.country?.toUpperCase(),
+      language: locale?.language?.toUpperCase(),
     },
   });
 

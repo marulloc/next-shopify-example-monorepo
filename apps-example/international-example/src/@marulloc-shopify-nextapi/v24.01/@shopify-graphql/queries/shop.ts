@@ -1,5 +1,20 @@
+export const getLocaleQuery = `
+  query getLocale {
+    localization {
+      availableCountries {
+        name
+        isoCode
+      }
+      availableLanguages {
+        name
+        isoCode
+      }
+    }
+  }
+`;
+
 export const getShopInfoQuery = `
-  query getShopInfo {
+  query getShopInfo ($country: CountryCode, $language: LanguageCode) @inContext(country: $country, language: $language) {
     shop {
       name
       description
@@ -40,23 +55,8 @@ export const getShopInfoQuery = `
   }
 `;
 
-export const getLocaleQuery = `
-  query getLocale {
-    localization {
-      availableCountries {
-        name
-        isoCode
-      }
-      availableLanguages {
-        name
-        isoCode
-      }
-    }
-  }
-`;
-
 export const getMenuQuery = `
-  query getMenu($handle: String!) {
+  query getMenu($handle: String!, $country: CountryCode, $language: LanguageCode) @inContext(country: $country, language: $language) {
     menu(handle: $handle) {
       items {
         title

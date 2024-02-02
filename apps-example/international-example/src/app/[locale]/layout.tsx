@@ -7,8 +7,15 @@ import Image from 'next/image';
 
 const inter = Inter({ subsets: ['latin'] });
 
+/**
+ * @TODO @inContext(country, language)
+ * @param param0
+ * @returns
+ */
 export const generateMetadata = async ({ params }: { params: { locale: string } }): Promise<Metadata> => {
-  const shopInfo = await getShopInfo();
+  const { countryCode, languageCode } = splitLocale(params.locale);
+
+  const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
 
   return {
     title: shopInfo.name,
@@ -40,8 +47,8 @@ const RootLayout = async ({
   children,
   params,
 }: Readonly<{ children: React.ReactNode; params: { locale: string } }>) => {
-  const { languageCode } = splitLocale(params.locale);
-  const shopInfo = await getShopInfo();
+  const { countryCode, languageCode } = splitLocale(params.locale);
+  const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
   return (
     <html lang={languageCode}>
       <body className={inter.className}>
@@ -52,7 +59,6 @@ const RootLayout = async ({
           height={shopInfo.brand.logo.previewImage.height}
           className="w-20 h-20   p-1 border border-gray-400"
         />
-
         <Image
           src={shopInfo.brand.squareLogo.image.url}
           alt={shopInfo.brand.squareLogo.image.altText}
@@ -60,7 +66,7 @@ const RootLayout = async ({
           height={shopInfo.brand.squareLogo.image.height}
           className="w-40 h-24   "
         />
-        {params.locale}
+        <h1>{shopInfo.name}</h1> <h1>{shopInfo.description}</h1>
         {children}
       </body>
     </html>

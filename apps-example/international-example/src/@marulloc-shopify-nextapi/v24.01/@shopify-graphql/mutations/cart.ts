@@ -1,7 +1,7 @@
 import { cartFragment } from '../fragments/cart';
 
 export const addToCartMutation = `
-  mutation addToCart($cartId: ID!, $lines: [CartLineInput!]!) {
+  mutation addToCart($cartId: ID!, $lines: [CartLineInput!]!, $country: CountryCode, $language: LanguageCode)  @inContext(country: $country, language: $language) {
     cartLinesAdd(cartId: $cartId, lines: $lines) {
       cart {
         ...cart
@@ -12,7 +12,7 @@ export const addToCartMutation = `
 `;
 
 export const createCartMutation = `
-  mutation createCart($lineItems: [CartLineInput!]) {
+  mutation createCart($lineItems: [CartLineInput!], $country: CountryCode, $language: LanguageCode)  @inContext(country: $country, language: $language) {
     cartCreate(input: { lines: $lineItems }) {
       cart {
         ...cart
@@ -23,7 +23,7 @@ export const createCartMutation = `
 `;
 
 export const editCartItemsMutation = `
-  mutation editCartItems($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+  mutation editCartItems($cartId: ID!, $lines: [CartLineUpdateInput!]!, $country: CountryCode, $language: LanguageCode)  @inContext(country: $country, language: $language) {
     cartLinesUpdate(cartId: $cartId, lines: $lines) {
       cart {
         ...cart
@@ -34,7 +34,7 @@ export const editCartItemsMutation = `
 `;
 
 export const removeFromCartMutation = `
-  mutation removeFromCart($cartId: ID!, $lineIds: [ID!]!) {
+  mutation removeFromCart($cartId: ID!, $lineIds: [ID!]!, $country: CountryCode, $language: LanguageCode)  @inContext(country: $country, language: $language) {
     cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
       cart {
         ...cart

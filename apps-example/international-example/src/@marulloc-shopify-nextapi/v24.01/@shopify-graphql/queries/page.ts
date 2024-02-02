@@ -1,7 +1,7 @@
 import { pageFragment } from '../fragments/page';
 
 export const getPagesQuery = `
-  query getPages {
+  query getPages ($country: CountryCode, $language: LanguageCode) @inContext(country: $country, language: $language) {
     pages(first: 100) {
       edges {
         node {
@@ -14,7 +14,7 @@ export const getPagesQuery = `
 `;
 
 export const getPageQuery = `
-  query getPage($handle: String!) {
+  query getPage($handle: String!, $country: CountryCode, $language: LanguageCode) @inContext(country: $country, language: $language){
     pageByHandle(handle: $handle) {
       ...page
     }

@@ -1,9 +1,11 @@
 import { ShopifyCart } from '../../@shopify-types/shopify-cart';
+import { ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
 
 export type CreateCartService = {
   data: {
     cartCreate: { cart: ShopifyCart };
   };
+  variables: {} & ShopifyLocaleContext;
 };
 
 export type AddToCartService = {
@@ -11,7 +13,7 @@ export type AddToCartService = {
   variables: {
     cartId: string;
     lines: { merchandiseId: string; quantity: number }[];
-  };
+  } & ShopifyLocaleContext;
 };
 
 export type RemoveFromCartService = {
@@ -19,7 +21,7 @@ export type RemoveFromCartService = {
   variables: {
     cartId: string;
     lineIds: string[];
-  };
+  } & ShopifyLocaleContext;
 };
 
 export type UpdateCartService = {
@@ -27,10 +29,10 @@ export type UpdateCartService = {
   variables: {
     cartId: string;
     lines: { id: string; merchandiseId?: string; quantity: number }[];
-  };
+  } & ShopifyLocaleContext;
 };
 
 export type GetCartService = {
   data: { cart: ShopifyCart };
-  variables: { cartId: string };
+  variables: { cartId: string } & ShopifyLocaleContext;
 };

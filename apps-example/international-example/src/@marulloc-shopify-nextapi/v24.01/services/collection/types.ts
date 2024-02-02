@@ -1,5 +1,5 @@
 import { ShopifyCollection } from '../../@shopify-types/shopify-collection';
-import { Connection } from '../../@shopify-types/shopify-common';
+import { Connection, ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
 import { ShopifyProduct } from '../../@shopify-types/shopify-product';
 
 export type GetCollectionService = {
@@ -8,7 +8,7 @@ export type GetCollectionService = {
   };
   variables: {
     handle: string;
-  };
+  } & ShopifyLocaleContext;
 };
 
 export type GetCollectionProductsService = {
@@ -21,11 +21,13 @@ export type GetCollectionProductsService = {
     handle: string;
     reverse?: boolean;
     sortKey?: string;
-  };
+  } & ShopifyLocaleContext;
 };
 
 export type GetCollectionsService = {
   data: {
     collections: Connection<ShopifyCollection>;
   };
+
+  variables: {} & ShopifyLocaleContext;
 };

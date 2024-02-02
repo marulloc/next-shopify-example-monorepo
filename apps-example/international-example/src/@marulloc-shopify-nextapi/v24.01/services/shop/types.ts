@@ -1,5 +1,11 @@
+import { ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
 import { ShopifyLocalization, ShopifyMenuItem, ShopifyShopInfo } from '../../@shopify-types/shopify-shop';
 
+export type GetLocaleService = {
+  data: {
+    localization: ShopifyLocalization;
+  };
+};
 export type GetMenuService = {
   data: {
     menu?: {
@@ -8,17 +14,12 @@ export type GetMenuService = {
   };
   variables: {
     handle: string;
-  };
-};
-
-export type GetLocaleService = {
-  data: {
-    localization: ShopifyLocalization;
-  };
+  } & ShopifyLocaleContext;
 };
 
 export type GetShopInfoService = {
   data: {
     shop: ShopifyShopInfo;
   };
+  variables: {} & ShopifyLocaleContext;
 };

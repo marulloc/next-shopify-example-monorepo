@@ -2,7 +2,7 @@ import { collectionWithoutSEOFragment, collectionFragment } from '../fragments/c
 import { productWithoutSEOFragment } from '../fragments/product';
 
 export const getCollectionQuery = `
-  query getCollection($handle: String!) {
+  query getCollection($handle: String!, $country: CountryCode, $language: LanguageCode)  @inContext(country: $country, language: $language) {
     collection(handle: $handle) {
       ...collection
     }
@@ -11,7 +11,7 @@ export const getCollectionQuery = `
 `;
 
 export const getCollectionsQuery = `
-  query getCollections {
+  query getCollections ($country: CountryCode, $language: LanguageCode) @inContext(country: $country, language: $language) {
     collections(first: 100, sortKey: TITLE) {
       edges {
         node {
@@ -29,7 +29,9 @@ export const getCollectionProductsQuery = `
     $filters: [ProductFilter!]
     $sortKey: ProductCollectionSortKeys
     $reverse: Boolean
-  ) {
+    $country: CountryCode 
+    $language: LanguageCode
+  )  @inContext(country: $country, language: $language) {
     collection(handle: $handle) {
       ...collection
       products(first: 16, filters: $filters, sortKey: $sortKey, reverse: $reverse) {
