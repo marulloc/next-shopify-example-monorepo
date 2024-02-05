@@ -4,6 +4,7 @@ import '../globals.css';
 import { getLocale, getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { splitLocale } from '@/utils/locale';
 import Image from 'next/image';
+import Header from '../Header';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +19,7 @@ export const generateMetadata = async ({ params }: { params: { locale: string } 
   const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
 
   return {
-    title: shopInfo.name,
+    title: shopInfo.name + '-international',
     metadataBase: new URL('http://localhost:3000'),
     description: shopInfo.description,
     icons: {
@@ -51,22 +52,8 @@ const RootLayout = async ({
   const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
   return (
     <html lang={languageCode}>
-      <body className={inter.className}>
-        <Image
-          src={shopInfo.brand.logo.image.url}
-          alt={shopInfo.brand.logo.previewImage.altText}
-          width={shopInfo.brand.logo.previewImage.width}
-          height={shopInfo.brand.logo.previewImage.height}
-          className="w-20 h-20   p-1 border border-gray-400"
-        />
-        <Image
-          src={shopInfo.brand.squareLogo.image.url}
-          alt={shopInfo.brand.squareLogo.image.altText}
-          width={shopInfo.brand.squareLogo.image.width}
-          height={shopInfo.brand.squareLogo.image.height}
-          className="w-40 h-24   "
-        />
-        <h1>{shopInfo.name}</h1> <h1>{shopInfo.description}</h1>
+      <body className={inter.className + 'relative'}>
+        <Header />
         {children}
       </body>
     </html>
