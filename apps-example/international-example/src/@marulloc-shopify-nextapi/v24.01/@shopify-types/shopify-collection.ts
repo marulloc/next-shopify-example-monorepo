@@ -1,4 +1,4 @@
-import { ShopifySEO } from './shopify-common';
+import { ShopifyImage, ShopifySEO } from './shopify-common';
 
 export type ShopifyCollection = {
   id: string;
@@ -7,4 +7,5 @@ export type ShopifyCollection = {
   description: string;
   seo: ShopifySEO;
   updatedAt: string;
+  image?: ShopifyImage;
 };

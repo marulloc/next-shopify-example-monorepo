@@ -9,7 +9,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'miro.medium.com',
+        hostname: 'www.travelandleisure.com',
       },
     ],
   },

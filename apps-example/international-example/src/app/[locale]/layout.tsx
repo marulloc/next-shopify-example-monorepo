@@ -51,8 +51,8 @@ const RootLayout = async ({
   const { countryCode, languageCode } = splitLocale(params.locale);
   const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
   return (
-    <html lang={languageCode}>
-      <body className={inter.className + 'relative'}>
+    <html lang={languageCode} className="">
+      <body className={inter.className + 'relative   bg-gray-50'}>
         <Header />
         {children}
       </body>

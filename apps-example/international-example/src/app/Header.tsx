@@ -11,9 +11,9 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className=" fixed top-0 w-full z-30">
+    <div className=" fixed top-0  w-full  z-30 shadow-md ">
       <header className="   ">
-        <div className="bg-gray-900  ">
+        <div className=" backdrop-blur-md bg-opacity-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex justify-between py-2">
             <div className="text-white">CAD</div>
             <div className="text-white">Github</div>
@@ -21,9 +21,9 @@ const Header = () => {
         </div>
         <nav aria-label="Top">
           {/* Secondary navigation */}
-          <div className="bg-white">
+          <div className="backdrop-blur-md ">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="border-b border-gray-200">
+              <div className=" ">
                 <div className="flex h-16 items-center justify-between">
                   {/* Logo (lg+) */}
                   <div className="hidden lg:flex lg:items-center">

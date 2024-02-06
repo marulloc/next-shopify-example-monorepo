@@ -10,6 +10,7 @@ const middleware = async (request: NextRequest) => {
   const hasLocale = supportedLocales.some((locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`);
   if (hasLocale) return;
 
+  console.log(pathname);
   // 국가코드 결정
   const entryCountry = request.geo?.country; // GeoIP를 통한 국가 코드 추출
   const country = supportedCountries.find((isoCode) => isoCode === entryCountry) || 'us';
@@ -27,7 +28,8 @@ const middleware = async (request: NextRequest) => {
 };
 
 export const config = {
-  matcher: '/:path((?!_next|favicon.ico|next.svg|vercel.svg).*)',
+  matcher:
+    '/:path((?!_next|favicon.ico|next.svg|vercel.svg|default/collection-0.png|default/collection-1.png|default/collection-2.png|default/collection-3.png|default/information.png).*)',
 };
 
 export default middleware;
