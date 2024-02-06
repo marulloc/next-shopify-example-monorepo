@@ -9,8 +9,11 @@ const Home = async ({ params }: { params: { locale: string } }) => {
   const { countryCode, languageCode } = splitLocale(params.locale);
   const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
 
-  const collections = await getCollections();
-  const products = await getCollectionProducts({ collection: 'automated-collection' });
+  const collections = await getCollections({ country: countryCode, language: languageCode });
+  const products = await getCollectionProducts({
+    collection: 'automated-collection',
+    locale: { country: countryCode, language: languageCode },
+  });
 
   return (
     <main className="  max-w-7xl mx-auto bg-white shadow-xl  ">
@@ -18,15 +21,14 @@ const Home = async ({ params }: { params: { locale: string } }) => {
       <section className="relative max-h-screen    ">
         <div className="absolute inset-0 group   ">
           <Image
-            src={shopInfo.brand.coverImage.image.url}
-            alt={shopInfo.brand.coverImage.image.altText}
-            width={shopInfo.brand.coverImage.image.width}
-            height={shopInfo.brand.coverImage.image.height}
-            className="h-full w-full object-cover object-right-top  "
+            src="/default/information.png"
+            alt={'home-page-hero'}
+            width={1400}
+            height={1000}
+            className="h-full w-full object-cover object-center"
           />
-
           <div className="absolute w-full h-1/4 bottom-0 bg-gradient-to-t from-white via-white" />
-          <div className="absolute inset-0 block lg:hidden  bg-white bg-opacity-30 "></div>
+          <div className="absolute inset-0   bg-white bg-opacity-30 "></div>
         </div>
 
         <div className=" relative mx-auto max-w-7xl px-20 py-64 sm:py-80 w-full h-full  ">
@@ -106,11 +108,6 @@ const Home = async ({ params }: { params: { locale: string } }) => {
                         className="h-full w-full object-cover object-center"
                       />
                     </span>
-                    {/* <span
-                      aria-hidden="true"
-                      className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
-                    />
-                    <span className="relative mt-auto text-center text-xl font-bold text-white">{product.title}</span> */}
                   </Link>
                 ))}
               </div>
@@ -119,34 +116,32 @@ const Home = async ({ params }: { params: { locale: string } }) => {
         </div>
       </section>
 
-      {/* Information section */}
-      <section aria-labelledby="comfort-heading" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-24 lg:px-8">
-        <div className="relative overflow-hidden rounded-lg">
-          <div className="absolute inset-0">
-            <Image
-              src="/default/information.png"
-              alt={shopInfo.brand.coverImage.image.altText}
-              width={shopInfo.brand.coverImage.image.width}
-              height={shopInfo.brand.coverImage.image.height}
-              className="h-full w-full object-cover object-center"
-            />
-          </div>
+      <section className="relative max-h-screen  mt-24  ">
+        <div className="absolute inset-0 group   ">
+          <Image
+            src={shopInfo.brand.coverImage.image.url}
+            alt={shopInfo.brand.coverImage.image.altText}
+            width={shopInfo.brand.coverImage.image.width}
+            height={shopInfo.brand.coverImage.image.height}
+            className="h-full w-full object-cover object-right-top  "
+          />
 
-          <div className="relative bg-white bg-opacity-0 px-6 py-24 sm:px-12 sm:py-40 lg:px-16">
-            <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
-              <h2 id="comfort-heading" className="text-xl lg:text-3xl font-bold tracking-tight text-white  ">
-                {shopInfo.name}
-              </h2>
-              <p className="mt-3  text-lg text-white">{shopInfo.description}</p>
-              <div className=" text-center">
-                <a
-                  href="https://github.com/marulloc/Marulloc-shopify-headless-monorepo/tree/master"
-                  className=" text-center mt-12 inline-block  rounded-md border border-transparent   px-8 py-3  text-xs lg:text-sm font-medium text-white hover:bg-gray-700  "
-                >
-                  View Code - Github
-                </a>
-              </div>
-            </div>
+          <div className="absolute w-full h-1/4 top-0 bg-gradient-to-b from-white via-white" />
+          <div className="absolute inset-0  bg-white bg-opacity-30 "></div>
+        </div>
+
+        <div className=" relative mx-auto max-w-7xl px-20 py-44  w-full h-full  ">
+          <h2 id="comfort-heading" className="text-xl lg:text-3xl font-bold tracking-tight text-gray-900  ">
+            {shopInfo.name}
+          </h2>
+          <p className="mt-3  text-lg text-gray-900">{shopInfo.description}</p>
+          <div className=" text-center">
+            <a
+              href="https://github.com/marulloc/Marulloc-shopify-headless-monorepo/tree/master"
+              className=" text-center mt-12 inline-block  rounded-md border border-transparent   px-8 py-3  text-xs lg:text-sm font-medium text-gray-900 hover:bg-gray-700  "
+            >
+              View Code - Github
+            </a>
           </div>
         </div>
       </section>
