@@ -1,14 +1,20 @@
-'use client';
-
 import { Fragment, useState } from 'react';
 import { classNames } from '@marulloc/components-library/utils';
 import { HiMenu, HiOutlineSearch, HiOutlineShoppingBag } from 'react-icons/hi';
 import CartTriggerIcon from './cart/triggers/CartIconTrigger';
+import MenuIconTrigger from './menu/triggers/MenuIconTrigger';
+import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-common';
+import { getMenu } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
+import { splitLocale } from '@/utils/locale';
 
 const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP'];
 
-const Header = () => {
-  const [open, setOpen] = useState(false);
+type Props = {
+  locale?: ShopifyLocaleContext;
+};
+
+const Header = async ({ locale }: Props) => {
+  const menu = await getMenu('custom-storefront-menu', { country: locale?.country, language: locale?.language });
 
   return (
     <div className="fixed top-0 w-full z-30 ">
@@ -31,10 +37,7 @@ const Header = () => {
 
                   {/* Mobile menu and search (lg-) */}
                   <div className="flex flex-1 items-center lg:hidden">
-                    <button type="button" className="-ml-2 rounded-md bg-white p-2 " onClick={() => setOpen(true)}>
-                      <span className="sr-only">Open menu</span>
-                      <HiMenu className="h-6 w-6" aria-hidden="true" />
-                    </button>
+                    <MenuIconTrigger menu={menu} />
                   </div>
 
                   {/* Logo (lg-) */}

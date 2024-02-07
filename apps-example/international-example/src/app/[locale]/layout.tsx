@@ -55,7 +55,7 @@ const RootLayout = async ({
     <html lang={languageCode} className="">
       <CartProvider locale={{ country: countryCode, language: languageCode }}>
         <body className={inter.className + 'relative   bg-gray-50'}>
-          <Header />
+          <Header locale={{ country: countryCode, language: languageCode }} />
           {children}
 
           <FloatingActionButton />

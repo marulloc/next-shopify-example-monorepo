@@ -1,3 +1,5 @@
+'use client';
+
 import { classNames } from '@marulloc/components-library/utils';
 import CartDrawer from '../CartDrawer';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
