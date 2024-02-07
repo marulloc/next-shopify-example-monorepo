@@ -32,13 +32,13 @@ const CartLine = ({ cartLine }: Props) => {
             <h3>
               <Link href={cartLine.merchandise.product.handleRoute}>{cartLine.merchandise.product.title}</Link>
             </h3>
-            <p className="ml-4">
+            <div className="ml-4">
               <Price
                 className="flex justify-end text-sm"
                 currencyCode={cartLine.cost.totalAmount.currencyCode}
                 amount={cartLine.cost.totalAmount.amount}
               />
-            </p>
+            </div>
           </div>
           <p className="mt-1 text-sm text-gray-500">{cartLine.merchandise.title}</p>
         </div>

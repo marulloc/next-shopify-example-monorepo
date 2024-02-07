@@ -3,13 +3,21 @@ import {
   createCartMutation,
   editCartItemsMutation,
   removeFromCartMutation,
+  updateCartLocaleMutation,
 } from '../../@shopify-graphql/mutations/cart';
 import { getCartQuery } from '../../@shopify-graphql/queries/cart';
 import { ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
 import { storeFetch } from '../../utils/storeFetch';
 import { ToolkitCart } from '../@toolkit-types/toolkit-cart';
 import { parseCart } from './parser';
-import { AddToCartService, CreateCartService, GetCartService, RemoveFromCartService, UpdateCartService } from './types';
+import {
+  AddToCartService,
+  CreateCartService,
+  GetCartService,
+  RemoveFromCartService,
+  UpdateCartLocaleService,
+  UpdateCartService,
+} from './types';
 
 export const createCart = async (locale?: ShopifyLocaleContext): Promise<ToolkitCart> => {
   const res = await storeFetch<CreateCartService>({
@@ -89,4 +97,14 @@ export const getCart = async (cartId: string, locale?: ShopifyLocaleContext): Pr
   });
 
   return parseCart(res.body.data.cart);
+};
+
+export const updateCartLocale = async (cartId: string, locale: ShopifyLocaleContext): Promise<ToolkitCart> => {
+  const res = await storeFetch<UpdateCartLocaleService>({
+    query: updateCartLocaleMutation,
+    variables: { cartId: cartId, country: locale.country?.toUpperCase(), language: locale?.language?.toUpperCase() },
+    cache: 'no-store',
+  });
+
+  return parseCart(res.body.data.cartBuyerIdentityUpdate.cart);
 };

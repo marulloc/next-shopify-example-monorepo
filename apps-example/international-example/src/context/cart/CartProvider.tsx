@@ -2,15 +2,9 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { CartContext, CartContextType } from './context';
-import {
-  addToCart,
-  createCart,
-  getCart,
-  removeFromCart,
-  updateCart,
-} from '@/@marulloc-shopify-nextapi/v24.01/services/cart/service';
-import { ToolkitCart } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-cart';
+import { addToCart, removeFromCart, updateCart } from '@/@marulloc-shopify-nextapi/v24.01/services/cart/service';
 import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-common';
+import { useCartInitEffect, useCartLocaleEffect } from './effects';
 
 type Props = {
   children: React.ReactNode;
@@ -26,27 +20,15 @@ const CartProvider = ({ children, locale }: Props) => {
     deleteItem: async ({ lineId }) => {},
   });
 
-  useEffect(() => {
-    const storageKey = 'marulloc-cart';
+  useCartInitEffect(contextState, setContextState, locale);
+  useCartLocaleEffect(contextState, setContextState, locale);
 
-    if (contextState.cart) {
-      localStorage.setItem(storageKey, JSON.stringify(contextState.cart));
-      return;
-    }
-
-    (async () => {
-      const savedCart = JSON.parse(localStorage.getItem(storageKey) || 'null') as ToolkitCart | null;
-
-      if (savedCart) {
-        const memoizedCart = await getCart(savedCart.id, locale);
-        setContextState(({ status, ...rest }) => ({ ...rest, cart: memoizedCart, status: 'loaded' }));
-      } else {
-        const newCart = await createCart(locale);
-        setContextState(({ status, ...rest }) => ({ ...rest, cart: newCart, status: 'loaded' }));
-      }
-    })();
-  }, [contextState.cart, locale]);
-
+  /**
+   * Service Functions (mutations)
+   * - addItem()
+   * - updateItem()
+   * - deleteItem()
+   */
   const addItem: CartContextType['addItem'] = useCallback(
     async ({ variantId, quantity }) => {
       if (!contextState.cart) return;

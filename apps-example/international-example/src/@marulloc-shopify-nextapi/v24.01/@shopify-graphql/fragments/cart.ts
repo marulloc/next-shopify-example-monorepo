@@ -4,6 +4,9 @@ export const cartFragment = `
   fragment cart on Cart {
     id
     checkoutUrl
+    buyerIdentity {
+      countryCode
+    }
     cost {
       subtotalAmount {
         amount

@@ -43,3 +43,15 @@ export const removeFromCartMutation = `
   }
   ${cartFragment}
 `;
+
+export const updateCartLocaleMutation = `
+  mutation updateCartLocale ($cartId : ID!, $country: CountryCode, $language: LanguageCode) @inContext(country: $country, language: $language) {
+    
+    cartBuyerIdentityUpdate(cartId:$cartId, buyerIdentity:{countryCode: $country}){
+      cart {
+        ...cart
+      }
+    }
+  }
+  ${cartFragment}
+`;

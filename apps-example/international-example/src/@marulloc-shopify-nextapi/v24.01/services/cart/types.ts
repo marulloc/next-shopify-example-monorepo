@@ -36,3 +36,8 @@ export type GetCartService = {
   data: { cart: ShopifyCart };
   variables: { cartId: string } & ShopifyLocaleContext;
 };
+
+export type UpdateCartLocaleService = {
+  data: { cartBuyerIdentityUpdate: { cart: ShopifyCart } };
+  variables: { cartId: string; country: ShopifyLocaleContext['country']; language: ShopifyLocaleContext['language'] };
+};

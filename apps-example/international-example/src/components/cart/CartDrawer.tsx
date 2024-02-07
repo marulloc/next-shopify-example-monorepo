@@ -65,7 +65,7 @@ const Cart = ({ Trigger }: Props) => {
                 <div className="flex justify-between text-base font-medium text-gray-900">
                   <p>Subtotal</p>
                   <Price
-                    className="text-right text-base text-black dark:text-teal-400"
+                    className="text-right text-base text-sky-500"
                     amount={cart?.cost.totalAmount.amount || ''}
                     currencyCode={cart?.cost.totalAmount.currencyCode || ''}
                   />
