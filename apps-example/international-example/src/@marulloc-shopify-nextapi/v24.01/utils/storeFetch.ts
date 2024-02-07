@@ -3,7 +3,7 @@ const apiVersion = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION || '';
 const endPoint = `https://${storeDomain}/api/${apiVersion}/graphql.json`;
 const accessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN || '';
 
-(function checkEnvVariables() {
+function checkEnvVariables() {
   const requiredEnvVars = [
     'NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN',
     'NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION',
@@ -15,7 +15,7 @@ const accessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN || '
   if (missingEnvVars.length > 0) {
     throw new Error(`Missing environment variables: ${missingEnvVars.join(', ')}`);
   }
-})();
+}
 
 export type StoreFetchParams<T> = {
   headers?: HeadersInit;
@@ -26,6 +26,7 @@ export type StoreFetchParams<T> = {
 };
 
 export const storeFetch = async <T>(params: StoreFetchParams<T>): Promise<{ status: number; body: T }> => {
+  // checkEnvVariables();
   const method = 'POST';
   const headers = {
     'X-Shopify-Storefront-Access-Token': accessToken,

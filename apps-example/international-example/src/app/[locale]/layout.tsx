@@ -3,8 +3,9 @@ import { Inter } from 'next/font/google';
 import '../globals.css';
 import { getLocale, getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { splitLocale } from '@/utils/locale';
-import Header from '../Header';
-import FloatingActionButton from '../FloatingAction';
+import Header from '../../components/Header';
+import FloatingActionButton from '../../components/FloatingAction';
+import CartProvider from '@/context/cart/CartProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -49,15 +50,17 @@ const RootLayout = async ({
   params,
 }: Readonly<{ children: React.ReactNode; params: { locale: string } }>) => {
   const { countryCode, languageCode } = splitLocale(params.locale);
-  const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
+
   return (
     <html lang={languageCode} className="">
-      <body className={inter.className + 'relative   bg-gray-50'}>
-        <Header />
-        {children}
+      <CartProvider locale={{ country: countryCode, language: languageCode }}>
+        <body className={inter.className + 'relative   bg-gray-50'}>
+          <Header />
+          {children}
 
-        <FloatingActionButton />
-      </body>
+          <FloatingActionButton />
+        </body>
+      </CartProvider>
     </html>
   );
 };
