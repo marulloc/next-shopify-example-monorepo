@@ -63,9 +63,6 @@ importers:
 
   apps-example/international-example:
     dependencies:
-      '@heroicons/react':
-        specifier: ^2.0.18
-        version: 2.1.1(react@18.2.0)
       '@marulloc/components-library':
         specifier: workspace:*
         version: link:../../packages/@marulloc-components-library

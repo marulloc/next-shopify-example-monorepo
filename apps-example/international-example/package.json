@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "dependencies": {
-    "@heroicons/react": "^2.0.18",
+  "dependencies": { 
     "@marulloc/components-library": "workspace:*",
     "negotiator": "^0.6.3",
     "next": "14.1.0",

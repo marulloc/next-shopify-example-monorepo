@@ -3,8 +3,8 @@ import { Inter } from 'next/font/google';
 import '../globals.css';
 import { getLocale, getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { splitLocale } from '@/utils/locale';
-import Image from 'next/image';
 import Header from '../Header';
+import FloatingActionButton from '../FloatingAction';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -55,6 +55,8 @@ const RootLayout = async ({
       <body className={inter.className + 'relative   bg-gray-50'}>
         <Header />
         {children}
+
+        <FloatingActionButton />
       </body>
     </html>
   );
