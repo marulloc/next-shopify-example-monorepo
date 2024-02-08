@@ -6,8 +6,7 @@ import MenuIconTrigger from './menu/triggers/MenuIconTrigger';
 import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-common';
 import { getMenu } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { splitLocale } from '@/utils/locale';
-
-const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP'];
+import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 
 type Props = {
   locale?: ShopifyLocaleContext;
@@ -15,6 +14,7 @@ type Props = {
 
 const Header = async ({ locale }: Props) => {
   const menu = await getMenu('custom-storefront-menu', { country: locale?.country, language: locale?.language });
+  const collections = await getCollections();
 
   return (
     <div className="fixed top-0 w-full z-30 ">
@@ -37,7 +37,7 @@ const Header = async ({ locale }: Props) => {
 
                   {/* Mobile menu and search (lg-) */}
                   <div className="flex flex-1 items-center lg:hidden">
-                    <MenuIconTrigger menu={menu} />
+                    <MenuIconTrigger menu={menu} collections={collections} />
                   </div>
 
                   {/* Logo (lg-) */}
