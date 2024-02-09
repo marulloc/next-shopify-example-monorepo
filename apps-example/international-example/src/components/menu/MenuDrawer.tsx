@@ -6,8 +6,6 @@ import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HiOutlineSearch, HiOutlineX } from 'react-icons/hi';
-import { HiOutlineHome } from 'react-icons/hi2';
-import { MenuItemIcons } from './constant';
 import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-collection';
 
 type Props = {
@@ -65,7 +63,7 @@ const MenuDrawer = ({ Trigger, menu, collections }: Props) => {
         {({ isOpen, closeDrawer }) => (
           <div
             className={classNames(
-              'pointer-events-auto w-screen  max-w-md  h-full',
+              'pointer-events-auto w-screen  max-w-md  h-screen  overflow-hidden',
               'bg-gray-100 bg-opacity-90 backdrop-blur-sm',
               'border-r border-gray-200',
             )}
@@ -90,47 +88,17 @@ const MenuDrawer = ({ Trigger, menu, collections }: Props) => {
                 </div>
               </div>
 
+              {/* Main */}
               <div className={classNames('flex-1 overflow-y-auto    ', 'px-4 py-4 sm:px-6')}>
                 <nav className="flex flex-1 flex-col">
-                  <div className="text-xs font-semibold leading-6 text-gray-500 mt-2">Menus</div>
-
                   <ul role="list" className="mt-2 flex flex-1 flex-col gap-y-14">
                     <li>
-                      <ul role="list" className="-mx-2 space-y-1">
-                        {[{ title: 'home', url: '/' }, ...menu].map(({ title, url }) => {
-                          const Icon =
-                            MenuItemIcons[title.toLowerCase() as keyof typeof MenuItemIcons] ||
-                            MenuItemIcons['default'];
-                          return (
-                            <li key={`side-menu-${title}`} onClick={() => closeDrawer()}>
-                              <Link
-                                href={url}
-                                className={classNames(
-                                  'text-gray-700 hover:text-indigo-600  ',
-                                  'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
-                                )}
-                              >
-                                <Icon
-                                  className={classNames(
-                                    'text-gray-400 group-hover:text-indigo-600',
-                                    'h-6 w-6 shrink-0',
-                                  )}
-                                  aria-hidden="true"
-                                />
-                                {title}
-                              </Link>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </li>
-                    <li>
-                      <div className="text-xs font-semibold leading-6 text-gray-500">Collections</div>
+                      <div className="text-xs font-semibold leading-6 text-gray-500">Menus</div>
                       <ul role="list" className="-mx-2 mt-2 space-y-1">
-                        {collections.map((collection) => (
-                          <li key={`sidemenu-collection-${collection.title}`}>
+                        {[{ title: 'home', url: '/' }, ...menu].map(({ title, url }) => (
+                          <li key={`side-menu-${title}`}>
                             <Link
-                              href={collection.handleRoute}
+                              href={url}
                               className={classNames(
                                 'text-gray-700 hover:text-indigo-600  ',
                                 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
@@ -142,8 +110,48 @@ const MenuDrawer = ({ Trigger, menu, collections }: Props) => {
                                   'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white',
                                 )}
                               >
-                                {(collection.title[0] || 'c').toUpperCase()}
+                                {(title[0] || 'c').toUpperCase()}
                               </span>
+                              <span className="truncate">{title}</span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+
+                    <li>
+                      <div className="text-xs font-semibold leading-6 text-gray-500">Collections</div>
+                      <ul role="list" className="-mx-2 mt-2 space-y-1">
+                        {collections.map((collection, index) => (
+                          <li key={`sidemenu-collection-${collection.title}`}>
+                            <Link
+                              href={collection.handleRoute}
+                              className={classNames(
+                                'text-gray-700 hover:text-indigo-600  ',
+                                'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
+                              )}
+                            >
+                              {collection.image || index < 3 ? (
+                                <Image
+                                  src={collection.image?.url || `/default/collection-${index + 1}.png`}
+                                  alt={collection.image?.altText || `default-collection-${index + 1}`}
+                                  width={collection.image?.width || 1200}
+                                  height={collection.image?.height || 1200}
+                                  className={classNames(
+                                    'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
+                                    'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white',
+                                  )}
+                                />
+                              ) : (
+                                <span
+                                  className={classNames(
+                                    'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
+                                    'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white',
+                                  )}
+                                >
+                                  {(collection.title[0] || 'c').toUpperCase()}
+                                </span>
+                              )}
                               <span className="truncate">{collection.title}</span>
                             </Link>
                           </li>
