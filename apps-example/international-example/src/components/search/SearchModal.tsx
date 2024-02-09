@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 import Modal from '@marulloc/components-library/Modal';
 import { ToolkitPredictiveSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-search';
 import { getPredictiveSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/search/service';
-import { HiOutlineSearch, HiArrowRight } from 'react-icons/hi';
+import { HiOutlineSearch, HiArrowRight, HiOutlineX } from 'react-icons/hi';
 import { throttle } from '@/utils/throttle';
 import ProductPrice from '../ProductPrice';
 
@@ -74,101 +74,164 @@ const SearchModal = ({ Trigger }: Props) => {
       </Modal.Trigger>
 
       <Modal.Backdrop>
-        {() => (
-          <div className={classNames('w-full h-full', 'dark:bg-black dark:bg-opacity-70 bg-white bg-opacity-50')} />
-        )}
+        {({}) => <div className={classNames('w-full h-full', '  bg-gray-400  bg-opacity-60 backdrop-blur-sm')}></div>}
       </Modal.Backdrop>
 
       <Modal.Contents>
         {({ isOpen, closeModal }) => (
-          <div
-            className={classNames(
-              ' relative p-4 max-w-4xl mx-auto  md:mt-24 h-screen md:h-fit overflow-auto',
-              'bg-zinc-900 shadow-lg border rounded-lg border-zinc-500',
-            )}
-          >
-            <form onSubmit={(e) => handleSubmit(e, closeModal)}>
-              <div className={classNames('relative group ')}>
-                <div className="absolute inset-y-0 left-0 flex items-center pl-5">
-                  <HiOutlineSearch
-                    className={classNames('h-6 w-6', 'text-zinc-300 group-hover:text-zinc-100 ')}
-                    aria-hidden="true"
-                  />
-                </div>
+          <div className={classNames('relative mt-8', 'max-w-3xl mx-auto  max-h-[calc(100vh-64px)]')}>
+            <div
+              className={classNames(
+                'rounded-lg bg-gray-100 bg-opacity-90 backdrop-blur-sm',
+                'border-r border-gray-200',
+                'mx-2 md:mx-4  h-full box-border',
+                'overflow-hidden',
+              )}
+            >
+              <div className="flex flex-col h-full w-full ">
+                {/* Header */}
 
-                <input
-                  ref={inputRef}
-                  onChange={handlePredictive}
-                  id="search"
-                  name="search-input"
-                  placeholder="Search ..."
-                  type="search"
-                  className={classNames(
-                    'h-14 block w-full',
-                    'bg-transparent',
-                    'border-b border-zinc-700',
-                    'text-sm text-zinc-50',
-                    'outline-none',
-                    'pl-14 pr-3 py-2',
-                  )}
-                />
-              </div>
-            </form>
-            {/* Result - Collections */}
-            <div className="text-zinc-100 p-6">
-              <p className="text-xs text-zinc-400">Collections</p>
-
-              <ul className="pt-2 pb-4">
-                {predictive.collections.map((collection) => (
-                  <li key={`predictive-search-collection-${collection.handle}`} className="py-1">
-                    <Link href={collection.handleRoute} onClick={() => closeModal()}>
-                      {collection.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Result - Products */}
-            <div className="text-zinc-300 p-6">
-              <p className="text-xs text-zinc-400">Products</p>
-
-              <ul>
-                {predictive.products.map((product) => (
-                  <li key={`predictive-search-product-${product.handle}`}>
-                    <Link href={product.handleRoute} onClick={() => closeModal()}>
-                      <div className="flex items-center py-4 space-x-6">
-                        <div
-                          className={classNames(
-                            'py-4 aspect-square h-16 bg-black',
-                            'rounded-lg flex justify-center items-center overflow-hidden',
-                          )}
-                        >
-                          <Image
-                            src={product.featuredImage?.url || ''}
-                            alt={product.featuredImage?.altText || product.title}
-                            width={product.featuredImage?.width || 0}
-                            height={product.featuredImage?.height || 0}
-                            className="h-16 aspect-square object-cover"
+                <div className={classNames('px-4 py-4 sm:px-6', 'flex items-center justify-between ', 'bg-white')}>
+                  <div className="relative w-full ">
+                    <form onSubmit={(e) => handleSubmit(e, closeModal)} className="w-full  ">
+                      <div className={classNames('relative group w-full')}>
+                        <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+                          <HiOutlineSearch
+                            className={classNames('h-5 w-5', 'text-zinc-300 group-hover:text-zinc-100 ')}
+                            aria-hidden="true"
                           />
                         </div>
 
-                        <div className="space-y-2">
-                          <div>{product.title}</div>
-                          <div className="text-sm text-zinc-400">
-                            <ProductPrice priceRange={product.priceRange} />
-                          </div>
-                        </div>
+                        <input
+                          ref={inputRef}
+                          onChange={handlePredictive}
+                          id="search"
+                          name="search-input"
+                          placeholder="Search ..."
+                          type="search"
+                          className={classNames(
+                            'block w-full',
+                            'rounded-lg',
+                            'bg-transparent',
+                            'border border-zinc-700',
+                            'text-xs text-zinc-500',
+                            'outline-none',
+                            'pl-10 pr-3 py-2',
+                            'focus-within:ring-1 ring-zinc-400 ring-inset',
+                          )}
+                        />
                       </div>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="border-t border-zinc-700 h-14 text-right  text-teal-600 flex space-x-2 items-center justify-end px-6 text-xs">
-              <span>Search with filters</span>
-              <HiArrowRight className="w-3 h-3 " />
-              <button onClick={() => closeModal()}>Close</button>
+                    </form>
+                  </div>
+                  <div className="ml-4 flex items-center">
+                    <button
+                      type="button"
+                      className="relative   p-1 text-gray-400 bg-gray-100 hover:text-gray-500 border rounded-lg border-gray-500"
+                      onClick={() => closeModal()}
+                    >
+                      <span className="absolute -inset-0.5" />
+                      <span className="sr-only">Close panel</span>
+                      <HiOutlineX className="h-6 w-6" aria-hidden="true" />
+                    </button>
+                  </div>
+                </div>
+
+                <div className={classNames('flex-1 overflow-y-auto max-h-[calc(60svh-30px)]', 'px-4 py-4 sm:px-6')}>
+                  {/* Main */}
+                  <div className="text-xs font-semibold leading-6 text-gray-500">Collections</div>
+
+                  <ul className="pt-2 pb-4">
+                    {predictive.collections.map((collection, index) => (
+                      <li key={`predictive-search-collection-${collection.handle}`} className="py-1">
+                        <Link
+                          href={collection.handleRoute}
+                          className={classNames(
+                            'text-gray-700 hover:text-indigo-600  ',
+                            'group flex gap-x-3 rounded-md py-1 text-sm leading-6 font-semibold',
+                          )}
+                        >
+                          {collection.image || index < 3 ? (
+                            <Image
+                              src={collection.image?.url || `/default/collection-${index + 1}.png`}
+                              alt={collection.image?.altText || `default-collection-${index + 1}`}
+                              width={collection.image?.width || 1200}
+                              height={collection.image?.height || 1200}
+                              className={classNames(
+                                'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
+                                'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white',
+                              )}
+                            />
+                          ) : (
+                            <span
+                              className={classNames(
+                                'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
+                                'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white',
+                              )}
+                            >
+                              {(collection.title[0] || 'c').toUpperCase()}
+                            </span>
+                          )}
+                          <span className="truncate">{collection.title}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <ul>
+                    <div className="text-xs font-semibold leading-6 text-gray-500">Products</div>
+
+                    {predictive.products.map((product) => (
+                      <li key={`predictive-search-product-${product.handle}`}>
+                        <Link
+                          href={product.handleRoute}
+                          onClick={() => closeModal()}
+                          className={classNames(
+                            'group block',
+                            'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
+                          )}
+                        >
+                          <div className="flex items-center py-2 space-x-6">
+                            <div
+                              className={classNames(
+                                'aspect-square  ',
+                                'rounded-lg flex justify-center items-center overflow-hidden',
+                                'border group-hover:border-indigo-600 group-hover:text-indigo-600',
+                              )}
+                            >
+                              <Image
+                                src={product.featuredImage?.url || ''}
+                                alt={product.featuredImage?.altText || product.title}
+                                width={product.featuredImage?.width || 0}
+                                height={product.featuredImage?.height || 0}
+                                className="h-14 w-auto object-cover"
+                              />
+                            </div>
+
+                            <div
+                              className={classNames(
+                                'text-base',
+                                'text-gray-600 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
+                              )}
+                            >
+                              <div>{product.title}</div>
+                              <div className={classNames('text-sm')}>
+                                <ProductPrice priceRange={product.priceRange} />
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className={classNames('px-3 py-3  md:px-6 md:py-6', 'bg-white')}>
+                  {/* Footer */}
+                  <div className=" text-right  text-indigo-600 flex space-x-2 items-center justify-end  text-xs">
+                    <span>Search all</span>
+                    <HiArrowRight className="w-3 h-3 " />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )}

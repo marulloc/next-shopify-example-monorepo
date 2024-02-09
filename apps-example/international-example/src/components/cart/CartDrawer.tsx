@@ -87,19 +87,6 @@ const Cart = ({ Trigger }: Props) => {
                     Checkout
                   </Link>
                 </div>
-                <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-                  <p>
-                    or{' '}
-                    <button
-                      type="button"
-                      className="font-medium text-indigo-600 hover:text-indigo-500"
-                      onClick={() => closeDrawer()}
-                    >
-                      Continue Shopping
-                      <span aria-hidden="true"> &rarr;</span>
-                    </button>
-                  </p>
-                </div>
               </div>
             </div>
           </div>
