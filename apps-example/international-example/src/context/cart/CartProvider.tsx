@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { CartContext, CartContextType } from './context';
 import { addToCart, removeFromCart, updateCart } from '@/@marulloc-shopify-nextapi/v24.01/services/cart/service';
 import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-common';
-import { useCartInitEffect, useCartLocaleEffect } from './effects';
+import { useCartInitEffect, useCartLocaleEffect } from './hooks';
 
 type Props = {
   children: React.ReactNode;

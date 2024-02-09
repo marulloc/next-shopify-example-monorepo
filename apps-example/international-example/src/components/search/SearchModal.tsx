@@ -1,26 +1,30 @@
 'use client';
 
 import { classNames } from '@marulloc/components-library/utils';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import Modal from '@marulloc/components-library/Modal';
-import { ToolkitPredictiveSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-search';
-import { getPredictiveSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/search/service';
 import { HiOutlineSearch, HiArrowRight, HiOutlineX } from 'react-icons/hi';
 import { throttle } from '@/utils/throttle';
 import ProductPrice from '../ProductPrice';
+import { usePredictiveSearch } from '@/context/search/hooks';
 
 type Props = {
   Trigger: React.ReactNode;
 };
 
 const SearchModal = ({ Trigger }: Props) => {
+  const [{ status, searchResult }, handlePredictive] = usePredictiveSearch();
+  const searchParams = useSearchParams();
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
-  const searchParams = useSearchParams();
+
+  const handleSearch = throttle(
+    async (e: React.ChangeEvent<HTMLInputElement>) => handlePredictive(e.target.value),
+    500,
+  );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>, closeModal: () => void) => {
     e.preventDefault();
@@ -29,11 +33,8 @@ const SearchModal = ({ Trigger }: Props) => {
     const search = form.search as HTMLInputElement;
 
     const newParams = new URLSearchParams(searchParams.toString());
-    if (search.value) {
-      newParams.set('query', search.value);
-    } else {
-      newParams.delete('query');
-    }
+    if (search.value) newParams.set('query', search.value);
+    else newParams.delete('query');
 
     const paramsString = newParams.toString();
     const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
@@ -42,29 +43,8 @@ const SearchModal = ({ Trigger }: Props) => {
     closeModal();
   };
 
-  // Search
-  const [predictive, setPredictive] = useState<ToolkitPredictiveSearch>({ products: [], collections: [] });
-
-  useEffect(() => {
-    (async () => {
-      const { products, collections } = await getPredictiveSearch('');
-      setPredictive({ products, collections });
-    })();
-  }, []);
-
-  const handlePredictive = throttle(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { products, collections } = await getPredictiveSearch(e.target.value);
-    setPredictive({ products, collections });
-  }, 500);
-
   return (
-    <Modal
-      onOpen={() => {
-        setTimeout(() => {
-          inputRef.current?.focus({ preventScroll: true });
-        }, 500);
-      }}
-    >
+    <Modal onOpen={() => setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 500)}>
       <Modal.Trigger>
         {({ openModal }) => (
           <div onClick={() => openModal()}>
@@ -90,7 +70,6 @@ const SearchModal = ({ Trigger }: Props) => {
             >
               <div className="flex flex-col h-full w-full ">
                 {/* Header */}
-
                 <div className={classNames('px-4 py-4 sm:px-6', 'flex items-center justify-between ', 'bg-white')}>
                   <div className="relative w-full ">
                     <form onSubmit={(e) => handleSubmit(e, closeModal)} className="w-full  ">
@@ -104,7 +83,7 @@ const SearchModal = ({ Trigger }: Props) => {
 
                         <input
                           ref={inputRef}
-                          onChange={handlePredictive}
+                          onChange={handleSearch}
                           id="search"
                           name="search-input"
                           placeholder="Search ..."
@@ -136,12 +115,11 @@ const SearchModal = ({ Trigger }: Props) => {
                   </div>
                 </div>
 
+                {/* Main */}
                 <div className={classNames('flex-1 overflow-y-auto max-h-[calc(60svh-30px)]', 'px-4 py-4 sm:px-6')}>
-                  {/* Main */}
-                  <div className="text-xs font-semibold leading-6 text-gray-500">Collections</div>
-
                   <ul className="pt-2 pb-4">
-                    {predictive.collections.map((collection, index) => (
+                    <div className="text-xs font-semibold leading-6 text-gray-500">Collections</div>
+                    {searchResult.collections.map((collection, index) => (
                       <li key={`predictive-search-collection-${collection.handle}`} className="py-1">
                         <Link
                           href={collection.handleRoute}
@@ -178,8 +156,7 @@ const SearchModal = ({ Trigger }: Props) => {
                   </ul>
                   <ul>
                     <div className="text-xs font-semibold leading-6 text-gray-500">Products</div>
-
-                    {predictive.products.map((product) => (
+                    {searchResult.products.map((product) => (
                       <li key={`predictive-search-product-${product.handle}`}>
                         <Link
                           href={product.handleRoute}
@@ -192,18 +169,20 @@ const SearchModal = ({ Trigger }: Props) => {
                           <div className="flex items-center py-2 space-x-6">
                             <div
                               className={classNames(
-                                'aspect-square  ',
+                                'aspect-square h-14 w-14 bg-gray-400 ',
                                 'rounded-lg flex justify-center items-center overflow-hidden',
                                 'border group-hover:border-indigo-600 group-hover:text-indigo-600',
                               )}
                             >
-                              <Image
-                                src={product.featuredImage?.url || ''}
-                                alt={product.featuredImage?.altText || product.title}
-                                width={product.featuredImage?.width || 0}
-                                height={product.featuredImage?.height || 0}
-                                className="h-14 w-auto object-cover"
-                              />
+                              {product.featuredImage && (
+                                <Image
+                                  src={product.featuredImage.url || ''}
+                                  alt={product.featuredImage.altText || product.title}
+                                  width={product.featuredImage.width || 0}
+                                  height={product.featuredImage.height || 0}
+                                  className="h-14 w-14 object-cover object-center"
+                                />
+                              )}
                             </div>
 
                             <div
@@ -224,8 +203,8 @@ const SearchModal = ({ Trigger }: Props) => {
                   </ul>
                 </div>
 
+                {/* Footer */}
                 <div className={classNames('px-3 py-3  md:px-6 md:py-6', 'bg-white')}>
-                  {/* Footer */}
                   <div className=" text-right  text-indigo-600 flex space-x-2 items-center justify-end  text-xs">
                     <span>Search all</span>
                     <HiArrowRight className="w-3 h-3 " />
