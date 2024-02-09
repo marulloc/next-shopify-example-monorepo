@@ -1,5 +1,6 @@
 import { getCollectionProducts, getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
+import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
@@ -16,7 +17,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
   });
 
   return (
-    <main className="  max-w-7xl mx-auto bg-white shadow-xl  ">
+    <main className={classNames('max-w-7xl mx-auto shadow-xl', localTheme.fill.base.main)}>
       {/* Hero */}
       <section className="relative max-h-screen    ">
         <div className="absolute inset-0 group   ">
@@ -27,16 +28,21 @@ const Home = async ({ params }: { params: { locale: string } }) => {
             height={1000}
             className="h-full w-full object-cover object-center"
           />
-          <div className="absolute w-full h-1/4 bottom-0 bg-gradient-to-t from-white via-white" />
-          <div className="absolute inset-0   bg-white bg-opacity-30 "></div>
+          <div
+            className={classNames('absolute w-full h-1/4 bottom-0 ', 'bg-gradient-to-t from-gray-100  via-gray-100  ')}
+          />
+          <div className={classNames('absolute inset-0', localTheme.fill.base.main, 'bg-opacity-30 ')} />
         </div>
 
-        <div className=" relative mx-auto max-w-7xl px-20 py-64 sm:py-80 w-full h-full  ">
+        <div className="relative mx-auto max-w-7xl px-20 py-64 sm:py-80 w-full h-full  ">
           <div className=" w-full  md:w-[550px] h-full text-center">
-            <h2 id="comfort-heading" className=" text-2xl sm:text-3xl  font-bold tracking-tight text-gray-800  ">
+            <h2
+              id="comfort-heading"
+              className={classNames('text-2xl sm:text-3xl font-bold tracking-tight', localTheme.text.color.base.main)}
+            >
               {shopInfo.brand.slogan || 'Shopify Brand Slogan'}
             </h2>
-            <p className="mt-8 text-sm md:text-lg text-gray-800">
+            <p className={classNames('mt-8 text-sm md:text-lg ', localTheme.text.color.base.muted)}>
               {shopInfo.brand.shortDescription || 'Shopify Brand short Description'}
             </p>
           </div>

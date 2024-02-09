@@ -54,7 +54,7 @@ const RootLayout = async ({
   return (
     <html lang={languageCode} className="">
       <CartProvider locale={{ country: countryCode, language: languageCode }}>
-        <body className={classNames('relative font-mono', localTheme.fill.base.main)}>
+        <body className={classNames('relative font-mono', localTheme.fill.base.muted)}>
           <Header locale={{ country: countryCode, language: languageCode }} />
           {children}
 
