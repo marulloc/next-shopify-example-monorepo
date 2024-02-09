@@ -7,6 +7,7 @@ import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopif
 import { getMenu } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { splitLocale } from '@/utils/locale';
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
+import SearchIconTrigger from './search/triggers/SearchIconTrigger';
 
 type Props = {
   locale?: ShopifyLocaleContext;
@@ -49,12 +50,7 @@ const Header = async ({ locale }: Props) => {
                   <div className="flex flex-1 items-center justify-end">
                     <div className="flex items-center lg:ml-8">
                       <div className="flex space-x-8">
-                        <div className="hidden lg:flex">
-                          <a href="#" className="-m-2 p-2 ">
-                            <span className="sr-only">Search</span>
-                            <HiOutlineSearch className="h-6 w-6" aria-hidden="true" />
-                          </a>
-                        </div>
+                        <SearchIconTrigger />
                       </div>
 
                       <span className="mx-4 h-6 w-px bg-gray-200 lg:mx-6" aria-hidden="true" />

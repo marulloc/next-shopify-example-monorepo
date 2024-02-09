@@ -5,43 +5,14 @@ import Drawer from '@marulloc/components-library/Drawer';
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { HiOutlineSearch, HiOutlineX } from 'react-icons/hi';
+import { HiOutlineX } from 'react-icons/hi';
 import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-collection';
+import SearchFakeInputTrigger from '../search/triggers/SearchInputTrigger';
 
 type Props = {
   Trigger: React.ReactNode;
   menu: ToolkitMenu;
   collections: ToolkitCollection[];
-};
-
-const SearchInput = () => {
-  return (
-    <div className={classNames('isolate relative group')}>
-      <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-        <HiOutlineSearch
-          className={classNames('h-6 w-5', 'text-gray-600 group-hover:text-zinc-400 group-hover:scale-110')}
-          aria-hidden="true"
-        />
-      </div>
-      <input
-        id="fake-search"
-        name="search"
-        placeholder="Search ..."
-        // defaultValue={defaultValue || searchParams.get('query') || ''}
-        type="search"
-        className={classNames(
-          'block w-full',
-          'rounded-lg',
-          'bg-transparent',
-          'border border-zinc-700',
-          'text-xs text-zinc-50',
-          'outline-none',
-          'pl-10 pr-3 py-2',
-          'focus-within:ring-1 ring-zinc-400 ring-inset',
-        )}
-      />
-    </div>
-  );
 };
 
 const MenuDrawer = ({ Trigger, menu, collections }: Props) => {
@@ -72,8 +43,7 @@ const MenuDrawer = ({ Trigger, menu, collections }: Props) => {
               {/* Header */}
               <div className={classNames('px-4 py-4 sm:px-6', 'flex items-center justify-between ', 'bg-white')}>
                 <div className="relative w-full" onClick={() => closeDrawer()}>
-                  <SearchInput />
-                  <div className=" cursor-text absolute inset-0 z-10"></div>
+                  <SearchFakeInputTrigger />
                 </div>
                 <div className="ml-4 flex items-center">
                   <button
