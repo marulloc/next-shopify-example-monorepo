@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { HiOutlineX } from 'react-icons/hi';
 import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-collection';
 import SearchFakeInputTrigger from '../search/triggers/SearchInputTrigger';
+import ThemeSwitcher from '@/theme/ThemeSwitcher';
 
 type Props = {
   Trigger: React.ReactNode;
@@ -145,6 +146,8 @@ const MenuDrawer = ({ Trigger, menu, collections }: Props) => {
                   <span className="ml-3 block text-base font-medium ">Change Locale</span>
                   <span className="sr-only">, change currency</span>
                 </div>
+
+                <ThemeSwitcher />
               </div>
             </div>
           </div>

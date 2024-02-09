@@ -6,8 +6,8 @@ import { splitLocale } from '@/utils/locale';
 import Header from '../../components/Header';
 import FloatingActionButton from '../../components/FloatingAction';
 import CartProvider from '@/context/cart/CartProvider';
-
-const inter = Inter({ subsets: ['latin'] });
+import { classNames } from '@marulloc/components-library/utils';
+import { localTheme } from '@/theme/local-theme';
 
 /**
  * @TODO @inContext(country, language)
@@ -54,7 +54,7 @@ const RootLayout = async ({
   return (
     <html lang={languageCode} className="">
       <CartProvider locale={{ country: countryCode, language: languageCode }}>
-        <body className={inter.className + 'relative   bg-gray-50'}>
+        <body className={classNames('relative font-mono', localTheme.fill.base.main)}>
           <Header locale={{ country: countryCode, language: languageCode }} />
           {children}
 

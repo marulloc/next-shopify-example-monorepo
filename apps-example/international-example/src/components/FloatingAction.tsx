@@ -12,7 +12,7 @@ const FloatingActionButton = () => {
           rel="noopener noreferrer"
           className="-m-2 p-2   opacity-60 group-hover:opacity-100 group-hover:animate-pulse  "
         >
-          <span className="sr-only">Search</span>
+          <span className="sr-only">Move to Github</span>
           <GrGithub className=" h-8 w-8 lg:h-12 lg:w-12" aria-hidden="true" />
         </Link>
       </div>

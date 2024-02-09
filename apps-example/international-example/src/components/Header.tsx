@@ -8,6 +8,7 @@ import { getMenu } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/servic
 import { splitLocale } from '@/utils/locale';
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import SearchIconTrigger from './search/triggers/SearchIconTrigger';
+import Logo from './Logo';
 
 type Props = {
   locale?: ShopifyLocaleContext;
@@ -29,23 +30,24 @@ const Header = async ({ locale }: Props) => {
               <div className=" ">
                 <div className="flex h-16 items-center justify-between">
                   {/* Logo (lg+) */}
-                  <div className="hidden lg:flex lg:items-center   font-bold text-xl">
+                  {/* <div className="hidden lg:flex lg:items-center   font-bold text-xl">
                     <a href="#">
-                      <span className="sr-only">Your Company</span>
+                      <span className="sr-only">Marulloc</span>
                       Marulloc
                     </a>
-                  </div>
+                  </div> */}
 
                   {/* Mobile menu and search (lg-) */}
-                  <div className="flex flex-1 items-center lg:hidden">
+                  <div className="flex flex-1 items-center ">
                     <MenuIconTrigger menu={menu} collections={collections} />
                   </div>
 
                   {/* Logo (lg-) */}
-                  <a href="#" className="lg:hidden">
+                  {/* <a href="#" className="lg:hidden">
                     <span className="sr-only">Marulloc</span>
                     Marulloc
-                  </a>
+                  </a> */}
+                  <Logo country={locale?.country} language={locale?.language} />
 
                   <div className="flex flex-1 items-center justify-end">
                     <div className="flex items-center lg:ml-8">
