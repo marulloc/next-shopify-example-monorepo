@@ -2,6 +2,7 @@ import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
+import AltImage from '../AltImage';
 
 type Props = {
   variant: 'small' | 'big';
@@ -21,12 +22,30 @@ const CollectionCard = ({ variant, collection, index }: Props) => {
 
 export default CollectionCard;
 
-const SmallCollectionCard = ({ collection }: Omit<Props, 'variant'>) => {
+const SmallCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
   return (
-    <>
-      {}
-      {/*  */}
-    </>
+    <div
+      className={classNames(
+        'text-gray-700 hover:text-indigo-600  ',
+        'group flex gap-x-3 rounded-md  text-sm leading-6',
+      )}
+    >
+      {collection.image || index < 3 ? (
+        <Image
+          src={collection.image?.url || `/default/collection-${index + 1}.png`}
+          alt={collection.image?.altText || `default-collection-${index + 1}`}
+          width={collection.image?.width || 1200}
+          height={collection.image?.height || 1200}
+          className={classNames(
+            'border-gray-200 group-hover:border-indigo-600 ',
+            'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border',
+          )}
+        />
+      ) : (
+        <AltImage initial={collection.title[0] || 'c'} />
+      )}
+      <span className="truncate">{collection.title.toUpperCase()}</span>
+    </div>
   );
 };
 
@@ -45,22 +64,10 @@ const BigCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
           className="h-full w-full object-cover object-center"
         />
       </div>
-      <h3
-        className={classNames(
-          'mt-4 text-base font-semibold text-gray-900',
-          localTheme.text.size.small,
-          localTheme.text.color.base.main,
-        )}
-      >
-        {collection.title}
+      <h3 className={classNames('mt-4 font-semibold ', localTheme.text.size.small, localTheme.text.color.base.main)}>
+        {collection.title.toUpperCase()}
       </h3>
-      <p
-        className={classNames(
-          'mt-1 text-sm text-gray-500',
-          localTheme.text.size.small,
-          localTheme.text.color.base.muted,
-        )}
-      >
+      <p className={classNames('mt-1 text-sm  ', localTheme.text.size.small, localTheme.text.color.base.muted)}>
         {collection.description || `default collection`}
       </p>
     </>

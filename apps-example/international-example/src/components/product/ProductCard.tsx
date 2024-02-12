@@ -1,7 +1,7 @@
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
-import ProductPrice from '../ProductPrice';
+import ProductPrice from './ProductPrice';
 import Image from 'next/image';
 
 type Props = {
@@ -23,10 +23,37 @@ export default ProductCard;
 
 const SmallProductCard = ({ product }: Omit<Props, 'variant'>) => {
   return (
-    <>
-      {}
-      {/*  */}
-    </>
+    <div className="group flex items-center  space-x-6">
+      <div
+        className={classNames(
+          'aspect-square h-14 w-14 bg-gray-400 ',
+          'rounded-lg flex justify-center items-center overflow-hidden',
+          'border group-hover:border-indigo-600 group-hover:text-indigo-600',
+        )}
+      >
+        {product.featuredImage && (
+          <Image
+            src={product.featuredImage.url || ''}
+            alt={product.featuredImage.altText || product.title}
+            width={product.featuredImage.width || 0}
+            height={product.featuredImage.height || 0}
+            className="h-14 w-14 object-cover object-center"
+          />
+        )}
+      </div>
+
+      <div
+        className={classNames(
+          'text-base',
+          'text-gray-600 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
+        )}
+      >
+        <div>{product.title}</div>
+        <div className={classNames('text-sm')}>
+          <ProductPrice priceRange={product.priceRange} />
+        </div>
+      </div>
+    </div>
   );
 };
 

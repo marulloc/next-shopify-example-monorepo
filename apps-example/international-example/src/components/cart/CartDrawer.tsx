@@ -28,7 +28,7 @@ const Cart = ({ Trigger }: Props) => {
       </Drawer.Trigger>
 
       <Drawer.Backdrop>
-        {({}) => <div className={classNames('w-full h-full', '  bg-gray-400  bg-opacity-60 backdrop-blur-sm')}></div>}
+        {({}) => <div className={classNames('w-full h-full', 'bg-opacity-60 ', localTheme.fill.base.disabled)} />}
       </Drawer.Backdrop>
 
       <Drawer.Contents>
@@ -36,7 +36,8 @@ const Cart = ({ Trigger }: Props) => {
           <div
             className={classNames(
               'pointer-events-auto w-screen  max-w-md  h-screen overflow-hidden',
-              'bg-gray-100 bg-opacity-90 backdrop-blur-sm',
+              'bg-opacity-80 backdrop-blur-md',
+              localTheme.fill.base.main,
               'border-r border-gray-200',
             )}
           >

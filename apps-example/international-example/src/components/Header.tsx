@@ -17,7 +17,7 @@ type Props = {
 
 const Header = async ({ locale }: Props) => {
   const menu = await getMenu('custom-storefront-menu', { country: locale?.country, language: locale?.language });
-  const collections = await getCollections();
+  const collections = await getCollections({ country: locale?.country, language: locale?.language });
 
   return (
     <div className="fixed top-0 w-full z-30 ">

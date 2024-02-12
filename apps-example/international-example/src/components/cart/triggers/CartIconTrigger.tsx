@@ -7,7 +7,7 @@ import { useCartContext } from '@/context/cart/context';
 import IconButton from '@/components/IconButton';
 import { localTheme } from '@/theme/local-theme';
 
-const CartTriggerIcon = () => {
+const CartIconTrigger = () => {
   const { cart } = useCartContext();
   return (
     <CartDrawer
@@ -36,4 +36,4 @@ const CartTriggerIcon = () => {
   );
 };
 
-export default CartTriggerIcon;
+export default CartIconTrigger;

@@ -8,10 +8,12 @@ import { useRef } from 'react';
 import Modal from '@marulloc/components-library/Modal';
 import { HiArrowRight, HiXMark, HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import { throttle } from '@/utils/throttle';
-import ProductPrice from '../ProductPrice';
+import ProductPrice from '../product/ProductPrice';
 import { usePredictiveSearch } from '@/context/search/hooks';
 import IconButton from '../IconButton';
 import { localTheme } from '@/theme/local-theme';
+import CollectionCard from '../collection/CollectionCard';
+import ProductCard from '../product/ProductCard';
 
 type Props = {
   Trigger: React.ReactNode;
@@ -56,7 +58,7 @@ const SearchModal = ({ Trigger }: Props) => {
       </Modal.Trigger>
 
       <Modal.Backdrop>
-        {({}) => <div className={classNames('w-full h-full', '  bg-gray-400  bg-opacity-60 backdrop-blur-sm')}></div>}
+        {({}) => <div className={classNames('w-full h-full', 'bg-opacity-80 ', localTheme.fill.base.disabled)} />}
       </Modal.Backdrop>
 
       <Modal.Contents>
@@ -64,10 +66,11 @@ const SearchModal = ({ Trigger }: Props) => {
           <div className={classNames('relative mt-8', 'max-w-3xl mx-auto  max-h-[calc(100vh-64px)]')}>
             <div
               className={classNames(
-                'rounded-lg bg-gray-100 bg-opacity-90 backdrop-blur-sm',
-                'border-r border-gray-200',
-                'mx-2 md:mx-4  h-full box-border',
+                'rounded-lg',
+                'mx-2 md:mx-4 h-full box-border',
                 'overflow-hidden',
+                'bg-opacity-80 backdrop-blur-md',
+                localTheme.fill.base.main,
               )}
             >
               <div className="flex flex-col h-full w-full ">
@@ -121,35 +124,8 @@ const SearchModal = ({ Trigger }: Props) => {
                     <div className="text-xs font-semibold leading-6 text-gray-500">Collections</div>
                     {searchResult.collections.map((collection, index) => (
                       <li key={`predictive-search-collection-${collection.handle}`} className="py-1">
-                        <Link
-                          href={collection.handleRoute}
-                          className={classNames(
-                            'text-gray-700 hover:text-indigo-600  ',
-                            'group flex gap-x-3 rounded-md py-1 text-sm leading-6 font-semibold',
-                          )}
-                        >
-                          {collection.image || index < 3 ? (
-                            <Image
-                              src={collection.image?.url || `/default/collection-${index + 1}.png`}
-                              alt={collection.image?.altText || `default-collection-${index + 1}`}
-                              width={collection.image?.width || 1200}
-                              height={collection.image?.height || 1200}
-                              className={classNames(
-                                'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
-                                'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white',
-                              )}
-                            />
-                          ) : (
-                            <span
-                              className={classNames(
-                                'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
-                                'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white',
-                              )}
-                            >
-                              {(collection.title[0] || 'c').toUpperCase()}
-                            </span>
-                          )}
-                          <span className="truncate">{collection.title}</span>
+                        <Link href={collection.handleRoute} className="block p-1 -mx-1">
+                          <CollectionCard variant="small" collection={collection} index={index} />
                         </Link>
                       </li>
                     ))}
@@ -161,42 +137,9 @@ const SearchModal = ({ Trigger }: Props) => {
                         <Link
                           href={product.handleRoute}
                           onClick={() => closeModal()}
-                          className={classNames(
-                            'group block',
-                            'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
-                          )}
+                          className={classNames('py-2 block')}
                         >
-                          <div className="flex items-center py-2 space-x-6">
-                            <div
-                              className={classNames(
-                                'aspect-square h-14 w-14 bg-gray-400 ',
-                                'rounded-lg flex justify-center items-center overflow-hidden',
-                                'border group-hover:border-indigo-600 group-hover:text-indigo-600',
-                              )}
-                            >
-                              {product.featuredImage && (
-                                <Image
-                                  src={product.featuredImage.url || ''}
-                                  alt={product.featuredImage.altText || product.title}
-                                  width={product.featuredImage.width || 0}
-                                  height={product.featuredImage.height || 0}
-                                  className="h-14 w-14 object-cover object-center"
-                                />
-                              )}
-                            </div>
-
-                            <div
-                              className={classNames(
-                                'text-base',
-                                'text-gray-600 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
-                              )}
-                            >
-                              <div>{product.title}</div>
-                              <div className={classNames('text-sm')}>
-                                <ProductPrice priceRange={product.priceRange} />
-                              </div>
-                            </div>
-                          </div>
+                          <ProductCard variant="small" product={product} />
                         </Link>
                       </li>
                     ))}
