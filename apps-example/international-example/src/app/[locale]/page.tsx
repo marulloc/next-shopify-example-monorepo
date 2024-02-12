@@ -122,7 +122,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
                 <Link
                   key={`home-${product.title}`}
                   href={product.handleRoute}
-                  className={classNames('relative w-full aspect-square shadow-md rounded-lg ')}
+                  className={classNames('relative w-full aspect-square hover:shadow-md rounded-lg ')}
                 >
                   <ProductCard variant="big" product={product} />
                 </Link>

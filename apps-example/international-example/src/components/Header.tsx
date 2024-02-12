@@ -9,6 +9,7 @@ import { splitLocale } from '@/utils/locale';
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import SearchIconTrigger from './search/triggers/SearchIconTrigger';
 import Logo from './Logo';
+import { localTheme } from '@/theme/local-theme';
 
 type Props = {
   locale?: ShopifyLocaleContext;
@@ -21,7 +22,13 @@ const Header = async ({ locale }: Props) => {
   return (
     <div className="fixed top-0 w-full z-30 ">
       <header
-        className={classNames('max-w-7xl mx-auto ', 'bg-opacity-20', 'backdrop-blur-sm ', 'shadow-md ', 'bg-slate-100')}
+        className={classNames(
+          localTheme.spacing.container,
+          localTheme.fill.base.muted,
+          'bg-opacity-30',
+          'backdrop-blur-md ',
+          'shadow-md ',
+        )}
       >
         <nav aria-label="Top">
           {/* Secondary navigation */}
@@ -29,37 +36,19 @@ const Header = async ({ locale }: Props) => {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className=" ">
                 <div className="flex h-16 items-center justify-between">
-                  {/* Logo (lg+) */}
-                  {/* <div className="hidden lg:flex lg:items-center   font-bold text-xl">
-                    <a href="#">
-                      <span className="sr-only">Marulloc</span>
-                      Marulloc
-                    </a>
-                  </div> */}
-
                   {/* Mobile menu and search (lg-) */}
-                  <div className="flex flex-1 items-center ">
+                  <div className="flex flex-1 items-center -ml-2">
                     <MenuIconTrigger menu={menu} collections={collections} />
+                    <Logo country={locale?.country} language={locale?.language} />
                   </div>
 
-                  {/* Logo (lg-) */}
-                  {/* <a href="#" className="lg:hidden">
-                    <span className="sr-only">Marulloc</span>
-                    Marulloc
-                  </a> */}
-                  <Logo country={locale?.country} language={locale?.language} />
+                  <div className="flex flex-1 items-center justify-end -mr-2">
+                    <div className=" ">
+                      <SearchIconTrigger />
+                    </div>
 
-                  <div className="flex flex-1 items-center justify-end">
-                    <div className="flex items-center lg:ml-8">
-                      <div className="flex space-x-8">
-                        <SearchIconTrigger />
-                      </div>
-
-                      <span className="mx-4 h-6 w-px bg-gray-200 lg:mx-6" aria-hidden="true" />
-
-                      <div className="flow-root">
-                        <CartTriggerIcon />
-                      </div>
+                    <div className=" ml-1 ">
+                      <CartTriggerIcon />
                     </div>
                   </div>
                 </div>

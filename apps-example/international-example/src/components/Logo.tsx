@@ -13,7 +13,7 @@ const Logo = async ({ country, language }: Props) => {
   const shopInfo = await getShopInfo({ country, language });
 
   return (
-    <Link href={'/'}>
+    <Link href={'/'} className="p-2 ml-2">
       <span className="sr-only">{shopInfo.name}</span>
       {shopInfo.brand.logo && false ? (
         <Image
@@ -21,18 +21,21 @@ const Logo = async ({ country, language }: Props) => {
           alt="Marulloc Storefront"
           width={shopInfo.brand.logo.image.width || 14}
           height={shopInfo.brand.logo.image.height || 14}
-          className="  rounded-md  hover:text-red-500 w-10 h-10"
+          className="  rounded-md  w-10 h-10"
         />
       ) : (
         <div
           className={classNames(
-            localTheme.text.size.small,
-            localTheme.text.color.primary.main,
-            localTheme.text.color.primary.hover,
-            ' leading-3 md:leading-3 text-center',
+            // localTheme.text.size.small,
+            'text-xs',
+            localTheme.text.color.base.main,
+            localTheme.text.color.base.hover,
+            'leading-3  text-center ',
           )}
         >
-          {shopInfo.name}
+          {shopInfo.name.split(' ').map((token) => (
+            <div key="title-token">{token}</div>
+          ))}
         </div>
       )}
     </Link>

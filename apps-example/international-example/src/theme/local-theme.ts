@@ -4,7 +4,8 @@ const text = {
   color: {
     base: {
       main: classNames('text-gray-800'),
-      muted: classNames('text-gray-700'),
+      muted: classNames('text-gray-600'),
+      hover: classNames('hover:text-gray-950'),
       contrast: classNames('text-gray-100'),
       disabled: classNames('opacity-50'),
     },
@@ -34,19 +35,17 @@ const fill = {
     main: classNames('bg-gray-100'),
     muted: classNames('bg-gray-200'),
     hover: classNames('hover:bg-gray-300'),
-    disabled: classNames('opacity-50'),
+    disabled: classNames('bg-gray-400 opacity-50'),
   },
   primary: {
     main: classNames('bg-indigo-500'),
     muted: classNames('bg-indigo-400'),
     hover: classNames('hover:bg-indigo-600'),
-    disabled: classNames('opacity-50'),
   },
   secondary: {
     main: classNames('bg-green-500'),
     muted: classNames('bg-green-400'),
     hover: classNames('hover:bg-green-600'),
-    disabled: classNames('opacity-50'),
   },
 };
 

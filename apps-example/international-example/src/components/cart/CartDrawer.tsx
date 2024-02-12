@@ -3,11 +3,13 @@
 import { classNames } from '@marulloc/components-library/utils';
 
 import Drawer from '@marulloc/components-library/Drawer';
-import { HiMenu, HiOutlineSearch, HiOutlineShoppingBag, HiOutlineX } from 'react-icons/hi';
+import { HiXMark } from 'react-icons/hi2';
 import Price from '../Price';
 import { useCartContext } from '@/context/cart/context';
 import CartLine from './CartLine';
 import Link from 'next/link';
+import IconButton from '../IconButton';
+import { localTheme } from '@/theme/local-theme';
 
 type Props = {
   Trigger: React.ReactNode;
@@ -42,16 +44,14 @@ const Cart = ({ Trigger }: Props) => {
               {/* Header */}
               <div className={classNames('px-4 py-4 sm:px-6', 'flex items-center justify-between ', 'bg-white')}>
                 <p className="text-lg font-medium text-gray-900">Shopping cart</p>
-                <div className="ml-3 flex h-7 items-center">
-                  <button
-                    type="button"
-                    className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
+                <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
+                  <IconButton
+                    srName="close panel"
+                    className={classNames(localTheme.text.color.base.muted, localTheme.text.color.base.hover)}
                     onClick={() => closeDrawer()}
                   >
-                    <span className="absolute -inset-0.5" />
-                    <span className="sr-only">Close panel</span>
-                    <HiOutlineX className="h-6 w-6" aria-hidden="true" />
-                  </button>
+                    <HiXMark className="h-6 w-6" aria-hidden="true" />
+                  </IconButton>
                 </div>
               </div>
 

@@ -1,15 +1,19 @@
 import { classNames } from '@marulloc/components-library/utils';
 import SearchModal from '../SearchModal';
-import { HiOutlineSearch } from 'react-icons/hi';
+import { HiOutlineMagnifyingGlass } from 'react-icons/hi2';
+import IconButton from '@/components/IconButton';
+import { localTheme } from '@/theme/local-theme';
 
 const SearchIconTrigger = () => {
   return (
     <SearchModal
       Trigger={
-        <button type="button" className={classNames('rounded-lg text-zinc-400 p-1.5')}>
-          <span className="sr-only">Search </span>
-          <HiOutlineSearch className="h-6 w-6" aria-hidden="true" />
-        </button>
+        <IconButton
+          srName="Search Items and Collections"
+          className={classNames(localTheme.text.color.base.main, localTheme.text.color.base.hover, 'p-2')}
+        >
+          <HiOutlineMagnifyingGlass className="h-6 w-6" aria-hidden="true" />
+        </IconButton>
       }
     />
   );

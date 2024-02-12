@@ -5,9 +5,11 @@ import Drawer from '@marulloc/components-library/Drawer';
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { HiOutlineX } from 'react-icons/hi';
+import { HiXMark } from 'react-icons/hi2';
 import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-collection';
 import SearchFakeInputTrigger from '../search/triggers/SearchInputTrigger';
+import { localTheme } from '@/theme/local-theme';
+import IconButton from '../IconButton';
 
 type Props = {
   Trigger: React.ReactNode;
@@ -27,7 +29,11 @@ const MenuDrawer = ({ Trigger, menu, collections }: Props) => {
       </Drawer.Trigger>
 
       <Drawer.Backdrop>
-        {({}) => <div className={classNames('w-full h-full', '  bg-gray-400  bg-opacity-60 backdrop-blur-sm')}></div>}
+        {({}) => (
+          <div
+            className={classNames('w-full h-full', 'bg-opacity-10 backdrop-blur-sm', localTheme.fill.base.disabled)}
+          ></div>
+        )}
       </Drawer.Backdrop>
 
       <Drawer.Contents>
@@ -45,16 +51,14 @@ const MenuDrawer = ({ Trigger, menu, collections }: Props) => {
                 <div className="relative w-full" onClick={() => closeDrawer()}>
                   <SearchFakeInputTrigger />
                 </div>
-                <div className="ml-4 flex items-center">
-                  <button
-                    type="button"
-                    className="relative   p-1 text-gray-400 bg-gray-100 hover:text-gray-500 border rounded-lg border-gray-500"
+                <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
+                  <IconButton
+                    srName="close panel"
+                    className={classNames(localTheme.text.color.base.muted, localTheme.text.color.base.hover)}
                     onClick={() => closeDrawer()}
                   >
-                    <span className="absolute -inset-0.5" />
-                    <span className="sr-only">Close panel</span>
-                    <HiOutlineX className="h-6 w-6" aria-hidden="true" />
-                  </button>
+                    <HiXMark className="h-6 w-6" aria-hidden="true" />
+                  </IconButton>
                 </div>
               </div>
 
@@ -77,7 +81,7 @@ const MenuDrawer = ({ Trigger, menu, collections }: Props) => {
                               <span
                                 className={classNames(
                                   'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
-                                  'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white',
+                                  'flex h-6 w-6 pt-0.5 shrink-0 items-center justify-center rounded-lg border text-[0.7rem] font-medium bg-white',
                                 )}
                               >
                                 {(title[0] || 'c').toUpperCase()}

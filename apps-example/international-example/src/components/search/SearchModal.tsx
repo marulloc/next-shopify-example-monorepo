@@ -4,12 +4,14 @@ import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import Modal from '@marulloc/components-library/Modal';
-import { HiOutlineSearch, HiArrowRight, HiOutlineX } from 'react-icons/hi';
+import { HiArrowRight, HiXMark, HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import { throttle } from '@/utils/throttle';
 import ProductPrice from '../ProductPrice';
 import { usePredictiveSearch } from '@/context/search/hooks';
+import IconButton from '../IconButton';
+import { localTheme } from '@/theme/local-theme';
 
 type Props = {
   Trigger: React.ReactNode;
@@ -75,8 +77,8 @@ const SearchModal = ({ Trigger }: Props) => {
                     <form onSubmit={(e) => handleSubmit(e, closeModal)} className="w-full  ">
                       <div className={classNames('relative group w-full')}>
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                          <HiOutlineSearch
-                            className={classNames('h-5 w-5', 'text-zinc-300 group-hover:text-zinc-100 ')}
+                          <HiOutlineMagnifyingGlass
+                            className={classNames('h-5 w-5', 'group-hover:scale-110', localTheme.text.color.base.muted)}
                             aria-hidden="true"
                           />
                         </div>
@@ -90,28 +92,26 @@ const SearchModal = ({ Trigger }: Props) => {
                           type="search"
                           className={classNames(
                             'block w-full',
-                            'rounded-lg',
-                            'bg-transparent',
-                            'border border-zinc-700',
-                            'text-xs text-zinc-500',
-                            'outline-none',
+                            'rounded-lg bg-transparent',
+                            'text-xs ',
                             'pl-10 pr-3 py-2',
-                            'focus-within:ring-1 ring-zinc-400 ring-inset',
+                            'border',
+                            localTheme.border.base.main,
+
+                            'focus-within:ring-0 ring-zinc-400 ring-inset',
                           )}
                         />
                       </div>
                     </form>
                   </div>
-                  <div className="ml-4 flex items-center">
-                    <button
-                      type="button"
-                      className="relative   p-1 text-gray-400 bg-gray-100 hover:text-gray-500 border rounded-lg border-gray-500"
+                  <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
+                    <IconButton
+                      srName="close panel"
+                      className={classNames(localTheme.text.color.base.muted, localTheme.text.color.base.hover)}
                       onClick={() => closeModal()}
                     >
-                      <span className="absolute -inset-0.5" />
-                      <span className="sr-only">Close panel</span>
-                      <HiOutlineX className="h-6 w-6" aria-hidden="true" />
-                    </button>
+                      <HiXMark className="h-6 w-6" aria-hidden="true" />
+                    </IconButton>
                   </div>
                 </div>
 
