@@ -57,7 +57,6 @@ const RootLayout = async ({
         <body className={classNames('relative font-mono', localTheme.fill.base.muted)}>
           <Header locale={{ country: countryCode, language: languageCode }} />
           {children}
-
           <FloatingActionButton />
         </body>
       </CartProvider>

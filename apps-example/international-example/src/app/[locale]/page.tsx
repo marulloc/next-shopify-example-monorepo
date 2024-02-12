@@ -1,5 +1,7 @@
 import { getCollectionProducts, getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
+import CollectionCard from '@/components/collection/CollectionCard';
+import ProductCard from '@/components/product/ProductCard';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
@@ -17,10 +19,10 @@ const Home = async ({ params }: { params: { locale: string } }) => {
   });
 
   return (
-    <main className={classNames('max-w-7xl mx-auto shadow-xl', localTheme.fill.base.main)}>
+    <main className={classNames(localTheme.fill.base.main, localTheme.spacing.container, 'shadow-xl')}>
       {/* Hero */}
-      <section className="relative max-h-screen    ">
-        <div className="absolute inset-0 group   ">
+      <section className="relative max-h-screen ">
+        <div className="absolute inset-0">
           <Image
             src="/default/information.png"
             alt={'home-page-hero'}
@@ -29,100 +31,109 @@ const Home = async ({ params }: { params: { locale: string } }) => {
             className="h-full w-full object-cover object-center"
           />
           <div
-            className={classNames('absolute w-full h-1/4 bottom-0 ', 'bg-gradient-to-t from-gray-100  via-gray-100  ')}
+            className={classNames('absolute w-full h-1/4 bottom-0', 'bg-gradient-to-t from-gray-100 via-gray-100')}
           />
           <div className={classNames('absolute inset-0', localTheme.fill.base.main, 'bg-opacity-30 ')} />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-20 py-64 sm:py-80 w-full h-full  ">
-          <div className=" w-full  md:w-[550px] h-full text-center">
+        <div className="relative px-20 py-64 sm:py-80 w-full h-full  ">
+          <div className=" w-full max-w-md h-full text-center">
             <h2
               id="comfort-heading"
-              className={classNames('text-2xl sm:text-3xl font-bold tracking-tight', localTheme.text.color.base.main)}
+              className={classNames(
+                'font-bold tracking-tight',
+                localTheme.text.size.extraLarge,
+                localTheme.text.color.base.main,
+              )}
             >
-              {shopInfo.brand.slogan || 'Shopify Brand Slogan'}
+              {shopInfo.name}
             </h2>
-            <p className={classNames('mt-8 text-sm md:text-lg ', localTheme.text.color.base.muted)}>
-              {shopInfo.brand.shortDescription || 'Shopify Brand short Description'}
+            <p
+              className={classNames(
+                'mt-8 tracking-tight ',
+                localTheme.text.size.medium,
+                localTheme.text.color.base.muted,
+              )}
+            >
+              {shopInfo.description}
             </p>
           </div>
         </div>
       </section>
 
-      <section aria-labelledby="collection-heading" className="mx-auto max-w-xl px-4    sm:px-6  lg:max-w-7xl lg:px-8">
-        <h2 id="collection-heading" className="text-2xl font-bold tracking-tight text-gray-900">
+      {/* Collections */}
+      <section aria-labelledby="collection-heading" className={classNames(' ', localTheme.spacing.padding.x.medium)}>
+        <h2
+          id="collection-heading"
+          className={classNames(
+            'font-bold tracking-tight',
+            localTheme.text.size.large,
+            localTheme.text.color.base.main,
+          )}
+        >
           Collections
         </h2>
 
-        <div className="mt-4 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0">
+        <div className={classNames('mt-4 grid grid-cols-3', localTheme.spacing.gap.xy.medium)}>
           {collections.map((collection, index) => (
             <Link key={`home-${collection.title}`} href={collection.handleRoute} className="group block">
-              <div
-                aria-hidden="true"
-                className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg lg:aspect-h-6 lg:aspect-w-5  opacity-90 border"
-              >
-                <Image
-                  src={collection.image?.url || `/default/collection-${index + 1}.png`}
-                  alt={collection.image?.altText || `default-collection-${index + 1}`}
-                  width={collection.image?.width || 1200}
-                  height={collection.image?.height || 1200}
-                  className="h-full w-full object-cover object-center"
-                />
-              </div>
-              <h3 className="mt-4 text-base font-semibold text-gray-900">{collection.title}</h3>
-              <p className="mt-2 text-sm text-gray-500">{collection.description || `Shopify default collection`}</p>
+              <CollectionCard variant="big" collection={collection} index={index} />
             </Link>
           ))}
         </div>
       </section>
 
-      <section aria-labelledby="category-heading" className="mt-24 xl:mx-auto xl:max-w-7xl xl:px-8">
-        <div className="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-0">
-          <h2 id="category-heading" className="text-2xl font-bold tracking-tight text-gray-900">
+      {/* Trends */}
+      <section aria-labelledby="category-heading" className={classNames('mt-40 ', localTheme.spacing.padding.x.medium)}>
+        <div className="flex justify-between items-center">
+          <h2
+            id="category-heading"
+            className={classNames(
+              'font-bold tracking-tight',
+              localTheme.text.size.large,
+              localTheme.text.color.base.main,
+            )}
+          >
             Trends
           </h2>
-          <a href="#" className="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
+          <Link
+            href="#"
+            className={classNames(
+              'font-semibold',
+              localTheme.text.size.small,
+              localTheme.text.color.primary.main,
+              localTheme.text.color.primary.hover,
+            )}
+          >
             Browse all products
             <span aria-hidden="true"> &rarr;</span>
-          </a>
+          </Link>
         </div>
 
-        <div className="mt-4 flow-root">
-          <div className="-my-2">
-            <div className="relative box-content  py-2  ">
-              <div
-                className={classNames(
-                  'grid grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5 gap-8  ',
-                  'px-4 sm:px-6 lg:px-8    xl:px-0',
-                )}
-              >
-                {products.map((product) => (
-                  <Link
-                    key={`home-${product.title}`}
-                    href={product.handleRoute}
-                    className={classNames(
-                      'relative flex h-80 w-full flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto',
-                      'border',
-                    )}
-                  >
-                    <span aria-hidden="true" className="absolute inset-0">
-                      <Image
-                        src={product.featuredImage.url}
-                        alt={product.featuredImage.altText}
-                        width={product.featuredImage.width}
-                        height={product.featuredImage.height}
-                        className="h-full w-full object-cover object-center"
-                      />
-                    </span>
-                  </Link>
-                ))}
-              </div>
+        <div className="mt-4 ">
+          <div className="relative  ">
+            <div
+              className={classNames(
+                'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ',
+                localTheme.spacing.gap.xy.medium,
+              )}
+            >
+              {products.map((product) => (
+                <Link
+                  key={`home-${product.title}`}
+                  href={product.handleRoute}
+                  className={classNames('relative w-full aspect-square shadow-md rounded-lg ')}
+                >
+                  <ProductCard variant="big" product={product} />
+                </Link>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="relative max-h-screen  mt-24  ">
+      {/* Information */}
+      <section className="relative  mt-24  ">
         <div className="absolute inset-0 group   ">
           <Image
             src={shopInfo.brand.coverImage.image.url}
@@ -132,21 +143,42 @@ const Home = async ({ params }: { params: { locale: string } }) => {
             className="h-full w-full object-cover object-right-top  "
           />
 
-          <div className="absolute w-full h-1/4 top-0 bg-gradient-to-b from-white via-white" />
-          <div className="absolute inset-0  bg-white bg-opacity-30 "></div>
+          <div className="absolute w-full h-1/4 top-0 bg-gradient-to-b from-gray-100 via-gray-100" />
+          <div className={classNames('absolute inset-0', localTheme.fill.base.main, 'bg-opacity-30 ')} />
         </div>
 
         <div className=" relative mx-auto max-w-7xl px-20 py-44  w-full h-full  ">
-          <h2 id="comfort-heading" className="text-xl lg:text-3xl font-bold tracking-tight text-gray-900  ">
-            {shopInfo.name}
+          <h2
+            id="comfort-heading"
+            className={classNames(
+              'font-bold tracking-tight',
+              localTheme.text.size.extraLarge,
+              localTheme.text.color.base.main,
+            )}
+          >
+            International Examples
           </h2>
-          <p className="mt-3  text-lg text-gray-900">{shopInfo.description}</p>
-          <div className=" text-center">
+          <p
+            className={classNames(
+              'mt-8 tracking-tight ',
+              localTheme.text.size.medium,
+              localTheme.text.color.base.muted,
+            )}
+          >
+            example of {countryCode}-{languageCode}
+          </p>
+          <div className="  ">
             <a
               href="https://github.com/marulloc/Marulloc-shopify-headless-monorepo/tree/master"
-              className=" text-center mt-12 inline-block  rounded-md border border-transparent   px-8 py-3  text-xs lg:text-sm font-medium text-gray-900 hover:bg-gray-700  "
+              className={classNames(
+                'mt-8 inline-block px-4 py-2 rounded-lg ',
+                localTheme.text.size.small,
+                localTheme.text.color.base.contrast,
+                localTheme.fill.primary.muted,
+                localTheme.fill.primary.hover,
+              )}
             >
-              View Code - Github
+              View Code
             </a>
           </div>
         </div>
