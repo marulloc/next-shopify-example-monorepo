@@ -8,6 +8,7 @@ import { classNames } from '@marulloc/components-library/utils';
 import { HiXMark, HiPlus, HiMinus } from 'react-icons/hi2';
 import { useState } from 'react';
 import { localTheme } from '@/theme/local-theme';
+import IconButton from '../IconButton';
 
 type Props = {
   cartLine: ToolkitCartLine;
@@ -69,18 +70,15 @@ const CartLine = ({ cartLine }: Props) => {
           </div>
 
           <div className={classNames('flex flex-row items-center rounded-lg', 'border', localTheme.border.base.main)}>
-            <button
-              id="minus qunatity button" // Update line quantity minus
-              className={classNames(
-                'ease flex h-full min-w-[36px] max-w-[36px] flex-none items-center justify-center rounded-full px-2 transition-all duration-200 hover:border-neutral-800 hover:opacity-80',
-                'ml-auto',
-              )}
+            <IconButton
+              srName={`'minus quantity of ${cartLine.merchandise.product.title}`}
+              className="px-1"
               onClick={() =>
                 updateItem({ lineId: cartLine.id, quantity: cartLine.quantity <= 1 ? 0 : cartLine.quantity - 1 })
               }
             >
-              <HiMinus className="h-4 w-4 " />
-            </button>
+              <HiMinus className="h-4 w-4  " />
+            </IconButton>
             <p className="w-6 text-center">
               <input
                 className="w-full text-sm bg-transparent  block text-center"
@@ -89,15 +87,13 @@ const CartLine = ({ cartLine }: Props) => {
               ></input>
             </p>
 
-            <button
-              className={classNames(
-                'ease flex h-full min-w-[36px] max-w-[36px] flex-none items-center justify-center rounded-full px-2 transition-all duration-200 hover:border-neutral-800 hover:opacity-80',
-              )}
-              id="pluse qunatity button" // Update line quantity pluse
+            <IconButton
+              srName={`'minus quantity of ${cartLine.merchandise.product.title}`}
+              className="px-1"
               onClick={() => updateItem({ lineId: cartLine.id, quantity: cartLine.quantity + 1 })}
             >
-              <HiPlus className="h-4 w-4" />
-            </button>
+              <HiPlus className="h-4 w-4 " />
+            </IconButton>
           </div>
         </div>
       </div>
