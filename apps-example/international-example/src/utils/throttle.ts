@@ -20,3 +20,14 @@ export const throttle = <T extends (...args: any[]) => void>(callback: T, limit:
     }
   };
 };
+
+export const debounce = <T extends (...args: any[]) => void>(callback: T, timeout = 300) => {
+  let timer: ReturnType<typeof setTimeout>;
+
+  return (...args: Parameters<T>) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      callback(...args);
+    }, timeout);
+  };
+};

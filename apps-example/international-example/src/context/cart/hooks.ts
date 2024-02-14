@@ -1,67 +1,21 @@
-import { Dispatch, SetStateAction, useEffect } from 'react';
-import { CartContextType } from './context';
-import { createCart, getCart, updateCartLocale } from '@/@marulloc-shopify-nextapi/v24.01/services/cart/service';
-import { ToolkitCart } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-cart';
-import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-common';
+'use client';
 
-/**
- * @summary Init Cart
- * 1. if(savedCart) : getCart(savedCart)
- * 2. else : createCart()
- * @param context
- * @param setContext
- * @param locale
- */
-export const useCartInitEffect = (
-  context: CartContextType,
-  setContext: Dispatch<SetStateAction<CartContextType>>,
-  locale?: ShopifyLocaleContext,
-) => {
-  useEffect(() => {
-    const storageKey = 'marulloc-cart';
+import { useContext } from 'react';
+import { CartMutationContext, CartQueryContext } from './context';
 
-    if (context.cart) {
-      localStorage.setItem(storageKey, JSON.stringify(context.cart));
-      return;
-    }
-
-    (async () => {
-      const savedCart = JSON.parse(localStorage.getItem(storageKey) || 'null') as ToolkitCart | null;
-
-      if (savedCart) {
-        const memoizedCart = await getCart(savedCart.id, locale);
-        setContext(({ status, ...rest }) => ({ ...rest, cart: memoizedCart, status: 'loaded' }));
-      } else {
-        const newCart = await createCart(locale);
-        setContext(({ status, ...rest }) => ({ ...rest, cart: newCart, status: 'loaded' }));
-      }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [context.cart, locale]);
+export const useCartQuery = () => {
+  const context = useContext(CartQueryContext);
+  if (!context) {
+    throw new Error('useCartData must be used within a CartDataProvider');
+  }
+  return context;
 };
 
-/**
- * @summary Locale Update for Cart Money Format
- * cart's money format follow Cart BuyerIdentity
- * so, if locale change , update Cart buyerIdentity's "Country Code"
- * @param context
- * @param setContext
- * @param locale
- */
-export const useCartLocaleEffect = (
-  context: CartContextType,
-  setContext: Dispatch<SetStateAction<CartContextType>>,
-  locale?: ShopifyLocaleContext,
-) => {
-  useEffect(() => {
-    (async () => {
-      if (!context.cart || !locale) return;
-      if (locale.country?.toLowerCase() === context.cart?.buyerIdentity?.countryCode.toLowerCase()) return;
+export const useCartMutation = () => {
+  const context = useContext(CartMutationContext);
 
-      setContext(({ status, ...rest }) => ({ ...rest, status: 'pending' }));
-      const cartWithNewLocale = await updateCartLocale(context.cart.id, locale);
-      setContext(({ status, ...rest }) => ({ ...rest, cart: cartWithNewLocale, status: 'loaded' }));
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [context.cart, locale]);
+  if (!context) {
+    throw new Error('useCartActions must be used within a CartActionsProvider');
+  }
+  return context;
 };

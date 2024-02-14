@@ -3,12 +3,13 @@
 import { classNames } from '@marulloc/components-library/utils';
 import CartDrawer from '../CartDrawer';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
-import { useCartContext } from '@/context/cart/context';
 import IconButton from '@/components/IconButton';
 import { localTheme } from '@/theme/local-theme';
+import { useCartQuery } from '@/context/cart/hooks';
 
 const CartIconTrigger = () => {
-  const { cart } = useCartContext();
+  const { cart } = useCartQuery();
+
   return (
     <CartDrawer
       Trigger={

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import '../globals.css';
 import { getLocale, getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { splitLocale } from '@/utils/locale';
@@ -53,7 +52,7 @@ const RootLayout = async ({
 
   return (
     <html lang={languageCode} className="">
-      <CartProvider locale={{ country: countryCode, language: languageCode }}>
+      <CartProvider locale={{ country: countryCode, language: languageCode }} storageKey="marulloc-cart">
         <body className={classNames('relative font-mono', localTheme.fill.base.muted)}>
           <Header locale={{ country: countryCode, language: languageCode }} />
           {children}
