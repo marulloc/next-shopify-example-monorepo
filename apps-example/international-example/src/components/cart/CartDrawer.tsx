@@ -14,7 +14,7 @@ type Props = {
   Trigger: React.ReactNode;
 };
 const Cart = ({ Trigger }: Props) => {
-  const { cart } = useCartContext();
+  const { cart, status } = useCartContext();
 
   return (
     <Drawer anchor="right">
@@ -53,6 +53,12 @@ const Cart = ({ Trigger }: Props) => {
                   </IconButton>
                 </div>
               </div>
+              <div
+                className={classNames(
+                  'h-1   ',
+                  status === 'pending' ? 'bg-indigo-600 animate-pulse' : 'bg-transparent',
+                )}
+              />
 
               {/* Main */}
               <div className={classNames('flex-1 overflow-y-auto    ', 'px-4 py-4 sm:px-6')}>

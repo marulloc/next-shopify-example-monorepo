@@ -1,30 +1,50 @@
 'use client';
+
 import { ToolkitCartLine } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-cart';
 import Image from 'next/image';
 import Link from 'next/link';
 import Price from '../Price';
 import { useCartContext } from '@/context/cart/context';
 import { classNames } from '@marulloc/components-library/utils';
-import { HiXMark, HiPlus, HiMinus } from 'react-icons/hi2';
-import { useState } from 'react';
+import { HiPlus, HiMinus } from 'react-icons/hi2';
+import React, { useEffect, useRef, useState } from 'react';
 import { localTheme } from '@/theme/local-theme';
 import IconButton from '../IconButton';
+import { throttle } from '@/utils/throttle';
 
 type Props = {
   cartLine: ToolkitCartLine;
 };
 
+/**
+ * api 쏘는 순간 Status가 pending으로 바뀌면서
+ * Cart Line이 리렌더되고 localQty가 초기화 되면서 optimistic ui 가 안되는 현상임
+ * Throttle은 정상적으로 동작하고 있음
+ * @param param0
+ * @returns
+ */
 const CartLine = ({ cartLine }: Props) => {
   const { updateItem, deleteItem } = useCartContext();
+  const [localQty, setLocalQty] = useState(cartLine.quantity);
+  const throttled = useRef(
+    throttle((qty) => {
+      console.log('Throttle Function called qty :', qty);
+      if (qty <= 0) deleteItem({ lineId: cartLine.id });
+      else updateItem({ lineId: cartLine.id, quantity: qty });
+    }, 700),
+  );
 
-  // const [localQty, setLocalQty] = useState(cartLine.quantity);
-  // const handleDelete = () => {};
-  // const handleUpdate = () => {};
+  useEffect(() => {
+    if (localQty === cartLine.quantity) return;
+    throttled.current(localQty);
+  }, [cartLine.quantity, localQty]);
 
-  const handleProductLink = () => {
-    // close modal
+  const handleUpdate = (qty: number) => {
+    if (qty < 0) setLocalQty(0);
+    else setLocalQty(qty);
   };
 
+  if (localQty === 0) return null;
   return (
     <div className="py-6 flex min-h-24">
       {/* Image */}
@@ -63,7 +83,8 @@ const CartLine = ({ cartLine }: Props) => {
             <button
               type="button"
               className={classNames(localTheme.text.size.small, localTheme.text.color.primary.main)}
-              onClick={() => deleteItem({ lineId: cartLine.id })}
+              // onClick={() => deleteItem({ lineId: cartLine.id })}
+              onClick={() => handleUpdate(0)}
             >
               Remove
             </button>
@@ -73,9 +94,10 @@ const CartLine = ({ cartLine }: Props) => {
             <IconButton
               srName={`'minus quantity of ${cartLine.merchandise.product.title}`}
               className="px-1"
-              onClick={() =>
-                updateItem({ lineId: cartLine.id, quantity: cartLine.quantity <= 1 ? 0 : cartLine.quantity - 1 })
-              }
+              // onClick={() =>
+              //   updateItem({ lineId: cartLine.id, quantity: cartLine.quantity <= 1 ? 0 : cartLine.quantity - 1 })
+              // }
+              onClick={() => handleUpdate(localQty - 1)}
             >
               <HiMinus className="h-4 w-4  " />
             </IconButton>
@@ -83,14 +105,16 @@ const CartLine = ({ cartLine }: Props) => {
               <input
                 className="w-full text-sm bg-transparent  block text-center"
                 id="Line Quantity"
-                value={cartLine.quantity}
+                value={localQty}
+                onChange={(e) => handleUpdate(Number(e.target.value))}
               ></input>
             </p>
 
             <IconButton
               srName={`'minus quantity of ${cartLine.merchandise.product.title}`}
               className="px-1"
-              onClick={() => updateItem({ lineId: cartLine.id, quantity: cartLine.quantity + 1 })}
+              // onClick={() => updateItem({ lineId: cartLine.id, quantity: cartLine.quantity + 1 })}
+              onClick={() => handleUpdate(localQty + 1)}
             >
               <HiPlus className="h-4 w-4 " />
             </IconButton>
@@ -101,4 +125,4 @@ const CartLine = ({ cartLine }: Props) => {
   );
 };
 
-export default CartLine;
+export default React.memo(CartLine);
