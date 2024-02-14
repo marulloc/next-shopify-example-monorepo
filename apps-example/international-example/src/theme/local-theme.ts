@@ -7,19 +7,17 @@ const text = {
       muted: classNames('text-gray-600'),
       hover: classNames('hover:text-gray-950'),
       contrast: classNames('text-gray-100'),
-      disabled: classNames('opacity-50'),
+      disabled: classNames('text-gray-500'),
     },
     primary: {
       main: classNames('text-indigo-600'),
       muted: classNames('text-indigo-400'),
       hover: classNames('hover:text-indigo-800'),
-      disabled: classNames('text-indigo-200'),
     },
     secondary: {
       main: classNames('text-green-600'),
       muted: classNames('text-green-400'),
       hover: classNames('hover:text-green-800'),
-      disabled: classNames('text-green-200'),
     },
   },
   size: {

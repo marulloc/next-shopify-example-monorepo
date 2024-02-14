@@ -33,8 +33,8 @@ const Logo = async ({ country, language }: Props) => {
             'leading-3  text-center ',
           )}
         >
-          {shopInfo.name.split(' ').map((token) => (
-            <div key="title-token">{token}</div>
+          {shopInfo.name.split(' ').map((token, idx) => (
+            <div key={`title-${token}-${idx}`}>{token}</div>
           ))}
         </div>
       )}

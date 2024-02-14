@@ -1,7 +1,6 @@
 'use client';
 
 import { classNames } from '@marulloc/components-library/utils';
-
 import Drawer from '@marulloc/components-library/Drawer';
 import { HiXMark } from 'react-icons/hi2';
 import Price from '../Price';
@@ -38,7 +37,6 @@ const Cart = ({ Trigger }: Props) => {
               'pointer-events-auto w-screen  max-w-md  h-screen overflow-hidden',
               'bg-opacity-80 backdrop-blur-md',
               localTheme.fill.base.main,
-              'border-r border-gray-200',
             )}
           >
             <div className="flex flex-col h-full">
@@ -68,17 +66,38 @@ const Cart = ({ Trigger }: Props) => {
               </div>
 
               {/* Footer */}
-              <div className={classNames('px-6 py-6', 'bg-white')}>
-                <div className="flex justify-between text-base font-medium text-gray-900">
-                  <p>Subtotal</p>
-                  <Price
-                    className="text-right text-base text-sky-500"
-                    amount={cart?.cost.totalAmount.amount || ''}
-                    currencyCode={cart?.cost.totalAmount.currencyCode || ''}
-                  />
+              <div className={classNames('px-6 py-6', 'bg-white isolate')}>
+                <div className={classNames('mb-6 ', localTheme.text.size.small, 'text-gray-500')}>
+                  <div className="mb-1 flex items-center justify-between py-1">
+                    <p>Taxes</p>
+                    <div>
+                      {cart?.cost.totalTaxAmount ? (
+                        <Price
+                          className={classNames(localTheme.text.color.primary.main, 'text-right ', 'font-semibold')}
+                          amount={cart?.cost.totalTaxAmount?.amount || '0'}
+                          currencyCode={cart?.cost.totalTaxAmount?.currencyCode || ''}
+                        />
+                      ) : (
+                        <span>-</span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="mb-1 flex items-center justify-between py-1">
+                    <p>Shipping</p>
+                    <p className="text-right">Calculated at checkout</p>
+                  </div>
+
+                  <div className="mb-1 flex items-center justify-between py-1">
+                    <p>Total</p>
+                    <Price
+                      className={classNames('text-right text-indigo-600 ', 'font-semibold')}
+                      amount={cart?.cost.totalAmount.amount || ''}
+                      currencyCode={cart?.cost.totalAmount.currencyCode || ''}
+                    />
+                  </div>
                 </div>
-                <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-                <div className="mt-6">
+                <div className=" ">
                   <Link
                     href={cart?.checkoutUrl || '#'}
                     target="_blank"
