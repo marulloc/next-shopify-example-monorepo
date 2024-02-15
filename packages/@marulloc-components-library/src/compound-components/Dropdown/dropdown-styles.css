@@ -1,3 +1,7 @@
+.dropdown-not-mounted {
+  position: absolute;
+  display: hidden;
+}
 .dropdown-contents {
   /* .absolute */
   position: absolute;
@@ -13,6 +17,7 @@
 
   /* .z-30 */
   z-index: 30;
+  display: block;
 }
 
 .dropdown-contents-visible {
