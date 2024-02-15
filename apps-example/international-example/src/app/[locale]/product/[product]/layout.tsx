@@ -9,7 +9,7 @@ const Layout = (props: { children: React.ReactNode; params: { locale: string } }
         localTheme.fill.base.main,
         'shadow-xl',
         'relative',
-        'pt-16 pb-6',
+        'pt-16  ',
         'min-h-screen ',
       )}
     >

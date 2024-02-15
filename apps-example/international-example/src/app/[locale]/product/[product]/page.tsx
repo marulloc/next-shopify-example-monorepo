@@ -3,6 +3,10 @@ import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import { Metadata } from 'next';
+import ImageGallery from './ImageGallery';
+import Description from './Description';
+import Recommendations from './Recommendations';
+import VariantSelector from './VariantSelector';
 
 type TParams = { locale: string; product: string };
 
@@ -36,12 +40,11 @@ const ProductPage = async ({ params }: { params: TParams }) => {
               localTheme.fill.base.main,
               localTheme.border.base.main,
               'bg-opacity-40 backdrop-blur-sm',
-              localTheme.spacing.padding.xy.medium,
-              'border-b',
+              'border-b ',
               localTheme.border.base.main,
             )}
           >
-            Image Gallery
+            <ImageGallery product={product} />
           </section>
 
           <section
@@ -55,28 +58,38 @@ const ProductPage = async ({ params }: { params: TParams }) => {
               localTheme.border.base.main,
             )}
           >
-            <div className={classNames(localTheme.spacing.padding.xy.medium)}>Mobile Variant Selector</div>
+            <VariantSelector product={product} />
           </section>
 
           <section
             id="product-description-section"
             className={classNames(
-              localTheme.spacing.padding.xy.medium,
               'h-screen', //test
             )}
           >
-            Description
+            <Description product={product} />
           </section>
         </div>
 
         <div>
-          <section
-            id="product-variant-selector"
-            className={classNames(' hidden md:block sticky top-16 flex-shrink-0', localTheme.spacing.padding.xy.medium)}
-          >
-            <div className=" ">Variant Selector</div>
+          <section id="product-variant-selector" className={classNames(' hidden md:block sticky top-16 flex-shrink-0')}>
+            <VariantSelector product={product} />
           </section>
         </div>
+      </div>
+
+      <div>
+        {/* ToDo Fix : Border Collpase */}
+        <section
+          id="product-recommendation-section"
+          className={classNames(
+            'h-screen', //test
+            'border-t ',
+            localTheme.border.base.main,
+          )}
+        >
+          <Recommendations product={product} />
+        </section>
       </div>
     </main>
   );
