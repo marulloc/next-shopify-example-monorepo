@@ -1,4 +1,4 @@
-import { getPredictiveSearchQuery } from '../../@shopify-graphql/queries/search';
+import { getPredictiveSearchQuery, getSearchResultQuery } from '../../@shopify-graphql/queries/search';
 import { ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
 import { ShopifyProductFilter } from '../../@shopify-types/shopify-search';
 import { flatConnection } from '../../utils/flat';
@@ -39,7 +39,7 @@ export const getProductsSearch = async ({
   const { sortKey, reverse } = parseSortParams(sort || 'relevance');
 
   const res = await storeFetch<GetProductsSearchService>({
-    query: getPredictiveSearchQuery,
+    query: getSearchResultQuery,
     variables: {
       query: query || '',
       productFilters: filters,

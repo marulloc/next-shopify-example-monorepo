@@ -112,22 +112,23 @@ const Home = async ({ params }: { params: { locale: string } }) => {
 
         <div className="mt-4 ">
           <div className="relative  ">
-            <div
+            <ul
               className={classNames(
                 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ',
                 localTheme.spacing.gap.xy.medium,
               )}
             >
               {products.map((product) => (
-                <Link
-                  key={`home-${product.title}`}
-                  href={product.handleRoute}
-                  className={classNames('relative w-full aspect-square hover:shadow-md rounded-lg ')}
-                >
-                  <ProductCard variant="big" product={product} />
-                </Link>
+                <li key={`home-product-${product.title}`}>
+                  <Link
+                    href={product.handleRoute}
+                    className={classNames('relative w-full aspect-square hover:shadow-md rounded-lg ')}
+                  >
+                    <ProductCard variant="big" product={product} />
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </section>

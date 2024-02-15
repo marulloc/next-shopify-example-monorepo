@@ -103,6 +103,26 @@ const spacing = {
       medium: classNames('py-4 sm:py-6 md:py-8'),
       large: classNames('py-6 sm:py-8 md:py-10'),
     },
+    r: {
+      small: classNames('pr-2 sm:pr-4 md:pr-6'),
+      medium: classNames('pr-4 sm:pr-6 md:pr-8'),
+      large: classNames('pr-6 sm:pr-8 md:pr-10'),
+    },
+    l: {
+      small: classNames('pl-2 sm:pl-4 md:pl-6'),
+      medium: classNames('pl-4 sm:pl-6 md:pl-8'),
+      large: classNames('pl-6 sm:pl-8 md:pl-10'),
+    },
+    t: {
+      small: classNames('pt-2 sm:pt-4 md:pt-6'),
+      medium: classNames('pt-4 sm:pt-6 md:pt-8'),
+      large: classNames('pt-6 sm:pt-8 md:pt-10'),
+    },
+    b: {
+      small: classNames('pb-2 sm:pb-4 md:pb-6'),
+      medium: classNames('pb-4 sm:pb-6 md:pb-8'),
+      large: classNames('pb-6 sm:pb-8 md:pb-10'),
+    },
   },
   gap: {
     xy: {

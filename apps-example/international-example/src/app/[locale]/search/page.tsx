@@ -1,0 +1,57 @@
+import { ShopifySortKey } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-search';
+import { ToolkitSortKey } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-search';
+import { getProductsSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/search/service';
+import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
+import { localTheme } from '@/theme/local-theme';
+import { splitLocale } from '@/utils/locale';
+import { classNames } from '@marulloc/components-library/utils';
+import SortingDropdown from './SortingDropdown';
+import ProductCard from '@/components/product/ProductCard';
+import Link from 'next/link';
+
+const SearchPage = async ({
+  params,
+  searchParams,
+}: {
+  params: { locale: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) => {
+  const { sort, query, filter } = searchParams as { [key: string]: string };
+  const { countryCode, languageCode } = splitLocale(params.locale);
+  const products = await getProductsSearch({
+    query,
+    sortKey: sort as ToolkitSortKey,
+    filters: [],
+    locale: { country: countryCode, language: languageCode },
+  });
+
+  return (
+    <main className={classNames()}>
+      <div className="flex justify-between items-center">
+        <p className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
+          {`Showing ${products.length} ${'products'} for `}
+          <span className={classNames('font-bold', localTheme.text.color.base.main, localTheme.text.size.small)}>
+            &quot;{query}&quot;
+          </span>
+        </p>
+
+        <div className="flex-shrink-0 flex justify-end mb-4">
+          <SortingDropdown />
+        </div>
+      </div>
+      <div>
+        <ul className={classNames('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ', localTheme.spacing.gap.xy.small)}>
+          {products.map((product) => (
+            <li key={`product-card-${product.handle}`} className=" aspect-square">
+              <Link href={product.handleRoute} key={`home-product-card-${product.handle}`}>
+                <ProductCard variant="big" product={product} />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </main>
+  );
+};
+
+export default SearchPage;
