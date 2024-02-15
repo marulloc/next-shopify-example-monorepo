@@ -10,13 +10,10 @@ import ProductCard from '@/components/product/ProductCard';
 import Link from 'next/link';
 import SearchFakeInputTrigger from '@/components/search/triggers/SearchInputTrigger';
 
-const SearchPage = async ({
-  params,
-  searchParams,
-}: {
-  params: { locale: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) => {
+type TParams = { locale: string };
+type TSearchParams = { [key: string]: string | string[] | undefined };
+
+const SearchPage = async ({ params, searchParams }: { params: TParams; searchParams?: TSearchParams }) => {
   const { sort, query, filter } = searchParams as { [key: string]: string };
   const { countryCode, languageCode } = splitLocale(params.locale);
   const products = await getProductsSearch({

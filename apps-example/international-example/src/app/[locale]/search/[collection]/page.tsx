@@ -6,15 +6,38 @@ import { classNames } from '@marulloc/components-library/utils';
 import SortingDropdown from '../SortingDropdown';
 import Link from 'next/link';
 import ProductCard from '@/components/product/ProductCard';
-import Image from 'next/image';
+import { Metadata } from 'next';
+import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 
-const CollectionPage = async ({
-  params,
-  searchParams,
-}: {
-  params: { locale: string; collection: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) => {
+type TParams = { locale: string; collection: string };
+type TSearchParams = { [key: string]: string | string[] | undefined };
+
+export const generateMetadata = async ({ params }: { params: TParams }): Promise<Metadata> => {
+  const { countryCode, languageCode } = splitLocale(params.locale);
+  const { collection: handle } = params;
+
+  const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
+  const collection = await getCollection(handle, { country: countryCode, language: languageCode });
+
+  return {
+    title: collection.title,
+    metadataBase: new URL('http://localhost:3000'),
+    description: collection.description,
+    openGraph: {
+      title: collection.title,
+      description: collection.description,
+      images: [
+        {
+          url: collection.image?.url || shopInfo.brand.coverImage.image.url,
+          width: collection.image?.width || shopInfo.brand.coverImage.image.width,
+          height: collection.image?.height || shopInfo.brand.coverImage.image.height,
+        },
+      ],
+    },
+  };
+};
+
+const CollectionPage = async ({ params, searchParams }: { params: TParams; searchParams?: TSearchParams }) => {
   const { sort, query, filter } = searchParams as { [key: string]: string };
   const { countryCode, languageCode } = splitLocale(params.locale);
   const { collection: handle } = params;
