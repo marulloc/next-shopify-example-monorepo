@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 import ImageGallery from './ImageGallery';
 import Description from './Description';
 import Recommendations from './Recommendations';
-import VariantSelector from './VariantSelector';
+import ProductOptions from './ProductOptions';
 
 type TParams = { locale: string; product: string };
 
@@ -47,7 +47,7 @@ const ProductPage = async ({ params }: { params: TParams }) => {
             <ImageGallery product={product} />
           </section>
 
-          <section
+          <div
             id="mobile-product-variant-selector"
             className={classNames(
               'block md:hidden sticky top-16',
@@ -58,8 +58,8 @@ const ProductPage = async ({ params }: { params: TParams }) => {
               localTheme.border.base.main,
             )}
           >
-            <VariantSelector product={product} />
-          </section>
+            <ProductOptions product={product} />
+          </div>
 
           <section
             id="product-description-section"
@@ -72,9 +72,9 @@ const ProductPage = async ({ params }: { params: TParams }) => {
         </div>
 
         <div>
-          <section id="product-variant-selector" className={classNames(' hidden md:block sticky top-16 flex-shrink-0')}>
-            <VariantSelector product={product} />
-          </section>
+          <div id="product-variant-selector" className={classNames(' hidden md:block sticky top-16 flex-shrink-0')}>
+            <ProductOptions product={product} />
+          </div>
         </div>
       </div>
 
