@@ -18,20 +18,16 @@ type Props = {
 
 const CartLine = ({ cartLine }: Props) => {
   const { updateItem, deleteItem } = useCartMutation();
-  const [pendingQtyChanges, setPendingQtyChanges] = useState<number>(0);
-  const optimisticQty = useMemo(() => cartLine.quantity + pendingQtyChanges, [cartLine.quantity, pendingQtyChanges]);
-
-  const handlePlus = () => setPendingQtyChanges(pendingQtyChanges + 1);
-  const handleMinus = () => setPendingQtyChanges(pendingQtyChanges - 1);
-  const handleDelete = () => setPendingQtyChanges(-cartLine.quantity);
-  const handleInput = (qty: number) =>
-    setPendingQtyChanges(cartLine.quantity < qty ? -cartLine.quantity : cartLine.quantity - qty);
+  const [pendingQtyChanges, setPendingQtyChanges] = useState<number>(0); //=> 감가산을 위한 숫자를 저장
+  const optimisticQty = useMemo(() => cartLine.quantity + pendingQtyChanges, [cartLine.quantity, pendingQtyChanges]); //=> 실제 서버 데이터와 감가산을 합산
+  const [isPending, setIsPending] = useState(false);
 
   const debounced = useRef(
-    debounce((qty) => {
-      console.log('Throttle Function called qty :', qty);
-      if (qty <= 0) deleteItem({ lineId: cartLine.id });
-      else updateItem({ lineId: cartLine.id, quantity: qty });
+    debounce(async (qty) => {
+      setIsPending(true);
+      if (qty <= 0) await deleteItem({ lineId: cartLine.id });
+      else await updateItem({ lineId: cartLine.id, quantity: qty });
+      setIsPending(false);
     }, 1000),
   );
 
@@ -40,9 +36,20 @@ const CartLine = ({ cartLine }: Props) => {
     debounced.current(cartLine.quantity + pendingQtyChanges);
   }, [cartLine.quantity, pendingQtyChanges]);
 
+  const handlePlus = () => setPendingQtyChanges(pendingQtyChanges + 1);
+  const handleMinus = () => setPendingQtyChanges(pendingQtyChanges - 1);
+  const handleDelete = () => setPendingQtyChanges(-cartLine.quantity);
+  const handleInput = (qty: number) =>
+    setPendingQtyChanges(cartLine.quantity < qty ? -cartLine.quantity : cartLine.quantity - qty);
+
   if (optimisticQty === 0) return null;
   return (
-    <div className="py-6 flex min-h-24">
+    <div
+      className={classNames(
+        'py-6 flex min-h-24 px-6 -mx-6',
+        isPending ? localTheme.fill.base.disabled + 'animate-pulse bg-opacity-30' : '',
+      )}
+    >
       {/* Image */}
       <div className={classNames('h-24 aspect-square flex-shrink-0 overflow-hidden', 'rounded-lg')}>
         <Image
@@ -90,6 +97,7 @@ const CartLine = ({ cartLine }: Props) => {
               srName={`'minus quantity of ${cartLine.merchandise.product.title}`}
               className="px-1"
               onClick={handleMinus}
+              disabled={isPending}
             >
               <HiMinus className="h-4 w-4  " />
             </IconButton>
@@ -98,6 +106,7 @@ const CartLine = ({ cartLine }: Props) => {
                 className="w-full text-sm bg-transparent  block text-center"
                 id="Line Quantity"
                 value={optimisticQty}
+                disabled={isPending}
                 onChange={(e) => handleInput(Number(e.target.value))}
               ></input>
             </p>
@@ -106,6 +115,7 @@ const CartLine = ({ cartLine }: Props) => {
               srName={`'minus quantity of ${cartLine.merchandise.product.title}`}
               className="px-1"
               onClick={handlePlus}
+              disabled={isPending}
             >
               <HiPlus className="h-4 w-4 " />
             </IconButton>
