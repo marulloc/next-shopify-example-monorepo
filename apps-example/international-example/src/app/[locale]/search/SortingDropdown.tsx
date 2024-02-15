@@ -29,12 +29,12 @@ const SortingDropdown = () => {
               localTheme.text.color.base.muted,
               localTheme.text.color.base.hover,
               localTheme.fill.base.hover,
-              'flex space-x-2 px-3 py-1 -mt-1 -mr-3 justify-end items-center  cursor-pointer rounded-lg ',
+              'flex space-x-2 justify-end items-center  cursor-pointer rounded-lg px-2 -mx-2',
             )}
           >
             <span className="">
               {`Sort by `}
-              <span className={classNames(localTheme.text.color.base.main, 'font-base')}>
+              <span className={classNames(localTheme.text.color.base.main, 'font-bold')}>
                 &quot;{activeItem.title}&quot;
               </span>
             </span>

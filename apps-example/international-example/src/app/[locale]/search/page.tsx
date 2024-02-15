@@ -42,15 +42,17 @@ const SearchPage = async ({ params, searchParams }: { params: TParams; searchPar
       </div>
 
       <div className={classNames(localTheme.spacing.padding.x.medium, localTheme.spacing.padding.y.small)}>
-        <div className="flex justify-between items-center">
-          <p className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
-            {`Showing ${products.length} ${'products'} for `}
-            <span className={classNames('font-bold', localTheme.text.color.base.main, localTheme.text.size.small)}>
-              &quot;{query}&quot;
-            </span>
-          </p>
+        <div className="flex flex-col md:flex-row justify-between">
+          <div>
+            <p className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
+              {`Showing ${products.length} ${'products'} for `}
+              <span className={classNames('font-bold', localTheme.text.color.base.main, localTheme.text.size.small)}>
+                &quot;{query}&quot;
+              </span>
+            </p>
+          </div>
 
-          <div className="flex-shrink-0 flex justify-end mb-4">
+          <div className="flex-shrink-0 flex justify-start md:justify-end mb-4  py-1 -my-1 px-3 -mx-3">
             <SortingDropdown />
           </div>
         </div>
