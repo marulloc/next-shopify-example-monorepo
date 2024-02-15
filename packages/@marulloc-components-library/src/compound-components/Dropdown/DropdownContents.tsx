@@ -62,8 +62,8 @@ const DropdownContents = ({ children, className, matchTriggerWidth = true, ...re
         {...rest}
         id={dropdownId}
         className={classNames(
-          isMounted ? 'dropdown-not-mounted' : 'dropdown-contents',
-          isMounted && isOpen ? 'dropdown-contents-visible' : 'dropdown-contents-invisible',
+          'dropdown-contents',
+          isOpen ? 'dropdown-contents-visible' : 'dropdown-contents-invisible',
           className,
         )}
       >

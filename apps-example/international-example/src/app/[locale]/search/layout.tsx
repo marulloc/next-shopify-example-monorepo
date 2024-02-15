@@ -5,8 +5,7 @@ import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
-import Image from 'next/image';
-import SearchFakeInputTrigger from '@/components/search/triggers/SearchInputTrigger';
+
 const Layout = async (props: { children: React.ReactNode; params: { locale: string } }) => {
   const { countryCode, languageCode } = splitLocale(props.params.locale);
 
@@ -33,7 +32,7 @@ const Layout = async (props: { children: React.ReactNode; params: { locale: stri
         >
           <div className="sticky top-20 ">
             <ul className=" ">
-              <div className="text-xs font-semibold leading-6 text-gray-500">Collections</div>
+              <div className="text-xs font-semibold leading-6 text-gray-500">All Collections</div>
               {collections.map((collection, index) => (
                 <li key={`predictive-search-collection-${collection.handle}`} className="py-1">
                   <Link href={collection.handleRoute} className="block p-1 -mx-1">
@@ -52,25 +51,7 @@ const Layout = async (props: { children: React.ReactNode; params: { locale: stri
             localTheme.border.base.main,
           )}
         >
-          <div
-            className={classNames(
-              localTheme.spacing.padding.x.medium,
-              localTheme.spacing.padding.y.small,
-              localTheme.fill.base.main,
-              localTheme.border.base.main,
-              'border-b',
-              'sticky top-16 z-20',
-              'bg-opacity-40 backdrop-blur-sm',
-            )}
-          >
-            <div className="w-full rounded-xl bg-gray-50 bg-opacity-80">
-              <SearchFakeInputTrigger />
-            </div>
-          </div>
-
-          <div className={classNames(localTheme.spacing.padding.x.medium, localTheme.spacing.padding.y.small)}>
-            {props.children}
-          </div>
+          {props.children}
         </div>
       </div>
     </div>

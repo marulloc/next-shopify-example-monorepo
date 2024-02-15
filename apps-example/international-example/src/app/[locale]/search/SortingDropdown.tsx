@@ -46,7 +46,7 @@ const SortingDropdown = () => {
       </Dropdown.Trigger>
 
       <Dropdown.Contents>
-        {({ closeDropdown }) => (
+        {({ isOpen, closeDropdown }) => (
           <div
             className={classNames(
               localTheme.fill.base.main,
