@@ -20,27 +20,29 @@ const Layout = async (props: { children: React.ReactNode; params: { locale: stri
           localTheme.fill.base.main,
           'shadow-xl',
           'relative',
-          'flex flex-col md:flex-row  pt-20 pb-6',
+          'flex flex-col md:flex-row  pt-16 pb-6',
           'min-h-screen ',
         )}
       >
         <div
           className={classNames(
-            'flex-none md:max-w-[200px]',
+            'flex-none md:max-w-[200px] relative',
             localTheme.spacing.padding.x.medium,
             localTheme.spacing.padding.y.small,
           )}
         >
-          <ul className=" ">
-            <div className="text-xs font-semibold leading-6 text-gray-500">Collections</div>
-            {collections.map((collection, index) => (
-              <li key={`predictive-search-collection-${collection.handle}`} className="py-1">
-                <Link href={collection.handleRoute} className="block p-1 -mx-1">
-                  <CollectionCard variant="small" collection={collection} index={index} />
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div className="sticky top-20 ">
+            <ul className=" ">
+              <div className="text-xs font-semibold leading-6 text-gray-500">Collections</div>
+              {collections.map((collection, index) => (
+                <li key={`predictive-search-collection-${collection.handle}`} className="py-1">
+                  <Link href={collection.handleRoute} className="block p-1 -mx-1">
+                    <CollectionCard variant="small" collection={collection} index={index} />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div
@@ -54,11 +56,16 @@ const Layout = async (props: { children: React.ReactNode; params: { locale: stri
             className={classNames(
               localTheme.spacing.padding.x.medium,
               localTheme.spacing.padding.y.small,
-              'border-b',
+              localTheme.fill.base.main,
               localTheme.border.base.main,
+              'border-b',
+              'sticky top-16 z-20',
+              'bg-opacity-40 backdrop-blur-sm',
             )}
           >
-            <SearchFakeInputTrigger />
+            <div className="w-full rounded-xl bg-gray-50 bg-opacity-80">
+              <SearchFakeInputTrigger />
+            </div>
           </div>
 
           <div className={classNames(localTheme.spacing.padding.x.medium, localTheme.spacing.padding.y.small)}>

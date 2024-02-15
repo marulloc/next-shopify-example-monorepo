@@ -82,7 +82,7 @@ const BigProductCard = ({ product }: Omit<Props, 'variant'>) => {
 
       <div
         className={classNames(
-          'absolute bottom-0 h-1/2 w-full rounded-none z-30',
+          'absolute bottom-0 h-1/2 w-full rounded-none z-10',
           'transform transition-all  duration-500',
           'group-hover:visible invisible',
           'group-hover:translate-y-0 translate-y-full',

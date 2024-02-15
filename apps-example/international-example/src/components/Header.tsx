@@ -5,7 +5,6 @@ import CartTriggerIcon from './cart/triggers/CartIconTrigger';
 import MenuIconTrigger from './menu/triggers/MenuIconTrigger';
 import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-common';
 import { getMenu } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
-import { splitLocale } from '@/utils/locale';
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import SearchIconTrigger from './search/triggers/SearchIconTrigger';
 import Logo from './Logo';
@@ -20,14 +19,14 @@ const Header = async ({ locale }: Props) => {
   const collections = await getCollections({ country: locale?.country, language: locale?.language });
 
   return (
-    <div className="fixed top-0 w-full z-30 ">
+    <div className=" isolate fixed top-0 w-full z-30 ">
       <header
         className={classNames(
           localTheme.spacing.container,
-          localTheme.fill.base.muted,
-          'bg-opacity-30',
-          'backdrop-blur-md ',
-          'shadow-md ',
+          localTheme.fill.base.main,
+          localTheme.border.base.main,
+          'border-b',
+          'bg-opacity-40 backdrop-blur-sm',
         )}
       >
         <nav aria-label="Top">

@@ -33,8 +33,8 @@ const SortingDropdown = () => {
             )}
           >
             <span className="">
-              {`Sort by : `}
-              <span className={classNames(localTheme.text.color.base.main, 'font-bold')}>
+              {`Sort by `}
+              <span className={classNames(localTheme.text.color.base.main, 'font-base')}>
                 &quot;{activeItem.title}&quot;
               </span>
             </span>
