@@ -87,6 +87,7 @@ const CartLine = ({ cartLine }: Props) => {
               type="button"
               className={classNames(localTheme.text.size.small, localTheme.text.color.primary.main)}
               onClick={handleDelete}
+              disabled={isPending}
             >
               Remove
             </button>
