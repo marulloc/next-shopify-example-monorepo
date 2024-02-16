@@ -33,7 +33,7 @@ const fill = {
     main: classNames('bg-gray-100'),
     muted: classNames('bg-gray-200'),
     hover: classNames('hover:bg-gray-300'),
-    disabled: classNames('bg-gray-400 opacity-50'),
+    disabled: classNames('bg-gray-800  '),
   },
   primary: {
     main: classNames('bg-indigo-500'),
@@ -41,9 +41,9 @@ const fill = {
     hover: classNames('hover:bg-indigo-600'),
   },
   secondary: {
-    main: classNames('bg-green-500'),
-    muted: classNames('bg-green-400'),
-    hover: classNames('hover:bg-green-600'),
+    main: classNames('bg-rose-500'),
+    muted: classNames('bg-rose-400'),
+    hover: classNames('hover:bg-pink-600'),
   },
 };
 
@@ -89,36 +89,43 @@ const spacing = {
   },
   padding: {
     xy: {
+      extraSmall: classNames('p-1 sm:p-2 md:p-3'),
       small: classNames('p-2 sm:p-4 md:p-6'),
       medium: classNames('p-4 sm:p-6 md:p-8'),
       large: classNames('p-6 sm:p-8 md:p-10'),
     },
     x: {
+      extraSmall: classNames('px-1 sm:px-2 md:px-3'),
       small: classNames('px-2 sm:px-4 md:px-6'),
       medium: classNames('px-4 sm:px-6 md:px-8'),
       large: classNames('px-6 sm:px-8 md:px-10'),
     },
     y: {
+      extraSmall: classNames('py-1 sm:py-2 md:py-3'),
       small: classNames('py-2 sm:py-4 md:py-6'),
       medium: classNames('py-4 sm:py-6 md:py-8'),
       large: classNames('py-6 sm:py-8 md:py-10'),
     },
     r: {
+      extraSmall: classNames('pr-1 sm:pr-2 md:pr-3'),
       small: classNames('pr-2 sm:pr-4 md:pr-6'),
       medium: classNames('pr-4 sm:pr-6 md:pr-8'),
       large: classNames('pr-6 sm:pr-8 md:pr-10'),
     },
     l: {
+      extraSmall: classNames('pl-1 sm:pl-2 md:pl-3'),
       small: classNames('pl-2 sm:pl-4 md:pl-6'),
       medium: classNames('pl-4 sm:pl-6 md:pl-8'),
       large: classNames('pl-6 sm:pl-8 md:pl-10'),
     },
     t: {
+      extraSmall: classNames('pt-1 sm:pt-2 md:pt-3'),
       small: classNames('pt-2 sm:pt-4 md:pt-6'),
       medium: classNames('pt-4 sm:pt-6 md:pt-8'),
       large: classNames('pt-6 sm:pt-8 md:pt-10'),
     },
     b: {
+      extraSmall: classNames('pb-1 sm:pb-2 md:pb-3'),
       small: classNames('pb-2 sm:pb-4 md:pb-6'),
       medium: classNames('pb-4 sm:pb-6 md:pb-8'),
       large: classNames('pb-6 sm:pb-8 md:pb-10'),

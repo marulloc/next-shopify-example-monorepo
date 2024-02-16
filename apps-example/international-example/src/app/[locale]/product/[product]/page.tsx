@@ -30,7 +30,7 @@ const ProductPage = async ({ params }: { params: TParams }) => {
   });
 
   return (
-    <main className={classNames('   ')}>
+    <main className={classNames(' relative  ')}>
       <div className="flex flex-col md:flex-row">
         <div className={classNames('h-full flex-1 md:border-r', localTheme.border.base.main)}>
           <section
@@ -50,7 +50,7 @@ const ProductPage = async ({ params }: { params: TParams }) => {
           <div
             id="mobile-product-variant-selector"
             className={classNames(
-              'block md:hidden sticky top-16',
+              'visible md:invisible ',
               localTheme.fill.base.main,
               localTheme.border.base.main,
               'bg-opacity-40 backdrop-blur-sm',
