@@ -4,6 +4,8 @@ import ProductCard from '@/components/product/ProductCard';
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
+import Carousel from './Carousel';
+import ScrollCarousel from './ScrollCarousel';
 
 type TProps = {
   product: ToolkitProduct;
@@ -18,7 +20,7 @@ const Recommendations = async ({ product, locale }: TProps) => {
       <p className={classNames(localTheme.text.size.medium, localTheme.spacing.padding.b.small, 'font-bold')}>
         Recommendations
       </p>
-      <ul className={classNames(localTheme.spacing.gap.x.small, 'flex  flex-nowrap overflow-auto h-80')}>
+      {/* <ul className={classNames(localTheme.spacing.gap.x.small, 'flex  flex-nowrap overflow-auto h-80')}>
         {recommendations.map((recommendation) => (
           <li key={`${product.title}-recommendation-${recommendation.title}`} className="h-full aspect-square  ">
             <Link href={recommendation.handleRoute} className={classNames('relative w-full aspect-square ')}>
@@ -26,7 +28,27 @@ const Recommendations = async ({ product, locale }: TProps) => {
             </Link>
           </li>
         ))}
-      </ul>
+      </ul> */}
+
+      {/* <Carousel>
+        {recommendations.map((recom) => (
+          <div key={`${product.title}-recommendation-${recom.title}`} className="h-full aspect-square  ">
+            <ProductCard variant="big" product={recom} />
+          </div>
+        ))}
+      </Carousel> */}
+
+      <ScrollCarousel>
+        {recommendations.map((recom) => (
+          <Link
+            href={recom.handleRoute}
+            key={`${product.title}-recommendation-${recom.title}`}
+            className="  h-96 aspect-square w-96"
+          >
+            <ProductCard variant="big" product={recom} priceDefaultOpen />
+          </Link>
+        ))}
+      </ScrollCarousel>
     </section>
   );
 };

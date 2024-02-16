@@ -4,23 +4,25 @@ import { classNames } from '@marulloc/components-library/utils';
 import ProductPrice from './ProductPrice';
 import Image from 'next/image';
 
-type Props = {
-  variant: 'small' | 'big';
-} & { product: ToolkitProduct };
+type Props = TSmallProductCardProps | TBigProductCardProps;
 
-const ProductCard = ({ variant, product }: Props) => {
+const ProductCard = ({ variant, product, ...rest }: Props) => {
   switch (variant) {
     case 'small':
       return <SmallProductCard product={product} />;
 
     default:
     case 'big':
-      return <BigProductCard product={product} />;
+      return <BigProductCard product={product} {...rest} />;
   }
 };
 
 export default ProductCard;
 
+type TSmallProductCardProps = {
+  variant: 'small';
+  product: ToolkitProduct;
+};
 const SmallProductCard = ({ product }: Omit<Props, 'variant'>) => {
   return (
     <div className="group flex items-center  space-x-6">
@@ -38,6 +40,7 @@ const SmallProductCard = ({ product }: Omit<Props, 'variant'>) => {
             width={product.featuredImage.width || 0}
             height={product.featuredImage.height || 0}
             className="h-14 w-14 object-cover object-center"
+            priority
           />
         )}
       </div>
@@ -57,7 +60,13 @@ const SmallProductCard = ({ product }: Omit<Props, 'variant'>) => {
   );
 };
 
-const BigProductCard = ({ product }: Omit<Props, 'variant'>) => {
+type TBigProductCardProps = {
+  variant: 'big';
+  product: ToolkitProduct;
+  priceDefaultOpen?: boolean;
+};
+
+const BigProductCard = ({ product, priceDefaultOpen = false }: Omit<TBigProductCardProps, 'variant'>) => {
   return (
     <div className="relative group h-full rounded-lg overflow-hidden   ">
       <div
@@ -84,8 +93,8 @@ const BigProductCard = ({ product }: Omit<Props, 'variant'>) => {
         className={classNames(
           'absolute bottom-0 h-1/2 w-full rounded-none z-10',
           'transform transition-all  duration-500',
-          'group-hover:visible invisible',
-          'group-hover:translate-y-0 translate-y-full',
+          priceDefaultOpen ? '' : 'group-hover:visible invisible group-hover:translate-y-0 translate-y-full',
+
           'bg-gradient-to-t  from-gray-50 bg-opacity-90',
         )}
       >
