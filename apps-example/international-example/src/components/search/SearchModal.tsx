@@ -3,7 +3,7 @@
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter, useParams } from 'next/navigation';
 import { useRef } from 'react';
 import Modal from '@marulloc/components-library/Modal';
 import { HiArrowRight, HiXMark, HiOutlineMagnifyingGlass } from 'react-icons/hi2';
@@ -14,14 +14,20 @@ import IconButton from '../IconButton';
 import { localTheme } from '@/theme/local-theme';
 import CollectionCard from '../collection/CollectionCard';
 import ProductCard from '../product/ProductCard';
+import { splitLocale } from '@/utils/locale';
 
 type Props = {
   Trigger: React.ReactNode;
 };
 
 const SearchModal = ({ Trigger }: Props) => {
-  const [{ status, searchResult }, handlePredictive] = usePredictiveSearch();
   const searchParams = useSearchParams();
+  const { locale } = useParams();
+  const { countryCode, languageCode } = splitLocale(locale as string);
+
+  const [{ status, searchResult }, handlePredictive] = usePredictiveSearch({
+    locale: { country: countryCode as string, language: languageCode as string },
+  });
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 

@@ -24,7 +24,7 @@ const MockUp = () => {
   return (
     <div className={classNames(localTheme.spacing.gap.y)}>
       <h2 className="mb-4 text-2xl font-bold">Details</h2>
-      <div className={classNames('rounded-lg p-6 space-y-4 text-base leading-10')}>
+      <div className={classNames('rounded-lg  space-y-4 text-base leading-10')}>
         <p>Thanks Images are made by midjourney Description is made by ChatGPT</p>
         <p className=" leading-10">
           {`Discover the epitome of style and vivacity with our exclusive "Colorful Shirts." Dive into a spectrum of
