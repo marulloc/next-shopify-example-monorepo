@@ -59,7 +59,7 @@ const ProductOptions = ({ product }: TProps) => {
   };
 
   return (
-    <section className={classNames(localTheme.spacing.padding.xy.medium)}>
+    <section className={classNames(localTheme.spacing.padding.xy.medium, 'lg:max-w-lg')}>
       <div className={classNames(localTheme.spacing.padding.b.small, 'border-b', localTheme.border.base.muted)}>
         <h1 className={classNames(localTheme.text.size.large, 'font-semibold mb-2')}>{product.title}</h1>
         <ProductPrice

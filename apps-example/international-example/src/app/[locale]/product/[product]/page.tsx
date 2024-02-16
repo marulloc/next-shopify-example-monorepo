@@ -24,19 +24,15 @@ const ProductPage = async ({ params }: { params: TParams }) => {
   const { product: handle } = params;
 
   const product = await getProduct(handle, { country: countryCode, language: languageCode });
-  const recommendations = await getProductRecommendations(product!.id, {
-    country: countryCode,
-    language: languageCode,
-  });
 
   return (
     <main className={classNames(' relative  ')}>
-      <div className="flex flex-col md:flex-row">
-        <div className={classNames('h-full flex-1 md:border-r', localTheme.border.base.main)}>
+      <div className="flex flex-col lg:flex-row">
+        <div className={classNames('h-full flex-1 lg:border-r', localTheme.border.base.main)}>
           <section
             id="image-gallery-section"
             className={classNames(
-              'block md:sticky top-16',
+              'block   ',
               localTheme.fill.base.main,
               localTheme.border.base.main,
               'bg-opacity-40 backdrop-blur-sm',
@@ -50,7 +46,7 @@ const ProductPage = async ({ params }: { params: TParams }) => {
           <div
             id="mobile-product-variant-selector"
             className={classNames(
-              'visible md:invisible ',
+              'block lg:hidden ',
               localTheme.fill.base.main,
               localTheme.border.base.main,
               'bg-opacity-40 backdrop-blur-sm',
@@ -61,18 +57,13 @@ const ProductPage = async ({ params }: { params: TParams }) => {
             <ProductOptions product={product} />
           </div>
 
-          <section
-            id="product-description-section"
-            className={classNames(
-              'h-screen', //test
-            )}
-          >
+          <section id="product-description-section" className={classNames()}>
             <Description product={product} />
           </section>
         </div>
 
         <div>
-          <div id="product-variant-selector" className={classNames(' hidden md:block sticky top-16 flex-shrink-0')}>
+          <div id="product-variant-selector" className={classNames(' hidden lg:block sticky top-16 flex-shrink-0')}>
             <ProductOptions product={product} />
           </div>
         </div>
@@ -80,15 +71,8 @@ const ProductPage = async ({ params }: { params: TParams }) => {
 
       <div>
         {/* ToDo Fix : Border Collpase */}
-        <section
-          id="product-recommendation-section"
-          className={classNames(
-            'h-screen', //test
-            'border-t ',
-            localTheme.border.base.main,
-          )}
-        >
-          <Recommendations product={product} />
+        <section id="product-recommendation-section" className={classNames('border-t ', localTheme.border.base.main)}>
+          <Recommendations product={product} locale={{ country: countryCode, language: languageCode }} />
         </section>
       </div>
     </main>
