@@ -16,7 +16,7 @@ const ImageGallery = ({ product }: TProps) => {
           <Image
             key={`${product.title}-image-${idx}`}
             src={image.url}
-            alt={image.altText}
+            alt={image.altText || `${product.title}-image-${idx}`}
             height={image.height}
             width={image.width}
             className="w-full h-full object-cover object-center rounded-lg  "

@@ -29,6 +29,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
             width={1400}
             height={1000}
             className="h-full w-full object-cover object-center"
+            priority
           />
           <div
             className={classNames('absolute w-full h-1/4 bottom-0', 'bg-gradient-to-t from-gray-100 via-gray-100')}
@@ -39,7 +40,6 @@ const Home = async ({ params }: { params: { locale: string } }) => {
         <div className="relative px-20 py-64 sm:py-80 w-full h-full  ">
           <div className=" w-full max-w-md h-full text-center">
             <h2
-              id="comfort-heading"
               className={classNames(
                 'font-bold tracking-tight',
                 localTheme.text.size.extraLarge,
@@ -64,7 +64,6 @@ const Home = async ({ params }: { params: { locale: string } }) => {
       {/* Collections */}
       <section aria-labelledby="collection-heading" className={classNames(' ', localTheme.spacing.padding.x.medium)}>
         <h2
-          id="collection-heading"
           className={classNames(
             'font-bold tracking-tight',
             localTheme.text.size.large,
@@ -87,7 +86,6 @@ const Home = async ({ params }: { params: { locale: string } }) => {
       <section aria-labelledby="category-heading" className={classNames('mt-40 ', localTheme.spacing.padding.x.medium)}>
         <div className="flex justify-between items-center">
           <h2
-            id="category-heading"
             className={classNames(
               'font-bold tracking-tight',
               localTheme.text.size.large,
@@ -138,10 +136,11 @@ const Home = async ({ params }: { params: { locale: string } }) => {
         <div className="absolute inset-0 group   ">
           <Image
             src={shopInfo.brand.coverImage.image.url}
-            alt={shopInfo.brand.coverImage.image.altText}
+            alt={shopInfo.brand.coverImage.image.altText || 'shopify-cover-image'}
             width={shopInfo.brand.coverImage.image.width}
             height={shopInfo.brand.coverImage.image.height}
             className="h-full w-full object-cover object-right-top  "
+            priority={false}
           />
 
           <div className="absolute w-full h-1/4 top-0 bg-gradient-to-b from-gray-100 via-gray-100" />
@@ -150,7 +149,6 @@ const Home = async ({ params }: { params: { locale: string } }) => {
 
         <div className=" relative mx-auto max-w-7xl px-20 py-44  w-full h-full  ">
           <h2
-            id="comfort-heading"
             className={classNames(
               'font-bold tracking-tight',
               localTheme.text.size.extraLarge,

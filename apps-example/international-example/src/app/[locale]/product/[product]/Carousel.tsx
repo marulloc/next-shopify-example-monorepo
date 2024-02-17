@@ -55,7 +55,7 @@ const Carousel = ({ children }: { children: React.ReactElement[] }) => {
   return (
     <div className="w-full h-full relative group  ">
       <div
-        id="carousel-container"
+        // id="carousel-container"
         className={classNames('w-full h-full  relative overflow-hidden  ')}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -83,11 +83,7 @@ const Carousel = ({ children }: { children: React.ReactElement[] }) => {
           curIdx === 0 ? 'invisible' : 'invisible group-hover:visible opacity-0 group-hover:opacity-100 ',
         )}
       >
-        <IconButton
-          id="left-arrow"
-          onClick={goPrev}
-          className={classNames('p-1 rounded-full bg-opacity-40 bg-gray-400')}
-        >
+        <IconButton onClick={goPrev} className={classNames('p-1 rounded-full bg-opacity-40 bg-gray-400')}>
           <HiMiniChevronLeft className="h-5 md:h-8 w-5 md:w-8 text-white" />
         </IconButton>
       </div>
@@ -100,11 +96,7 @@ const Carousel = ({ children }: { children: React.ReactElement[] }) => {
             : 'invisible group-hover:visible opacity-0 group-hover:opacity-100 ',
         )}
       >
-        <IconButton
-          id="left-arrow"
-          onClick={goNext}
-          className={classNames('p-1 rounded-full bg-opacity-40 bg-gray-400')}
-        >
+        <IconButton onClick={goNext} className={classNames('p-1 rounded-full bg-opacity-40 bg-gray-400')}>
           <HiMiniChevronRight className=" h-5 md:h-8 w-5 md:w-8 text-white" />
         </IconButton>
       </div>
