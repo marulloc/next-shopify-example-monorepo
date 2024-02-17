@@ -4,7 +4,6 @@ import ProductCard from '@/components/product/ProductCard';
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
-import Carousel from './Carousel';
 import ScrollCarousel from './ScrollCarousel';
 
 type TProps = {
@@ -28,7 +27,7 @@ const Recommendations = async ({ product, locale }: TProps) => {
             key={`${product.title}-recommendation-${recom.title}`}
             className=" h-52 sm:h-64 md:h-80 lg:h-96 aspect-square  "
           >
-            <ProductCard variant="big" product={recom} priceDefaultOpen />
+            <ProductCard variant="big" product={recom} priceDefaultOpen={false} />
           </Link>
         ))}
       </ScrollCarousel>

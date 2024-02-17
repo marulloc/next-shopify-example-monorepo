@@ -1,80 +1,103 @@
 'use client';
+
+import IconButton from '@/components/IconButton';
 import { classNames } from '@marulloc/components-library/utils';
-import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-import { RxDotFilled } from 'react-icons/rx';
+import React, { useState, useEffect } from 'react';
+import { HiMiniChevronLeft, HiMiniChevronRight } from 'react-icons/hi2';
 
-const Carousel = ({ children }: { children: React.ReactNode }) => {
-  const [currentIdx, setCurrentIndex] = useState(0);
+const Carousel = ({ children }: { children: React.ReactElement[] }) => {
+  const [isMoving, setIsMoving] = useState(false);
+  const [curIdx, setCurIdx] = useState(0);
 
-  const NewChildren = useMemo(
-    () =>
-      React.Children.map(children, (child, idx) => (
-        <div
-          className={classNames(
-            'absolute top-0  mx-auto h-full   transition-all duration-1000 ease-out',
-            currentIdx === idx && 'opacity-100 translate-x-0',
-            // currentIdx !== idx && 'opacity-0 -translate-x-full',
-            currentIdx === idx - 1 && 'opacity-0 translate-x-full',
-            currentIdx === idx + 1 && 'opacity-0 -translate-x-full',
-            'opacity-0 translate-x-full',
-            // currentIdx > idx && 'opacity-0 -translate-x-full',
-            // currentIdx < idx && 'opacity-0 translate-x-full',
-          )}
-        >
-          {child}
-        </div>
-      )),
-    [children, currentIdx],
-  );
-
-  const prevSlide = () => {
-    const isFirstSlide = currentIdx === 0;
-    const newIndex = isFirstSlide ? React.Children.count(children) - 1 : currentIdx - 1;
-    setCurrentIndex(newIndex);
+  const goPrev = () => {
+    if (isMoving || curIdx === 0) return;
+    setIsMoving(true);
+    setCurIdx(curIdx - 1);
+  };
+  const goNext = () => {
+    if (isMoving || curIdx === children.length - 1) return;
+    setIsMoving(true);
+    setCurIdx(curIdx + 1);
   };
 
-  const nextSlide = () => {
-    const isLastSlide = currentIdx === React.Children.count(children) - 1;
-    const newIndex = isLastSlide ? 0 : currentIdx + 1;
-    setCurrentIndex(newIndex);
+  const goto = (slideIdx: number) => {
+    if (isMoving) return;
+    setIsMoving(true);
+    setCurIdx(slideIdx);
   };
 
-  const goToSlide = (slideIndex: number) => {
-    setCurrentIndex(slideIndex);
-  };
+  useEffect(() => {
+    setTimeout(() => setIsMoving(false), 500);
+  }, [curIdx]);
 
   return (
-    <div className=" flex  flex-col relative group  ">
-      <div className="flex-1 aspect-square relative flex justify-center overflow-hidden">{NewChildren}</div>
-
-      <div
-        id="left-arrow"
-        className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer hover:text-red-200"
-      >
-        <BsChevronCompactLeft onClick={prevSlide} size={30} />
-      </div>
-      <div
-        id="right-arrow"
-        className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer"
-      >
-        <BsChevronCompactRight onClick={nextSlide} size={30} />
-      </div>
-      <div className="flex top-4 justify-center py-2">
-        {React.Children.map(children as React.ReactNode, (slide, slideIndex) => (
+    <div className="w-full h-full relative group  ">
+      <div id="carousel-container" className={classNames('w-full h-full  relative overflow-hidden  ')}>
+        {React.Children.map(children, (child, idx) => (
           <div
-            key={slideIndex}
-            onClick={() => goToSlide(slideIndex)}
             className={classNames(
-              'text-lg w-5 h-2  rounded-lg  mx-1.5  cursor-pointer transition-all duration-1000',
-              currentIdx === slideIndex
-                ? 'bg-indigo-600 scale-125'
-                : 'bg-gray-400     hover:ring-indigo-600  hover:scale-125  duration-200 scale-100',
+              'absolute w-full h-full flex-shrink-0',
+              'transition-all duration-500    ',
+              curIdx === idx && 'opacity-100 translate-x-0 visible ',
+              curIdx > idx && 'opacity-50 -translate-x-full invisible ',
+              curIdx < idx && 'opacity-50 translate-x-full invisible',
+              (curIdx !== idx || curIdx - 1 > idx || curIdx + 1 < idx) && 'invisible  ',
             )}
           >
-            {/* <RxDotFilled /> */}
+            {child}
           </div>
         ))}
+      </div>
+
+      <div
+        className={classNames(
+          'absolute top-1/2 translate-y-[-50%] left-2 md:left-5',
+          curIdx === 0 ? 'invisible' : 'invisible group-hover:visible opacity-0 group-hover:opacity-100 ',
+        )}
+      >
+        <IconButton
+          id="left-arrow"
+          onClick={goPrev}
+          className={classNames('p-1 rounded-full bg-opacity-40 bg-gray-400')}
+        >
+          <HiMiniChevronLeft className="h-5 md:h-8 w-5 md:w-8 text-white" />
+        </IconButton>
+      </div>
+
+      <div
+        className={classNames(
+          'absolute top-1/2 translate-y-[-50%] right-2 md:right-5',
+          curIdx === children.length - 1
+            ? 'invisible'
+            : 'invisible group-hover:visible opacity-0 group-hover:opacity-100 ',
+        )}
+      >
+        <IconButton
+          id="left-arrow"
+          onClick={goNext}
+          className={classNames('p-1 rounded-full bg-opacity-40 bg-gray-400')}
+        >
+          <HiMiniChevronRight className=" h-5 md:h-8 w-5 md:w-8 text-white" />
+        </IconButton>
+      </div>
+
+      <div id="carousel-goto-buttons" className="absolute w-full flex bottom-4 justify-center py-2  ">
+        <div className="flex justify-center w-fit px-2 py-2  hover:scale-125 transition-all duration-30 ">
+          {React.Children.map(children as React.ReactNode, (slide, slideIndex) => (
+            <button
+              key={slideIndex}
+              onClick={() => goto(slideIndex)}
+              className={classNames(
+                'block text-lg w-2 h-2  rounded-lg  mx-1  cursor-pointer transition-all duration-500',
+
+                'shadow-2xl',
+                curIdx === slideIndex
+                  ? 'bg-indigo-400 scale-125'
+                  : 'bg-opacity-50 bg-gray-400  hover:scale-125 hover:bg-white hover:ring-1 hover:ring-indigo-400 duration-100',
+              )}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
