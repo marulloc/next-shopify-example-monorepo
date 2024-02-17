@@ -51,7 +51,7 @@ const RootLayout = async ({
   const { countryCode, languageCode } = splitLocale(params.locale);
 
   return (
-    <html lang={languageCode} className="">
+    <html lang={languageCode} className=" scroll-smooth">
       <CartProvider locale={{ country: countryCode, language: languageCode }} storageKey="marulloc-cart">
         <body className={classNames('relative font-mono', localTheme.fill.base.muted)}>
           <Header locale={{ country: countryCode, language: languageCode }} />

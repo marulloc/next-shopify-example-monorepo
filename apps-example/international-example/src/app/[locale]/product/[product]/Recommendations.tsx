@@ -20,30 +20,13 @@ const Recommendations = async ({ product, locale }: TProps) => {
       <p className={classNames(localTheme.text.size.medium, localTheme.spacing.padding.b.small, 'font-bold')}>
         Recommendations
       </p>
-      {/* <ul className={classNames(localTheme.spacing.gap.x.small, 'flex  flex-nowrap overflow-auto h-80')}>
-        {recommendations.map((recommendation) => (
-          <li key={`${product.title}-recommendation-${recommendation.title}`} className="h-full aspect-square  ">
-            <Link href={recommendation.handleRoute} className={classNames('relative w-full aspect-square ')}>
-              <ProductCard variant="big" product={recommendation} />
-            </Link>
-          </li>
-        ))}
-      </ul> */}
-
-      {/* <Carousel>
-        {recommendations.map((recom) => (
-          <div key={`${product.title}-recommendation-${recom.title}`} className="h-full aspect-square  ">
-            <ProductCard variant="big" product={recom} />
-          </div>
-        ))}
-      </Carousel> */}
 
       <ScrollCarousel>
         {recommendations.map((recom) => (
           <Link
             href={recom.handleRoute}
             key={`${product.title}-recommendation-${recom.title}`}
-            className="  h-96 aspect-square w-96"
+            className=" h-52 sm:h-64 md:h-80 lg:h-96 aspect-square  "
           >
             <ProductCard variant="big" product={recom} priceDefaultOpen />
           </Link>
