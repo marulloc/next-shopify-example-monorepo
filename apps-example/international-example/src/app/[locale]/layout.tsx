@@ -53,7 +53,7 @@ const RootLayout = async ({
   return (
     <html lang={languageCode} className=" scroll-smooth">
       <CartProvider locale={{ country: countryCode, language: languageCode }} storageKey="marulloc-cart">
-        <body className={classNames('relative font-mono', localTheme.fill.base.muted)}>
+        <body className={classNames('relative font-mono overflow-hidden', localTheme.fill.base.muted)}>
           <Header locale={{ country: countryCode, language: languageCode }} />
           {children}
           <FloatingActionButton />

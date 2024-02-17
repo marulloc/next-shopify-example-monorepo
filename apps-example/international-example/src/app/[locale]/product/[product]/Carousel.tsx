@@ -8,6 +8,8 @@ import { HiMiniChevronLeft, HiMiniChevronRight } from 'react-icons/hi2';
 const Carousel = ({ children }: { children: React.ReactElement[] }) => {
   const [isMoving, setIsMoving] = useState(false);
   const [curIdx, setCurIdx] = useState(0);
+  const [startX, setStartX] = useState(0); // for mobile
+  const [moveX, setMoveX] = useState(0); // for mobile
 
   const goPrev = () => {
     if (isMoving || curIdx === 0) return;
@@ -30,9 +32,35 @@ const Carousel = ({ children }: { children: React.ReactElement[] }) => {
     setTimeout(() => setIsMoving(false), 500);
   }, [curIdx]);
 
+  // Mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touchStartX = e.touches[0].clientX;
+    setStartX(touchStartX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    const touchMoveX = e.touches[0].clientX;
+    setMoveX(touchMoveX - startX);
+  };
+
+  const handleTouchEnd = () => {
+    if (moveX > 50) {
+      goPrev();
+    } else if (moveX < -50) {
+      goNext();
+    }
+    setMoveX(0); // Reset moveX for the next touch action
+  };
+
   return (
     <div className="w-full h-full relative group  ">
-      <div id="carousel-container" className={classNames('w-full h-full  relative overflow-hidden  ')}>
+      <div
+        id="carousel-container"
+        className={classNames('w-full h-full  relative overflow-hidden  ')}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {React.Children.map(children, (child, idx) => (
           <div
             className={classNames(
@@ -81,7 +109,7 @@ const Carousel = ({ children }: { children: React.ReactElement[] }) => {
         </IconButton>
       </div>
 
-      <div id="carousel-goto-buttons" className="absolute w-full flex bottom-4 justify-center py-2  ">
+      <div id="carousel-goto-buttons" className="absolute w-full flex bottom-4 justify-center ">
         <div className="flex justify-center w-fit px-2 py-2  hover:scale-125 transition-all duration-30 ">
           {React.Children.map(children as React.ReactNode, (slide, slideIndex) => (
             <button
