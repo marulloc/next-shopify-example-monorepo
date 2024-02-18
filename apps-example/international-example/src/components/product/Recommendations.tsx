@@ -4,7 +4,7 @@ import ProductCard from '@/components/product/ProductCard';
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
-import ScrollCarousel from './ScrollCarousel';
+import ScrollCarousel from '../ScrollCarousel';
 import { delay } from '@/utils/throttle';
 import Skeleton from '@/components/loading/Skeleton';
 

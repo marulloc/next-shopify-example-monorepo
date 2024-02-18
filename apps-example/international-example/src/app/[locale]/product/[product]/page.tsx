@@ -1,12 +1,12 @@
 import { getProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
+import Description, { DescriptionSkeleton } from '@/components/product/Description';
+import ImageGallery, { ImageGallerySkeleton } from '@/components/product/ImageGallery';
+import ProductOptions, { ProductOptionsSkeleton } from '@/components/product/ProductOptions';
+import Recommendations, { RecommendationsSkeleton } from '@/components/product/Recommendations';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import { Metadata } from 'next';
-import ImageGallery, { ImageGallerySkeleton } from './ImageGallery';
-import Description, { DescriptionSkeleton } from './Description';
-import Recommendations, { RecommendationsSkeleton } from './Recommendations';
-import ProductOptions, { ProductOptionsSkeleton } from './ProductOptions';
 import { Suspense } from 'react';
 
 type TParams = { locale: string; product: string };

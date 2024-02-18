@@ -3,10 +3,10 @@ import { getProductsSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/s
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
-import SortingDropdown from './SortingDropdown';
 import ProductCard from '@/components/product/ProductCard';
 import Link from 'next/link';
 import SearchFakeInputTrigger from '@/components/search/triggers/SearchInputTrigger';
+import SortingDropdown from '@/components/search/SortingDropdown';
 
 type TParams = { locale: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };

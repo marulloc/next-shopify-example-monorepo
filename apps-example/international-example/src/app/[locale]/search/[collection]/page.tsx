@@ -3,11 +3,11 @@ import { getCollection, getCollectionProducts } from '@/@marulloc-shopify-nextap
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
-import SortingDropdown from '../SortingDropdown';
 import Link from 'next/link';
 import ProductCard from '@/components/product/ProductCard';
 import { Metadata } from 'next';
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
+import SortingDropdown from '@/components/search/SortingDropdown';
 
 type TParams = { locale: string; collection: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };

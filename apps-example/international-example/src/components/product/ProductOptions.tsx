@@ -1,5 +1,3 @@
-// 'use client';
-
 import { getProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
 import VariantSelector from './VariantSelector';
 import { classNames } from '@marulloc/components-library/utils';

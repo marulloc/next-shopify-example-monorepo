@@ -2,7 +2,7 @@ import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@too
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
-import Carousel from './Carousel';
+import Carousel from '../Carousel';
 import { getProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
 import { delay } from '@/utils/throttle';
 
