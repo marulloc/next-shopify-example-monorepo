@@ -1,12 +1,17 @@
-import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
+import { getProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
 import { localTheme } from '@/theme/local-theme';
+import { delay } from '@/utils/throttle';
 import { classNames } from '@marulloc/components-library/utils';
 
 type TProps = {
-  product: ToolkitProduct;
+  handle: string;
+  locale: { country: string; language: string };
 };
 
-const Description = ({ product }: TProps) => {
+const Description = async ({ handle, locale }: TProps) => {
+  await delay(5000);
+  const product = await getProduct(handle, locale);
+
   return (
     <div className={classNames(localTheme.spacing.padding.xy.medium)}>
       <p className={classNames(localTheme.text.size.medium, localTheme.spacing.padding.b.small, 'font-bold')}>
@@ -19,6 +24,18 @@ const Description = ({ product }: TProps) => {
 };
 
 export default Description;
+
+export const DescriptionSkeleton = () => {
+  return (
+    <div className={classNames(localTheme.spacing.padding.xy.medium, ' min-h-[300px] lg:min-h-[600px]')}>
+      <div className="space-y-2">
+        <div className="w-full h-8 bg-gray-300 animate-pulse"></div>
+        <div className="w-full h-8 bg-gray-300 animate-pulse"></div>
+        <div className="w-full h-8 bg-gray-300 animate-pulse"></div>
+      </div>
+    </div>
+  );
+};
 
 const MockUp = () => {
   return (

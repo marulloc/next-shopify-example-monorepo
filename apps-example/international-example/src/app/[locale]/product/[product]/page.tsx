@@ -3,10 +3,11 @@ import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import { Metadata } from 'next';
-import ImageGallery from './ImageGallery';
-import Description from './Description';
-import Recommendations from './Recommendations';
-import ProductOptions from './ProductOptions';
+import ImageGallery, { ImageGallerySkeleton } from './ImageGallery';
+import Description, { DescriptionSkeleton } from './Description';
+import Recommendations, { RecommendationsSkeleton } from './Recommendations';
+import ProductOptions, { ProductOptionsSkeleton } from './ProductOptions';
+import { Suspense } from 'react';
 
 type TParams = { locale: string; product: string };
 
@@ -23,55 +24,55 @@ const ProductPage = async ({ params }: { params: TParams }) => {
   const { countryCode, languageCode } = splitLocale(params.locale);
   const { product: handle } = params;
 
-  const product = await getProduct(handle, { country: countryCode, language: languageCode });
-
   return (
-    <main className={classNames(' relative  ')}>
+    <main className={classNames(' relative min-h-screen  ')}>
       <div className="flex flex-col lg:flex-row">
         <div className={classNames('h-full flex-1 lg:border-r', localTheme.border.base.main)}>
           <section
             className={classNames(
-              'block   ',
-              localTheme.fill.base.main,
-              localTheme.border.base.main,
-              'bg-opacity-40 backdrop-blur-sm',
-              'border-b ',
+              'block',
+              localTheme.fill.base.main + ' bg-opacity-40 backdrop-blur-sm',
+              localTheme.border.base.main + ' border-b',
             )}
           >
-            <ImageGallery product={product} />
+            <Suspense fallback={<ImageGallerySkeleton />}>
+              <ImageGallery handle={handle} locale={{ country: countryCode, language: languageCode }} />
+            </Suspense>
           </section>
 
-          <div
-            // id="mobile-product-variant-selector"
+          <section
             className={classNames(
               'block lg:hidden ',
-              localTheme.fill.base.main,
-              localTheme.border.base.main,
-              'bg-opacity-40 backdrop-blur-sm',
-              'border-b',
+              localTheme.fill.base.main + ' bg-opacity-40 backdrop-blur-sm',
+              localTheme.border.base.main + ' border-b',
             )}
           >
-            <ProductOptions product={product} />
-          </div>
+            <Suspense fallback={<ProductOptionsSkeleton />}>
+              <ProductOptions handle={handle} locale={{ country: countryCode, language: languageCode }} />
+            </Suspense>
+          </section>
 
-          <section id="product-description-section" className={classNames()}>
-            <Description product={product} />
+          <section className={classNames()}>
+            <Suspense fallback={<DescriptionSkeleton />}>
+              <Description handle={handle} locale={{ country: countryCode, language: languageCode }} />
+            </Suspense>
           </section>
         </div>
 
         <div>
-          <div id="product-variant-selector" className={classNames(' hidden lg:block sticky top-16 flex-shrink-0')}>
-            <ProductOptions product={product} />
-          </div>
+          <section className={classNames(' hidden lg:block sticky top-16 flex-shrink-0')}>
+            <Suspense fallback={<ProductOptionsSkeleton />}>
+              <ProductOptions handle={handle} locale={{ country: countryCode, language: languageCode }} />
+            </Suspense>
+          </section>
         </div>
       </div>
 
-      <div>
-        {/* ToDo Fix : Border Collpase */}
-        <section id="product-recommendation-section" className={classNames('border-t ', localTheme.border.base.main)}>
-          <Recommendations product={product} locale={{ country: countryCode, language: languageCode }} />
-        </section>
-      </div>
+      <section className={classNames('border-t ', localTheme.border.base.main)}>
+        <Suspense fallback={<RecommendationsSkeleton />}>
+          <Recommendations handle={handle} locale={{ country: countryCode, language: languageCode }} />
+        </Suspense>
+      </section>
     </main>
   );
 };

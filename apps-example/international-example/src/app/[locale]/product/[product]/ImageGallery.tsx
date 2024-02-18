@@ -3,14 +3,22 @@ import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import Carousel from './Carousel';
+import { getProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
+import { delay } from '@/utils/throttle';
 
 type TProps = {
-  product: ToolkitProduct;
+  handle: string;
+  locale: { country: string; language: string };
 };
 
-const ImageGallery = ({ product }: TProps) => {
+const ImageGallery = async ({ handle, locale }: TProps) => {
+  await delay(5000);
+  const product = await getProduct(handle, locale);
+
   return (
-    <div className={classNames(localTheme.spacing.padding.xy.medium, 'w-full  aspect-square ')}>
+    <div
+      className={classNames(localTheme.spacing.padding.xy.medium, 'w-full  aspect-square rounded-lg overflow-hidden ')}
+    >
       <Carousel>
         {product.images.map((image, idx) => (
           <Image
@@ -28,3 +36,13 @@ const ImageGallery = ({ product }: TProps) => {
 };
 
 export default ImageGallery;
+
+export const ImageGallerySkeleton = () => {
+  return (
+    <div
+      className={classNames(localTheme.spacing.padding.xy.medium, 'w-full  aspect-square rounded-lg overflow-hidden ')}
+    >
+      <div className="w-full h-full bg-gray-300 animate-pulse"></div>
+    </div>
+  );
+};

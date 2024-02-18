@@ -1,21 +1,26 @@
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
-import { getProductRecommendations } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
+import { getProduct, getProductRecommendations } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
 import ProductCard from '@/components/product/ProductCard';
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
 import ScrollCarousel from './ScrollCarousel';
+import { delay } from '@/utils/throttle';
+import Skeleton from '@/components/loading/Skeleton';
 
 type TProps = {
-  product: ToolkitProduct;
+  product?: ToolkitProduct;
+  handle: string;
   locale: { country: string; language: string };
 };
 
-const Recommendations = async ({ product, locale }: TProps) => {
+const Recommendations = async ({ product: origin, handle, locale }: TProps) => {
+  await delay(3000);
+  const product = await getProduct(handle, locale);
   const recommendations = await getProductRecommendations(product!.id, locale);
 
   return (
-    <section className={classNames(localTheme.spacing.padding.xy.medium, ' ')}>
+    <div className={classNames(localTheme.spacing.padding.xy.medium, ' ')}>
       <p className={classNames(localTheme.text.size.medium, localTheme.spacing.padding.b.small, 'font-bold')}>
         Recommendations
       </p>
@@ -31,8 +36,16 @@ const Recommendations = async ({ product, locale }: TProps) => {
           </Link>
         ))}
       </ScrollCarousel>
-    </section>
+    </div>
   );
 };
 
 export default Recommendations;
+
+export const RecommendationsSkeleton = () => {
+  return (
+    <div className={classNames(localTheme.spacing.padding.xy.medium, ' ')}>
+      <Skeleton />
+    </div>
+  );
+};
