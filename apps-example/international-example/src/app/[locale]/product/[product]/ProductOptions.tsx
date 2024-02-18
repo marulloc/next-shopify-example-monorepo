@@ -7,6 +7,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import ProductPrice from '@/components/product/ProductPrice';
 import Price from '@/components/Price';
+import { useCartMutation } from '@/context/cart/hooks';
+import LoadingDots from '@/components/loading/LoadingDots';
 
 type TProps = {
   product: ToolkitProduct;
@@ -16,6 +18,8 @@ const ProductOptions = ({ product }: TProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { addItem } = useCartMutation();
+  const [isAdding, setIsAdding] = useState(false);
 
   // Product Option
   const [selectedOptions, setSelectedOptions] = useState(() => {
@@ -30,7 +34,7 @@ const ProductOptions = ({ product }: TProps) => {
     );
   }, [product.variants, selectedOptions]);
 
-  const buttonStatus: 'Sold Out' | 'Add to Cart' | 'Select Options' = useMemo(() => {
+  const buttonStatus: 'Sold Out' | 'Add to Cart' | 'Select Options' | 'Adding' = useMemo(() => {
     if (!selectedVariant) return 'Select Options';
     if (!selectedVariant.availableForSale) return 'Sold Out';
     return 'Add to Cart';
@@ -53,9 +57,15 @@ const ProductOptions = ({ product }: TProps) => {
   };
 
   // 위로 모두 hook으로 뺄 수 있음
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('@@@@@', selectedVariant);
+    if (!selectedVariant) return;
+
+    setIsAdding(true);
+
+    await addItem({ variantId: selectedVariant.id, quantity: 1 });
+
+    setIsAdding(false);
   };
 
   return (
@@ -84,9 +94,9 @@ const ProductOptions = ({ product }: TProps) => {
             >
               {option.name}
             </legend>
-            <ul className={classNames('grid grid-cols-4 gap-3')}>
+            <ul className={classNames(' flex md:grid flex-wrap md:grid-cols-4 gap-3')}>
               {option.values.map((value) => (
-                <li key={`${option.name}_${value}`} className="relative">
+                <li key={`${option.name}_${value}`} className="relative h-full">
                   <input
                     className="sr-only peer"
                     type="radio"
@@ -99,7 +109,7 @@ const ProductOptions = ({ product }: TProps) => {
                   <label
                     htmlFor={`${option.name}_${value}`}
                     className={classNames(
-                      'flex min-w-[48px] items-center justify-center rounded-lg border bg-neutral-100 px-3 py-2 text-sm ',
+                      'flex min-w-[48px] h-full items-center justify-center rounded-lg border bg-neutral-100 px-3 py-2 text-sm ',
                       'ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-indigo-600',
                       'peer-checked:ring-2 peer-checked:ring-indigo-600  ',
                       'cursor-pointer',
@@ -141,15 +151,21 @@ const ProductOptions = ({ product }: TProps) => {
                   'block w-full rounded-lg text-center py-3 pointer-events-none shadow-lg',
                   localTheme.text.color.base.contrast,
 
-                  buttonStatus === 'Select Options' &&
+                  !isAdding &&
+                    buttonStatus === 'Select Options' &&
                     classNames(localTheme.fill.secondary.main, localTheme.fill.secondary.hover, 'cursor-not-allowed '),
-                  buttonStatus === 'Add to Cart' &&
+                  !isAdding &&
+                    buttonStatus === 'Add to Cart' &&
                     classNames(localTheme.fill.primary.main, localTheme.fill.primary.hover, 'pointer-events-auto'),
-                  buttonStatus === 'Sold Out' &&
+                  !isAdding &&
+                    buttonStatus === 'Sold Out' &&
                     classNames(localTheme.fill.base.disabled, localTheme.fill.base.muted, 'cursor-not-allowed'),
+
+                  isAdding &&
+                    classNames(localTheme.fill.primary.main, localTheme.fill.primary.hover, 'cursor-not-allowed'),
                 )}
               >
-                {buttonStatus}
+                {isAdding ? <LoadingDots className="my-2 m-4" /> : <span className={classNames()}>{buttonStatus}</span>}
               </button>
             </div>
           </div>

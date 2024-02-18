@@ -1,7 +1,5 @@
-import { ShopifySortKey } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-search';
 import { ToolkitSortKey } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-search';
 import { getProductsSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/search/service';
-import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
