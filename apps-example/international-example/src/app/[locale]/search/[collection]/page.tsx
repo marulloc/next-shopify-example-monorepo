@@ -1,13 +1,11 @@
 import { ToolkitSortKey } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-search';
-import { getCollection, getCollectionProducts } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
-import { localTheme } from '@/theme/local-theme';
+import { getCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
-import Link from 'next/link';
-import ProductCard from '@/components/product/ProductCard';
 import { Metadata } from 'next';
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
-import SortingDropdown from '@/components/search/SortingDropdown';
+import CollectionProducts, { CollectionProductsSkeleton } from '../../../../components/collection/CollectionProducts';
+import { Suspense } from 'react';
 
 type TParams = { locale: string; collection: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };
@@ -42,59 +40,15 @@ const CollectionPage = async ({ params, searchParams }: { params: TParams; searc
   const { countryCode, languageCode } = splitLocale(params.locale);
   const { collection: handle } = params;
 
-  const collection = await getCollection(handle, { country: countryCode, language: languageCode });
-  const products = await getCollectionProducts({
-    collection: handle,
-    sortKey: sort as ToolkitSortKey,
-    locale: { country: countryCode, language: languageCode },
-  });
-
   return (
     <main className={classNames()}>
-      <div
-        className={classNames(
-          localTheme.spacing.padding.x.medium,
-          localTheme.spacing.padding.y.small,
-          localTheme.fill.base.main,
-          localTheme.border.base.main,
-          'border-b',
-          'sticky top-16 z-20',
-          'bg-opacity-40 backdrop-blur-sm',
-        )}
-      >
-        {collection.title}
-      </div>
-
-      <div className={classNames(localTheme.spacing.padding.x.medium, localTheme.spacing.padding.y.small)}>
-        <div className="flex flex-col md:flex-row justify-between  ">
-          <div>
-            <p className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
-              {`Showing ${products.length} ${'products'} for Collection `}
-              <span className={classNames('font-bold', localTheme.text.color.base.main, localTheme.text.size.small)}>
-                &quot;{collection?.title}&quot;
-              </span>
-            </p>
-          </div>
-
-          <div className="flex-shrink-0 flex justify-start md:justify-end mb-4  py-1 -my-1 px-3 -mx-3">
-            <SortingDropdown />
-          </div>
-        </div>
-
-        <div>
-          <ul
-            className={classNames('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ', localTheme.spacing.gap.xy.small)}
-          >
-            {products.map((product) => (
-              <li key={`collection-${collection.title}-product-card-${product.handle}`} className=" aspect-square">
-                <Link href={product.handleRoute} key={`home-product-card-${product.handle}`}>
-                  <ProductCard variant="big" product={product} />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <Suspense fallback={<CollectionProductsSkeleton />}>
+        <CollectionProducts
+          collection={handle}
+          sort={sort as ToolkitSortKey}
+          locale={{ country: countryCode, language: languageCode }}
+        />
+      </Suspense>
     </main>
   );
 };
