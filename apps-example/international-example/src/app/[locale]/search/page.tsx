@@ -1,11 +1,10 @@
 import { ToolkitSortKey } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-search';
-import { getProductsSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/search/service';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import SearchFakeInputTrigger from '@/components/search/triggers/SearchInputTrigger';
-import SearchResult, { SearchResultSkeleton } from '../../../components/search/SearchResult';
 import { Suspense } from 'react';
+import SearchResult, { SearchResultSkeleton } from '@/components/search/SearchResult';
 
 type TParams = { locale: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };

@@ -1,4 +1,5 @@
 import { getProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
+import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import Description, { DescriptionSkeleton } from '@/components/product/Description';
 import ImageGallery, { ImageGallerySkeleton } from '@/components/product/ImageGallery';
 import ProductOptions, { ProductOptionsSkeleton } from '@/components/product/ProductOptions';
@@ -16,8 +17,23 @@ export const generateMetadata = async ({ params }: { params: TParams }): Promise
   const { product: handle } = params;
 
   const product = await getProduct(handle, { country: countryCode, language: languageCode });
+  const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
 
-  return {};
+  return {
+    metadataBase: new URL('http://localhost:3000'),
+    description: product.description,
+    openGraph: {
+      title: product.title,
+      description: product.description,
+      images: [
+        {
+          url: product.featuredImage?.url || shopInfo.brand.coverImage.image.url,
+          width: product.featuredImage?.width || shopInfo.brand.coverImage.image.width,
+          height: product.featuredImage?.height || shopInfo.brand.coverImage.image.height,
+        },
+      ],
+    },
+  };
 };
 
 const ProductPage = async ({ params }: { params: TParams }) => {

@@ -4,8 +4,8 @@ import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import { Metadata } from 'next';
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
-import CollectionProducts, { CollectionProductsSkeleton } from '../../../../components/collection/CollectionProducts';
 import { Suspense } from 'react';
+import CollectionProducts, { CollectionProductsSkeleton } from '@/components/collection/CollectionProducts';
 
 type TParams = { locale: string; collection: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };
@@ -18,7 +18,6 @@ export const generateMetadata = async ({ params }: { params: TParams }): Promise
   const collection = await getCollection(handle, { country: countryCode, language: languageCode });
 
   return {
-    title: collection.title,
     metadataBase: new URL('http://localhost:3000'),
     description: collection.description,
     openGraph: {
