@@ -1,4 +1,4 @@
-import { getProduct, getProductRecommendations } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
+import { getProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
@@ -36,7 +36,6 @@ const ProductPage = async ({ params }: { params: TParams }) => {
               localTheme.border.base.main,
               'bg-opacity-40 backdrop-blur-sm',
               'border-b ',
-              localTheme.border.base.main,
             )}
           >
             <ImageGallery product={product} />
@@ -50,7 +49,6 @@ const ProductPage = async ({ params }: { params: TParams }) => {
               localTheme.border.base.main,
               'bg-opacity-40 backdrop-blur-sm',
               'border-b',
-              localTheme.border.base.main,
             )}
           >
             <ProductOptions product={product} />

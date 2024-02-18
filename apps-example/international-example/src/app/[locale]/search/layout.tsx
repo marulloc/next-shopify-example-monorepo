@@ -1,5 +1,4 @@
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
-import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import CollectionCard from '@/components/collection/CollectionCard';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';

@@ -14,6 +14,7 @@ type TSearchParams = { [key: string]: string | string[] | undefined };
 const SearchPage = async ({ params, searchParams }: { params: TParams; searchParams?: TSearchParams }) => {
   const { sort, query, filter } = searchParams as { [key: string]: string };
   const { countryCode, languageCode } = splitLocale(params.locale);
+
   const products = await getProductsSearch({
     query,
     sortKey: sort as ToolkitSortKey,
