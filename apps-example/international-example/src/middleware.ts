@@ -10,7 +10,18 @@ const middleware = async (request: NextRequest) => {
   const hasLocale = supportedLocales.some((locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`);
   if (hasLocale) return;
 
-  console.log(pathname);
+  const referrer = request.headers.get('referer');
+  const referrerLocale = supportedLocales.find(
+    (locale) => referrer?.includes(`/${locale}/`) || referrer?.includes(`/${locale}`) || referrer === `/${locale}`,
+  );
+
+  // 내부 라우팅시 로케일 referrer(이전 페이지)의 로케일로 자동 배정
+  if (referrerLocale) {
+    // console.log(referrer, referrerLocale);
+    request.nextUrl.pathname = `/${referrerLocale}${pathname === '/' ? '' : pathname}`;
+    return NextResponse.redirect(request.nextUrl);
+  }
+
   // 국가코드 결정
   const entryCountry = request.geo?.country; // GeoIP를 통한 국가 코드 추출
   const country = supportedCountries.find((isoCode) => isoCode === entryCountry) || 'us';

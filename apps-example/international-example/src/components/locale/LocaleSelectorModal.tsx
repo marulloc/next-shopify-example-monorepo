@@ -26,11 +26,9 @@ const LocaleSelectorModal = ({ Trigger, availableCountries, availableLanguages, 
   // console.log('path', pathname, locales);
 
   const handleLocaleChange = (country: string, language: string) => {
-    //
     const newLocale = `${country.toLowerCase()}-${language.toLowerCase()}`;
     const newPathname = pathname.replace(currentLocale as string, newLocale);
 
-    //
     const paramsString = searchParams.toString();
     const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
 

@@ -126,7 +126,7 @@ const SearchModal = ({ Trigger }: Props) => {
                     <div className="text-xs font-semibold leading-6 text-gray-500">Collections</div>
                     {searchResult.collections.map((collection, index) => (
                       <li key={`predictive-search-collection-${collection.handle}`} className="py-1">
-                        <Link href={collection.handleRoute} className="block p-1 -mx-1">
+                        <Link href={collection.handleRoute} className="block p-1 -mx-1" onClick={() => closeModal()}>
                           <CollectionCard variant="small" collection={collection} index={index} />
                         </Link>
                       </li>
