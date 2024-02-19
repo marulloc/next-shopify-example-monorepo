@@ -1,4 +1,3 @@
-import { ShopifyLocalization } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-shop';
 import { ToolkitPredictiveSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-search';
 import { getPredictiveSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/search/service';
 import { useEffect, useState } from 'react';
@@ -21,6 +20,7 @@ export const usePredictiveSearch = ({ locale }: { locale?: { country: string; la
       setSearchResult({ products, collections });
       setStatus('loaded');
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handlePredictive = async (value: string) => {

@@ -45,10 +45,7 @@ const VariantSelector = ({ product }: TProps) => {
       </div>
       <h2 className="sr-only">상품 옵션 선택</h2>
 
-      <form
-        onSubmit={handleSubmit}
-        // onChange={handleSelect}
-      >
+      <form onSubmit={handleSubmit}>
         {product.options.map((option) => (
           <fieldset
             key={`${product.title}-option-${option.name}`}

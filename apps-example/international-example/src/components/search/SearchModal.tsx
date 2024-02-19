@@ -1,15 +1,13 @@
 'use client';
 
 import { classNames } from '@marulloc/components-library/utils';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams, useRouter, useParams } from 'next/navigation';
 import { useRef } from 'react';
 import Modal from '@marulloc/components-library/Modal';
 import { HiArrowRight, HiXMark, HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import { throttle } from '@/utils/throttle';
-import ProductPrice from '../product/ProductPrice';
-import { usePredictiveSearch } from '@/context/search/hooks';
+import { usePredictiveSearch } from '@/hooks/usePredictiveSearch';
 import IconButton from '../IconButton';
 import { localTheme } from '@/theme/local-theme';
 import CollectionCard from '../collection/CollectionCard';
@@ -23,11 +21,9 @@ type Props = {
 const SearchModal = ({ Trigger }: Props) => {
   const searchParams = useSearchParams();
   const { locale } = useParams();
-  const { countryCode, languageCode } = splitLocale(locale as string);
+  const { countryCode: country, languageCode: language } = splitLocale(locale as string);
 
-  const [{ status, searchResult }, handlePredictive] = usePredictiveSearch({
-    locale: { country: countryCode as string, language: languageCode as string },
-  });
+  const [{ status, searchResult }, handlePredictive] = usePredictiveSearch({ locale: { country, language } });
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
