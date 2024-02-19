@@ -12,6 +12,7 @@ import { localTheme } from '@/theme/local-theme';
 import IconButton from '../IconButton';
 import CollectionCard from '../collection/CollectionCard';
 import AltImage from '../AltImage';
+import { GrGithub } from 'react-icons/gr';
 
 type Props = {
   Trigger: React.ReactNode;
@@ -113,6 +114,59 @@ const MenuDrawer = ({ Trigger, menu, collections }: Props) => {
                   />
                   <span className="ml-3 block text-base font-medium ">Change Locale</span>
                   <span className="sr-only">, change currency</span>
+                </div>
+
+                {/* TODO : Layout change */}
+                <div className={classNames('mt-2 pt-2', 'flex flex-col space-y-2 border-t')}>
+                  <Link
+                    href="https://github.com/marulloc/Marulloc-shopify-headless-monorepo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div
+                      className={classNames(
+                        'text-gray-700 hover:text-indigo-600  ',
+                        'group flex gap-x-3 rounded-md  text-sm leading-6',
+                      )}
+                    >
+                      <div
+                        className={classNames(
+                          'h-6 w-6 overflow-hidden border border-gray-200 group-hover:border-indigo-600 rounded-lg ',
+                          'flex justify-center items-center',
+                        )}
+                      >
+                        <GrGithub className={classNames('  shrink-0 h-7 w-7      ')} />
+                      </div>
+                      <span className="truncate">Go to Monorepo</span>
+                      <span className="sr-only">, change currency</span>
+                    </div>
+                  </Link>
+
+                  <Link
+                    href="https://github.com/marulloc/Marulloc-shopify-headless-monorepo/tree/master/apps-example/international-example"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div
+                      className={classNames(
+                        'text-gray-700 hover:text-indigo-600  ',
+                        'group flex gap-x-3 rounded-md  text-sm leading-6',
+                      )}
+                    >
+                      <div
+                        className={classNames(
+                          'h-6 w-6 overflow-hidden border border-gray-200 group-hover:border-indigo-600 rounded-lg ',
+                          'flex justify-center items-center',
+                        )}
+                      >
+                        <GrGithub className={classNames('  shrink-0 h-7 w-7      ')} />
+                      </div>
+                      <span className="truncate">Go to this Repo</span>
+                      <span className="sr-only">, change currency</span>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
