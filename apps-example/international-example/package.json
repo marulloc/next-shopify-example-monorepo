@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@marulloc/components-library": "workspace:*", 
+    "@marulloc/components-library": "workspace:*",
     "negotiator": "^0.6.3",
-    "next": "14.1.0",
+    "next": "14.1.0", 
     "react": "^18",
     "react-country-flag": "^3.1.0",
     "react-dom": "^18",

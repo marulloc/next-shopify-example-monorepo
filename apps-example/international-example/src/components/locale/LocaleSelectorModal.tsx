@@ -8,9 +8,6 @@ import { classNames } from '@marulloc/components-library/utils';
 import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
 import IconButton from '../IconButton';
 import { HiXMark } from 'react-icons/hi2';
-import Link from 'next/link';
-import { useState } from 'react';
-// import Flag from 'react-world-flags';
 import ReactCountryFlag from 'react-country-flag';
 import AltImage from '../AltImage';
 

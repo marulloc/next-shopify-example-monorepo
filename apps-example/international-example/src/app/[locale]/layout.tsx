@@ -7,12 +7,15 @@ import FloatingActionButton from '../../components/FloatingAction';
 import CartProvider from '@/context/cart/CartProvider';
 import { classNames } from '@marulloc/components-library/utils';
 import { localTheme } from '@/theme/local-theme';
+import InformationModal from './InformationModal';
+import { cookies } from 'next/headers';
+import { TDetectionStatus } from '@/middleware';
 
-/**
- * @TODO @inContext(country, language)
- * @param param0
- * @returns
- */
+export const generateStaticParams = async () => {
+  const { locales } = await getLocale();
+  return locales.map((locale) => ({ locale }));
+};
+
 export const generateMetadata = async ({ params }: { params: { locale: string } }): Promise<Metadata> => {
   const { countryCode, languageCode } = splitLocale(params.locale);
 
@@ -39,22 +42,29 @@ export const generateMetadata = async ({ params }: { params: { locale: string } 
   };
 };
 
-export const generateStaticParams = async () => {
-  const { locales } = await getLocale();
-  return locales.map((locale) => ({ locale }));
-};
-
 const RootLayout = async ({
   children,
   params,
 }: Readonly<{ children: React.ReactNode; params: { locale: string } }>) => {
-  const { countryCode, languageCode } = splitLocale(params.locale);
+  const { countryCode: country, languageCode: language } = splitLocale(params.locale);
+
+  const { availableCountries, availableLanguages } = await getLocale({ country, language });
+  const detectedCountry = String(cookies().get('detectedCountry')?.value);
+  const detectionStatus = String(cookies().get('detectionStatus')?.value) as TDetectionStatus;
 
   return (
-    <html lang={languageCode} className=" scroll-smooth">
-      <CartProvider locale={{ country: countryCode, language: languageCode }} storageKey="marulloc-cart">
+    <html lang={language} className=" scroll-smooth">
+      <CartProvider locale={{ country, language }} storageKey="marulloc-cart">
         <body className={classNames('relative font-mono overflow-hidden', localTheme.fill.base.muted)}>
-          <Header locale={{ country: countryCode, language: languageCode }} />
+          <InformationModal
+            detectionStatus={detectionStatus}
+            detectedCountry={detectedCountry}
+            routingCountry={country}
+            routingLanguage={language}
+            availableCountries={availableCountries}
+            availableLanguages={availableLanguages}
+          />
+          <Header locale={{ country, language }} />
           {children}
           <FloatingActionButton />
         </body>
