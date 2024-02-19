@@ -4,7 +4,7 @@ import { HiMenu, HiOutlineSearch, HiOutlineShoppingBag } from 'react-icons/hi';
 import CartTriggerIcon from './cart/triggers/CartIconTrigger';
 import MenuIconTrigger from './menu/triggers/MenuIconTrigger';
 import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-common';
-import { getMenu } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
+import { getLocale, getMenu } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import SearchIconTrigger from './search/triggers/SearchIconTrigger';
 import Logo from './Logo';
@@ -17,6 +17,7 @@ type Props = {
 const Header = async ({ locale }: Props) => {
   const menu = await getMenu('custom-storefront-menu', { country: locale?.country, language: locale?.language });
   const collections = await getCollections({ country: locale?.country, language: locale?.language });
+  const localeData = await getLocale();
 
   return (
     <div className=" isolate fixed top-0 w-full z-30 ">
@@ -37,7 +38,7 @@ const Header = async ({ locale }: Props) => {
                 <div className="flex h-16 items-center justify-between">
                   {/* Mobile menu and search (lg-) */}
                   <div className="flex flex-1 items-center -ml-2">
-                    <MenuIconTrigger menu={menu} collections={collections} />
+                    <MenuIconTrigger menu={menu} collections={collections} localeData={localeData} />
                     <Logo country={locale?.country} language={locale?.language} />
                   </div>
 

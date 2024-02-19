@@ -1,6 +1,6 @@
 'use client';
 
-import { ToolkitMenu } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
+import { ToolkitLocale, ToolkitMenu } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
 import Drawer from '@marulloc/components-library/Drawer';
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
@@ -13,14 +13,16 @@ import IconButton from '../IconButton';
 import CollectionCard from '../collection/CollectionCard';
 import AltImage from '../AltImage';
 import { GrGithub } from 'react-icons/gr';
+import LocaleIconTrigger from '../locale/triggers/LocaleIconTrigger';
 
 type Props = {
   Trigger: React.ReactNode;
   menu: ToolkitMenu;
   collections: ToolkitCollection[];
+  localeData: ToolkitLocale;
 };
 
-const MenuDrawer = ({ Trigger, menu, collections }: Props) => {
+const MenuDrawer = ({ Trigger, menu, collections, localeData }: Props) => {
   return (
     <Drawer anchor="left">
       <Drawer.Trigger>
@@ -77,6 +79,7 @@ const MenuDrawer = ({ Trigger, menu, collections }: Props) => {
                                 'text-gray-700 hover:text-indigo-600  ',
                                 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 ',
                               )}
+                              onClick={() => closeDrawer()}
                             >
                               <AltImage initial={title[0] || 'c'} />
                               <span className="truncate">{title.toUpperCase()}</span>
@@ -91,7 +94,7 @@ const MenuDrawer = ({ Trigger, menu, collections }: Props) => {
                       <ul role="list" className="-mx-2 mt-2 space-y-1">
                         {collections.map((collection, index) => (
                           <li key={`sidemenu-collection-${collection.title}`}>
-                            <Link href={collection.handleRoute} className="block p-2">
+                            <Link href={collection.handleRoute} className="block p-2" onClick={() => closeDrawer()}>
                               <CollectionCard variant="small" collection={collection} index={index} />
                             </Link>
                           </li>
@@ -118,6 +121,20 @@ const MenuDrawer = ({ Trigger, menu, collections }: Props) => {
 
                 {/* TODO : Layout change */}
                 <div className={classNames('mt-2 pt-2', 'flex flex-col space-y-2 border-t')}>
+                  <div
+                    className={classNames(
+                      'text-gray-700 hover:text-indigo-600  ',
+                      'group flex gap-x-3 rounded-md  text-sm leading-6',
+                    )}
+                    onClick={() => closeDrawer()}
+                  >
+                    <LocaleIconTrigger
+                      locales={localeData.locales}
+                      availableCountries={localeData.availableCountries}
+                      availableLanguages={localeData.availableLanguages}
+                    />
+                  </div>
+
                   <Link
                     href="https://github.com/marulloc/Marulloc-shopify-headless-monorepo"
                     target="_blank"

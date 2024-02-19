@@ -23,7 +23,6 @@ const SearchFakeInputTrigger = () => {
             id="fake-search"
             name="search"
             placeholder="Search ..."
-            defaultValue={searchParams.get('query') || ''}
             value={searchParams.get('query') || ''}
             onChange={() => {}}
             type="search"
