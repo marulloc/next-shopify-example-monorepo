@@ -18,7 +18,7 @@ const CartIconTrigger = () => {
           className={classNames(localTheme.text.color.base.main, localTheme.text.color.base.hover, 'p-2')}
         >
           <HiOutlineShoppingBag className="h-6 w-6 flex-shrink-0 " aria-hidden="true" />
-          {cart?.totalQuantity && (
+          {cart && cart?.totalQuantity > 0 && (
             <div
               className={classNames(
                 'absolute -top-0 -right-1 ',

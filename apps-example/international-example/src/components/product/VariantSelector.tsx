@@ -4,35 +4,20 @@ import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@too
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import { useMemo, useState } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import ProductPrice from '@/components/product/ProductPrice';
 import Price from '@/components/Price';
 import { useCartMutation } from '@/context/cart/hooks';
 import LoadingDots from '@/components/loading/LoadingDots';
+import { useSelectProductVariant } from '@/hooks/useSelectProductVariant';
 
 type TProps = {
   product: ToolkitProduct;
 };
 
 const VariantSelector = ({ product }: TProps) => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const { selectedOptions, selectedVariant, handleOptionSelect } = useSelectProductVariant({ product });
   const { addItem } = useCartMutation();
   const [isAdding, setIsAdding] = useState(false);
-
-  // Product Option
-  const [selectedOptions, setSelectedOptions] = useState(() => {
-    const result: { [key: string]: string | null } = {};
-    product.options.forEach((option) => (result[option.name] = searchParams.get(option.name) || null));
-    return result;
-  });
-  // Variant
-  const selectedVariant = useMemo(() => {
-    return product.variants.find(({ selectedOptions: variantOptions }) =>
-      variantOptions.every((option) => option.value === selectedOptions[option.name]),
-    );
-  }, [product.variants, selectedOptions]);
 
   const buttonStatus: 'Sold Out' | 'Add to Cart' | 'Select Options' | 'Adding' = useMemo(() => {
     if (!selectedVariant) return 'Select Options';
@@ -40,31 +25,12 @@ const VariantSelector = ({ product }: TProps) => {
     return 'Add to Cart';
   }, [selectedVariant]);
 
-  const syncWithUrl = (name: string, value: string | null) => {
-    const newUrl = new URLSearchParams(searchParams.toString());
-
-    if (value) newUrl.set(name, value);
-    else newUrl.delete(name);
-
-    const newSearchParams = newUrl.toString();
-    const query = newSearchParams ? `?${newSearchParams}` : '';
-
-    if (newSearchParams !== searchParams.toString()) router.replace(`${pathname}/${query}`, { scroll: false });
-  };
-
-  const handleSelect = (e: React.ChangeEvent<HTMLFormElement>) => {
-    syncWithUrl(e.target.name, e.target.value);
-  };
-
-  // 위로 모두 hook으로 뺄 수 있음
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!selectedVariant) return;
 
     setIsAdding(true);
-
     await addItem({ variantId: selectedVariant.id, quantity: 1 });
-
     setIsAdding(false);
   };
 
@@ -79,7 +45,10 @@ const VariantSelector = ({ product }: TProps) => {
       </div>
       <h2 className="sr-only">상품 옵션 선택</h2>
 
-      <form onSubmit={handleSubmit} onChange={handleSelect}>
+      <form
+        onSubmit={handleSubmit}
+        // onChange={handleSelect}
+      >
         {product.options.map((option) => (
           <fieldset
             key={`${product.title}-option-${option.name}`}
@@ -115,7 +84,7 @@ const VariantSelector = ({ product }: TProps) => {
                       'cursor-pointer',
                       localTheme.text.size.small,
                     )}
-                    onClick={() => setSelectedOptions((options) => ({ ...options, [option.name]: value }))}
+                    onClick={() => handleOptionSelect(option.name, value)}
                   >
                     {value}
                   </label>
