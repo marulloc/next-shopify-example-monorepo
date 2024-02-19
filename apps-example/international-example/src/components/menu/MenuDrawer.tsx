@@ -3,7 +3,6 @@
 import { ToolkitLocale, ToolkitMenu } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
 import Drawer from '@marulloc/components-library/Drawer';
 import { classNames } from '@marulloc/components-library/utils';
-import Image from 'next/image';
 import Link from 'next/link';
 import { HiXMark } from 'react-icons/hi2';
 import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-collection';
@@ -107,39 +106,21 @@ const MenuDrawer = ({ Trigger, menu, collections, localeData }: Props) => {
 
               {/* Footer */}
               <div className={classNames('px-6 py-6', 'bg-white')}>
-                <div className="  flex items-center  ">
-                  <Image
-                    src="https://tailwindui.com/img/flags/flag-canada.svg"
-                    alt=""
-                    width={20}
-                    height={20}
-                    className="block  w-5 h-5 rounded-full border border-gray-300 shadow-2xl flex-shrink-0"
+                <div onClick={() => closeDrawer()}>
+                  <LocaleIconTrigger
+                    locales={localeData.locales}
+                    availableCountries={localeData.availableCountries}
+                    availableLanguages={localeData.availableLanguages}
                   />
-                  <span className="ml-3 block text-base font-medium ">Change Locale</span>
-                  <span className="sr-only">, change currency</span>
                 </div>
 
                 {/* TODO : Layout change */}
-                <div className={classNames('mt-2 pt-2', 'flex flex-col space-y-2 border-t')}>
-                  <div
-                    className={classNames(
-                      'text-gray-700 hover:text-indigo-600  ',
-                      'group flex gap-x-3 rounded-md  text-sm leading-6',
-                    )}
-                    onClick={() => closeDrawer()}
-                  >
-                    <LocaleIconTrigger
-                      locales={localeData.locales}
-                      availableCountries={localeData.availableCountries}
-                      availableLanguages={localeData.availableLanguages}
-                    />
-                  </div>
-
+                <div className={classNames('mt-2 pt-2', 'flex flex-col space-y-3  border-t')}>
                   <Link
                     href="https://github.com/marulloc/Marulloc-shopify-headless-monorepo"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block"
+                    className="block "
                   >
                     <div
                       className={classNames(
@@ -153,10 +134,9 @@ const MenuDrawer = ({ Trigger, menu, collections, localeData }: Props) => {
                           'flex justify-center items-center',
                         )}
                       >
-                        <GrGithub className={classNames('  shrink-0 h-7 w-7      ')} />
+                        <GrGithub className={classNames('  shrink-0 h-6 w-7      ')} />
                       </div>
-                      <span className="truncate">Go to Monorepo</span>
-                      <span className="sr-only">, change currency</span>
+                      <span className=" ">Go to Monorepo</span>
                     </div>
                   </Link>
 
@@ -164,7 +144,7 @@ const MenuDrawer = ({ Trigger, menu, collections, localeData }: Props) => {
                     href="https://github.com/marulloc/Marulloc-shopify-headless-monorepo/tree/master/apps-example/international-example"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block"
+                    className="block "
                   >
                     <div
                       className={classNames(
@@ -180,8 +160,7 @@ const MenuDrawer = ({ Trigger, menu, collections, localeData }: Props) => {
                       >
                         <GrGithub className={classNames('  shrink-0 h-7 w-7      ')} />
                       </div>
-                      <span className="truncate">Go to this Repo</span>
-                      <span className="sr-only">, change currency</span>
+                      <span className=" ">Go to Example Repo</span>
                     </div>
                   </Link>
                 </div>

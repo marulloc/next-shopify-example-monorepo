@@ -5,6 +5,7 @@ export type GetLocaleService = {
   data: {
     localization: ShopifyLocalization;
   };
+  variables: {} & ShopifyLocaleContext;
 };
 export type GetMenuService = {
   data: {

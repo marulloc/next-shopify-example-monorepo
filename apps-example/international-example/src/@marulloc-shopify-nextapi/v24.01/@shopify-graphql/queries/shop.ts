@@ -1,5 +1,5 @@
 export const getLocaleQuery = `
-  query getLocale {
+  query getLocale ($country: CountryCode, $language: LanguageCode) @inContext(country: $country, language: $language)  {
     localization {
       availableCountries {
         name

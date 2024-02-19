@@ -5,7 +5,7 @@ import LocaleSelectorModal from '../LocaleSelectorModal';
 import IconButton from '@/components/IconButton';
 import { classNames } from '@marulloc/components-library/utils';
 import { localTheme } from '@/theme/local-theme';
-import { HiBars3 } from 'react-icons/hi2';
+import { HiOutlineGlobeAsiaAustralia } from 'react-icons/hi2';
 
 type TProps = Pick<ToolkitLocale, 'availableCountries' | 'availableLanguages' | 'locales'>;
 
@@ -18,9 +18,28 @@ const LocaleIconTrigger = ({ availableCountries, availableLanguages, locales }: 
       Trigger={
         <IconButton
           srName="select locale"
-          className={classNames(localTheme.text.color.base.main, localTheme.text.color.base.hover, 'p-2')}
+          className={classNames(
+            localTheme.text.color.base.main,
+            localTheme.text.color.base.hover,
+            'p-0 hover:scale-100',
+          )}
         >
-          <HiBars3 className={classNames('h-5 w-5 flex-shrink-0')} aria-hidden="true" />
+          <div
+            className={classNames(
+              'text-gray-700 hover:text-indigo-600  ',
+              'group flex gap-x-3 rounded-md  text-sm leading-6',
+            )}
+          >
+            <div
+              className={classNames(
+                'h-6 w-6 overflow-hidden border border-gray-200 group-hover:border-indigo-600 rounded-lg ',
+                'flex justify-center items-center',
+              )}
+            >
+              <HiOutlineGlobeAsiaAustralia className={classNames('h-6 w-6 flex-shrink-0')} aria-hidden="true" />
+            </div>
+            <span className=" ">Change Country/Language</span>
+          </div>
         </IconButton>
       }
     />

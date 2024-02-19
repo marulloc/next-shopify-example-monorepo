@@ -5,9 +5,13 @@ import { ToolkitLocale, ToolkitMenu, ToolkitShopInfo } from '../@toolkit-types/t
 import { parseLocale, parseMenu } from './parser';
 import { GetLocaleService, GetMenuService, GetShopInfoService } from './types';
 
-export const getLocale = async (): Promise<ToolkitLocale> => {
+export const getLocale = async (locale?: ShopifyLocaleContext): Promise<ToolkitLocale> => {
   const res = await storeFetch<GetLocaleService>({
     query: getLocaleQuery,
+    variables: {
+      country: locale?.country?.toUpperCase(),
+      language: locale?.language?.toUpperCase(),
+    },
   });
 
   return parseLocale(res.body.data.localization);
