@@ -14,7 +14,7 @@ type TProps = {
   locale: { country: string; language: string };
 };
 const SearchResult = async ({ query, sort: sortKey, locale }: TProps) => {
-  await delay(3000);
+  await delay(1000);
   const products = await getProductsSearch({ query, sortKey, filters: [], locale });
 
   return (

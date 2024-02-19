@@ -24,6 +24,8 @@ const SearchFakeInputTrigger = () => {
             name="search"
             placeholder="Search ..."
             defaultValue={searchParams.get('query') || ''}
+            value={searchParams.get('query') || ''}
+            onChange={() => {}}
             type="search"
             className={classNames(
               'block w-full',

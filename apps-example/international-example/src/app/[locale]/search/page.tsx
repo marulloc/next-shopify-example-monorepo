@@ -32,7 +32,10 @@ const SearchPage = async ({ params, searchParams }: { params: TParams; searchPar
       </div>
 
       <section className={classNames(localTheme.spacing.padding.x.medium, localTheme.spacing.padding.y.small)}>
-        <Suspense fallback={<SearchResultSkeleton />}>
+        <Suspense
+          fallback={<SearchResultSkeleton />}
+          key={query} // for remount (making suspense)
+        >
           <SearchResult
             query={query}
             sort={sort as ToolkitSortKey}
