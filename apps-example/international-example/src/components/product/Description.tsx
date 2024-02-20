@@ -9,7 +9,7 @@ type TProps = {
 };
 
 const Description = async ({ handle, locale }: TProps) => {
-  await delay(5000);
+  // await delay(5000);
   const product = await getProduct(handle, locale);
 
   return (

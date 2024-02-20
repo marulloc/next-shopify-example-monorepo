@@ -3,27 +3,33 @@
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
-import { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import ProductPrice from '@/components/product/ProductPrice';
 import Price from '@/components/Price';
 import { useCartMutation } from '@/context/cart/hooks';
 import LoadingDots from '@/components/loading/LoadingDots';
-import { useSelectProductVariant } from '@/hooks/useSelectProductVariant';
+import { useSelectProductVariant, useSelectVariant } from '@/hooks/useSelectProductVariant';
+import { useSyncDataUrl2 } from '@/hooks/useSyncDataUrl';
 
 type TProps = {
   product: ToolkitProduct;
 };
 
 const VariantSelector = ({ product }: TProps) => {
-  const { selectedOptions, selectedVariant, handleOptionSelect } = useSelectProductVariant({ product });
-  const { addItem } = useCartMutation();
+  const [queryParams, navigateWithParams] = useSyncDataUrl2(product.options.map((option) => option.name));
+  const [{ selectedOptions, selectedVariant }, selectOption] = useSelectVariant({ product, initialValue: queryParams });
   const [isAdding, setIsAdding] = useState(false);
+  const { addItem } = useCartMutation();
 
-  const buttonStatus: 'Sold Out' | 'Add to Cart' | 'Select Options' | 'Adding' = useMemo(() => {
+  const productStatus: 'Sold Out' | 'Add to Cart' | 'Select Options' = useMemo(() => {
     if (!selectedVariant) return 'Select Options';
     if (!selectedVariant.availableForSale) return 'Sold Out';
     return 'Add to Cart';
   }, [selectedVariant]);
+
+  useEffect(() => {
+    navigateWithParams(selectedOptions);
+  }, [navigateWithParams, selectedOptions]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -81,7 +87,7 @@ const VariantSelector = ({ product }: TProps) => {
                       'cursor-pointer',
                       localTheme.text.size.small,
                     )}
-                    onClick={() => handleOptionSelect(option.name, value)}
+                    onClick={() => selectOption(option.name, value)}
                   >
                     {value}
                   </label>
@@ -95,20 +101,20 @@ const VariantSelector = ({ product }: TProps) => {
         <div>
           <div className={classNames('my-4 border-b', localTheme.border.base.muted)}></div>
           <div>
-            {selectedVariant ? (
-              <div className={classNames('mb-4')}>
-                <p className={classNames('text-xs', localTheme.text.color.base.main)}>
-                  <span className={classNames('pb-1')}> {`Selected price : `} </span>
-                  <span>&quot;{selectedVariant.title}&quot;</span>{' '}
-                </p>
+            <div className="mb-4">
+              {selectedVariant && (
+                <div>
+                  <p className={classNames('text-xs', localTheme.text.color.base.main)}>
+                    <span className={classNames('pb-1')}> {`Selected price : `} </span>
+                    <span>&quot;{selectedVariant.title}&quot;</span>{' '}
+                  </p>
 
-                <div className="text-lg  md:text-xl text-indigo-600">
-                  <Price currencyCode={selectedVariant.price.currencyCode} amount={selectedVariant.price.amount} />
+                  <div className="text-lg  md:text-xl text-indigo-600">
+                    <Price currencyCode={selectedVariant.price.currencyCode} amount={selectedVariant.price.amount} />
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <ProductPrice priceRange={product.priceRange} className="mb-4" />
-            )}
+              )}
+            </div>
 
             <div className="relative">
               <button
@@ -118,20 +124,24 @@ const VariantSelector = ({ product }: TProps) => {
                   localTheme.text.color.base.contrast,
 
                   !isAdding &&
-                    buttonStatus === 'Select Options' &&
+                    productStatus === 'Select Options' &&
                     classNames(localTheme.fill.secondary.main, localTheme.fill.secondary.hover, 'cursor-not-allowed '),
                   !isAdding &&
-                    buttonStatus === 'Add to Cart' &&
+                    productStatus === 'Add to Cart' &&
                     classNames(localTheme.fill.primary.main, localTheme.fill.primary.hover, 'pointer-events-auto'),
                   !isAdding &&
-                    buttonStatus === 'Sold Out' &&
+                    productStatus === 'Sold Out' &&
                     classNames(localTheme.fill.base.disabled, localTheme.fill.base.muted, 'cursor-not-allowed'),
 
                   isAdding &&
                     classNames(localTheme.fill.primary.main, localTheme.fill.primary.hover, 'cursor-not-allowed'),
                 )}
               >
-                {isAdding ? <LoadingDots className="my-2 m-4" /> : <span className={classNames()}>{buttonStatus}</span>}
+                {isAdding ? (
+                  <LoadingDots className="my-2 m-4" />
+                ) : (
+                  <span className={classNames()}>{productStatus}</span>
+                )}
               </button>
             </div>
           </div>
@@ -141,4 +151,4 @@ const VariantSelector = ({ product }: TProps) => {
   );
 };
 
-export default VariantSelector;
+export default React.memo(VariantSelector);

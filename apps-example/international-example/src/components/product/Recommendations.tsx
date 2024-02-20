@@ -15,7 +15,7 @@ type TProps = {
 };
 
 const Recommendations = async ({ product: origin, handle, locale }: TProps) => {
-  await delay(3000);
+  // await delay(3000);
   const product = await getProduct(handle, locale);
   const recommendations = await getProductRecommendations(product!.id, locale);
 
