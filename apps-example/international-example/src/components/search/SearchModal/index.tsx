@@ -2,10 +2,9 @@
 
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
-import { useSearchParams, useRouter, useParams } from 'next/navigation';
-import { ChangeEvent, useRef } from 'react';
+import { ChangeEvent, useEffect, useRef } from 'react';
 import Modal from '@marulloc/components-library/Modal';
-import { HiArrowRight, HiXMark, HiOutlineMagnifyingGlass } from 'react-icons/hi2';
+import { HiXMark, HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import { throttle } from '@/utils/throttle';
 import { usePredictiveSearch } from '@/hooks/usePredictiveSearch';
 import { localTheme } from '@/theme/local-theme';
@@ -14,47 +13,32 @@ import IconButton from '@/components/IconButton';
 import CollectionCard from '@/components/collection/CollectionCard';
 import ProductCard from '@/components/product/ProductCard';
 import { useSelectLocale } from '@/hooks/useLocaleSelect';
+import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 
-type Props = {
-  Trigger?: React.ReactNode;
-};
-
-const SearchModal = ({ Trigger }: Props) => {
-  const searchParams = useSearchParams();
-  // const { locale } = useParams();
-  // const { countryCode: country, languageCode: language } = splitLocale(locale as string);
+const SearchModal = () => {
   const { isActive, deactivate } = usePortalRecoil('search-modal');
   const { countryCode: country, languageCode: language } = useSelectLocale();
-  const [{ status, predictiveResult }, handlePredictive] = usePredictiveSearch({ locale: { country, language } });
+  const [{ predictiveResult }, handlePredictive] = usePredictiveSearch({ locale: { country, language } });
+  const [{}, pushDataUrl] = useSyncDataUrl('query');
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const router = useRouter();
 
   const handleChange = throttle(async (e: ChangeEvent<HTMLInputElement>) => handlePredictive(e.target.value), 500);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, closeModal: () => void) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const form = e.target as HTMLFormElement;
     const search = form.search as HTMLInputElement;
-
-    const newParams = new URLSearchParams(searchParams.toString());
-    if (search.value) newParams.set('query', search.value);
-    else newParams.delete('query');
-
-    const paramsString = newParams.toString();
-    const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
-    router.push('/search' + queryString);
-
-    closeModal();
+    pushDataUrl(search.value);
   };
 
+  useEffect(() => {
+    if (isActive) setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 500);
+  }, [isActive]);
+
   return (
-    <Modal
-      open={isActive}
-      onOpen={() => setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 500)}
-      onClose={() => deactivate()}
-    >
+    <Modal open={isActive} onClose={() => deactivate()}>
       <Modal.Backdrop>
         {({ closeModal }) => (
           <div
@@ -80,7 +64,13 @@ const SearchModal = ({ Trigger }: Props) => {
                 {/* Header */}
                 <div className={classNames('px-4 py-4 sm:px-6', 'flex items-center justify-between ', 'bg-white')}>
                   <div className="relative w-full ">
-                    <form onSubmit={(e) => handleSubmit(e, closeModal)} className="w-full  ">
+                    <form
+                      onSubmit={(e) => {
+                        handleSubmit(e);
+                        closeModal();
+                      }}
+                      className="w-full  "
+                    >
                       <div className={classNames('relative group w-full')}>
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3">
                           <HiOutlineMagnifyingGlass
@@ -150,12 +140,7 @@ const SearchModal = ({ Trigger }: Props) => {
                 </div>
 
                 {/* Footer */}
-                <div className={classNames('px-3 py-3  md:px-6 md:py-6', 'bg-white')}>
-                  <div className=" text-right  text-indigo-600 flex space-x-2 items-center justify-end  text-xs">
-                    <span>Search all</span>
-                    <HiArrowRight className="w-3 h-3 " />
-                  </div>
-                </div>
+                <div className={classNames('px-3 py-3  md:px-6 md:py-6', 'bg-white')}></div>
               </div>
             </div>
           </div>

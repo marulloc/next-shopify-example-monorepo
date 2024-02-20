@@ -2,10 +2,9 @@
 
 import { classNames } from '@marulloc/components-library/utils';
 import { HiChevronDown } from 'react-icons/hi2';
-import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
 import Dropdown from '@marulloc/components-library/Dropdown';
 import { localTheme } from '@/theme/local-theme';
+import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 
 const sortKeys = [
   { name: 'sort', title: 'Relavance', value: 'relevance' },
@@ -14,9 +13,7 @@ const sortKeys = [
 ];
 
 const SortingDropdown = () => {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const sortKey = searchParams.get('sort');
+  const [{ value: sortKey }, pushDataUrl] = useSyncDataUrl('sort');
   const activeItem = sortKeys.find(({ value }) => value === sortKey) || sortKeys[0];
 
   return (
@@ -66,7 +63,15 @@ const SortingDropdown = () => {
                     'hover:scale-105  rounded-lg',
                   )}
                 >
-                  <DropdownItem title={item.title} value={item.value} onClick={() => closeDropdown()} />
+                  <div
+                    className="w-full block cursor-pointer "
+                    onClick={() => {
+                      pushDataUrl(item.value);
+                      closeDropdown();
+                    }}
+                  >
+                    <span>{item.title}</span>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -78,24 +83,3 @@ const SortingDropdown = () => {
 };
 
 export default SortingDropdown;
-
-const DropdownItem = ({ title, value, onClick }: { title: string; value: string; onClick?: () => void }) => {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  const newUrl = new URLSearchParams(searchParams.toString());
-  newUrl.set('sort', value);
-  const href = `${pathname}?${newUrl}`;
-
-  return (
-    <Link
-      href={href}
-      className="w-full block "
-      onClick={() => {
-        if (onClick) onClick();
-      }}
-    >
-      <span>{title}</span>
-    </Link>
-  );
-};

@@ -5,10 +5,11 @@ import { HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import { useSearchParams } from 'next/navigation';
 import { localTheme } from '@/theme/local-theme';
 import { useSetPortalRecoil } from '@/context/ui/portal';
+import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 
 const SearchFakeInputTrigger = () => {
-  const searchParams = useSearchParams();
   const { activate } = useSetPortalRecoil('search-modal');
+  const [{ value }] = useSyncDataUrl('query');
 
   return (
     <div className={classNames('isolate relative group cursor-text')} onClick={() => activate()}>
@@ -22,7 +23,7 @@ const SearchFakeInputTrigger = () => {
         id="fake-search"
         name="search"
         placeholder="Search ..."
-        value={searchParams.get('query') || ''}
+        value={value || ''}
         onChange={() => {}}
         type="search"
         className={classNames(
