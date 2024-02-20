@@ -8,7 +8,14 @@ import { classNames } from '@marulloc/components-library/utils';
 import { useEffect, useState } from 'react';
 import { HiExclamationTriangle, HiCheck } from 'react-icons/hi2';
 import LocaleSelectModalChildrenTrigger from '../LocaleSelectModal/triggers/LocaleSelectModalChildrenTrigger';
+import { useSelectLocale } from '@/hooks/useLocaleSelect';
 
+/**
+ *
+ * @TODO Refactoring
+ *
+ *
+ */
 type TProps = {
   detectedCountry: string;
   detectionStatus: TDetectionStatus;
@@ -18,13 +25,10 @@ type TProps = {
   availableLanguages: ToolkitLocale['availableLanguages'];
 };
 const LocaleAlertModal = ({ routingCountry, routingLanguage, detectedCountry, detectionStatus, ...props }: TProps) => {
-  // hasLocale, referrer는 유저가 이미 로케일에 대한 alert를 받은 상태이거나 로케일을 직접 입력해서 접근한 경우를 의미한다
-  // const status = detectionStatus !== 'newly-assinged' ? 'alert' : 'affordable';
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
-      // setIsActive(routingCountry !== detectedCountry);
       setIsActive(true);
     }, 400);
   }, [detectedCountry, routingCountry]);
@@ -93,6 +97,8 @@ const Information = ({
   detectedCountry: string;
   routingCountry: string;
 }) => {
+  const { locale, countryCode, languageCode, setLocale, isSameISOCode } = useSelectLocale();
+
   // const forDict = routingLanguage;
   switch (status) {
     case 'matched':
@@ -174,7 +180,10 @@ const Information = ({
             <button
               type="button"
               className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
-              onClick={handleResolve}
+              onClick={() => {
+                setLocale({ country: detectedCountry || 'kr' });
+                handleResolve();
+              }}
             >
               {`No, I'm in ${detectedCountry}`}
             </button>

@@ -2,51 +2,23 @@
 
 import { ToolkitLocale } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
 import { localTheme } from '@/theme/local-theme';
-import { splitLocale } from '@/utils/locale';
 import Modal from '@marulloc/components-library/Modal';
 import { classNames } from '@marulloc/components-library/utils';
-import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
 import IconButton from '../../IconButton';
 import { HiXMark } from 'react-icons/hi2';
 import ReactCountryFlag from 'react-country-flag';
 import AltImage from '../../AltImage';
 import { usePortalRecoil } from '@/context/ui/portal';
-// import { useGetPortalValue, useSetPortalValue } from '@/context/ui/portal';
+import { useSelectLocale } from '@/hooks/useLocaleSelect';
 
 type TProps = {} & Pick<ToolkitLocale, 'availableCountries' | 'availableLanguages'>;
 
 const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) => {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const { locale: currentLocale } = useParams();
-  const { countryCode: currentConuntry, languageCode: currentLanguage } = splitLocale(currentLocale as string);
-
-  const handleLocaleChange = (country: string, language: string) => {
-    const newLocale = `${country.toLowerCase()}-${language.toLowerCase()}`;
-    const newPathname = pathname.replace(currentLocale as string, newLocale);
-
-    const paramsString = searchParams.toString();
-    const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
-
-    router.push(newPathname + queryString);
-  };
-
-  // const { isActive } = useGetPortalValue('locale-modal');
-  // const { deactivate } = useSetPortalValue('locale-modal');
-
-  const { isActive, activate, deactivate } = usePortalRecoil('locale-select-modal');
+  const { locale, countryCode, languageCode, setLocale, isSameISOCode } = useSelectLocale();
+  const { isActive, deactivate } = usePortalRecoil('locale-select-modal');
 
   return (
     <Modal open={isActive} onClose={() => deactivate()}>
-      {/* <Modal.Trigger>
-        {({ openModal }) => (
-          <div onClick={() => openModal()}>
-            <>{Trigger}</>
-          </div>
-        )}
-      </Modal.Trigger> */}
-
       <Modal.Backdrop>
         {({ closeModal }) => (
           <div
@@ -94,12 +66,12 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                             <li key={`country-${isoCode}`}>
                               <div
                                 onClick={() => {
-                                  handleLocaleChange(isoCode, currentLanguage);
+                                  setLocale({ country: isoCode });
                                   closeModal();
                                 }}
                                 className={classNames(
                                   'text-gray-700 cursor-pointer',
-                                  currentConuntry.toUpperCase() === isoCode.toUpperCase()
+                                  isSameISOCode(countryCode, isoCode)
                                     ? 'text-indigo-600 bg-white ring-1 ring-indigo-600 pointer-events-none'
                                     : 'hover:text-indigo-600 hover:ring-1 hover:ring-indigo-500 hover:bg-white  transition-all',
                                   'group flex gap-x-3 rounded-md p-2 text-sm leading-6 relative items-center ',
@@ -118,9 +90,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                                 <div
                                   className={classNames(
                                     'absolute bg-white ring-1 text-xs ring-indigo-600 rounded-lg px-1 py-0',
-                                    currentConuntry.toUpperCase() === isoCode.toUpperCase()
-                                      ? 'block -top-2 right-2'
-                                      : 'hidden',
+                                    isSameISOCode(countryCode, isoCode) ? 'block -top-2 right-2' : 'hidden',
                                   )}
                                 >
                                   now
@@ -138,12 +108,12 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                             <li key={`language-${isoCode}`}>
                               <div
                                 onClick={() => {
-                                  handleLocaleChange(currentConuntry, isoCode);
+                                  setLocale({ language: isoCode });
                                   closeModal();
                                 }}
                                 className={classNames(
                                   'text-gray-700 cursor-pointer',
-                                  currentLanguage.toUpperCase() === isoCode.toUpperCase()
+                                  isSameISOCode(languageCode, isoCode)
                                     ? 'text-indigo-600 bg-white ring-1 ring-indigo-600 pointer-events-none'
                                     : 'hover:text-indigo-600 hover:ring-1 hover:ring-indigo-500 hover:bg-white  transition-all',
                                   'group flex gap-x-3 rounded-md p-2 text-sm leading-6 relative items-center ',
@@ -158,9 +128,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                                 <div
                                   className={classNames(
                                     'absolute bg-white ring-1 text-xs ring-indigo-600 rounded-lg px-1 py-0',
-                                    currentLanguage.toUpperCase() === isoCode.toUpperCase()
-                                      ? 'block -top-2 right-2'
-                                      : 'hidden',
+                                    isSameISOCode(languageCode, isoCode) ? 'block -top-2 right-2' : 'hidden',
                                   )}
                                 >
                                   now
