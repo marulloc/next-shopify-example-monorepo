@@ -7,7 +7,7 @@ import FloatingActionButton from '../../components/FloatingAction';
 import CartProvider from '@/context/cart/CartProvider';
 import { classNames } from '@marulloc/components-library/utils';
 import { localTheme } from '@/theme/local-theme';
-import InformationModal from './InformationModal';
+import LocaleAlertModal from '../../components/locale/LocaleAlertModal';
 import { cookies } from 'next/headers';
 import { TDetectionStatus } from '@/middleware';
 
@@ -56,7 +56,7 @@ const RootLayout = async ({
     <html lang={language} className=" scroll-smooth">
       <CartProvider locale={{ country, language }} storageKey="marulloc-cart">
         <body className={classNames('relative   overflow-hidden', localTheme.fill.base.muted)}>
-          <InformationModal
+          <LocaleAlertModal
             detectionStatus={detectionStatus}
             detectedCountry={detectedCountry}
             routingCountry={country}

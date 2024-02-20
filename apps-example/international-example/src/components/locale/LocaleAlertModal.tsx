@@ -16,7 +16,7 @@ type TProps = {
   availableCountries: ToolkitLocale['availableCountries'];
   availableLanguages: ToolkitLocale['availableLanguages'];
 };
-const InformationModal = ({ routingCountry, routingLanguage, detectedCountry, detectionStatus, ...props }: TProps) => {
+const LocaleAlertModal = ({ routingCountry, routingLanguage, detectedCountry, detectionStatus, ...props }: TProps) => {
   // hasLocale, referrer는 유저가 이미 로케일에 대한 alert를 받은 상태이거나 로케일을 직접 입력해서 접근한 경우를 의미한다
   // const status = detectionStatus !== 'newly-assinged' ? 'alert' : 'affordable';
   const [isActive, setIsActive] = useState(false);
@@ -67,7 +67,7 @@ const InformationModal = ({ routingCountry, routingLanguage, detectedCountry, de
   );
 };
 
-export default InformationModal;
+export default LocaleAlertModal;
 
 const Information = ({
   status,
