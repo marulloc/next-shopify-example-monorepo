@@ -1,6 +1,5 @@
 'use client';
 
-import IconButton from '@/components/IconButton';
 import { classNames } from '@marulloc/components-library/utils';
 import { localTheme } from '@/theme/local-theme';
 import { HiOutlineGlobeAsiaAustralia } from 'react-icons/hi2';

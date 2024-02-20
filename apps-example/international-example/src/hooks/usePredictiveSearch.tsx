@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
  */
 export const usePredictiveSearch = ({ locale }: { locale?: { country: string; language: string } }) => {
   const [status, setStatus] = useState<'pending' | 'loaded'>('pending');
-  const [searchResult, setSearchResult] = useState<ToolkitPredictiveSearch>({ products: [], collections: [] });
+  const [predictiveResult, setPredictiveResult] = useState<ToolkitPredictiveSearch>({ products: [], collections: [] });
 
   useEffect(() => {
     (async () => {
@@ -17,7 +17,7 @@ export const usePredictiveSearch = ({ locale }: { locale?: { country: string; la
         country: locale?.country,
         language: locale?.language,
       });
-      setSearchResult({ products, collections });
+      setPredictiveResult({ products, collections });
       setStatus('loaded');
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,9 +29,9 @@ export const usePredictiveSearch = ({ locale }: { locale?: { country: string; la
       country: locale?.country,
       language: locale?.language,
     });
-    setSearchResult({ products, collections });
+    setPredictiveResult({ products, collections });
     setStatus('loaded');
   };
 
-  return [{ searchResult, status }, handlePredictive] as const;
+  return [{ predictiveResult, status }, handlePredictive] as const;
 };

@@ -3,17 +3,17 @@
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
 import { useSearchParams, useRouter, useParams } from 'next/navigation';
-import { useRef } from 'react';
+import { ChangeEvent, useRef } from 'react';
 import Modal from '@marulloc/components-library/Modal';
 import { HiArrowRight, HiXMark, HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import { throttle } from '@/utils/throttle';
 import { usePredictiveSearch } from '@/hooks/usePredictiveSearch';
 import { localTheme } from '@/theme/local-theme';
-import { splitLocale } from '@/utils/locale';
 import { usePortalRecoil } from '@/context/ui/portal';
 import IconButton from '@/components/IconButton';
 import CollectionCard from '@/components/collection/CollectionCard';
 import ProductCard from '@/components/product/ProductCard';
+import { useSelectLocale } from '@/hooks/useLocaleSelect';
 
 type Props = {
   Trigger?: React.ReactNode;
@@ -21,17 +21,16 @@ type Props = {
 
 const SearchModal = ({ Trigger }: Props) => {
   const searchParams = useSearchParams();
-  const { locale } = useParams();
-  const { countryCode: country, languageCode: language } = splitLocale(locale as string);
+  // const { locale } = useParams();
+  // const { countryCode: country, languageCode: language } = splitLocale(locale as string);
+  const { isActive, deactivate } = usePortalRecoil('search-modal');
+  const { countryCode: country, languageCode: language } = useSelectLocale();
+  const [{ status, predictiveResult }, handlePredictive] = usePredictiveSearch({ locale: { country, language } });
 
-  const [{ status, searchResult }, handlePredictive] = usePredictiveSearch({ locale: { country, language } });
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  const handleSearch = throttle(
-    async (e: React.ChangeEvent<HTMLInputElement>) => handlePredictive(e.target.value),
-    500,
-  );
+  const handleChange = throttle(async (e: ChangeEvent<HTMLInputElement>) => handlePredictive(e.target.value), 500);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>, closeModal: () => void) => {
     e.preventDefault();
@@ -50,22 +49,12 @@ const SearchModal = ({ Trigger }: Props) => {
     closeModal();
   };
 
-  const { isActive, deactivate } = usePortalRecoil('search-modal');
-
   return (
     <Modal
       open={isActive}
       onOpen={() => setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 500)}
       onClose={() => deactivate()}
     >
-      {/* <Modal.Trigger>
-        {({ openModal }) => (
-          <div onClick={() => openModal()}>
-            <>{Trigger}</>
-          </div>
-        )}
-      </Modal.Trigger> */}
-
       <Modal.Backdrop>
         {({ closeModal }) => (
           <div
@@ -102,7 +91,7 @@ const SearchModal = ({ Trigger }: Props) => {
 
                         <input
                           ref={inputRef}
-                          onChange={handleSearch}
+                          onChange={handleChange}
                           id="search"
                           name="search-input"
                           placeholder="Search ..."
@@ -136,7 +125,7 @@ const SearchModal = ({ Trigger }: Props) => {
                 <div className={classNames('flex-1 overflow-y-auto max-h-[calc(60svh-30px)]', 'px-4 py-4 sm:px-6')}>
                   <ul className="pt-2 pb-4">
                     <div className="text-xs font-semibold leading-6 text-gray-500">Collections</div>
-                    {searchResult.collections.map((collection, index) => (
+                    {predictiveResult.collections.map((collection, index) => (
                       <li key={`predictive-search-collection-${collection.handle}`} className="py-1">
                         <Link href={collection.handleRoute} className="block p-1 -mx-1" onClick={() => closeModal()}>
                           <CollectionCard variant="small" collection={collection} index={index} />
@@ -146,7 +135,7 @@ const SearchModal = ({ Trigger }: Props) => {
                   </ul>
                   <ul>
                     <div className="text-xs font-semibold leading-6 text-gray-500">Products</div>
-                    {searchResult.products.map((product) => (
+                    {predictiveResult.products.map((product) => (
                       <li key={`predictive-search-product-${product.handle}`}>
                         <Link
                           href={product.handleRoute}

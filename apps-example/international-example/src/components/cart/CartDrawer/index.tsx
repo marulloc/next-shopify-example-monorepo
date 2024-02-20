@@ -20,14 +20,6 @@ const CartDrawer = ({ Trigger }: Props) => {
 
   return (
     <Drawer anchor="right" open={isActive} onClose={() => deactivate()}>
-      {/* <Drawer.Trigger>
-        {({ openDrawer }) => (
-          <div onClick={() => openDrawer()}>
-            <>{Trigger}</>
-          </div>
-        )}
-      </Drawer.Trigger> */}
-
       <Drawer.Backdrop>
         {({ closeDrawer }) => (
           <div

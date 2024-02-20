@@ -1,6 +1,6 @@
 'use client';
 
-import { ToolkitLocale, ToolkitMenu } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
+import { ToolkitMenu } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
 import Drawer from '@marulloc/components-library/Drawer';
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
@@ -16,28 +16,15 @@ import CollectionCard from '@/components/collection/CollectionCard';
 import LocaleIconTrigger from '@/components/locale/LocaleSelectModal/triggers/LocaleSelectModalIconTrigger';
 
 type Props = {
-  Trigger?: React.ReactNode; //=>remove
   menu: ToolkitMenu;
   collections: ToolkitCollection[];
-  localeData?: ToolkitLocale; // => remove
 };
 
-const MenuDrawer = ({ Trigger, menu, collections, localeData }: Props) => {
-  // const { activate, deactivate } = useSetPortalValue('menu-drawer');
-  // const { isActive } = useGetPortalValue('menu-drawer');
-
-  const { isActive, activate, deactivate } = usePortalRecoil('menu-drawer');
+const MenuDrawer = ({ menu, collections }: Props) => {
+  const { isActive, deactivate } = usePortalRecoil('menu-drawer');
 
   return (
     <Drawer anchor="left" open={isActive} onClose={() => deactivate()}>
-      {/* <Drawer.Trigger>
-        {({ openDrawer }) => (
-          <div onClick={() => openDrawer()}>
-            <>{Trigger}</>
-          </div>
-        )}
-      </Drawer.Trigger> */}
-
       <Drawer.Backdrop>
         {({ closeDrawer }) => (
           <div
@@ -118,11 +105,7 @@ const MenuDrawer = ({ Trigger, menu, collections, localeData }: Props) => {
               {/* Footer */}
               <div className={classNames('px-6 py-6', 'bg-white')}>
                 <div onClick={() => closeDrawer()}>
-                  <LocaleIconTrigger
-                  // locales={localeData.locales}
-                  // availableCountries={localeData.availableCountries}
-                  // availableLanguages={localeData.availableLanguages}
-                  />
+                  <LocaleIconTrigger />
                 </div>
 
                 <div className={classNames('mt-2 pt-2', 'flex flex-col space-y-3  border-t')}>
