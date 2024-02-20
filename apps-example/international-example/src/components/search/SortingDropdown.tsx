@@ -13,7 +13,7 @@ const sortKeys = [
 ];
 
 const SortingDropdown = () => {
-  const [{ value: sortKey }, pushDataUrl] = useSyncDataUrl('sort');
+  const [{ sort: sortKey }, navigateWithQueryParams] = useSyncDataUrl({ keys: ['sort'] });
   const activeItem = sortKeys.find(({ value }) => value === sortKey) || sortKeys[0];
 
   return (
@@ -66,7 +66,7 @@ const SortingDropdown = () => {
                   <div
                     className="w-full block cursor-pointer "
                     onClick={() => {
-                      pushDataUrl(item.value);
+                      navigateWithQueryParams({ sort: item.value }, ['query', 'sort']);
                       closeDropdown();
                     }}
                   >

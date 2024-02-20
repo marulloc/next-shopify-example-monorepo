@@ -2,14 +2,13 @@
 
 import { classNames } from '@marulloc/components-library/utils';
 import { HiOutlineMagnifyingGlass } from 'react-icons/hi2';
-import { useSearchParams } from 'next/navigation';
 import { localTheme } from '@/theme/local-theme';
 import { useSetPortalRecoil } from '@/context/ui/portal';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 
 const SearchFakeInputTrigger = () => {
   const { activate } = useSetPortalRecoil('search-modal');
-  const [{ value }] = useSyncDataUrl('query');
+  const [{ query }] = useSyncDataUrl({ keys: ['query'], targetPathname: '/search' });
 
   return (
     <div className={classNames('isolate relative group cursor-text')} onClick={() => activate()}>
@@ -23,7 +22,7 @@ const SearchFakeInputTrigger = () => {
         id="fake-search"
         name="search"
         placeholder="Search ..."
-        value={value || ''}
+        value={query || ''}
         onChange={() => {}}
         type="search"
         className={classNames(

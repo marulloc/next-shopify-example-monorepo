@@ -19,7 +19,7 @@ const SearchModal = () => {
   const { isActive, deactivate } = usePortalRecoil('search-modal');
   const { countryCode: country, languageCode: language } = useSelectLocale();
   const [{ predictiveResult }, handlePredictive] = usePredictiveSearch({ locale: { country, language } });
-  const [{}, pushDataUrl] = useSyncDataUrl('query');
+  const [{}, navigateWithQueryParams] = useSyncDataUrl({ keys: ['query'], targetPathname: '/search' });
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -30,7 +30,7 @@ const SearchModal = () => {
 
     const form = e.target as HTMLFormElement;
     const search = form.search as HTMLInputElement;
-    pushDataUrl(search.value);
+    navigateWithQueryParams({ query: search.value }, ['query', 'sort']);
   };
 
   useEffect(() => {

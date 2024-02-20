@@ -1,44 +1,19 @@
 'use client';
 
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useSyncDataUrl2 } from './useSyncDataUrl';
+import { useCallback, useMemo, useState } from 'react';
 
-export const useSelectProductVariant = ({ product }: { product: ToolkitProduct }) => {
-  const [queryParams, navigateWithParams] = useSyncDataUrl2(product.options.map((option) => option.name));
-  const [selectedOptions, setSelectedOptions] = useState(queryParams);
-
-  useEffect(() => {
-    navigateWithParams(selectedOptions);
-  }, [navigateWithParams, selectedOptions]);
-
-  const selectedVariant = useMemo(() => {
-    return product.variants.find(({ selectedOptions: variantOptions }) =>
-      variantOptions.every((option) => option.value === selectedOptions[option.name]),
-    );
-  }, [product.variants, selectedOptions]);
-
-  const handleOptionSelect = useCallback(
-    (key: string, value: string) => {
-      setSelectedOptions((prev) => ({ ...prev, [key]: value }));
-    },
-    [setSelectedOptions],
-  );
-
-  return { selectedVariant, selectedOptions, handleOptionSelect };
-};
-
-export const useSelectVariant = ({
-  product,
-  initialValue,
-}: {
+type TParams = {
   product: ToolkitProduct;
   initialValue: { [key: string]: string | null };
-}): [
+};
+
+type TReturn = [
   { selectedOptions: { [key: string]: string | null }; selectedVariant: ToolkitProduct['variants'][number] | null },
   (key: string, value: string) => void,
-] => {
-  // const [queryParams, navigateWithParams] = useSyncDataUrl2(product.options.map((option) => option.name));
+];
+
+export const useSelectVariant = ({ product, initialValue }: TParams): TReturn => {
   const [selectedOptions, setSelectedOptions] = useState(initialValue);
 
   const selectedVariant = useMemo(() => {
@@ -50,9 +25,7 @@ export const useSelectVariant = ({
   }, [product.variants, selectedOptions]);
 
   const select = useCallback(
-    (key: string, value: string) => {
-      setSelectedOptions((prev) => ({ ...prev, [key]: value }));
-    },
+    (key: string, value: string) => setSelectedOptions((prev) => ({ ...prev, [key]: value })),
     [setSelectedOptions],
   );
 

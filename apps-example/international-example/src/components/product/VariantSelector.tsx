@@ -8,15 +8,15 @@ import ProductPrice from '@/components/product/ProductPrice';
 import Price from '@/components/Price';
 import { useCartMutation } from '@/context/cart/hooks';
 import LoadingDots from '@/components/loading/LoadingDots';
-import { useSelectProductVariant, useSelectVariant } from '@/hooks/useSelectProductVariant';
-import { useSyncDataUrl2 } from '@/hooks/useSyncDataUrl';
+import { useSelectVariant } from '@/hooks/useSelectProductVariant';
+import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 
 type TProps = {
   product: ToolkitProduct;
 };
 
 const VariantSelector = ({ product }: TProps) => {
-  const [queryParams, navigateWithParams] = useSyncDataUrl2(product.options.map((option) => option.name));
+  const [queryParams, navigateWithParams] = useSyncDataUrl({ keys: product.options.map((option) => option.name) });
   const [{ selectedOptions, selectedVariant }, selectOption] = useSelectVariant({ product, initialValue: queryParams });
   const [isAdding, setIsAdding] = useState(false);
   const { addItem } = useCartMutation();
@@ -28,8 +28,11 @@ const VariantSelector = ({ product }: TProps) => {
   }, [selectedVariant]);
 
   useEffect(() => {
-    navigateWithParams(selectedOptions);
-  }, [navigateWithParams, selectedOptions]);
+    navigateWithParams(
+      selectedOptions,
+      product.options.map((option) => option.name),
+    );
+  }, [navigateWithParams, product.options, selectedOptions]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
