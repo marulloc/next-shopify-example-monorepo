@@ -6,7 +6,7 @@ import { localTheme } from '@/theme/local-theme';
 import { HiOutlineGlobeAsiaAustralia } from 'react-icons/hi2';
 import { useSetPortalRecoil } from '@/context/ui/portal';
 
-const LocaleIconTrigger = () => {
+const LocaleSelectModalIconTrigger = () => {
   const { activate } = useSetPortalRecoil('locale-select-modal');
 
   return (
@@ -35,4 +35,4 @@ const LocaleIconTrigger = () => {
   );
 };
 
-export default LocaleIconTrigger;
+export default LocaleSelectModalIconTrigger;

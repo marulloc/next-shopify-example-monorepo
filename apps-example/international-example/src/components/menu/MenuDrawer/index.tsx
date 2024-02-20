@@ -13,7 +13,7 @@ import IconButton from '@/components/IconButton';
 import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/SearchInputTrigger';
 import AltImage from '@/components/AltImage';
 import CollectionCard from '@/components/collection/CollectionCard';
-import LocaleIconTrigger from '@/components/locale/LocaleSelectModal/triggers/LocaleIconTrigger';
+import LocaleIconTrigger from '@/components/locale/LocaleSelectModal/triggers/LocaleSelectModalIconTrigger';
 
 type Props = {
   Trigger?: React.ReactNode; //=>remove

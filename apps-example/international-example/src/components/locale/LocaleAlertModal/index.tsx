@@ -7,6 +7,7 @@ import Drawer from '@marulloc/components-library/Drawer';
 import { classNames } from '@marulloc/components-library/utils';
 import { useEffect, useState } from 'react';
 import { HiExclamationTriangle, HiCheck } from 'react-icons/hi2';
+import LocaleSelectModalChildrenTrigger from '../LocaleSelectModal/triggers/LocaleSelectModalChildrenTrigger';
 
 type TProps = {
   detectedCountry: string;
@@ -70,6 +71,17 @@ const LocaleAlertModal = ({ routingCountry, routingLanguage, detectedCountry, de
 
 export default LocaleAlertModal;
 
+/**
+ *
+ * @TODO LocaleSelect hook
+ * @TODO Dictionaries
+ *
+ *
+ *
+ *
+ * @param param0
+ * @returns
+ */
 const Information = ({
   status,
   handleResolve,
@@ -115,13 +127,13 @@ const Information = ({
             >
               {`I'm just shopping in ${routingCountry}`}
             </button>
-            <button
+            <LocaleSelectModalChildrenTrigger
               type="button"
               className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
               onClick={handleResolve}
             >
               {`I'll try another change my market `}
-            </button>
+            </LocaleSelectModalChildrenTrigger>
           </div>
         </div>
       );
@@ -166,13 +178,13 @@ const Information = ({
             >
               {`No, I'm in ${detectedCountry}`}
             </button>
-            <button
+            <LocaleSelectModalChildrenTrigger
               type="button"
               className="inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-red-600 shadow-sm hover:bg-gray-50 ring-1 ring-inset ring-red-300  sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
               onClick={handleResolve}
             >
               {`Choose another `}
-            </button>
+            </LocaleSelectModalChildrenTrigger>
           </div>
         </div>
       );
@@ -208,13 +220,13 @@ const Information = ({
             >
               {`Yes, I'm in ${routingCountry}`}
             </button>
-            <button
+            <LocaleSelectModalChildrenTrigger
               type="button"
               className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
               onClick={handleResolve}
             >
               {`No, I'll choose another `}
-            </button>
+            </LocaleSelectModalChildrenTrigger>
           </div>
         </div>
       );
