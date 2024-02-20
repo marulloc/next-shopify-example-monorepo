@@ -13,9 +13,10 @@ import { localTheme } from '@/theme/local-theme';
 import CollectionCard from '../collection/CollectionCard';
 import ProductCard from '../product/ProductCard';
 import { splitLocale } from '@/utils/locale';
+import { usePortalRecoil } from '@/context/ui/portal';
 
 type Props = {
-  Trigger: React.ReactNode;
+  Trigger?: React.ReactNode;
 };
 
 const SearchModal = ({ Trigger }: Props) => {
@@ -49,15 +50,21 @@ const SearchModal = ({ Trigger }: Props) => {
     closeModal();
   };
 
+  const { isActive, deactivate } = usePortalRecoil('search-modal');
+
   return (
-    <Modal onOpen={() => setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 500)}>
-      <Modal.Trigger>
+    <Modal
+      open={isActive}
+      onOpen={() => setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 500)}
+      onClose={() => deactivate()}
+    >
+      {/* <Modal.Trigger>
         {({ openModal }) => (
           <div onClick={() => openModal()}>
             <>{Trigger}</>
           </div>
         )}
-      </Modal.Trigger>
+      </Modal.Trigger> */}
 
       <Modal.Backdrop>
         {({ closeModal }) => (

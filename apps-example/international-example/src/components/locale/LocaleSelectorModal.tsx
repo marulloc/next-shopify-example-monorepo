@@ -10,12 +10,12 @@ import IconButton from '../IconButton';
 import { HiXMark } from 'react-icons/hi2';
 import ReactCountryFlag from 'react-country-flag';
 import AltImage from '../AltImage';
+import { usePortalRecoil } from '@/context/ui/portal';
+// import { useGetPortalValue, useSetPortalValue } from '@/context/ui/portal';
 
-type TProps = {
-  Trigger: React.ReactNode;
-} & Pick<ToolkitLocale, 'availableCountries' | 'availableLanguages' | 'locales'>;
+type TProps = {} & Pick<ToolkitLocale, 'availableCountries' | 'availableLanguages'>;
 
-const LocaleSelectorModal = ({ Trigger, availableCountries, availableLanguages, locales }: TProps) => {
+const LocaleSelectorModal = ({ availableCountries, availableLanguages }: TProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -32,15 +32,20 @@ const LocaleSelectorModal = ({ Trigger, availableCountries, availableLanguages, 
     router.push(newPathname + queryString);
   };
 
+  // const { isActive } = useGetPortalValue('locale-modal');
+  // const { deactivate } = useSetPortalValue('locale-modal');
+
+  const { isActive, activate, deactivate } = usePortalRecoil('locale-select-modal');
+
   return (
-    <Modal>
-      <Modal.Trigger>
+    <Modal open={isActive} onClose={() => deactivate()}>
+      {/* <Modal.Trigger>
         {({ openModal }) => (
           <div onClick={() => openModal()}>
             <>{Trigger}</>
           </div>
         )}
-      </Modal.Trigger>
+      </Modal.Trigger> */}
 
       <Modal.Backdrop>
         {({ closeModal }) => (

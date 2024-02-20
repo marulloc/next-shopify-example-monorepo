@@ -9,22 +9,24 @@ import Link from 'next/link';
 import IconButton from '../IconButton';
 import { localTheme } from '@/theme/local-theme';
 import { useCartQuery } from '@/context/cart/hooks';
+import { usePortalRecoil } from '@/context/ui/portal';
 
 type Props = {
-  Trigger: React.ReactNode;
+  Trigger?: React.ReactNode;
 };
-const Cart = ({ Trigger }: Props) => {
+const CartDrawer = ({ Trigger }: Props) => {
+  const { isActive, deactivate } = usePortalRecoil('cart-drawer');
   const { cart, status } = useCartQuery();
 
   return (
-    <Drawer anchor="right">
-      <Drawer.Trigger>
+    <Drawer anchor="right" open={isActive} onClose={() => deactivate()}>
+      {/* <Drawer.Trigger>
         {({ openDrawer }) => (
           <div onClick={() => openDrawer()}>
             <>{Trigger}</>
           </div>
         )}
-      </Drawer.Trigger>
+      </Drawer.Trigger> */}
 
       <Drawer.Backdrop>
         {({ closeDrawer }) => (
@@ -127,4 +129,4 @@ const Cart = ({ Trigger }: Props) => {
   );
 };
 
-export default Cart;
+export default CartDrawer;

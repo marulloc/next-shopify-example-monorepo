@@ -15,9 +15,9 @@ type Props = {
 };
 
 const Header = async ({ locale }: Props) => {
-  const menu = await getMenu('custom-storefront-menu', { country: locale?.country, language: locale?.language });
-  const collections = await getCollections({ country: locale?.country, language: locale?.language });
-  const localeData = await getLocale({ country: locale?.country, language: locale?.language });
+  // const menu = await getMenu('custom-storefront-menu', { country: locale?.country, language: locale?.language });
+  // const collections = await getCollections({ country: locale?.country, language: locale?.language });
+  // const localeData = await getLocale({ country: locale?.country, language: locale?.language });
 
   return (
     <div className=" isolate fixed top-0 w-full z-30 ">
@@ -38,7 +38,9 @@ const Header = async ({ locale }: Props) => {
                 <div className="flex h-16 items-center justify-between">
                   {/* Mobile menu and search (lg-) */}
                   <div className="flex flex-1 items-center -ml-2">
-                    <MenuIconTrigger menu={menu} collections={collections} localeData={localeData} />
+                    <MenuIconTrigger
+                    //  menu={menu} collections={collections} localeData={localeData}
+                    />
                     <Logo country={locale?.country} language={locale?.language} />
                   </div>
 

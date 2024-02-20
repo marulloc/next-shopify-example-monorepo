@@ -13,24 +13,30 @@ import CollectionCard from '../collection/CollectionCard';
 import AltImage from '../AltImage';
 import { GrGithub } from 'react-icons/gr';
 import LocaleIconTrigger from '../locale/triggers/LocaleIconTrigger';
+import { usePortalRecoil } from '@/context/ui/portal';
 
 type Props = {
-  Trigger: React.ReactNode;
+  Trigger?: React.ReactNode; //=>remove
   menu: ToolkitMenu;
   collections: ToolkitCollection[];
-  localeData: ToolkitLocale;
+  localeData?: ToolkitLocale; // => remove
 };
 
 const MenuDrawer = ({ Trigger, menu, collections, localeData }: Props) => {
+  // const { activate, deactivate } = useSetPortalValue('menu-drawer');
+  // const { isActive } = useGetPortalValue('menu-drawer');
+
+  const { isActive, activate, deactivate } = usePortalRecoil('menu-drawer');
+
   return (
-    <Drawer anchor="left">
-      <Drawer.Trigger>
+    <Drawer anchor="left" open={isActive} onClose={() => deactivate()}>
+      {/* <Drawer.Trigger>
         {({ openDrawer }) => (
           <div onClick={() => openDrawer()}>
             <>{Trigger}</>
           </div>
         )}
-      </Drawer.Trigger>
+      </Drawer.Trigger> */}
 
       <Drawer.Backdrop>
         {({ closeDrawer }) => (
@@ -113,13 +119,12 @@ const MenuDrawer = ({ Trigger, menu, collections, localeData }: Props) => {
               <div className={classNames('px-6 py-6', 'bg-white')}>
                 <div onClick={() => closeDrawer()}>
                   <LocaleIconTrigger
-                    locales={localeData.locales}
-                    availableCountries={localeData.availableCountries}
-                    availableLanguages={localeData.availableLanguages}
+                  // locales={localeData.locales}
+                  // availableCountries={localeData.availableCountries}
+                  // availableLanguages={localeData.availableLanguages}
                   />
                 </div>
 
-                {/* TODO : Layout change */}
                 <div className={classNames('mt-2 pt-2', 'flex flex-col space-y-3  border-t')}>
                   <Link
                     href="https://github.com/marulloc/Marulloc-shopify-headless-monorepo"
@@ -139,7 +144,7 @@ const MenuDrawer = ({ Trigger, menu, collections, localeData }: Props) => {
                           'flex justify-center items-center',
                         )}
                       >
-                        <GrGithub className={classNames('  shrink-0 h-6 w-7      ')} />
+                        <GrGithub className={classNames('  shrink-0 h-7 w-7      ')} />
                       </div>
                       <span className=" ">Go to Monorepo</span>
                     </div>
