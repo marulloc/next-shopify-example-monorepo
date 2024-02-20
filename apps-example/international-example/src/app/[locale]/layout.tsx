@@ -7,7 +7,6 @@ import FloatingActionButton from '../../components/FloatingAction';
 import CartProvider from '@/context/cart/CartProvider';
 import { classNames } from '@marulloc/components-library/utils';
 import { localTheme } from '@/theme/local-theme';
-import LocaleAlertModal from '../../components/locale/LocaleAlertModal';
 import { cookies } from 'next/headers';
 import { TDetectionStatus } from '@/middleware';
 import CartMutationToast from '@/components/cart/CartMutationToast';
@@ -15,9 +14,10 @@ import RecoilProvider from '@/context/RecoilProvider';
 import ToastController from './ToastController';
 import MenuDrawer from '@/components/menu/MenuDrawer';
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
-import LocaleSelectorModal from '@/components/locale/LocaleSelectorModal';
+import LocaleSelectorModal from '@/components/locale/LocaleSelectModal';
 import SearchModal from '@/components/search/SearchModal';
 import CartDrawer from '@/components/cart/CartDrawer';
+import LocaleAlertModal from '@/components/locale/LocaleAlertModal';
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();

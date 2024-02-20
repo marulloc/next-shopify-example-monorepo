@@ -6,14 +6,14 @@ import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
 import { HiXMark } from 'react-icons/hi2';
 import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-collection';
-import SearchFakeInputTrigger from '../search/triggers/SearchInputTrigger';
 import { localTheme } from '@/theme/local-theme';
-import IconButton from '../IconButton';
-import CollectionCard from '../collection/CollectionCard';
-import AltImage from '../AltImage';
 import { GrGithub } from 'react-icons/gr';
-import LocaleIconTrigger from '../locale/triggers/LocaleIconTrigger';
 import { usePortalRecoil } from '@/context/ui/portal';
+import IconButton from '@/components/IconButton';
+import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/SearchInputTrigger';
+import AltImage from '@/components/AltImage';
+import CollectionCard from '@/components/collection/CollectionCard';
+import LocaleIconTrigger from '@/components/locale/LocaleSelectModal/triggers/LocaleIconTrigger';
 
 type Props = {
   Trigger?: React.ReactNode; //=>remove

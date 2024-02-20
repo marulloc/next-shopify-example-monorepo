@@ -1,12 +1,12 @@
 import { Fragment, useState } from 'react';
 import { classNames } from '@marulloc/components-library/utils';
 import { HiMenu, HiOutlineSearch, HiOutlineShoppingBag } from 'react-icons/hi';
-import CartTriggerIcon from './cart/triggers/CartIconTrigger';
-import MenuIconTrigger from './menu/triggers/MenuIconTrigger';
+import CartTriggerIcon from './cart/CartDrawer/triggers/CartIconTrigger';
+import MenuIconTrigger from './menu/MenuDrawer/triggers/MenuIconTrigger';
 import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-common';
 import { getLocale, getMenu } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
-import SearchIconTrigger from './search/triggers/SearchIconTrigger';
+import SearchIconTrigger from './search/SearchModal/triggers/SearchIconTrigger';
 import Logo from './Logo';
 import { localTheme } from '@/theme/local-theme';
 

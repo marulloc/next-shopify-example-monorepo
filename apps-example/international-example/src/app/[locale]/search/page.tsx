@@ -2,7 +2,7 @@ import { ToolkitSortKey } from '@/@marulloc-shopify-nextapi/v24.01/services/@too
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
-import SearchFakeInputTrigger from '@/components/search/triggers/SearchInputTrigger';
+import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/SearchInputTrigger';
 import { Suspense } from 'react';
 import SearchResult, { SearchResultSkeleton } from '@/components/search/SearchResult';
 

@@ -3,13 +3,13 @@
 import { classNames } from '@marulloc/components-library/utils';
 import Drawer from '@marulloc/components-library/Drawer';
 import { HiXMark } from 'react-icons/hi2';
-import Price from '../Price';
-import CartLine from './CartLine';
 import Link from 'next/link';
-import IconButton from '../IconButton';
 import { localTheme } from '@/theme/local-theme';
 import { useCartQuery } from '@/context/cart/hooks';
 import { usePortalRecoil } from '@/context/ui/portal';
+import IconButton from '@/components/IconButton';
+import CartLine from '@/components/cart/CartLine';
+import Price from '@/components/Price';
 
 type Props = {
   Trigger?: React.ReactNode;

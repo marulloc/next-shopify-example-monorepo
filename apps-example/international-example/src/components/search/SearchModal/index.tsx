@@ -8,12 +8,12 @@ import Modal from '@marulloc/components-library/Modal';
 import { HiArrowRight, HiXMark, HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import { throttle } from '@/utils/throttle';
 import { usePredictiveSearch } from '@/hooks/usePredictiveSearch';
-import IconButton from '../IconButton';
 import { localTheme } from '@/theme/local-theme';
-import CollectionCard from '../collection/CollectionCard';
-import ProductCard from '../product/ProductCard';
 import { splitLocale } from '@/utils/locale';
 import { usePortalRecoil } from '@/context/ui/portal';
+import IconButton from '@/components/IconButton';
+import CollectionCard from '@/components/collection/CollectionCard';
+import ProductCard from '@/components/product/ProductCard';
 
 type Props = {
   Trigger?: React.ReactNode;

@@ -1,7 +1,7 @@
 'use client';
 
 import { classNames } from '@marulloc/components-library/utils';
-import SearchModal from '../SearchModal';
+import SearchModal from '..';
 import { HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import { useSearchParams } from 'next/navigation';
 import { localTheme } from '@/theme/local-theme';

@@ -6,16 +6,16 @@ import { splitLocale } from '@/utils/locale';
 import Modal from '@marulloc/components-library/Modal';
 import { classNames } from '@marulloc/components-library/utils';
 import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
-import IconButton from '../IconButton';
+import IconButton from '../../IconButton';
 import { HiXMark } from 'react-icons/hi2';
 import ReactCountryFlag from 'react-country-flag';
-import AltImage from '../AltImage';
+import AltImage from '../../AltImage';
 import { usePortalRecoil } from '@/context/ui/portal';
 // import { useGetPortalValue, useSetPortalValue } from '@/context/ui/portal';
 
 type TProps = {} & Pick<ToolkitLocale, 'availableCountries' | 'availableLanguages'>;
 
-const LocaleSelectorModal = ({ availableCountries, availableLanguages }: TProps) => {
+const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -187,4 +187,4 @@ const LocaleSelectorModal = ({ availableCountries, availableLanguages }: TProps)
   );
 };
 
-export default LocaleSelectorModal;
+export default LocaleSelectModal;
