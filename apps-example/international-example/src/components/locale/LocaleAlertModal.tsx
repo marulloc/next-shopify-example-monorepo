@@ -6,7 +6,7 @@ import { localTheme } from '@/theme/local-theme';
 import Drawer from '@marulloc/components-library/Drawer';
 import { classNames } from '@marulloc/components-library/utils';
 import { useEffect, useState } from 'react';
-import { HiExclamationTriangle } from 'react-icons/hi2';
+import { HiExclamationTriangle, HiCheck } from 'react-icons/hi2';
 
 type TProps = {
   detectedCountry: string;
@@ -23,7 +23,8 @@ const LocaleAlertModal = ({ routingCountry, routingLanguage, detectedCountry, de
 
   useEffect(() => {
     setTimeout(() => {
-      setIsActive(routingCountry !== detectedCountry);
+      // setIsActive(routingCountry !== detectedCountry);
+      setIsActive(true);
     }, 400);
   }, [detectedCountry, routingCountry]);
 
@@ -83,7 +84,47 @@ const Information = ({
   // const forDict = routingLanguage;
   switch (status) {
     case 'matched':
-      return null;
+      return (
+        <div className="max-w-xl  ">
+          <div className="flex">
+            <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full   bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+              <HiCheck className="h-6 w-6 text-green-600  animate-pulse" aria-hidden="true" />
+            </div>
+            <div className="mt-3  ml-2  sm:ml-4 sm:mt-0 sm:text-left">
+              <h3 className="text-base font-semibold leading-6 text-gray-900">Hi! You ar in {routingCountry}</h3>
+              <div className="mt-1">
+                <p className="text-sm text-gray-500">
+                  We notice that you ar in
+                  <span className="mx-2 font-bold  ">{detectedCountry}</span>
+                </p>
+
+                <p className="text-sm text-gray-500">
+                  and you also are shopping in
+                  <span className="mx-2 font-bold  ">{routingCountry}</span>
+                  We allocate your market and language by your IP and your browser language setting. But you can change
+                  your market.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="mt-5 sm:ml-10 sm:mt-4 sm:flex sm:pl-4">
+            <button
+              type="button"
+              className=" inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50   sm:w-auto"
+              onClick={handleResolve}
+            >
+              {`I'm just shopping in ${routingCountry}`}
+            </button>
+            <button
+              type="button"
+              className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
+              onClick={handleResolve}
+            >
+              {`I'll try another change my market `}
+            </button>
+          </div>
+        </div>
+      );
 
     case 'not-matched':
       return (
