@@ -10,6 +10,7 @@ import { localTheme } from '@/theme/local-theme';
 import LocaleAlertModal from '../../components/locale/LocaleAlertModal';
 import { cookies } from 'next/headers';
 import { TDetectionStatus } from '@/middleware';
+import CartMutationToast from '@/components/cart/CartMutationToast';
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();
@@ -64,6 +65,7 @@ const RootLayout = async ({
             availableCountries={availableCountries}
             availableLanguages={availableLanguages}
           />
+          <CartMutationToast />
           <Header locale={{ country, language }} />
           {children}
           <FloatingActionButton />
