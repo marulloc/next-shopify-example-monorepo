@@ -60,7 +60,12 @@ const SearchModal = ({ Trigger }: Props) => {
       </Modal.Trigger>
 
       <Modal.Backdrop>
-        {({}) => <div className={classNames('w-full h-full', 'bg-opacity-80 ', localTheme.fill.base.disabled)} />}
+        {({ closeModal }) => (
+          <div
+            onClick={() => closeModal()}
+            className={classNames('w-full h-full', 'bg-opacity-80 ', localTheme.fill.base.disabled)}
+          />
+        )}
       </Modal.Backdrop>
 
       <Modal.Contents>

@@ -43,9 +43,6 @@ const ModalBackdrop = <T extends React.ElementType = 'div'>({
         isOpen ? 'modal-backdrop-visible' : 'modal-backdrop-invisible',
         className,
       )}
-      onClick={(e: any) => {
-        closeModal();
-      }}
     >
       {children({ isOpen, openModal, closeModal })}
     </Component>,

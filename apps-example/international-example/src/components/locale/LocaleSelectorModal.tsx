@@ -43,7 +43,12 @@ const LocaleSelectorModal = ({ Trigger, availableCountries, availableLanguages, 
       </Modal.Trigger>
 
       <Modal.Backdrop>
-        {({}) => <div className={classNames('w-full h-full', 'bg-opacity-40 ', localTheme.fill.base.muted)} />}
+        {({ closeModal }) => (
+          <div
+            onClick={() => closeModal()}
+            className={classNames('w-full h-full', 'bg-opacity-40 ', localTheme.fill.base.muted)}
+          />
+        )}
       </Modal.Backdrop>
 
       <Modal.Contents>

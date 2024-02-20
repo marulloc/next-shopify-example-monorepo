@@ -55,7 +55,7 @@ const RootLayout = async ({
   return (
     <html lang={language} className=" scroll-smooth">
       <CartProvider locale={{ country, language }} storageKey="marulloc-cart">
-        <body className={classNames('relative font-mono overflow-hidden', localTheme.fill.base.muted)}>
+        <body className={classNames('relative   overflow-hidden', localTheme.fill.base.muted)}>
           <InformationModal
             detectionStatus={detectionStatus}
             detectedCountry={detectedCountry}

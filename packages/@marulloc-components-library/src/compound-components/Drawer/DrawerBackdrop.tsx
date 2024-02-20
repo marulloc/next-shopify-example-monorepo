@@ -39,7 +39,6 @@ const DrawerBackdrop = <T extends React.ElementType = 'div'>({
     <Component
       {...rest}
       className={classNames('drawer-backdrop', isOpen ? 'drawer-backdrop-open' : 'drawer-backdrop-closed', className)}
-      onClick={() => closeDrawer()}
     >
       {children({ ...restContext, isOpen, closeDrawer })}
     </Component>,

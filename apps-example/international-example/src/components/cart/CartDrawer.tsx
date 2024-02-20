@@ -27,7 +27,12 @@ const Cart = ({ Trigger }: Props) => {
       </Drawer.Trigger>
 
       <Drawer.Backdrop>
-        {({}) => <div className={classNames('w-full h-full', 'bg-opacity-60 ', localTheme.fill.base.disabled)} />}
+        {({ closeDrawer }) => (
+          <div
+            onClick={() => closeDrawer()}
+            className={classNames('w-full h-full', 'bg-opacity-60 ', localTheme.fill.base.disabled)}
+          />
+        )}
       </Drawer.Backdrop>
 
       <Drawer.Contents>
