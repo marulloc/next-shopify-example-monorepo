@@ -18,6 +18,7 @@ import LocaleSelectorModal from '@/components/locale/LocaleSelectModal';
 import SearchModal from '@/components/search/SearchModal';
 import CartDrawer from '@/components/cart/CartDrawer';
 import LocaleAlertModal from '@/components/locale/LocaleAlertModal';
+import RecoilCartTest from './RecoilCartTest';
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();
@@ -74,6 +75,7 @@ const RootLayout = async ({
             <LocaleSelectorModal availableCountries={availableCountries} availableLanguages={availableLanguages} />
             <SearchModal />
             <CartDrawer />
+            <RecoilCartTest />
             {/*  */}
             <LocaleAlertModal
               detectionStatus={detectionStatus}

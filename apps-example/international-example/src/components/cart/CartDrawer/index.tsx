@@ -11,10 +11,7 @@ import IconButton from '@/components/IconButton';
 import CartLine from '@/components/cart/CartLine';
 import Price from '@/components/Price';
 
-type Props = {
-  Trigger?: React.ReactNode;
-};
-const CartDrawer = ({ Trigger }: Props) => {
+const CartDrawer = () => {
   const { isActive, deactivate } = usePortalRecoil('cart-drawer');
   const { cart, status } = useCartQuery();
 

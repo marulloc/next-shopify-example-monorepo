@@ -39,6 +39,6 @@ export type ShopifyMoney = {
 };
 
 export type ShopifyLocaleContext = {
-  country?: string;
-  language?: string;
+  country?: string | null;
+  language?: string | null;
 };
