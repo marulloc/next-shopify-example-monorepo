@@ -37,3 +37,9 @@ export type ShopifyBaseCartLine = {
     totalAmount: ShopifyMoney;
   };
 };
+
+export type ShopifyCartLineUpdateInput = {
+  id: ShopifyBaseCartLine['id'];
+  quantity: ShopifyBaseCartLine['quantity'];
+  merchandiseId?: ShopifyBaseCartLine['merchandise']['id'];
+};

@@ -25,13 +25,9 @@ const CartLineV2 = ({ cartLine }: Props) => {
   const handleMinus = () => updateQty(cartLine.quantity - 1 >= 0 ? cartLine.quantity - 1 : 0);
   const handleDelete = () => deleteLine();
 
+  if (cartLine.quantity <= 0) return null;
   return (
-    <div
-      className={classNames(
-        'py-6 flex min-h-24 px-6 -mx-6',
-        // isPending ? localTheme.fill.base.disabled + 'animate-pulse bg-opacity-30' : '',
-      )}
-    >
+    <div className={classNames('py-6 flex min-h-24 px-6 -mx-6')}>
       {/* Image */}
       <div className={classNames('h-24 aspect-square flex-shrink-0 overflow-hidden', 'rounded-lg')}>
         <Image
@@ -69,7 +65,6 @@ const CartLineV2 = ({ cartLine }: Props) => {
               type="button"
               className={classNames(localTheme.text.size.small, localTheme.text.color.primary.main)}
               onClick={handleDelete}
-              // disabled={isPending}
             >
               Remove
             </button>
@@ -80,7 +75,6 @@ const CartLineV2 = ({ cartLine }: Props) => {
               srName={`'minus quantity of ${cartLine.merchandise.product.title}`}
               className="px-1"
               onClick={handleMinus}
-              // disabled={isPending}
             >
               <HiMinus className="h-4 w-4  " />
             </IconButton>
@@ -90,9 +84,6 @@ const CartLineV2 = ({ cartLine }: Props) => {
                 id="Line Quantity"
                 defaultValue={cartLine.quantity}
                 onBlur={(e) => handleInput(Number(e.target.value))}
-                // value={cartLine.quantity}
-                // disabled={isPending}
-                // onChange={(e) => handleInput(Number(e.target.value))}
               ></input>
             </p>
 
@@ -100,7 +91,6 @@ const CartLineV2 = ({ cartLine }: Props) => {
               srName={`'minus quantity of ${cartLine.merchandise.product.title}`}
               className="px-1"
               onClick={handlePlus}
-              // disabled={isPending}
             >
               <HiPlus className="h-4 w-4 " />
             </IconButton>

@@ -55,3 +55,15 @@ export const updateCartLocaleMutation = `
   }
   ${cartFragment}
 `;
+
+export const updateCartLinesMutation = `
+  mutation optimisiticUpdateCartLines ($cartId : ID!, $lines: [CartLineUpdateInput!]!  )   {
+      
+    cartLinesUpdate(cartId:$cartId, lines: $lines){
+      cart {
+        ...cart
+      }
+    }
+  }
+  ${cartFragment}
+`;

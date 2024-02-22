@@ -1,31 +1,20 @@
 'use client';
 
-import {
-  DefaultValue,
-  atom,
-  selector,
-  useRecoilStateLoadable,
-  useRecoilValueLoadable,
-  useSetRecoilState,
-} from 'recoil';
+import { DefaultValue, atom, selector, useSetRecoilState } from 'recoil';
 import { atomLocale } from '../locale/atom';
 import { ToolkitCart, ToolkitCartLine } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-cart';
 import {
-  addToCart,
   createCart,
   getCart,
+  updateCartLines,
   updateCartLocale,
 } from '@/@marulloc-shopify-nextapi/v24.01/services/cart/service';
-import { useGetLocale } from '../locale/hook';
 import { useState } from 'react';
 import { debounce } from '@/utils/throttle';
+import { deepCompare } from '@/utils/compare';
 
 const STORAGE_KEY = 'marulloc-cart';
 const store = typeof window !== 'undefined' ? window.localStorage : null;
-
-const syncWithShopify = debounce((newValue: ToolkitCart | undefined) => {
-  console.log('Sync Called', newValue);
-}, 300);
 
 export const atomOptimisticCart = atom({
   key: 'cart-atom-with-locale',
@@ -43,10 +32,8 @@ export const atomOptimisticCart = atom({
       } else {
         if (locale.country?.toUpperCase() !== memoizedCart.buyerIdentity.countryCode.toUpperCase()) {
           savedOrNewCart = await updateCartLocale(memoizedCart.id, locale);
-          // console.log('udpate and init');
         } else {
           savedOrNewCart = await getCart(memoizedCart.id, locale);
-          // console.log('Just Get');
         }
       }
 
@@ -57,11 +44,26 @@ export const atomOptimisticCart = atom({
 
   effects: [
     ({ onSet, setSelf }) => {
-      // Update CartLine
+      const updateOptimisticCartLines = debounce(
+        async (newValue: ToolkitCart, oldValue: undefined | ToolkitCart | DefaultValue) => {
+          const cartId = newValue.id;
+          const lines = newValue.lines.map(({ id, merchandise, quantity }) => ({
+            id,
+            merchandiseId: merchandise.id,
+            quantity,
+          }));
+
+          const updatedCart = await updateCartLines(cartId, lines);
+
+          if (deepCompare(updatedCart, oldValue)) return;
+          setSelf(updatedCart);
+        },
+        300,
+      );
 
       onSet(async (newValue, oldValue, isReset) => {
-        console.log('Changed', newValue);
-        syncWithShopify(newValue);
+        if (newValue?.id) updateOptimisticCartLines(newValue, oldValue);
+
         if (isReset) return localStorage.removeItem(STORAGE_KEY);
         return localStorage.setItem(STORAGE_KEY, JSON.stringify(newValue));
       });

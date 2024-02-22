@@ -2,10 +2,12 @@ import {
   addToCartMutation,
   createCartMutation,
   editCartItemsMutation,
+  updateCartLinesMutation,
   removeFromCartMutation,
   updateCartLocaleMutation,
 } from '../../@shopify-graphql/mutations/cart';
 import { getCartQuery } from '../../@shopify-graphql/queries/cart';
+import { ShopifyCartLineUpdateInput } from '../../@shopify-types/shopify-cart';
 import { ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
 import { storeFetch } from '../../utils/storeFetch';
 import { ToolkitCart } from '../@toolkit-types/toolkit-cart';
@@ -14,6 +16,7 @@ import {
   AddToCartService,
   CreateCartService,
   GetCartService,
+  UpdateCartLinesService,
   RemoveFromCartService,
   UpdateCartLocaleService,
   UpdateCartService,
@@ -107,4 +110,13 @@ export const updateCartLocale = async (cartId: string, locale: ShopifyLocaleCont
   });
 
   return parseCart(res.body.data.cartBuyerIdentityUpdate.cart);
+};
+
+export const updateCartLines = async (cartId: string, lines: ShopifyCartLineUpdateInput[]) => {
+  const res = await storeFetch<UpdateCartLinesService>({
+    query: updateCartLinesMutation,
+    variables: { cartId, lines },
+  });
+
+  return parseCart(res.body.data.cartLinesUpdate.cart);
 };

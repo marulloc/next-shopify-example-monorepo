@@ -1,4 +1,4 @@
-import { ShopifyCart } from '../../@shopify-types/shopify-cart';
+import { ShopifyCart, ShopifyCartLineUpdateInput } from '../../@shopify-types/shopify-cart';
 import { ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
 
 export type CreateCartService = {
@@ -40,4 +40,12 @@ export type GetCartService = {
 export type UpdateCartLocaleService = {
   data: { cartBuyerIdentityUpdate: { cart: ShopifyCart } };
   variables: { cartId: string; country: ShopifyLocaleContext['country']; language: ShopifyLocaleContext['language'] };
+};
+
+export type UpdateCartLinesService = {
+  data: { cartLinesUpdate: { cart: ShopifyCart } };
+  variables: {
+    cartId: string;
+    lines: ShopifyCartLineUpdateInput[];
+  };
 };
