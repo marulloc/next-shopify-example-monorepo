@@ -4,7 +4,6 @@ import { getLocale, getMenu, getShopInfo } from '@/@marulloc-shopify-nextapi/v24
 import { splitLocale } from '@/utils/locale';
 import Header from '../../components/Header';
 import FloatingActionButton from '../../components/FloatingAction';
-import CartProvider from '@/context/cart/CartProvider';
 import { classNames } from '@marulloc/components-library/utils';
 import { localTheme } from '@/theme/local-theme';
 import { cookies } from 'next/headers';
@@ -16,10 +15,8 @@ import MenuDrawer from '@/components/menu/MenuDrawer';
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import LocaleSelectorModal from '@/components/locale/LocaleSelectModal';
 import SearchModal from '@/components/search/SearchModal';
-import CartDrawer from '@/components/cart/CartDrawer';
 import LocaleAlertModal from '@/components/locale/LocaleAlertModal';
-import RecoilCartTest from './RecoilCartTest';
-import CartDrawerV2 from '@/components/cartV2/CartDrawerV2';
+import CartDrawer from '@/components/cart/CartDrawer';
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();
@@ -67,34 +64,26 @@ const RootLayout = async ({
 
   return (
     <html lang={language} className=" scroll-smooth">
-      <RecoilProvider>
-        {/* <CartProvider locale={{ country, language }} storageKey="marulloc-cart"> */}
-        <body className={classNames('relative   overflow-hidden', localTheme.fill.base.muted)}>
-          {/* <ToastController /> */}
-          {/* <RecoilCartTest /> */}
-          {/*  */}
+      <body className={classNames('relative   overflow-hidden', localTheme.fill.base.muted)}>
+        <RecoilProvider>
           <MenuDrawer menu={menu} collections={collections} />
           <LocaleSelectorModal availableCountries={availableCountries} availableLanguages={availableLanguages} />
           <SearchModal />
-          {/* <CartDrawer /> */}
-
-          <CartDrawerV2 />
-
-          {/* <LocaleAlertModal
-              detectionStatus={detectionStatus}
-              detectedCountry={detectedCountry}
-              routingCountry={country}
-              routingLanguage={language}
-              availableCountries={availableCountries}
-              availableLanguages={availableLanguages}
-            />
-            <CartMutationToast /> */}
+          <CartDrawer />
+          <LocaleAlertModal
+            detectionStatus={detectionStatus}
+            detectedCountry={detectedCountry}
+            routingCountry={country}
+            routingLanguage={language}
+            availableCountries={availableCountries}
+            availableLanguages={availableLanguages}
+          />
+          <CartMutationToast />
           <Header locale={{ country, language }} />
           {children}
           <FloatingActionButton />
-        </body>
-        {/* </CartProvider> */}
-      </RecoilProvider>
+        </RecoilProvider>
+      </body>
     </html>
   );
 };

@@ -3,8 +3,8 @@
 import { classNames } from '@marulloc/components-library/utils';
 import { HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import { localTheme } from '@/theme/local-theme';
-import { useSetPortalRecoil } from '@/context/ui/portal';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
+import { useSetPortalRecoil } from '@/context/ui/hooks';
 
 const SearchFakeInputTrigger = () => {
   const { activate } = useSetPortalRecoil('search-modal');

@@ -9,7 +9,7 @@ import Price from '@/components/Price';
 import LoadingDots from '@/components/loading/LoadingDots';
 import { useSelectVariant } from '@/hooks/useSelectProductVariant';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
-import AddToCartButton from '../cartV2/AddToCartButton';
+import AddToCartButton from '../cart/AddToCartButton';
 
 type TProps = {
   product: ToolkitProduct;

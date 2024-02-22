@@ -112,10 +112,14 @@ export const updateCartLocale = async (cartId: string, locale: ShopifyLocaleCont
   return parseCart(res.body.data.cartBuyerIdentityUpdate.cart);
 };
 
-export const updateCartLines = async (cartId: string, lines: ShopifyCartLineUpdateInput[]) => {
+export const updateCartLines = async (
+  cartId: string,
+  lines: ShopifyCartLineUpdateInput[],
+  locale?: ShopifyLocaleContext,
+) => {
   const res = await storeFetch<UpdateCartLinesService>({
     query: updateCartLinesMutation,
-    variables: { cartId, lines },
+    variables: { cartId, lines, country: locale?.country?.toUpperCase(), language: locale?.language?.toUpperCase() },
   });
 
   return parseCart(res.body.data.cartLinesUpdate.cart);

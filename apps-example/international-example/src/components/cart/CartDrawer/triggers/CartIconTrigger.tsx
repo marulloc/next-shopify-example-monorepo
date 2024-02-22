@@ -4,12 +4,14 @@ import { classNames } from '@marulloc/components-library/utils';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
 import IconButton from '@/components/IconButton';
 import { localTheme } from '@/theme/local-theme';
-import { useCartQuery } from '@/context/cart/hooks';
-import { useSetPortalRecoil } from '@/context/ui/portal';
+import { useRecoilValueLoadable } from 'recoil';
+import { atomOptimisticCart } from '@/context/cart/atom';
+import { Suspense } from 'react';
+import { useSetPortalRecoil } from '@/context/ui/hooks';
 
 const CartIconTrigger = () => {
   const { activate } = useSetPortalRecoil('cart-drawer');
-  const { cart } = useCartQuery();
+  const { state, contents: cart } = useRecoilValueLoadable(atomOptimisticCart);
   const totalQty = cart?.totalQuantity || 0;
 
   return (

@@ -1,21 +1,5 @@
-import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-
-type TPortalConstants = 'menu-drawer' | 'cart-drawer' | 'search-modal' | 'locale-select-modal';
-
-type TPortalValue = {
-  portalName: TPortalConstants;
-  isActive: boolean;
-};
-const atomPortalController = atom<Array<TPortalValue>>({
-  key: 'atom-portal-controller',
-  default: [
-    { portalName: 'menu-drawer', isActive: false },
-    { portalName: 'cart-drawer', isActive: false },
-    { portalName: 'search-modal', isActive: false },
-    { portalName: 'search-modal', isActive: false },
-    { portalName: 'locale-select-modal', isActive: false },
-  ],
-});
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { TPortalConstants, TPortalValue, atomPortalController } from './atom';
 
 export const useGetPortalRecole = (portalName: TPortalConstants) => {
   const portals = useRecoilValue(atomPortalController);

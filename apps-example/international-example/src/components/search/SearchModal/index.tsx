@@ -8,12 +8,12 @@ import { HiXMark, HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import { throttle } from '@/utils/throttle';
 import { usePredictiveSearch } from '@/hooks/usePredictiveSearch';
 import { localTheme } from '@/theme/local-theme';
-import { usePortalRecoil } from '@/context/ui/portal';
 import IconButton from '@/components/IconButton';
 import CollectionCard from '@/components/collection/CollectionCard';
 import ProductCard from '@/components/product/ProductCard';
 import { useSelectLocale } from '@/hooks/useLocaleSelect';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
+import { usePortalRecoil } from '@/context/ui/hooks';
 
 const SearchModal = () => {
   const { isActive, deactivate } = usePortalRecoil('search-modal');

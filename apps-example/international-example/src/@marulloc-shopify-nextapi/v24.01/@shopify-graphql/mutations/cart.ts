@@ -57,7 +57,7 @@ export const updateCartLocaleMutation = `
 `;
 
 export const updateCartLinesMutation = `
-  mutation optimisiticUpdateCartLines ($cartId : ID!, $lines: [CartLineUpdateInput!]!  )   {
+  mutation optimisiticUpdateCartLines ($cartId : ID!, $lines: [CartLineUpdateInput!]!, $country: CountryCode, $language: LanguageCode)  @inContext(country: $country, language: $language)  {
       
     cartLinesUpdate(cartId:$cartId, lines: $lines){
       cart {

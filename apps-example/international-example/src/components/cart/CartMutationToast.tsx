@@ -1,4 +1,5 @@
 'use client';
+
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import { useEffect, useState } from 'react';

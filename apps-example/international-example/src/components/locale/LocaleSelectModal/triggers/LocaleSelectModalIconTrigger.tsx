@@ -3,7 +3,7 @@
 import { classNames } from '@marulloc/components-library/utils';
 import { localTheme } from '@/theme/local-theme';
 import { HiOutlineGlobeAsiaAustralia } from 'react-icons/hi2';
-import { useSetPortalRecoil } from '@/context/ui/portal';
+import { useSetPortalRecoil } from '@/context/ui/hooks';
 
 const LocaleSelectModalIconTrigger = () => {
   const { activate } = useSetPortalRecoil('locale-select-modal');
@@ -11,7 +11,11 @@ const LocaleSelectModalIconTrigger = () => {
   return (
     <button
       // srName="select locale"
-      className={classNames(localTheme.text.color.base.main, localTheme.text.color.base.hover, 'p-0 hover:scale-100')}
+      className={classNames(
+        localTheme.text.color.base.main,
+        localTheme.text.color.base.hover,
+        'p-0 hover:scale-100 block group w-full',
+      )}
       onClick={() => activate({ onlyOne: true })}
     >
       <div

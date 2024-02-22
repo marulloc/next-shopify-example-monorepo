@@ -1,7 +1,7 @@
 'use client';
 
 import { ShopifyProductVariant } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-product';
-import { useAddToCart } from '@/context/cart/atom';
+import { useAddToCart } from '@/context/cart/hooks';
 import { classNames } from '@marulloc/components-library/utils';
 import { useMemo } from 'react';
 

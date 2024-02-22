@@ -6,50 +6,26 @@ import Link from 'next/link';
 import Price from '../Price';
 import { classNames } from '@marulloc/components-library/utils';
 import { HiPlus, HiMinus } from 'react-icons/hi2';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React from 'react';
 import { localTheme } from '@/theme/local-theme';
 import IconButton from '../IconButton';
-import { debounce } from '@/utils/throttle';
-import { useCartMutation } from '@/context/cart/hooks';
+import { useSetCartLineOptimistic } from '@/context/cart/hooks';
 
 type Props = {
   cartLine: ToolkitCartLine;
 };
 
 const CartLine = ({ cartLine }: Props) => {
-  const { updateItem, deleteItem } = useCartMutation();
-  const [pendingQtyChanges, setPendingQtyChanges] = useState<number>(0); //=> 감가산을 위한 숫자를 저장
-  const optimisticQty = useMemo(() => cartLine.quantity + pendingQtyChanges, [cartLine.quantity, pendingQtyChanges]); //=> 실제 서버 데이터와 감가산을 합산
-  const [isPending, setIsPending] = useState(false);
+  const { updateQty, deleteLine } = useSetCartLineOptimistic(cartLine.id);
 
-  const debounced = useRef(
-    debounce(async (qty) => {
-      setIsPending(true);
-      if (qty <= 0) await deleteItem({ lineId: cartLine.id });
-      else await updateItem({ lineId: cartLine.id, quantity: qty });
-      setIsPending(false);
-    }, 1000),
-  );
+  const handleInput = (qty: number) => updateQty(qty);
+  const handlePlus = () => updateQty(cartLine.quantity + 1);
+  const handleMinus = () => updateQty(cartLine.quantity - 1 >= 0 ? cartLine.quantity - 1 : 0);
+  const handleDelete = () => deleteLine();
 
-  useEffect(() => {
-    if (pendingQtyChanges === 0) return;
-    debounced.current(cartLine.quantity + pendingQtyChanges);
-  }, [cartLine.quantity, pendingQtyChanges]);
-
-  const handlePlus = () => setPendingQtyChanges(pendingQtyChanges + 1);
-  const handleMinus = () => setPendingQtyChanges(pendingQtyChanges - 1);
-  const handleDelete = () => setPendingQtyChanges(-cartLine.quantity);
-  const handleInput = (qty: number) =>
-    setPendingQtyChanges(cartLine.quantity < qty ? -cartLine.quantity : cartLine.quantity - qty);
-
-  if (optimisticQty === 0) return null;
+  if (cartLine.quantity <= 0) return null;
   return (
-    <div
-      className={classNames(
-        'py-6 flex min-h-24 px-6 -mx-6',
-        isPending ? localTheme.fill.base.disabled + 'animate-pulse bg-opacity-30' : '',
-      )}
-    >
+    <div className={classNames('py-6 flex min-h-24 px-3 -mx-3 md:px-6 md:-mx-6')}>
       {/* Image */}
       <div className={classNames('h-24 aspect-square flex-shrink-0 overflow-hidden', 'rounded-lg')}>
         <Image
@@ -87,7 +63,6 @@ const CartLine = ({ cartLine }: Props) => {
               type="button"
               className={classNames(localTheme.text.size.small, localTheme.text.color.primary.main)}
               onClick={handleDelete}
-              disabled={isPending}
             >
               Remove
             </button>
@@ -98,7 +73,6 @@ const CartLine = ({ cartLine }: Props) => {
               srName={`'minus quantity of ${cartLine.merchandise.product.title}`}
               className="px-1"
               onClick={handleMinus}
-              disabled={isPending}
             >
               <HiMinus className="h-4 w-4  " />
             </IconButton>
@@ -106,9 +80,8 @@ const CartLine = ({ cartLine }: Props) => {
               <input
                 className="w-full text-sm bg-transparent  block text-center"
                 id="Line Quantity"
-                value={optimisticQty}
-                disabled={isPending}
-                onChange={(e) => handleInput(Number(e.target.value))}
+                defaultValue={cartLine.quantity}
+                onBlur={(e) => handleInput(Number(e.target.value))}
               ></input>
             </p>
 
@@ -116,7 +89,6 @@ const CartLine = ({ cartLine }: Props) => {
               srName={`'minus quantity of ${cartLine.merchandise.product.title}`}
               className="px-1"
               onClick={handlePlus}
-              disabled={isPending}
             >
               <HiPlus className="h-4 w-4 " />
             </IconButton>

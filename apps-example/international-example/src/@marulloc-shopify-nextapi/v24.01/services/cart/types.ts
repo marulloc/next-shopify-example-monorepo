@@ -47,5 +47,5 @@ export type UpdateCartLinesService = {
   variables: {
     cartId: string;
     lines: ShopifyCartLineUpdateInput[];
-  };
+  } & ShopifyLocaleContext;
 };

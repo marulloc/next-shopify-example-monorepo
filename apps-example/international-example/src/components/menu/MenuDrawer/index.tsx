@@ -8,12 +8,12 @@ import { HiXMark } from 'react-icons/hi2';
 import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-collection';
 import { localTheme } from '@/theme/local-theme';
 import { GrGithub } from 'react-icons/gr';
-import { usePortalRecoil } from '@/context/ui/portal';
 import IconButton from '@/components/IconButton';
 import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/SearchInputTrigger';
 import AltImage from '@/components/AltImage';
 import CollectionCard from '@/components/collection/CollectionCard';
 import LocaleIconTrigger from '@/components/locale/LocaleSelectModal/triggers/LocaleSelectModalIconTrigger';
+import { usePortalRecoil } from '@/context/ui/hooks';
 
 type Props = {
   menu: ToolkitMenu;

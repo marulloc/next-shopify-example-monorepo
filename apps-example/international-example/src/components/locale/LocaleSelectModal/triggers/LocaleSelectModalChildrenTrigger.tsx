@@ -1,6 +1,6 @@
 'use client';
 
-import { useSetPortalRecoil } from '@/context/ui/portal';
+import { useSetPortalRecoil } from '@/context/ui/hooks';
 
 type TProps<T extends React.ElementType = 'button'> = {
   children: React.ReactNode;

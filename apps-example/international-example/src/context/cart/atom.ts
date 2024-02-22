@@ -51,9 +51,10 @@ export const atomOptimisticCart = atom({
   }),
 
   effects: [
-    ({ onSet, setSelf }) => {
+    ({ onSet, setSelf, trigger, getLoadable, getPromise }) => {
       const updateOptimisticCartLines = debounce(
         async (newValue: ToolkitCart, oldValue: undefined | ToolkitCart | DefaultValue) => {
+          const locale = await getPromise(atomLocale);
           const cartId = newValue.id;
           const lines = newValue.lines.map(({ id, merchandise, quantity }) => ({
             id,
@@ -61,7 +62,7 @@ export const atomOptimisticCart = atom({
             quantity,
           }));
 
-          const updatedCart = await updateCartLines(cartId, lines);
+          const updatedCart = await updateCartLines(cartId, lines, locale);
 
           if (deepCompare(updatedCart, oldValue)) return;
           setSelf(updatedCart);
@@ -84,7 +85,7 @@ export const atomOptimisticCart = atom({
  *
  *
  */
-export const optimisticCartLines = selector({
+export const atomOptimisticCartLines = selector({
   key: 'cart-subscribe1244',
   get: ({ get: subscribe }) => {
     if (!store) return [];
@@ -104,52 +105,3 @@ export const optimisticCartLines = selector({
     });
   },
 });
-
-export const useSetCartLineOptimistic = (lineId: ToolkitCartLine['id']) => {
-  const setCartLineOptimistic = useSetRecoilState(optimisticCartLines);
-
-  const updateQty = (qty: number) => {
-    setCartLineOptimistic((cartLines) => {
-      if (!cartLines) return [];
-
-      const targetIndex = cartLines.findIndex(({ id }) => id === lineId);
-
-      return [
-        ...cartLines.slice(0, targetIndex),
-        { ...cartLines[targetIndex], quantity: qty >= 0 ? qty : 0 },
-        ...cartLines.slice(targetIndex + 1, cartLines.length),
-      ];
-    });
-  };
-  const deleteLine = () => {
-    setCartLineOptimistic((cartLines) => {
-      if (!cartLines) return [];
-
-      const targetIndex = cartLines.findIndex(({ id }) => id === lineId);
-      return [
-        ...cartLines.slice(0, targetIndex),
-        { ...cartLines[targetIndex], quantity: 0 },
-        ...cartLines.slice(targetIndex + 1, cartLines.length),
-      ];
-    });
-  };
-
-  return { updateQty, deleteLine };
-};
-
-export const useAddToCart = () => {
-  const locale = useGetLocale();
-  const { contents: cart } = useRecoilValueLoadable(atomOptimisticCart);
-  const setCart = useSetRecoilState(atomOptimisticCart);
-
-  const [state, setState] = useState<'waiting' | 'adding'>('waiting');
-
-  const addItem = async (variantId: ShopifyProductVariant['id'], quantity: number) => {
-    setState('adding');
-    const updatedCart = await addToCart(cart.id, [{ merchandiseId: variantId, quantity }], locale);
-    setCart(updatedCart);
-    setState('waiting');
-  };
-
-  return [state, addItem] as const;
-};
