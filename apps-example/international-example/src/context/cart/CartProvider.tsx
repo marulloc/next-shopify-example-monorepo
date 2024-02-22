@@ -80,9 +80,9 @@ const CartProvider = ({ children, locale, storageKey }: TProps) => {
 
   useEffect(() => {
     initCart();
-    return () => {
-      memoCart(cartQueryContext.cart);
-    }; // eslint-disable-next-line react-hooks/exhaustive-deps
+    // return () => {
+    //   memoCart(cartQueryContext.cart);
+    // }; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

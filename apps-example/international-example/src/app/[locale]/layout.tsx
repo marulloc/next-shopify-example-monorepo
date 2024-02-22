@@ -19,6 +19,7 @@ import SearchModal from '@/components/search/SearchModal';
 import CartDrawer from '@/components/cart/CartDrawer';
 import LocaleAlertModal from '@/components/locale/LocaleAlertModal';
 import RecoilCartTest from './RecoilCartTest';
+import CartDrawerV2 from '@/components/cartV2/CartDrawerV2';
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();
@@ -70,14 +71,16 @@ const RootLayout = async ({
         <CartProvider locale={{ country, language }} storageKey="marulloc-cart">
           <body className={classNames('relative   overflow-hidden', localTheme.fill.base.muted)}>
             {/* <ToastController /> */}
+            {/* <RecoilCartTest /> */}
             {/*  */}
             <MenuDrawer menu={menu} collections={collections} />
             <LocaleSelectorModal availableCountries={availableCountries} availableLanguages={availableLanguages} />
             <SearchModal />
-            <CartDrawer />
-            <RecoilCartTest />
-            {/*  */}
-            <LocaleAlertModal
+            {/* <CartDrawer /> */}
+
+            <CartDrawerV2 />
+
+            {/* <LocaleAlertModal
               detectionStatus={detectionStatus}
               detectedCountry={detectedCountry}
               routingCountry={country}
@@ -85,7 +88,7 @@ const RootLayout = async ({
               availableCountries={availableCountries}
               availableLanguages={availableLanguages}
             />
-            <CartMutationToast />
+            <CartMutationToast /> */}
             <Header locale={{ country, language }} />
             {children}
             <FloatingActionButton />

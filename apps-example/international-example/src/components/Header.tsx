@@ -9,6 +9,7 @@ import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/coll
 import SearchIconTrigger from './search/SearchModal/triggers/SearchIconTrigger';
 import Logo from './Logo';
 import { localTheme } from '@/theme/local-theme';
+import CartIconTriggerV2 from './cartV2/CartDrawerV2/triggers/CartIncoTriggersV2';
 
 type Props = {
   locale?: ShopifyLocaleContext;
@@ -50,7 +51,8 @@ const Header = async ({ locale }: Props) => {
                     </div>
 
                     <div className=" ml-1 ">
-                      <CartTriggerIcon />
+                      {/* <CartTriggerIcon /> */}
+                      <CartIconTriggerV2 />
                     </div>
                   </div>
                 </div>
