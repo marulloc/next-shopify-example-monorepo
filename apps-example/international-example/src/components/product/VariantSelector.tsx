@@ -6,10 +6,10 @@ import { classNames } from '@marulloc/components-library/utils';
 import React, { useEffect, useMemo, useState } from 'react';
 import ProductPrice from '@/components/product/ProductPrice';
 import Price from '@/components/Price';
-import { useCartMutation } from '@/context/cart/hooks';
 import LoadingDots from '@/components/loading/LoadingDots';
 import { useSelectVariant } from '@/hooks/useSelectProductVariant';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
+import AddToCartButton from '../cartV2/AddToCartButton';
 
 type TProps = {
   product: ToolkitProduct;
@@ -18,14 +18,6 @@ type TProps = {
 const VariantSelector = ({ product }: TProps) => {
   const [queryParams, navigateWithParams] = useSyncDataUrl({ keys: product.options.map((option) => option.name) });
   const [{ selectedOptions, selectedVariant }, selectOption] = useSelectVariant({ product, initialValue: queryParams });
-  const [isAdding, setIsAdding] = useState(false);
-  const { addItem } = useCartMutation();
-
-  const productStatus: 'Sold Out' | 'Add to Cart' | 'Select Options' = useMemo(() => {
-    if (!selectedVariant) return 'Select Options';
-    if (!selectedVariant.availableForSale) return 'Sold Out';
-    return 'Add to Cart';
-  }, [selectedVariant]);
 
   useEffect(() => {
     navigateWithParams(
@@ -33,15 +25,6 @@ const VariantSelector = ({ product }: TProps) => {
       product.options.map((option) => option.name),
     );
   }, [navigateWithParams, product.options, selectedOptions]);
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!selectedVariant) return;
-
-    setIsAdding(true);
-    await addItem({ variantId: selectedVariant.id, quantity: 1 });
-    setIsAdding(false);
-  };
 
   return (
     <section className={classNames(localTheme.spacing.padding.xy.medium, 'lg:max-w-lg')}>
@@ -54,7 +37,7 @@ const VariantSelector = ({ product }: TProps) => {
       </div>
       <h2 className="sr-only">상품 옵션 선택</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => e.preventDefault()}>
         {product.options.map((option) => (
           <fieldset
             key={`${product.title}-option-${option.name}`}
@@ -120,32 +103,33 @@ const VariantSelector = ({ product }: TProps) => {
             </div>
 
             <div className="relative">
-              <button
-                type="submit"
-                className={classNames(
-                  'block w-full rounded-lg text-center py-3 pointer-events-none shadow-lg',
-                  localTheme.text.color.base.contrast,
+              <AddToCartButton
+                variant={selectedVariant}
+                className={({ state }) => {
+                  return classNames(
+                    'block w-full rounded-lg text-center py-3  shadow-lg',
+                    localTheme.text.color.base.contrast,
 
-                  !isAdding &&
-                    productStatus === 'Select Options' &&
-                    classNames(localTheme.fill.secondary.main, localTheme.fill.secondary.hover, 'cursor-not-allowed '),
-                  !isAdding &&
-                    productStatus === 'Add to Cart' &&
-                    classNames(localTheme.fill.primary.main, localTheme.fill.primary.hover, 'pointer-events-auto'),
-                  !isAdding &&
-                    productStatus === 'Sold Out' &&
-                    classNames(localTheme.fill.base.disabled, localTheme.fill.base.muted, 'cursor-not-allowed'),
+                    state === 'nullVariant' &&
+                      classNames(localTheme.fill.secondary.main, localTheme.fill.secondary.hover),
 
-                  isAdding &&
-                    classNames(localTheme.fill.primary.main, localTheme.fill.primary.hover, 'cursor-not-allowed'),
-                )}
+                    state === 'soldOut' && classNames(localTheme.fill.base.disabled, localTheme.fill.base.muted, ' '),
+
+                    state === 'adding' && classNames(localTheme.fill.primary.main, localTheme.fill.primary.hover, ' '),
+                    state === 'waiting' && classNames(localTheme.fill.primary.main, localTheme.fill.primary.hover, ' '),
+                  );
+                }}
               >
-                {isAdding ? (
-                  <LoadingDots className="my-2 m-4" />
-                ) : (
-                  <span className={classNames()}>{productStatus}</span>
+                {({ state, fullForm }) => (
+                  <>
+                    {state === 'adding' ? (
+                      <LoadingDots className="my-2 m-4" />
+                    ) : (
+                      <span className={classNames()}>{fullForm}</span>
+                    )}
+                  </>
                 )}
-              </button>
+              </AddToCartButton>
             </div>
           </div>
         </div>

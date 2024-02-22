@@ -1,21 +1,29 @@
 'use client';
 
-import { DefaultValue, atom, selector, useSetRecoilState } from 'recoil';
+import { DefaultValue, atom, selector, useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 import { atomLocale } from '../locale/atom';
 import { ToolkitCart, ToolkitCartLine } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-cart';
 import {
+  addToCart,
   createCart,
   getCart,
   updateCartLines,
   updateCartLocale,
 } from '@/@marulloc-shopify-nextapi/v24.01/services/cart/service';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { debounce } from '@/utils/throttle';
 import { deepCompare } from '@/utils/compare';
+import { ShopifyProductVariant } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-product';
+import { useGetLocale } from '../locale/hook';
 
 const STORAGE_KEY = 'marulloc-cart';
 const store = typeof window !== 'undefined' ? window.localStorage : null;
 
+/**
+ *
+ *
+ *
+ */
 export const atomOptimisticCart = atom({
   key: 'cart-atom-with-locale',
   default: selector({
@@ -71,6 +79,11 @@ export const atomOptimisticCart = atom({
   ],
 });
 
+/**
+ *
+ *
+ *
+ */
 export const optimisticCartLines = selector({
   key: 'cart-subscribe1244',
   get: ({ get: subscribe }) => {
@@ -125,10 +138,18 @@ export const useSetCartLineOptimistic = (lineId: ToolkitCartLine['id']) => {
 };
 
 export const useAddToCart = () => {
-  const [state, setState] = useState<'pending' | 'resolved' | 'error' | null>(null);
+  const locale = useGetLocale();
+  const { contents: cart } = useRecoilValueLoadable(atomOptimisticCart);
   const setCart = useSetRecoilState(atomOptimisticCart);
 
-  const addItem = async () => {};
+  const [state, setState] = useState<'waiting' | 'adding'>('waiting');
 
-  return [state];
+  const addItem = async (variantId: ShopifyProductVariant['id'], quantity: number) => {
+    setState('adding');
+    const updatedCart = await addToCart(cart.id, [{ merchandiseId: variantId, quantity }], locale);
+    setCart(updatedCart);
+    setState('waiting');
+  };
+
+  return [state, addItem] as const;
 };

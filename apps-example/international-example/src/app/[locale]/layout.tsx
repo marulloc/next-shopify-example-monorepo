@@ -68,19 +68,19 @@ const RootLayout = async ({
   return (
     <html lang={language} className=" scroll-smooth">
       <RecoilProvider>
-        <CartProvider locale={{ country, language }} storageKey="marulloc-cart">
-          <body className={classNames('relative   overflow-hidden', localTheme.fill.base.muted)}>
-            {/* <ToastController /> */}
-            {/* <RecoilCartTest /> */}
-            {/*  */}
-            <MenuDrawer menu={menu} collections={collections} />
-            <LocaleSelectorModal availableCountries={availableCountries} availableLanguages={availableLanguages} />
-            <SearchModal />
-            {/* <CartDrawer /> */}
+        {/* <CartProvider locale={{ country, language }} storageKey="marulloc-cart"> */}
+        <body className={classNames('relative   overflow-hidden', localTheme.fill.base.muted)}>
+          {/* <ToastController /> */}
+          {/* <RecoilCartTest /> */}
+          {/*  */}
+          <MenuDrawer menu={menu} collections={collections} />
+          <LocaleSelectorModal availableCountries={availableCountries} availableLanguages={availableLanguages} />
+          <SearchModal />
+          {/* <CartDrawer /> */}
 
-            <CartDrawerV2 />
+          <CartDrawerV2 />
 
-            {/* <LocaleAlertModal
+          {/* <LocaleAlertModal
               detectionStatus={detectionStatus}
               detectedCountry={detectedCountry}
               routingCountry={country}
@@ -89,11 +89,11 @@ const RootLayout = async ({
               availableLanguages={availableLanguages}
             />
             <CartMutationToast /> */}
-            <Header locale={{ country, language }} />
-            {children}
-            <FloatingActionButton />
-          </body>
-        </CartProvider>
+          <Header locale={{ country, language }} />
+          {children}
+          <FloatingActionButton />
+        </body>
+        {/* </CartProvider> */}
       </RecoilProvider>
     </html>
   );

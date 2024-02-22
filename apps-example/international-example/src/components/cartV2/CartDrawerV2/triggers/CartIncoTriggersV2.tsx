@@ -16,6 +16,7 @@ const CartIconTriggerV2 = () => {
   // const { cart } = useCartQuery();
   const totalQty = cart?.totalQuantity || 0;
 
+  console.log('@@@@@', state, cart);
   return (
     <IconButton
       srName="items in cart, view bag"

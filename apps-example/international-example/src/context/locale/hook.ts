@@ -7,20 +7,24 @@ import { splitLocale } from '@/utils/locale';
 import { useEffect } from 'react';
 
 export const useLocaleUpdateEffect = () => {
+  const { locale } = useParams();
+  const pathLocale = splitLocale(locale as string);
   const setLocale = useSetRecoilState(atomLocale);
 
-  const { locale } = useParams();
-  const currentLocale = splitLocale(locale as string);
-
   useEffect(() => {
-    setLocale({ country: currentLocale.countryCode, language: currentLocale.languageCode });
-  }, [currentLocale, setLocale]);
+    setLocale((atomLocale) => {
+      const isSame =
+        atomLocale.country?.toUpperCase() === pathLocale.countryCode.toUpperCase() &&
+        atomLocale.language?.toUpperCase() === pathLocale.languageCode.toUpperCase();
+      if (isSame) return atomLocale;
+      else return { country: pathLocale.countryCode.toUpperCase(), language: pathLocale.languageCode.toUpperCase() };
+    });
+  }, [pathLocale, setLocale]);
 
   return null;
 };
 
 export const useGetLocale = () => {
   const locale = useRecoilValue(atomLocale);
-
   return locale;
 };
