@@ -73,7 +73,6 @@ const CartMutationToast = ({ variant = 'error' }: { variant?: 'error' | 'success
                 </div>
                 <div className="ml-3 w-0 flex-1 pt-0.5">
                   <p className="text-sm font-medium text-gray-900">Successfully saved!</p>
-                  {/* <p className="mt-1 text-sm text-gray-500">Anyone with a link can now view this file.</p> */}
                 </div>
                 <div className="ml-4 flex flex-shrink-0">
                   <button

@@ -78,7 +78,7 @@ const RootLayout = async ({
             availableCountries={availableCountries}
             availableLanguages={availableLanguages}
           />
-          <CartMutationToast />
+          {/* <CartMutationToast /> */}
           <Header locale={{ country, language }} />
           {children}
           <FloatingActionButton />

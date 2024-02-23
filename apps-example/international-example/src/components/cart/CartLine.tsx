@@ -30,7 +30,7 @@ const CartLine = ({ cartLine }: Props) => {
       <div className={classNames('h-24 aspect-square flex-shrink-0 overflow-hidden', 'rounded-lg')}>
         <Image
           src={cartLine.merchandise.product.featuredImage.url || ''}
-          alt={cartLine.merchandise.product.featuredImage.altText}
+          alt={cartLine.merchandise.product.featuredImage.altText || cartLine.merchandise.product.title || ''}
           height={cartLine.merchandise.product.featuredImage.height}
           width={cartLine.merchandise.product.featuredImage.width}
           className="h-full w-full object-cover object-center"

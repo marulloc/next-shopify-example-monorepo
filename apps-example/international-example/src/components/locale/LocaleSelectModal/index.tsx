@@ -23,26 +23,34 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
         {({ closeModal }) => (
           <div
             onClick={() => closeModal()}
-            className={classNames('w-full h-full', 'bg-opacity-40 ', localTheme.fill.base.muted)}
+            className={classNames('w-full h-full', 'bg-gray-500 bg-opacity-20 backdrop-blur-sm')}
           />
         )}
       </Modal.Backdrop>
 
       <Modal.Contents>
         {({ isOpen, closeModal }) => (
-          <div className={classNames('relative mt-8', 'max-w-3xl mx-auto  max-h-[calc(100vh-64px)]')}>
+          <div
+            className={classNames('absolute inset-x-0 top-0 md:top-20  flex justify-center')}
+            onClick={() => closeModal()}
+          >
             <div
+              onClick={(e) => e.stopPropagation()}
               className={classNames(
                 'rounded-lg',
-                'mx-2 md:mx-4 h-full box-border',
-                'overflow-hidden',
-                'bg-opacity-80 backdrop-blur-md shadow-lg',
-                localTheme.fill.base.main,
+                'h-screen md:h-fit  md:max-h-[calc(100vh-164px)] overflow-hidden',
+                'w-full max-w-3xl m-0 md:m-2',
               )}
             >
               <div className="flex flex-col h-full w-full ">
                 {/* Header */}
-                <div className={classNames('px-4 py-4 sm:px-6', 'flex items-center justify-between ', 'bg-white')}>
+                <div
+                  className={classNames(
+                    'px-4 py-4 sm:px-6',
+                    'flex items-center justify-between ',
+                    'bg-white bg-opacity-90  border-b border-gray-200',
+                  )}
+                >
                   <p className="text-lg font-medium text-gray-900">Select Country/Language</p>
                   <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
                     <IconButton
@@ -56,7 +64,13 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                 </div>
 
                 {/* Main */}
-                <div className={classNames('flex-1 overflow-y-auto    ', 'px-4 py-4 sm:px-6')}>
+                <div
+                  className={classNames(
+                    'flex-1 overflow-y-auto    ',
+                    'px-4 py-4 sm:px-6',
+                    'bg-white bg-opacity-80     border-gray-200  ',
+                  )}
+                >
                   <nav className="flex flex-1 flex-col">
                     <ul role="list" className="mt-2 flex flex-1 flex-col gap-y-14">
                       <li>
@@ -143,7 +157,12 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                 </div>
 
                 {/* Footer */}
-                <div className={classNames('px-3 py-3  md:px-6 md:py-6', 'bg-white')}>
+                <div
+                  className={classNames(
+                    'px-3 py-3  md:px-6 md:py-6',
+                    'bg-white bg-opacity-90  border-t border-gray-200',
+                  )}
+                >
                   <div className=" text-indigo-600 flex space-x-2 items-center justify-end  text-xs">{/*  */}</div>
                 </div>
               </div>

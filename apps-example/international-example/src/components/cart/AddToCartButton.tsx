@@ -2,6 +2,7 @@
 
 import { ShopifyProductVariant } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-product';
 import { useAddToCart } from '@/context/cart/hooks';
+import { useSetPortalRecoil } from '@/context/ui/hooks';
 import { classNames } from '@marulloc/components-library/utils';
 import { useMemo } from 'react';
 
@@ -22,6 +23,7 @@ const AddToCartButton = <T extends React.ElementType = 'button'>({
   ...props
 }: TProps<T>) => {
   const [state, addItem] = useAddToCart();
+  const { activate } = useSetPortalRecoil('cart-drawer');
 
   const componentStates: { state: TAddToCartBtnStates; fullForm: string } = useMemo(() => {
     if (!variant) return { state: 'nullVariant', fullForm: 'Please Select Options' };
@@ -32,9 +34,10 @@ const AddToCartButton = <T extends React.ElementType = 'button'>({
     return { state: 'nullVariant', fullForm: 'Something went wrong' };
   }, [state, variant]);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (!variant) return;
-    addItem(variant.id, quantity);
+    await addItem(variant.id, quantity);
+    activate();
   };
 
   const Component = as ?? 'button';

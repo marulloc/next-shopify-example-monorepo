@@ -46,9 +46,7 @@ const SortingDropdown = () => {
         {({ isOpen, closeDropdown }) => (
           <div
             className={classNames(
-              localTheme.fill.base.main,
-              localTheme.border.base.main,
-              'bg-opacity-80  border rounded-lg shadow-xl ',
+              'bg-white bg-opacity-70 shadow-xl rounded-lg backdrop-blur-sm border border-gray-200',
               ' mt-2 -ml-8 p-3 text-sm  absolute  -inset-x-10 right-0 ',
             )}
           >

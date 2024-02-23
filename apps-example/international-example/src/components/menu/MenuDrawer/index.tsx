@@ -29,24 +29,23 @@ const MenuDrawer = ({ menu, collections }: Props) => {
         {({ closeDrawer }) => (
           <div
             onClick={() => closeDrawer()}
-            className={classNames('w-full h-full', 'bg-opacity-60 ', localTheme.fill.base.disabled)}
+            className={classNames('isolate w-full h-full', 'bg-gray-500 bg-opacity-20 backdrop-blur-sm ')}
           />
         )}
       </Drawer.Backdrop>
 
       <Drawer.Contents>
         {({ isOpen, closeDrawer }) => (
-          <div
-            className={classNames(
-              'pointer-events-auto w-screen  max-w-md  h-screen  overflow-hidden',
-              'bg-opacity-80 backdrop-blur-md',
-              localTheme.fill.base.main,
-              'border-r border-gray-200',
-            )}
-          >
+          <div className={classNames('isolate w-screen max-w-md  h-screen overflow-hidden')}>
             <div className="flex flex-col h-full">
               {/* Header */}
-              <div className={classNames('px-4 py-4 sm:px-6', 'flex items-center justify-between ', 'bg-white')}>
+              <div
+                className={classNames(
+                  'px-4 py-4 sm:px-6',
+                  'flex items-center justify-between ',
+                  'bg-white bg-opacity-90  border-b border-gray-200',
+                )}
+              >
                 <div className="relative w-full" onClick={() => closeDrawer()}>
                   <SearchFakeInputTrigger />
                 </div>
@@ -62,7 +61,7 @@ const MenuDrawer = ({ menu, collections }: Props) => {
               </div>
 
               {/* Main */}
-              <div className={classNames('flex-1 overflow-y-auto    ', 'px-4 py-4 sm:px-6')}>
+              <div className={classNames('flex-1 overflow-y-auto px-4 py-4 sm:px-6', 'bg-gray-50 bg-opacity-80 ')}>
                 <nav className="flex flex-1 flex-col">
                   <ul role="list" className="mt-2 flex flex-1 flex-col gap-y-14">
                     <li>
@@ -103,7 +102,7 @@ const MenuDrawer = ({ menu, collections }: Props) => {
               </div>
 
               {/* Footer */}
-              <div className={classNames('px-6 py-6', 'bg-white')}>
+              <div className={classNames('px-6 py-6', 'bg-white bg-opacity-90 border-t border-gray-200')}>
                 <div onClick={() => closeDrawer()}>
                   <LocaleIconTrigger />
                 </div>
