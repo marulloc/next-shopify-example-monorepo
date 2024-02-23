@@ -17,6 +17,7 @@ import LocaleSelectorModal from '@/components/locale/LocaleSelectModal';
 import SearchModal from '@/components/search/SearchModal';
 import LocaleAlertModal from '@/components/locale/LocaleAlertModal';
 import CartDrawer from '@/components/cart/CartDrawer';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();
