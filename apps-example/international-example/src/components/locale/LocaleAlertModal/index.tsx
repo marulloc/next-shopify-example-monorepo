@@ -34,7 +34,7 @@ const LocaleAlertModal = ({ routingCountry, routingLanguage, detectedCountry, de
   }, [detectedCountry, routingCountry]);
 
   const isDetected = detectedCountry !== 'not-detected';
-  const isMatched = routingCountry === detectedCountry;
+  const isMatched = routingCountry.toUpperCase() === detectedCountry.toUpperCase();
   const status = isMatched ? 'matched' : isDetected ? 'not-matched' : 'not-detected';
 
   const detectedCountryName = props.availableCountries.find(
