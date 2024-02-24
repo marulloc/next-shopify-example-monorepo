@@ -39,7 +39,7 @@ const ServerWrapper = async ({ locale }: TProps) => {
     ({ isoCode, name }) => isoCode.toUpperCase() === detectedCountryCode.toUpperCase(),
   ) || { name: '', isoCode: '' };
 
-  console.log('>>>> Server >>>> detectedCountry >>>> \n', detectedCountry);
+  console.log('>>>> Server >>>> detectedCountry >>>> \n', detectedCountryCode, detectedCountry);
   console.log('>>>> Server >>>> currentCountry >>>> \n', currentCountry);
   console.log('>>>> Server >>>> currentLanguage >>>> \n', currentLanguage);
 
