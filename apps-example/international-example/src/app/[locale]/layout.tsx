@@ -18,6 +18,7 @@ import SearchModal from '@/components/search/SearchModal';
 import LocaleAlertModal from '@/components/locale/LocaleAlertModal';
 import CartDrawer from '@/components/cart/CartDrawer';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import ServerWrapper from '@/components/locale/LocaleAlertModal/LocaleDetectionServerContainer';
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();
@@ -79,6 +80,7 @@ const RootLayout = async ({
             availableCountries={availableCountries}
             availableLanguages={availableLanguages}
           />
+          <ServerWrapper locale={params.locale} />
           {/* <CartMutationToast /> */}
           <Header locale={{ country, language }} />
           {children}

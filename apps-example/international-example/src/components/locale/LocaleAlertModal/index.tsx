@@ -43,6 +43,9 @@ const LocaleAlertModal = ({ routingCountry, routingLanguage, detectedCountry, de
   const routingCountryName = props.availableCountries.find(
     ({ isoCode }) => isoCode.toUpperCase() === routingCountry.toUpperCase(),
   );
+
+  console.log('Legacy detectedCountry \n', detectedCountry);
+  console.log('Legacy detectedCountryName \n', detectedCountryName);
   return (
     <Drawer anchor="bottom" open={isActive} onClose={() => setIsActive(false)}>
       <div>
