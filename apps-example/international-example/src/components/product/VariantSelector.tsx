@@ -10,6 +10,7 @@ import LoadingDots from '@/components/loading/LoadingDots';
 import { useSelectVariant } from '@/hooks/useSelectProductVariant';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import AddToCartButton from '../cart/AddToCartButton';
+import { useDictioanry } from '@/context/locale/hook';
 
 type TProps = {
   product: ToolkitProduct;
@@ -18,6 +19,7 @@ type TProps = {
 const VariantSelector = ({ product }: TProps) => {
   const [queryParams, navigateWithParams] = useSyncDataUrl({ keys: product.options.map((option) => option.name) });
   const [{ selectedOptions, selectedVariant }, selectOption] = useSelectVariant({ product, initialValue: queryParams });
+  const dictionary = useDictioanry().product.VariantSelector;
 
   useEffect(() => {
     navigateWithParams(
@@ -28,14 +30,25 @@ const VariantSelector = ({ product }: TProps) => {
 
   return (
     <section className={classNames(localTheme.spacing.padding.xy.medium, 'lg:max-w-lg')}>
-      <div className={classNames(localTheme.spacing.padding.b.small, 'border-b', localTheme.border.base.muted)}>
-        <h1 className={classNames(localTheme.text.size.large, 'font-semibold mb-2')}>{product.title}</h1>
+      <div className={classNames(localTheme.spacing.padding.b.small)}>
+        <h1 className={classNames(localTheme.text.size.large, 'font-semibold mb-1')}>{product.title}</h1>
         <ProductPrice
           priceRange={product.priceRange}
-          className={classNames(localTheme.text.size.small, localTheme.text.color.base.muted)}
+          className={classNames(localTheme.text.size.medium, localTheme.text.color.base.main)}
         />
       </div>
-      <h2 className="sr-only">상품 옵션 선택</h2>
+      <h2
+        className={classNames(
+          'border-b',
+          localTheme.border.base.muted,
+          localTheme.text.color.base.muted,
+          localTheme.text.size.small,
+          localTheme.spacing.margin.y.medium,
+          'font-semibold',
+        )}
+      >
+        {dictionary.title}
+      </h2>
 
       <form onSubmit={(e) => e.preventDefault()}>
         {product.options.map((option) => (

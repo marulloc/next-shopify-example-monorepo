@@ -19,7 +19,7 @@ const LocaleDetectionModal = ({ localeData }: TProps) => {
 
   useEffect(() => {
     if (!localeDetection) return;
-    setTimeout(() => setIsActive(true), 400);
+    setTimeout(() => setIsActive(true), 500);
   }, [localeDetection]);
 
   return (

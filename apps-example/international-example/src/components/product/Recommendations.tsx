@@ -7,6 +7,7 @@ import Link from 'next/link';
 import ScrollCarousel from '../ScrollCarousel';
 import { delay } from '@/utils/throttle';
 import Skeleton from '@/components/loading/Skeleton';
+import { TDictionaries, getDictionary } from '@/dictionaries';
 
 type TProps = {
   product?: ToolkitProduct;
@@ -18,11 +19,14 @@ const Recommendations = async ({ product: origin, handle, locale }: TProps) => {
   // await delay(3000);
   const product = await getProduct(handle, locale);
   const recommendations = await getProductRecommendations(product!.id, locale);
+  const dictionary = await (
+    await getDictionary(locale.language.toLowerCase() as TDictionaries)
+  ).product.Recommendations;
 
   return (
     <div className={classNames(localTheme.spacing.padding.xy.medium, ' ')}>
       <p className={classNames(localTheme.text.size.medium, localTheme.spacing.padding.b.small, 'font-bold')}>
-        Recommendations
+        {dictionary.title}
       </p>
 
       <ScrollCarousel>

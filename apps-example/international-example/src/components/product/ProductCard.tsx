@@ -25,7 +25,7 @@ type TSmallProductCardProps = {
 };
 const SmallProductCard = ({ product }: Omit<Props, 'variant'>) => {
   return (
-    <div className="group flex items-center  space-x-6">
+    <article className="group flex items-center  space-x-6">
       <div
         className={classNames(
           'aspect-square h-14 w-14 bg-gray-400 ',
@@ -51,12 +51,12 @@ const SmallProductCard = ({ product }: Omit<Props, 'variant'>) => {
           'text-gray-600 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
         )}
       >
-        <div>{product.title}</div>
+        <h2>{product.title}</h2>
         <div className={classNames('text-sm')}>
           <ProductPrice priceRange={product.priceRange} />
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
@@ -68,7 +68,7 @@ type TBigProductCardProps = {
 
 const BigProductCard = ({ product, priceDefaultOpen = false }: Omit<TBigProductCardProps, 'variant'>) => {
   return (
-    <div className="relative group h-full rounded-lg overflow-hidden   ">
+    <article className="relative group h-full rounded-lg overflow-hidden   ">
       <div
         className={classNames(
           'w-full h-full relative',
@@ -99,13 +99,13 @@ const BigProductCard = ({ product, priceDefaultOpen = false }: Omit<TBigProductC
         )}
       >
         <div className=" h-full p-4 flex flex-col justify-end items-end">
-          <p className={classNames(localTheme.text.size.small, localTheme.text.color.base.main)}>{product.title}</p>
+          <h2 className={classNames(localTheme.text.size.small, localTheme.text.color.base.main)}>{product.title}</h2>
           <ProductPrice
             priceRange={product.priceRange}
             className={classNames(localTheme.text.size.small, localTheme.text.color.primary.main)}
           />
         </div>
       </div>
-    </div>
+    </article>
   );
 };
