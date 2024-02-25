@@ -11,7 +11,7 @@ import { localTheme } from '@/theme/local-theme';
 import IconButton from '@/components/IconButton';
 import CollectionCard from '@/components/collection/CollectionCard';
 import ProductCard from '@/components/product/ProductCard';
-import { useSelectLocale } from '@/hooks/useLocaleSelect';
+import { useSelectLocale } from '@/hooks/useLocale';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import { usePortalRecoil } from '@/context/ui/hooks';
 

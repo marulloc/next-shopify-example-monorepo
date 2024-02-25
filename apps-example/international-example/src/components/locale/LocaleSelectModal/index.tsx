@@ -8,7 +8,7 @@ import IconButton from '../../IconButton';
 import { HiXMark } from 'react-icons/hi2';
 import ReactCountryFlag from 'react-country-flag';
 import AltImage from '../../AltImage';
-import { useSelectLocale } from '@/hooks/useLocaleSelect';
+import { useSelectLocale } from '@/hooks/useLocale';
 import { usePortalRecoil } from '@/context/ui/hooks';
 
 type TProps = {} & Pick<ToolkitLocale, 'availableCountries' | 'availableLanguages'>;

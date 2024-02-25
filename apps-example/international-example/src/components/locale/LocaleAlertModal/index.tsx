@@ -8,7 +8,7 @@ import { classNames } from '@marulloc/components-library/utils';
 import { useEffect, useState } from 'react';
 import { HiExclamationTriangle, HiCheck } from 'react-icons/hi2';
 import LocaleSelectModalChildrenTrigger from '../LocaleSelectModal/triggers/LocaleSelectModalChildrenTrigger';
-import { useSelectLocale } from '@/hooks/useLocaleSelect';
+import { useSelectLocale } from '@/hooks/useLocale';
 
 /**
  *
@@ -44,8 +44,6 @@ const LocaleAlertModal = ({ routingCountry, routingLanguage, detectedCountry, de
     ({ isoCode }) => isoCode.toUpperCase() === routingCountry.toUpperCase(),
   );
 
-  console.log('Legacy detectedCountry \n', detectedCountry);
-  console.log('Legacy detectedCountryName \n', detectedCountryName);
   return (
     <Drawer anchor="bottom" open={isActive} onClose={() => setIsActive(false)}>
       <div>
@@ -75,7 +73,6 @@ const LocaleAlertModal = ({ routingCountry, routingLanguage, detectedCountry, de
     </Drawer>
   );
 };
-
 export default LocaleAlertModal;
 
 /**

@@ -18,7 +18,7 @@ import SearchModal from '@/components/search/SearchModal';
 import LocaleAlertModal from '@/components/locale/LocaleAlertModal';
 import CartDrawer from '@/components/cart/CartDrawer';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import ServerWrapper from '@/components/locale/LocaleAlertModal/LocaleDetectionServerContainer';
+import Tester from '@/components/locale/LocaleAlertModal/Tester';
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();
@@ -57,7 +57,7 @@ const RootLayout = async ({
 }: Readonly<{ children: React.ReactNode; params: { locale: string } }>) => {
   const { countryCode: country, languageCode: language } = splitLocale(params.locale);
 
-  const { availableCountries, availableLanguages } = await getLocale({ country, language });
+  const { availableCountries, availableLanguages, ...rest } = await getLocale({ country, language });
   const detectedCountry = String(cookies().get('detectedCountry')?.value);
   const detectionStatus = String(cookies().get('detectionStatus')?.value) as TDetectionStatus;
 
@@ -80,7 +80,7 @@ const RootLayout = async ({
             availableCountries={availableCountries}
             availableLanguages={availableLanguages}
           />
-          <ServerWrapper locale={params.locale} />
+          <Tester localeData={{ availableCountries, availableLanguages, ...rest }} />
           {/* <CartMutationToast /> */}
           <Header locale={{ country, language }} />
           {children}
