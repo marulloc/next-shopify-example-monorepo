@@ -14,12 +14,14 @@ import ProductCard from '@/components/product/ProductCard';
 import { useSelectLocale } from '@/hooks/useLocale';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import { usePortalRecoil } from '@/context/ui/hooks';
+import { useDictioanry } from '@/context/locale/hook';
 
 const SearchModal = () => {
   const { isActive, deactivate } = usePortalRecoil('search-modal');
   const { countryCode: country, languageCode: language } = useSelectLocale();
   const [{ predictiveResult }, handlePredictive] = usePredictiveSearch({ locale: { country, language } });
   const [{}, navigateWithQueryParams] = useSyncDataUrl({ keys: ['query'], targetPathname: '/search' });
+  const dictionary = useDictioanry().search.SearchModal;
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -92,7 +94,7 @@ const SearchModal = () => {
                           onChange={handleChange}
                           id="search"
                           name="search-input"
-                          placeholder="Search ..."
+                          placeholder={dictionary.input.placeholder}
                           type="search"
                           className={classNames(
                             'block w-full',
@@ -105,16 +107,17 @@ const SearchModal = () => {
                             'focus-within:ring-0 ring-zinc-400 ring-inset',
                           )}
                         />
+                        <span className="sr-only"> {dictionary.input.sr} </span>
                       </div>
                     </form>
                   </div>
                   <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
                     <IconButton
-                      srName="close panel"
                       className={classNames(localTheme.text.color.base.muted, localTheme.text.color.base.hover)}
                       onClick={() => closeModal()}
                     >
                       <HiXMark className="h-6 w-6" aria-hidden="true" />
+                      <span className="sr-only">{dictionary.closeBtn.sr}</span>
                     </IconButton>
                   </div>
                 </div>

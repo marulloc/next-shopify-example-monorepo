@@ -1,43 +1,23 @@
 const en = {
   /** Cart Components Localization */
   cart: {
-    CartIconTrigger: {
-      sr: 'Open my shopping cart',
-    },
+    CartIconTrigger: { sr: 'Open my shopping cart' },
 
     CartContents: {
       title: 'Shopping Cart',
-      closeBtn: {
-        sr: 'close the cart',
-      },
+      closeBtn: { sr: 'close the cart' },
       footer: {
-        taxes: {
-          title: 'Taxes',
-        },
-        shipping: {
-          title: 'Shipping',
-          p: 'Calculated at checkout',
-        },
-        total: {
-          title: 'Total',
-        },
-        checkout: {
-          title: 'Checkout',
-        },
+        taxes: { title: 'Taxes' },
+        shipping: { title: 'Shipping', p: 'Calculated at checkout' },
+        total: { title: 'Total' },
+        checkout: { title: 'Checkout' },
       },
     },
 
     CartLine: {
-      removeBtn: {
-        title: 'Remove',
-        sr: 'remove items from cart',
-      },
-      plusBtn: {
-        sr: 'add 1 item',
-      },
-      minusBtn: {
-        sr: 'minus 1 item',
-      },
+      removeBtn: { title: 'Remove', sr: 'remove items from cart' },
+      plusBtn: { sr: 'add 1 item' },
+      minusBtn: { sr: 'minus 1 item' },
     },
 
     AddToCart: {
@@ -55,10 +35,7 @@ const en = {
 
   /** Collectioon Components Localization */
   collection: {
-    CollectionProducts: {
-      title: `Collection : `,
-      p: `Showing $[number] products`,
-    },
+    CollectionProducts: { title: `Collection : `, p: `Showing $[number] products` },
   },
 
   SortingDropdown: {
@@ -72,50 +49,33 @@ const en = {
 
   /** Locale Components Localization */
   locale: {
-    LocaleSelectorTrigger: {
-      title: 'Change Country / Language',
-    },
+    LocaleSelectorTrigger: { title: 'Change Country / Language' },
     LocaleSelectModal: {
       title: 'Select Country/Language',
       closeBtn: { sr: 'close selector' },
-      subTitles: {
-        country: 'Select Country',
-        language: 'Select Language',
-      },
+      subTitles: { country: 'Select Country', language: 'Select Language' },
     },
 
     LocaleDetectionModal: {
       MatchedContents: {
         h: 'Hi! You are currently in $[detectedCountry]',
         p: `We've detected that you are in $[detectedCountry] and are shopping on the $[currentCountry] storefront. \n Your locale and language have been set based on your IP address and browser settings, but you have the option to shop in a different country or language.`,
-        keepShopingBtn: {
-          title: 'Continue shopping in $[currentCountry]',
-        },
-        changeMarketBtn: {
-          title: 'Change country or language',
-        },
+        keepShopingBtn: { title: 'Continue shopping in $[currentCountry]' },
+        changeMarketBtn: { title: 'Change country or language' },
       },
 
       NotMatchedContents: {
         h: `Locale mismatch!`,
         p: `Our records indicate you're in $[detectedCountry], but you're currently browsing the $[currentCountry] market. \n  You can browse the market in your preferred language and use all the features of our online store. However, you may not be able to select your address at checkout, or your items may not be deliverable after purchase.`,
-        keepShopingBtn: {
-          title: 'Continue in $[currentCountry]',
-        },
-        changeMarketBtn: {
-          title: 'Switch to $[detectedCountry]',
-        },
+        keepShopingBtn: { title: 'Continue in $[currentCountry]' },
+        changeMarketBtn: { title: 'Switch to $[detectedCountry]' },
       },
 
       NotDetectedContents: {
         h: 'Unable to Determine Your Location',
         p: `We're unable to detect your location, yet you seem to be browsing from $[currentCountry]. \n You can explore the market in your preferred language and access all features of our online store. However, you might face limitations when selecting your address at checkout, or there could be delivery issues with your orders. `,
-        keepShopingBtn: {
-          title: 'Continue in $[currentCountry]',
-        },
-        changeMarketBtn: {
-          title: 'Choose a different location',
-        },
+        keepShopingBtn: { title: 'Continue in $[currentCountry]' },
+        changeMarketBtn: { title: 'Choose a different location' },
       },
     },
   },
@@ -124,10 +84,10 @@ const en = {
   menu: {
     MenuDrawer: {
       closeBtn: { sr: 'close the menu' },
-
       githubMonorepoLink: 'Go to Monorepo',
       githubRepoLink: 'International Repo',
     },
+
     MenuTrigger: { sr: 'Open the Menu Navigatior' },
   },
 
@@ -169,41 +129,37 @@ const en = {
       },
     },
 
-    VariantSelector: {
-      title: 'Select Options',
-    },
+    VariantSelector: { title: 'Select Options' },
 
-    Recommendations: {
-      title: 'Recommendations',
-    },
+    Recommendations: { title: 'Recommendations' },
   },
 
   /** Search Components Localization */
   search: {
-    'search-input': {
-      placeholder: 'Search ...',
-      sr: 'Search Items & Collections',
+    SearchIconTrigger: { sr: 'open search panel' },
+
+    SearchFakeInputTrigger: { sr: 'clink & open search panel', placeholder: 'Search...' },
+
+    SearchModal: {
+      input: { sr: 'search items', placeholder: 'Search...' },
+      closeBtn: { sr: 'close search panel' },
     },
-    'search-trigger': {
-      sr: 'search items',
-    },
-    'search-result': {
-      p: {
-        part1: `Showing`,
-        part2: `products for`,
-      },
+
+    SearchResult: {
+      summary: `Showing $[number] 'products' for $[query]`,
     },
   },
 
+  FloatingActionBtn: { sr: 'Move to github' },
+
   pages: {
-    'main-page': {
-      'information-section': {
-        h: '글로벌 서비스 예시',
-        p: `example of `,
-        a: '',
+    Main: {
+      information: {
+        h: 'Shopify Custom Storefront example',
+        p: 'This app is designed to demonstrate the use of the Shopify API across different languages and countries, showcasing primarily data provided by Shopify.',
       },
     },
   },
-};
+} as const;
 
 export default en;

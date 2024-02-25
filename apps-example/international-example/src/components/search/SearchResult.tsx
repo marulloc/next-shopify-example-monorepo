@@ -3,6 +3,8 @@ import { getProductsSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/s
 import Skeleton from '@/components/loading/Skeleton';
 import ProductCard from '@/components/product/ProductCard';
 import SortingDropdown from '@/components/search/SortingDropdown';
+import { TDictionaries, getDictionary } from '@/dictionaries';
+import { dictionaryReplacer } from '@/dictionaries/utils';
 import { localTheme } from '@/theme/local-theme';
 import { delay } from '@/utils/throttle';
 import { classNames } from '@marulloc/components-library/utils';
@@ -14,18 +16,24 @@ type TProps = {
   locale: { country: string; language: string };
 };
 const SearchResult = async ({ query, sort: sortKey, locale }: TProps) => {
-  await delay(1000);
+  // await delay(1000);
   const products = await getProductsSearch({ query, sortKey, filters: [], locale });
+  const dictionary = await (await getDictionary(locale.language.toLowerCase() as TDictionaries)).search.SearchResult;
 
   return (
     <>
       <div className="flex flex-col md:flex-row justify-between">
         <div>
           <p className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
-            {`Showing ${products.length} ${'products'} for `}
-            <span className={classNames('font-bold', localTheme.text.color.base.main, localTheme.text.size.small)}>
-              &quot;{query}&quot;
-            </span>
+            {dictionaryReplacer(dictionary.summary, [
+              { target: 'number', replace: products.length },
+              {
+                target: 'query',
+                replace: (
+                  <span className={classNames('font-bold', localTheme.text.color.base.main)}>&quot;{query}&quot;</span>
+                ),
+              },
+            ])}
           </p>
         </div>
 

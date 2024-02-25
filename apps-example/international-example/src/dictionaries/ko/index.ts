@@ -1,43 +1,23 @@
 const ko = {
   /** Cart Components Localization */
   cart: {
-    CartIconTrigger: {
-      sr: '장바구니 열기',
-    },
+    CartIconTrigger: { sr: '장바구니 열기' },
 
     CartContents: {
       title: '내 장바구니',
-      closeBtn: {
-        sr: '장바구니 닫기',
-      },
+      closeBtn: { sr: '장바구니 닫기' },
       footer: {
-        taxes: {
-          title: '세금',
-        },
-        shipping: {
-          title: '배송비',
-          p: '결제 페이지에서 계산됩니다.',
-        },
-        total: {
-          title: '총 상품금액',
-        },
-        checkout: {
-          title: '결제하기',
-        },
+        taxes: { title: '세금' },
+        shipping: { title: '배송비', p: '결제 페이지에서 계산됩니다.' },
+        total: { title: '총 상품금액' },
+        checkout: { title: '결제하기' },
       },
     },
 
     CartLine: {
-      removeBtn: {
-        title: '상품 제거',
-        sr: '상품 제거',
-      },
-      plusBtn: {
-        sr: '상품 수량 하나 추가하기',
-      },
-      minusBtn: {
-        sr: '상품 수량 하나 줄이기',
-      },
+      removeBtn: { title: '상품 제거', sr: '상품 제거' },
+      plusBtn: { sr: '상품 수량 하나 추가하기' },
+      minusBtn: { sr: '상품 수량 하나 줄이기' },
     },
 
     AddToCart: {
@@ -55,10 +35,7 @@ const ko = {
 
   /** Collectioon Components Localization */
   collection: {
-    CollectionProducts: {
-      title: `컬렉션 : `,
-      p: `검색된 상품목록 : $[number] 개`,
-    },
+    CollectionProducts: { title: `컬렉션 : `, p: `검색된 상품목록 : $[number] 개` },
   },
 
   SortingDropdown: {
@@ -75,47 +52,33 @@ const ko = {
     LocaleSelectorTrigger: {
       title: '국가 / 언어 변경',
     },
+
     LocaleSelectModal: {
       title: '국가 / 언어 선택',
       closeBtn: { sr: '선택창 닫기' },
-      subTitles: {
-        country: '국가 선택',
-        language: '언어 선택',
-      },
+      subTitles: { country: '국가 선택', language: '언어 선택' },
     },
 
     LocaleDetectionModal: {
       MatchedContents: {
         h: '안녕하세요! 현재 $[detectedCountry]에서 접속중이시군요.',
         p: `$[detectedCountry]에 계신 것을 확인하였고, $[currentCountry] 쇼핑몰에서 쇼핑 중이십니다. \n 우리는 귀하의 IP 주소와 브라우저 언어 설정을 통해 귀하의 시장과 언어를 할당합니다. 하지만, 시장을 변경하실 수 있습니다.`,
-        keepShopingBtn: {
-          title: '$[currentCountry] 에서 쇼핑 계속하기',
-        },
-        changeMarketBtn: {
-          title: '국가 또는 언어 변경하기',
-        },
+        keepShopingBtn: { title: '$[currentCountry] 에서 쇼핑 계속하기' },
+        changeMarketBtn: { title: '국가 또는 언어 변경하기' },
       },
 
       NotMatchedContents: {
         h: `접속 국가를 확인해주세요`,
         p: `우리 기록에 의하면, $[detectedCountry]에 계신 것으로 나타나지만, 현재는 $[currentCountry] 시장을 이용하고 계십니다. \n 선호하는 언어로 시장을 둘러보고 온라인 스토어의 모든 기능을 이용할 수 있습니다. 다만, 결제할 때 주소를 선택할 수 없거나, 구매하신 상품이 배송되지 않을 수도 있다는 점을 유의해 주세요.`,
-        keepShopingBtn: {
-          title: '$[currentCountry]에서 계속 쇼핑',
-        },
-        changeMarketBtn: {
-          title: '$[detectedCountry]에서 쇼핑',
-        },
+        keepShopingBtn: { title: '$[currentCountry]에서 계속 쇼핑' },
+        changeMarketBtn: { title: '$[detectedCountry]에서 쇼핑' },
       },
 
       NotDetectedContents: {
         h: '접속 위치를 확인할 수 없습니다',
         p: `위치 확인이 불가능하지만, $[currentCountry]에서 접속 중인 것으로 보입니다. \n 선호하는 언어로 시장을 탐색하고 온라인 스토어의 모든 기능을 이용할 수 있습니다. 그러나, 결제 시 주소 선택에 제한이 있거나 주문한 상품의 배송 문제가 발생할 수 있습니다.`,
-        keepShopingBtn: {
-          title: '$[currentCountry]에서 계속하기',
-        },
-        changeMarketBtn: {
-          title: '접속 국가 선택하기',
-        },
+        keepShopingBtn: { title: '$[currentCountry]에서 계속하기' },
+        changeMarketBtn: { title: '접속 국가 선택하기' },
       },
     },
   },
@@ -124,7 +87,6 @@ const ko = {
   menu: {
     MenuDrawer: {
       closeBtn: { sr: '메뉴패널 닫기' },
-
       githubMonorepoLink: 'Github : 모노레포 저장소',
       githubRepoLink: 'Github : 국제화 예시 저장소',
     },
@@ -171,41 +133,37 @@ const ko = {
       },
     },
 
-    VariantSelector: {
-      title: '상품 옵션 선택',
-    },
+    VariantSelector: { title: '상품 옵션 선택' },
 
-    Recommendations: {
-      title: '추천 상품',
-    },
+    Recommendations: { title: '추천 상품' },
   },
 
   /** Search Components Localization */
   search: {
-    'search-input': {
-      placeholder: 'Search ...',
-      sr: 'Search Items & Collections',
+    SearchIconTrigger: { sr: '클릭해서 검색창 열기' },
+
+    SearchFakeInputTrigger: { sr: '클릭해서 검색창 열기', placeholder: '검색어 입력...' },
+
+    SearchModal: {
+      input: { sr: '상품 검색', placeholder: '검색어 입력...' },
+      closeBtn: { sr: '검색창 닫기' },
     },
-    'search-trigger': {
-      sr: 'search items',
-    },
-    'search-result': {
-      p: {
-        part1: `Showing`,
-        part2: `products for`,
-      },
+
+    SearchResult: {
+      summary: `$[query] 에 대한 검색결과 : $[number] 개 상품 `,
     },
   },
 
+  FloatingActionBtn: { sr: 'Github 레포 방문하기' },
+
   pages: {
-    'main-page': {
-      'information-section': {
-        h: '글로벌 서비스 예시',
-        p: `example of `,
-        a: '',
+    Main: {
+      information: {
+        h: 'Shopify Custom Storefront 예시',
+        p: '이 앱은 다양한 언어와 국가에 맞춰 Shopify API 사용을 시연하기 위해 제작되었으며, 주로 Shopify에서 제공하는 데이터를 기반으로 합니다. ',
       },
     },
   },
-};
+} as const;
 
 export default ko;

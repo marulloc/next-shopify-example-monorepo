@@ -24,7 +24,7 @@ export default CollectionCard;
 
 const SmallCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
   return (
-    <div
+    <article
       className={classNames(
         'text-gray-700 hover:text-indigo-600  ',
         'group flex gap-x-3 rounded-md  text-sm leading-6',
@@ -45,13 +45,13 @@ const SmallCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
         <AltImage initial={collection.title[0] || 'c'} />
       )}
       <span className="truncate">{collection.title.toUpperCase()}</span>
-    </div>
+    </article>
   );
 };
 
 const BigCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
   return (
-    <>
+    <article>
       <div
         aria-hidden="true"
         className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg lg:aspect-h-6 lg:aspect-w-5  opacity-90 border"
@@ -70,6 +70,6 @@ const BigCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
       <p className={classNames('mt-1 text-sm  ', localTheme.text.size.small, localTheme.text.color.base.muted)}>
         {collection.description || `default collection`}
       </p>
-    </>
+    </article>
   );
 };

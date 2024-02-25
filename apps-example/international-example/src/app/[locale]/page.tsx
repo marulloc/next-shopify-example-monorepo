@@ -2,6 +2,7 @@ import { getCollectionProducts, getCollections } from '@/@marulloc-shopify-nexta
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import CollectionCard from '@/components/collection/CollectionCard';
 import ProductCard from '@/components/product/ProductCard';
+import { TDictionaries, getDictionary } from '@/dictionaries';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
@@ -17,6 +18,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
     collection: 'automated-collection',
     locale: { country: countryCode, language: languageCode },
   });
+  const dictionary = await (await getDictionary(languageCode.toLowerCase() as TDictionaries)).pages.Main;
 
   return (
     <main className={classNames(localTheme.fill.base.main, localTheme.spacing.container, 'shadow-xl')}>
@@ -155,7 +157,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
               localTheme.text.color.base.main,
             )}
           >
-            International Examples
+            {dictionary.information.h}
           </h2>
           <p
             className={classNames(
@@ -164,22 +166,8 @@ const Home = async ({ params }: { params: { locale: string } }) => {
               localTheme.text.color.base.muted,
             )}
           >
-            example of {countryCode}-{languageCode}
+            {dictionary.information.p}
           </p>
-          <div className="  ">
-            <a
-              href="https://github.com/marulloc/Marulloc-shopify-headless-monorepo/tree/master"
-              className={classNames(
-                'mt-8 inline-block px-4 py-2 rounded-lg ',
-                localTheme.text.size.small,
-                localTheme.text.color.base.contrast,
-                localTheme.fill.primary.muted,
-                localTheme.fill.primary.hover,
-              )}
-            >
-              View Code
-            </a>
-          </div>
         </div>
       </section>
     </main>
