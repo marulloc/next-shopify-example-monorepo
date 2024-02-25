@@ -2,11 +2,12 @@
 
 import { ShopifyProductVariant } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-product';
 import { useAddToCart } from '@/context/cart/hooks';
+import { useDictioanry } from '@/context/locale/hook';
 import { useSetPortalRecoil } from '@/context/ui/hooks';
 import { classNames } from '@marulloc/components-library/utils';
 import { useMemo } from 'react';
 
-type TAddToCartBtnStates = 'nullVariant' | 'soldOut' | 'waiting' | 'adding';
+type TAddToCartBtnStates = 'notYet' | 'soldOut' | 'waiting' | 'adding';
 
 type TProps<T extends React.ElementType = 'button'> = {
   variant: ShopifyProductVariant | null;
@@ -24,14 +25,15 @@ const AddToCartButton = <T extends React.ElementType = 'button'>({
 }: TProps<T>) => {
   const [state, addItem] = useAddToCart();
   const { activate } = useSetPortalRecoil('cart-drawer');
+  const dictionary = useDictioanry();
 
   const componentStates: { state: TAddToCartBtnStates; fullForm: string } = useMemo(() => {
-    if (!variant) return { state: 'nullVariant', fullForm: 'Please Select Options' };
-    if (!variant.availableForSale) return { state: 'soldOut', fullForm: 'Sold Out' };
-    if (state === 'adding') return { state, fullForm: 'Adding' };
-    if (state === 'waiting') return { state, fullForm: 'Add To Cart' };
-
-    return { state: 'nullVariant', fullForm: 'Something went wrong' };
+    if (!variant) return { state: 'notYet', fullForm: dictionary.cart.AddToCart.states.notYet };
+    if (!variant.availableForSale) return { state: 'soldOut', fullForm: dictionary.cart.AddToCart.states.soldOut };
+    if (state === 'adding') return { state, fullForm: dictionary.cart.AddToCart.states.adding };
+    if (state === 'waiting') return { state, fullForm: dictionary.cart.AddToCart.states.waiting };
+    return { state: 'notYet', fullForm: dictionary.cart.AddToCart.states.error };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state, variant]);
 
   const handleClick = async () => {
@@ -53,6 +55,7 @@ const AddToCartButton = <T extends React.ElementType = 'button'>({
         )
       }
     >
+      <span className="sr-only">{dictionary.cart.AddToCart.sr}</span>
       {props.children(componentStates)}
     </Component>
   );

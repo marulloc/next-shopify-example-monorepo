@@ -39,6 +39,7 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
               onClick={() => closeDrawer()}
             >
               <HiXMark className="h-6 w-6" aria-hidden="true" />
+              <span className=" sr-only">{dictionary.cart.CartContents.closeBtn.sr}</span>
             </IconButton>
           </div>
         </div>
@@ -58,7 +59,10 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
         <div className={classNames('px-6 py-6', 'bg-white bg-opacity-90  border-t border-gray-200')}>
           <div className={classNames('mb-6 ', localTheme.text.size.small, 'text-gray-500')}>
             <div className="mb-1 flex items-center justify-between py-1">
-              <p>Taxes</p>
+              <p>
+                {dictionary.cart.CartContents.footer.taxes.title}
+                {/* Taxes */}
+              </p>
               <div>
                 {cart?.cost.totalTaxAmount ? (
                   <Price
@@ -73,12 +77,21 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
             </div>
 
             <div className="mb-1 flex items-center justify-between py-1">
-              <p>Shipping</p>
-              <p className="text-right">Calculated at checkout</p>
+              <p>
+                {dictionary.cart.CartContents.footer.shipping.title}
+                {/* Shipping */}
+              </p>
+              <p className="text-right">
+                {dictionary.cart.CartContents.footer.shipping.p}
+                {/* Calculated at checkout */}
+              </p>
             </div>
 
             <div className="mb-1 flex items-center justify-between py-1">
-              <p>Total</p>
+              <p>
+                {dictionary.cart.CartContents.footer.total.title}
+                {/* Total */}
+              </p>
               <Price
                 className={classNames('text-right text-indigo-600 ', 'font-semibold')}
                 amount={cart?.cost.totalAmount.amount || ''}
@@ -93,7 +106,8 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
               rel="noopener noreferrer"
               className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             >
-              Checkout
+              {dictionary.cart.CartContents.footer.checkout.title}
+              {/* Checkout */}
             </Link>
           </div>
         </div>

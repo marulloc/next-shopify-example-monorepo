@@ -8,9 +8,11 @@ import { useRecoilValueLoadable } from 'recoil';
 import { atomOptimisticCart } from '@/context/cart/atom';
 import { Suspense } from 'react';
 import { useSetPortalRecoil } from '@/context/ui/hooks';
+import { useDictioanry } from '@/context/locale/hook';
 
 const CartIconTrigger = () => {
   const { activate } = useSetPortalRecoil('cart-drawer');
+  const dictionary = useDictioanry();
   const { state, contents: cart } = useRecoilValueLoadable(atomOptimisticCart);
   const totalQty = cart?.totalQuantity || 0;
 
@@ -21,6 +23,7 @@ const CartIconTrigger = () => {
       onClick={() => activate()}
     >
       <HiOutlineShoppingBag className="h-6 w-6 flex-shrink-0 " aria-hidden="true" />
+      <span className=" sr-only">{dictionary.cart.CartIconTrigger.sr}</span>
       {totalQty > 0 && (
         <div
           className={classNames(

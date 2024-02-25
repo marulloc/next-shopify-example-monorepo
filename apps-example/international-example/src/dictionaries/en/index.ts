@@ -2,30 +2,27 @@ const en = {
   /** Cart Components Localization */
   cart: {
     CartIconTrigger: {
-      sr: '',
+      sr: 'Open my shopping cart',
     },
+
     CartContents: {
       title: 'Shopping Cart',
       closeBtn: {
-        sr: '',
+        sr: 'close the cart',
       },
       footer: {
         taxes: {
           title: 'Taxes',
-          sr: '',
         },
         shipping: {
           title: 'Shipping',
           p: 'Calculated at checkout',
-          sr: '',
         },
         total: {
           title: 'Total',
-          sr: '',
         },
         checkout: {
           title: 'Checkout',
-          sr: '',
         },
       },
     },
@@ -33,13 +30,25 @@ const en = {
     CartLine: {
       removeBtn: {
         title: 'Remove',
-        sr: '',
+        sr: 'remove items from cart',
       },
       plusBtn: {
-        sr: '',
+        sr: 'add 1 item',
       },
       minusBtn: {
-        sr: '',
+        sr: 'minus 1 item',
+      },
+    },
+
+    AddToCart: {
+      sr: 'add this item to cart',
+      title: 'Add To Cart',
+      states: {
+        notYet: 'Please Select Options',
+        soldOut: 'Sold Out',
+        adding: 'Adding',
+        waiting: 'Add To Cart',
+        error: 'Something went wrong',
       },
     },
   },
@@ -51,7 +60,6 @@ const en = {
   locale: {
     'locale-seletor-trigger': {
       title: 'Change Country/Language',
-      sr: '',
     },
   },
 

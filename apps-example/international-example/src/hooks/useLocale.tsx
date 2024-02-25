@@ -60,7 +60,6 @@ export const useDetectLocale = ({ localeData }: TParams) => {
       const [{ detectedCountry: detectedCountryCode }] = await Promise.all([
         fetch('/api/locale-detection').then((response) => response.json() as Promise<{ detectedCountry: string }>),
       ]);
-      console.log('api route detected >>>>', detectedCountryCode);
 
       const currentCountry = localeData.availableCountries.find(
         ({ isoCode, name }) => isoCode.toUpperCase() === currentConuntryCode?.toUpperCase(),

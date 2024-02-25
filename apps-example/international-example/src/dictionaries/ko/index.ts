@@ -2,44 +2,53 @@ const ko = {
   /** Cart Components Localization */
   cart: {
     CartIconTrigger: {
-      sr: '',
+      sr: '장바구니 열기',
     },
+
     CartContents: {
       title: '내 장바구니',
       closeBtn: {
-        sr: '',
+        sr: '장바구니 닫기',
       },
       footer: {
         taxes: {
           title: '세금',
-          sr: '',
         },
         shipping: {
           title: '배송비',
-          p: 'Calculated at checkout',
-          sr: '',
+          p: '결제 페이지에서 계산됩니다.',
         },
         total: {
           title: '총 상품금액',
-          sr: '',
         },
         checkout: {
           title: '결제하기',
-          sr: '',
         },
       },
     },
 
     CartLine: {
       removeBtn: {
-        title: 'Remove',
-        sr: '',
+        title: '상품 제거',
+        sr: '상품 제거',
       },
       plusBtn: {
-        sr: '',
+        sr: '상품 수량 하나 추가하기',
       },
       minusBtn: {
-        sr: '',
+        sr: '상품 수량 하나 줄이기',
+      },
+    },
+
+    AddToCart: {
+      sr: '장바구니에 담기',
+      title: '장바구니에 담기',
+      states: {
+        notYet: '옵션을 선택해주세요',
+        soldOut: '품절',
+        adding: '장바구니에 담고 있습니다.',
+        waiting: '장바구니에 담기',
+        error: '뭔가가 잘못되었네요. 새로고침해주세요',
       },
     },
   },
@@ -51,7 +60,6 @@ const ko = {
   locale: {
     'locale-seletor-trigger': {
       title: 'Change Country/Language',
-      sr: '',
     },
   },
 

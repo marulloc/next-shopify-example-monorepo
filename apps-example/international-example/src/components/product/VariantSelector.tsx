@@ -110,11 +110,8 @@ const VariantSelector = ({ product }: TProps) => {
                     'block w-full rounded-lg text-center py-3  shadow-lg',
                     localTheme.text.color.base.contrast,
 
-                    state === 'nullVariant' &&
-                      classNames(localTheme.fill.secondary.main, localTheme.fill.secondary.hover),
-
+                    state === 'notYet' && classNames(localTheme.fill.secondary.main, localTheme.fill.secondary.hover),
                     state === 'soldOut' && classNames(localTheme.fill.base.disabled, localTheme.fill.base.muted, ' '),
-
                     state === 'adding' && classNames(localTheme.fill.primary.main, localTheme.fill.primary.hover, ' '),
                     state === 'waiting' && classNames(localTheme.fill.primary.main, localTheme.fill.primary.hover, ' '),
                   );

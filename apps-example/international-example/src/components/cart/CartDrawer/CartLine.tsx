@@ -10,6 +10,7 @@ import React from 'react';
 import { localTheme } from '@/theme/local-theme';
 import IconButton from '../../IconButton';
 import { useSetCartLineOptimistic } from '@/context/cart/hooks';
+import { useDictioanry } from '@/context/locale/hook';
 
 type Props = {
   cartLine: ToolkitCartLine;
@@ -17,6 +18,7 @@ type Props = {
 
 const CartLine = ({ cartLine }: Props) => {
   const { updateQty, deleteLine } = useSetCartLineOptimistic(cartLine.id);
+  const dictionary = useDictioanry();
 
   const handleInput = (qty: number) => updateQty(qty);
   const handlePlus = () => updateQty(cartLine.quantity + 1);
@@ -64,17 +66,15 @@ const CartLine = ({ cartLine }: Props) => {
               className={classNames(localTheme.text.size.small, localTheme.text.color.primary.main)}
               onClick={handleDelete}
             >
-              Remove
+              {dictionary.cart.CartLine.removeBtn.title}
+              <span className="sr-only">{dictionary.cart.CartLine.removeBtn.sr}</span>
             </button>
           </div>
 
           <div className={classNames('flex flex-row items-center rounded-lg', 'border', localTheme.border.base.main)}>
-            <IconButton
-              srName={`'minus quantity of ${cartLine.merchandise.product.title}`}
-              className="px-1"
-              onClick={handleMinus}
-            >
+            <IconButton className="px-1" onClick={handleMinus}>
               <HiMinus className="h-4 w-4  " />
+              <span className="sr-only">{dictionary.cart.CartLine.minusBtn.sr}</span>
             </IconButton>
             <p className="w-6 text-center">
               <input
@@ -85,12 +85,9 @@ const CartLine = ({ cartLine }: Props) => {
               ></input>
             </p>
 
-            <IconButton
-              srName={`'minus quantity of ${cartLine.merchandise.product.title}`}
-              className="px-1"
-              onClick={handlePlus}
-            >
+            <IconButton className="px-1" onClick={handlePlus}>
               <HiPlus className="h-4 w-4 " />
+              <span className="sr-only">{dictionary.cart.CartLine.plusBtn.sr}</span>
             </IconButton>
           </div>
         </div>
