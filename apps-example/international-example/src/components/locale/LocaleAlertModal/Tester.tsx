@@ -1,28 +1,212 @@
 'use client';
 
-import { ShopifyLocalization } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-shop';
 import { ToolkitLocale } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
-import { useGetLocale } from '@/context/locale/hook';
 import { useDetectLocale, useSelectLocale } from '@/hooks/useLocale';
-import { splitLocale } from '@/utils/locale';
+import { localTheme } from '@/theme/local-theme';
+import Drawer from '@marulloc/components-library/Drawer';
+import { classNames } from '@marulloc/components-library/utils';
+import { useEffect, useState } from 'react';
+import { HiExclamationTriangle, HiCheck } from 'react-icons/hi2';
+import LocaleSelectModalChildrenTrigger from '../LocaleSelectModal/triggers/LocaleSelectModalChildrenTrigger';
 
 type TProps = {
   localeData: ToolkitLocale;
 };
 
 const Tester = ({ localeData }: TProps) => {
-  const detection = useDetectLocale({ localeData });
+  const localeDetection = useDetectLocale({ localeData });
+  const [isActive, setIsActive] = useState(false);
 
-  if (!detection) return null;
+  useEffect(() => {
+    if (!localeDetection) return;
+    setTimeout(() => setIsActive(true), 400);
+  }, [localeDetection]);
 
   return (
-    <div className="w-full my-44 text-3xl bg-red-600 flex flex-col px-20 items-center space-y-10 ">
-      <div>{`Status : ${detection.status}`}</div>
-      <div>{`Detected Country : ${detection.detectedCountry?.name} = ${detection.detectedCountry?.isoCode}`}</div>
-      <div>{`Current Country : ${detection.currentCountry?.name} = ${detection.currentCountry?.isoCode}`}</div>
-      <div>{`Current Language : ${detection.currentLanguage?.name} = ${detection.currentLanguage?.isoCode}`}</div>
-    </div>
+    <>
+      {/* <div className="w-full my-44 text-3xl bg-red-600 flex flex-col px-20 items-center space-y-10 ">
+        <div>{`Status : ${localeDetection.status}`}</div>
+        <div>{`Detected Country : ${localeDetection.detectedCountry?.name} = ${localeDetection.detectedCountry?.isoCode}`}</div>
+        <div>{`Current Country : ${localeDetection.currentCountry?.name} = ${localeDetection.currentCountry?.isoCode}`}</div>
+        <div>{`Current Language : ${localeDetection.currentLanguage?.name} = ${localeDetection.currentLanguage?.isoCode}`}</div>
+      </div> */}
+
+      <Drawer anchor="bottom" open={isActive} onClose={() => setIsActive(false)}>
+        <div>
+          <Drawer.Backdrop>
+            {() => <div className="h-screen w-screen bg-white/40 bg-opacity-20  "></div>}
+          </Drawer.Backdrop>
+          <Drawer.Contents>
+            {({ closeDrawer }) => (
+              <div className="w-full h-fit  flex justify-end group">
+                <div
+                  className={classNames(
+                    '  z-50  bg-white bg-opacity-70 shadow-xl rounded-lg backdrop-blur-sm border border-gray-200',
+                    localTheme.spacing.padding.xy.small,
+                    localTheme.spacing.margin.xy.small,
+                  )}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className=" text-2xl text-red-600">Tester</div>
+                  {localeDetection?.status === 'matched' && (
+                    <MatchedContents handleClose={closeDrawer} {...localeDetection} />
+                  )}
+                  {localeDetection?.status === 'not-matched' && (
+                    <NotMatchedContents handleClose={closeDrawer} {...localeDetection} />
+                  )}
+                  {localeDetection?.status === 'not-detected' && (
+                    <NotDetectedContents handleClose={closeDrawer} {...localeDetection} />
+                  )}
+                </div>
+              </div>
+            )}
+          </Drawer.Contents>
+        </div>
+      </Drawer>
+    </>
   );
 };
 
 export default Tester;
+
+type TContentsProps = { handleClose: () => void } & ReturnType<typeof useDetectLocale>;
+
+const MatchedContents = ({ handleClose, detectedCountry, currentCountry, currentLanguage }: TContentsProps) => {
+  return (
+    <div className="max-w-xl  ">
+      <div className="flex">
+        <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full   bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+          <HiCheck className="h-6 w-6 text-green-600  animate-pulse" aria-hidden="true" />
+        </div>
+        <div className="mt-3  ml-2  sm:ml-4 sm:mt-0 sm:text-left">
+          <h3 className="text-base font-semibold leading-6 text-gray-900">Hi! You ar in {detectedCountry?.name}</h3>
+          <div className="mt-1">
+            <p className="text-sm text-gray-500">
+              We notice that you ar in
+              <span className="mx-2 font-bold  ">{detectedCountry?.name}</span>
+            </p>
+
+            <p className="text-sm text-gray-500">
+              and you also are shopping in
+              <span className="mx-2 font-bold  ">{currentCountry.name}</span>
+              We allocate your market and language by your IP and your browser language setting. But you can change your
+              market.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="mt-5 sm:ml-10 sm:mt-4 sm:flex sm:pl-4">
+        <button
+          type="button"
+          className=" inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50   sm:w-auto"
+          onClick={handleClose}
+        >
+          {`I'm just shopping in ${currentCountry.name}`}
+        </button>
+        <LocaleSelectModalChildrenTrigger
+          type="button"
+          className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
+          onClick={handleClose}
+        >
+          {`I'll try another change my market `}
+        </LocaleSelectModalChildrenTrigger>
+      </div>
+    </div>
+  );
+};
+
+const NotMatchedContents = ({ handleClose, detectedCountry, currentCountry, currentLanguage }: TContentsProps) => {
+  const { setLocale } = useSelectLocale();
+
+  return (
+    <div className="max-w-xl  ">
+      <div className="flex">
+        <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full   bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+          <HiExclamationTriangle className="h-6 w-6 text-red-600  animate-pulse" aria-hidden="true" />
+        </div>
+        <div className="mt-3  ml-2  sm:ml-4 sm:mt-0 sm:text-left">
+          <h3 className="text-base font-semibold leading-6 text-gray-900">Are you sure in {currentCountry.name} ?</h3>
+          <div className="mt-1">
+            <p className="text-sm text-gray-500">
+              We think you are in
+              <span className="mx-2 font-bold  ">{detectedCountry?.name}</span>
+              but you are in
+              <span className="mx-2 font-bold  ">{currentCountry.name}</span>
+              market
+            </p>
+            <p className="text-sm text-gray-500">
+              you can browse market with your preference language and you can use any feature in our online store. But
+              you cannot choose your adderess when checkout Or your stuff may cannot be delivered after checkout.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="mt-5 sm:ml-10 sm:mt-4 sm:flex sm:pl-4">
+        <button
+          type="button"
+          className=" inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50   sm:w-auto"
+          onClick={handleClose}
+        >
+          {`Yes, I'm in ${currentCountry.name}`}
+        </button>
+        <button
+          type="button"
+          className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
+          onClick={() => {
+            setLocale({ country: detectedCountry?.isoCode, language: currentLanguage.isoCode });
+            handleClose();
+          }}
+        >
+          {`No, I'm in ${detectedCountry}`}
+        </button>
+        <LocaleSelectModalChildrenTrigger
+          type="button"
+          className="inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-red-600 shadow-sm hover:bg-gray-50 ring-1 ring-inset ring-red-300  sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
+          onClick={handleClose}
+        >
+          {`Choose another `}
+        </LocaleSelectModalChildrenTrigger>
+      </div>
+    </div>
+  );
+};
+const NotDetectedContents = ({ handleClose, detectedCountry, currentCountry, currentLanguage }: TContentsProps) => {
+  return (
+    <div className="max-w-xl  ">
+      <div className="flex">
+        <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full   bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+          <HiExclamationTriangle className="h-6 w-6 text-red-600  animate-pulse" aria-hidden="true" />
+        </div>
+        <div className="mt-3  ml-2  sm:ml-4 sm:mt-0 sm:text-left">
+          <h3 className="text-base font-semibold leading-6 text-gray-900">Where are you</h3>
+          <div className="mt-1">
+            <p className="text-sm text-gray-500">
+              We cannot detect where you are but you are in
+              <span className="mx-2 font-bold  ">{currentCountry.name}</span>
+            </p>
+            <p className="text-sm text-gray-500">
+              you can browse market with your preference language and you can use any feature in our online store. But
+              you cannot choose your adderess when checkout Or your stuff may cannot be delivered after checkout.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="mt-5 sm:ml-10 sm:mt-4 sm:flex sm:pl-4">
+        <button
+          type="button"
+          className=" inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50   sm:w-auto"
+          onClick={handleClose}
+        >
+          {`Yes, I'm in ${currentCountry.name}`}
+        </button>
+        <LocaleSelectModalChildrenTrigger
+          type="button"
+          className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
+          onClick={handleClose}
+        >
+          {`No, I'll choose another `}
+        </LocaleSelectModalChildrenTrigger>
+      </div>
+    </div>
+  );
+};

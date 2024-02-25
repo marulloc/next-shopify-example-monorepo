@@ -72,14 +72,14 @@ const RootLayout = async ({
           <LocaleSelectorModal availableCountries={availableCountries} availableLanguages={availableLanguages} />
           <SearchModal />
           <CartDrawer />
-          <LocaleAlertModal
+          {/* <LocaleAlertModal
             detectionStatus={detectionStatus}
             detectedCountry={detectedCountry}
             routingCountry={country}
             routingLanguage={language}
             availableCountries={availableCountries}
             availableLanguages={availableLanguages}
-          />
+          /> */}
           <Tester localeData={{ availableCountries, availableLanguages, ...rest }} />
           {/* <CartMutationToast /> */}
           <Header locale={{ country, language }} />
