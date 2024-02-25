@@ -6,8 +6,6 @@ import Header from '../../components/Header';
 import FloatingActionButton from '../../components/FloatingAction';
 import { classNames } from '@marulloc/components-library/utils';
 import { localTheme } from '@/theme/local-theme';
-import CartMutationToast from '@/components/cart/CartMutationToast';
-import ToastController from './ToastController';
 import RecoilProvider from '@/context/RecoilProvider';
 import MenuDrawer from '@/components/menu/MenuDrawer';
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
@@ -17,6 +15,7 @@ import CartDrawer from '@/components/cart/CartDrawer';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import LocaleDetectionModal from '@/components/locale/LocaleDetectionModal';
 import SuspenseWrapper from '@/components/SuspenseWrapper';
+import { TDictionaries, getDictionary } from '@/dictionaries';
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();
@@ -59,10 +58,12 @@ const RootLayout = async ({
   const menu = await getMenu('custom-storefront-menu', { country, language });
   const collections = await getCollections({ country, language });
 
+  const dictionary = await getDictionary(language.toLowerCase() as TDictionaries);
+
   return (
     <html lang={language} className=" scroll-smooth">
       <body className={classNames('relative   overflow-hidden', localTheme.fill.base.muted)}>
-        <RecoilProvider>
+        <RecoilProvider locale={{ country, language }} dictionary={dictionary}>
           <SuspenseWrapper>
             <MenuDrawer menu={menu} collections={collections} />
             <LocaleSelectorModal availableCountries={availableCountries} availableLanguages={availableLanguages} />
@@ -73,7 +74,6 @@ const RootLayout = async ({
             <SpeedInsights />
           </SuspenseWrapper>
 
-          {/* <CartMutationToast /> */}
           <Header locale={{ country, language }} />
           {children}
         </RecoilProvider>

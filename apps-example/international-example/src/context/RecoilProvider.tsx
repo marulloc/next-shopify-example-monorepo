@@ -1,12 +1,24 @@
 'use client';
 
 import { RecoilRoot } from 'recoil';
-import RecoilEffects from './RecoilEffects';
+import { atomDictionary, atomLocale } from './locale/atom';
+import { TDictionary } from '@/dictionaries';
 
-const RecoilProvider = ({ children }: { children: React.ReactNode }) => {
+type TProps = {
+  children: React.ReactNode;
+  locale: { country: string; language: string };
+  dictionary: TDictionary;
+};
+
+const RecoilProvider = ({ children, locale, dictionary }: TProps) => {
   return (
-    <RecoilRoot>
-      <RecoilEffects>{children}</RecoilEffects>
+    <RecoilRoot
+      initializeState={({ set }) => {
+        set(atomLocale, locale);
+        set(atomDictionary, dictionary);
+      }}
+    >
+      <>{children}</>
     </RecoilRoot>
   );
 };

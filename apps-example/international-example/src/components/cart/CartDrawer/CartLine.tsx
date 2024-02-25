@@ -3,12 +3,12 @@
 import { ToolkitCartLine } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-cart';
 import Image from 'next/image';
 import Link from 'next/link';
-import Price from '../Price';
+import Price from '../../Price';
 import { classNames } from '@marulloc/components-library/utils';
 import { HiPlus, HiMinus } from 'react-icons/hi2';
 import React from 'react';
 import { localTheme } from '@/theme/local-theme';
-import IconButton from '../IconButton';
+import IconButton from '../../IconButton';
 import { useSetCartLineOptimistic } from '@/context/cart/hooks';
 
 type Props = {
