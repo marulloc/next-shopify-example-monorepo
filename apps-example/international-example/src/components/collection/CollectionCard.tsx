@@ -32,7 +32,7 @@ const SmallCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
     >
       {collection.image || index < 3 ? (
         <Image
-          src={collection.image?.url || `/default/collection-${index + 1}.png`}
+          src={collection.image?.url || `/default-alt-images/collection-${index + 1}.png`}
           alt={collection.image?.altText || `default-collection-${index + 1}`}
           width={collection.image?.width || 1200}
           height={collection.image?.height || 1200}
@@ -57,7 +57,7 @@ const BigCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
         className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg lg:aspect-h-6 lg:aspect-w-5  opacity-90 border"
       >
         <Image
-          src={collection.image?.url || `/default/collection-${index + 1}.png`}
+          src={collection.image?.url || `/default-alt-images/collection-${index + 1}.png`}
           alt={collection.image?.altText || `default-collection-${index + 1}`}
           width={collection.image?.width || 1200}
           height={collection.image?.height || 1200}

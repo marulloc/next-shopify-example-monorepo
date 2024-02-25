@@ -24,7 +24,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
       <section className="relative max-h-screen ">
         <div className="absolute inset-0">
           <Image
-            src="/default/information.png"
+            src="/default-alt-images/information.png"
             alt={'home-page-hero'}
             width={1400}
             height={1000}
