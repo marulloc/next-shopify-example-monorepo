@@ -98,6 +98,28 @@ const en = {
           title: 'Change country or language',
         },
       },
+
+      NotMatchedContents: {
+        h: `Locale mismatch!`,
+        p: `Our records indicate you're in $[detectedCountry], but you're currently browsing the $[currentCountry] market. \n  You can browse the market in your preferred language and use all the features of our online store. However, you may not be able to select your address at checkout, or your items may not be deliverable after purchase.`,
+        keepShopingBtn: {
+          title: 'Continue in $[currentCountry]',
+        },
+        changeMarketBtn: {
+          title: 'Switch to $[detectedCountry]',
+        },
+      },
+
+      NotDetectedContents: {
+        h: 'Unable to Determine Your Location',
+        p: `We're unable to detect your location, yet you seem to be browsing from $[currentCountry]. \n You can explore the market in your preferred language and access all features of our online store. However, you might face limitations when selecting your address at checkout, or there could be delivery issues with your orders. `,
+        keepShopingBtn: {
+          title: 'Continue in $[currentCountry]',
+        },
+        changeMarketBtn: {
+          title: 'Choose a different location',
+        },
+      },
     },
   },
 
