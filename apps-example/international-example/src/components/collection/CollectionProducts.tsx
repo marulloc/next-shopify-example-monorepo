@@ -5,6 +5,7 @@ import ProductCard from '@/components/product/ProductCard';
 import SortingDropdown from '@/components/search/SortingDropdown';
 import { useDictioanry } from '@/context/locale/hook';
 import { TDictionaries, getDictionary } from '@/dictionaries';
+import { dictionaryReplacer } from '@/dictionaries/utils';
 import { localTheme } from '@/theme/local-theme';
 import { delay } from '@/utils/throttle';
 import { classNames } from '@marulloc/components-library/utils';
@@ -19,7 +20,8 @@ const CollectionProducts = async ({ collection: handle, sort: sortKey, locale }:
   await delay(1000);
   const collection = await getCollection(handle, locale);
   const products = await getCollectionProducts({ collection: handle, sortKey, locale });
-  const dictionary = await getDictionary(locale.language.toLowerCase() as TDictionaries);
+  const dictionary = (await getDictionary(locale.language.toLowerCase() as TDictionaries)).collection
+    .CollectionProducts;
 
   return (
     <>
@@ -34,7 +36,7 @@ const CollectionProducts = async ({ collection: handle, sort: sortKey, locale }:
           'bg-opacity-40 backdrop-blur-sm',
         )}
       >
-        {dictionary.collection.CollectionProducts.title}
+        {dictionary.title}
         <span className="font-semibold">&quot;{collection?.title}&quot;</span>
       </section>
 
@@ -42,7 +44,7 @@ const CollectionProducts = async ({ collection: handle, sort: sortKey, locale }:
         <div className="flex flex-col md:flex-row justify-between  ">
           <div>
             <p className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
-              {`${dictionary.collection.CollectionProducts.summary.p1} ${products.length} ${dictionary.collection.CollectionProducts.summary.p2}`}
+              {dictionaryReplacer(dictionary.p, [{ target: 'number', replace: products.length }])}
             </p>
           </div>
 

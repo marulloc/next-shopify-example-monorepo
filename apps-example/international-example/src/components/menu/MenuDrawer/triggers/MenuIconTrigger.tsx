@@ -5,9 +5,11 @@ import { HiBars3 } from 'react-icons/hi2';
 import IconButton from '@/components/IconButton';
 import { localTheme } from '@/theme/local-theme';
 import { useSetPortalRecoil } from '@/context/ui/hooks';
+import { useDictioanry } from '@/context/locale/hook';
 
 const MenuIconTrigger = () => {
   const { activate } = useSetPortalRecoil('menu-drawer');
+  const dictionary = useDictioanry().menu.MenuTrigger;
 
   return (
     <IconButton
@@ -16,6 +18,7 @@ const MenuIconTrigger = () => {
       onClick={() => activate()}
     >
       <HiBars3 className={classNames('h-5 w-5 flex-shrink-0')} aria-hidden="true" />
+      <span className="sr-only">{dictionary.sr}</span>
     </IconButton>
   );
 };

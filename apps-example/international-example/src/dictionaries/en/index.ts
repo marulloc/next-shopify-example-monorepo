@@ -57,10 +57,7 @@ const en = {
   collection: {
     CollectionProducts: {
       title: `Collection : `,
-      summary: {
-        p1: `Showing `,
-        p2: ` products`,
-      },
+      p: `Showing $[number] products`,
     },
   },
 
@@ -125,19 +122,13 @@ const en = {
 
   /** Menu Components Localization */
   menu: {
-    'menu-drawer': {
-      trigger: {
-        sr: '',
-      },
-      li: {
-        menus: 'Menus',
-        collection: 'Collections',
-      },
-      links: {
-        'monorepo-link': 'Go to Monorepo',
-        'app-repo-link': 'Go to International Repo',
-      },
+    MenuDrawer: {
+      closeBtn: { sr: 'close the menu' },
+
+      githubMonorepoLink: 'Go to Monorepo',
+      githubRepoLink: 'International Repo',
     },
+    MenuTrigger: { sr: 'Open the Menu Navigatior' },
   },
 
   /** Product Components Localization */

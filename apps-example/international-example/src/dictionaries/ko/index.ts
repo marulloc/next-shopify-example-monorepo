@@ -57,10 +57,7 @@ const ko = {
   collection: {
     CollectionProducts: {
       title: `컬렉션 : `,
-      summary: {
-        p1: ` `,
-        p2: `개의 상품목록`,
-      },
+      p: `검색된 상품목록 : $[number] 개`,
     },
   },
 
@@ -125,19 +122,14 @@ const ko = {
 
   /** Menu Components Localization */
   menu: {
-    'menu-drawer': {
-      trigger: {
-        sr: '',
-      },
-      li: {
-        menus: 'Menus',
-        collection: 'Collections',
-      },
-      links: {
-        'monorepo-link': 'Go to Monorepo',
-        'app-repo-link': 'Go to International Repo',
-      },
+    MenuDrawer: {
+      closeBtn: { sr: '메뉴패널 닫기' },
+
+      githubMonorepoLink: 'Github : 모노레포 저장소',
+      githubRepoLink: 'Github : 국제화 예시 저장소',
     },
+
+    MenuTrigger: { sr: '메뉴패널 열기' },
   },
 
   /** Product Components Localization */

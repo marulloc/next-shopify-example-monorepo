@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { HiXMark } from 'react-icons/hi2';
 import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-collection';
 import { localTheme } from '@/theme/local-theme';
-import { GrGithub } from 'react-icons/gr';
 import IconButton from '@/components/IconButton';
 import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/SearchInputTrigger';
 import AltImage from '@/components/AltImage';
@@ -15,6 +14,8 @@ import CollectionCard from '@/components/collection/CollectionCard';
 import LocaleIconTrigger from '@/components/locale/LocaleSelectModal/triggers/LocaleSelectModalIconTrigger';
 import { usePortalRecoil } from '@/context/ui/hooks';
 import SuspenseWrapper from '@/components/SuspenseWrapper';
+import { useDictioanry } from '@/context/locale/hook';
+import GithubLink from './triggers/GithubLink';
 
 type Props = {
   menu: ToolkitMenu;
@@ -23,6 +24,7 @@ type Props = {
 
 const MenuDrawer = ({ menu, collections }: Props) => {
   const { isActive, deactivate } = usePortalRecoil('menu-drawer');
+  const dictionary = useDictioanry().menu.MenuDrawer;
 
   return (
     <Drawer anchor="left" open={isActive} onClose={() => deactivate()}>
@@ -59,6 +61,7 @@ const MenuDrawer = ({ menu, collections }: Props) => {
                     onClick={() => closeDrawer()}
                   >
                     <HiXMark className="h-6 w-6" aria-hidden="true" />
+                    <span className="sr-only">{dictionary.closeBtn.sr}</span>
                   </IconButton>
                 </div>
               </div>
@@ -111,53 +114,13 @@ const MenuDrawer = ({ menu, collections }: Props) => {
                 </div>
 
                 <div className={classNames('mt-2 pt-2', 'flex flex-col space-y-3  border-t')}>
-                  <Link
-                    href="https://github.com/marulloc/Marulloc-shopify-headless-monorepo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block "
-                  >
-                    <div
-                      className={classNames(
-                        'text-gray-700 hover:text-indigo-600  ',
-                        'group flex gap-x-3 rounded-md  text-sm leading-6',
-                      )}
-                    >
-                      <div
-                        className={classNames(
-                          'h-6 w-6 overflow-hidden border border-gray-200 group-hover:border-indigo-600 rounded-lg ',
-                          'flex justify-center items-center',
-                        )}
-                      >
-                        <GrGithub className={classNames('  shrink-0 h-7 w-7      ')} />
-                      </div>
-                      <span className=" ">Go to Monorepo</span>
-                    </div>
-                  </Link>
+                  <GithubLink href="https://github.com/marulloc/Marulloc-shopify-headless-monorepo">
+                    <span className=" ">{dictionary.githubMonorepoLink}</span>
+                  </GithubLink>
 
-                  <Link
-                    href="https://github.com/marulloc/Marulloc-shopify-headless-monorepo/tree/master/apps-example/international-example"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block "
-                  >
-                    <div
-                      className={classNames(
-                        'text-gray-700 hover:text-indigo-600  ',
-                        'group flex gap-x-3 rounded-md  text-sm leading-6',
-                      )}
-                    >
-                      <div
-                        className={classNames(
-                          'h-6 w-6 overflow-hidden border border-gray-200 group-hover:border-indigo-600 rounded-lg ',
-                          'flex justify-center items-center',
-                        )}
-                      >
-                        <GrGithub className={classNames('  shrink-0 h-7 w-7      ')} />
-                      </div>
-                      <span className=" ">Go to Example Repo</span>
-                    </div>
-                  </Link>
+                  <GithubLink href="https://github.com/marulloc/Marulloc-shopify-headless-monorepo/tree/master/apps-example/international-example">
+                    <span className=" ">{dictionary.githubRepoLink}</span>
+                  </GithubLink>
                 </div>
               </div>
             </div>
