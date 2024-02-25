@@ -4,9 +4,11 @@ import { classNames } from '@marulloc/components-library/utils';
 import { localTheme } from '@/theme/local-theme';
 import { HiOutlineGlobeAsiaAustralia } from 'react-icons/hi2';
 import { useSetPortalRecoil } from '@/context/ui/hooks';
+import { useDictioanry } from '@/context/locale/hook';
 
 const LocaleSelectModalIconTrigger = () => {
   const { activate } = useSetPortalRecoil('locale-select-modal');
+  const dictionary = useDictioanry();
 
   return (
     <button
@@ -32,7 +34,10 @@ const LocaleSelectModalIconTrigger = () => {
         >
           <HiOutlineGlobeAsiaAustralia className={classNames('h-6 w-6 flex-shrink-0')} aria-hidden="true" />
         </div>
-        <span className=" ">Change Country/Language</span>
+        <span className=" ">
+          {dictionary.locale.LocaleSelectorTrigger.title}
+          {/* Change Country/Language */}
+        </span>
       </div>
     </button>
   );

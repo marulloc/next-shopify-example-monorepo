@@ -10,12 +10,14 @@ import ReactCountryFlag from 'react-country-flag';
 import AltImage from '../../AltImage';
 import { useSelectLocale } from '@/hooks/useLocale';
 import { usePortalRecoil } from '@/context/ui/hooks';
+import { useDictioanry } from '@/context/locale/hook';
 
 type TProps = {} & Pick<ToolkitLocale, 'availableCountries' | 'availableLanguages'>;
 
 const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) => {
   const { locale, countryCode, languageCode, setLocale, isSameISOCode } = useSelectLocale();
   const { isActive, deactivate } = usePortalRecoil('locale-select-modal');
+  const dictionary = useDictioanry();
 
   return (
     <Modal open={isActive} onClose={() => deactivate()}>
@@ -51,14 +53,17 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                     'bg-white bg-opacity-90  border-b border-gray-200',
                   )}
                 >
-                  <p className="text-lg font-medium text-gray-900">Select Country/Language</p>
+                  <p className="text-lg font-medium text-gray-900">
+                    {dictionary.locale.LocaleSelectModal.title}
+                    {/* Select Country/Language */}
+                  </p>
                   <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
                     <IconButton
-                      srName="close panel"
                       className={classNames(localTheme.text.color.base.muted, localTheme.text.color.base.hover)}
                       onClick={() => closeModal()}
                     >
                       <HiXMark className="h-6 w-6" aria-hidden="true" />
+                      <span className="sr-only">{dictionary.locale.LocaleSelectModal.closeBtn.sr}</span>
                     </IconButton>
                   </div>
                 </div>
@@ -74,7 +79,10 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                   <nav className="flex flex-1 flex-col">
                     <ul role="list" className="mt-2 flex flex-1 flex-col gap-y-14">
                       <li>
-                        <div className="text-xs font-semibold leading-6 text-gray-500">Select Countries</div>
+                        <div className="text-xs font-semibold leading-6 text-gray-500">
+                          {dictionary.locale.LocaleSelectModal.subTitles.country}
+                          {/* Select Countries */}
+                        </div>
                         <ul role="list" className="-mx-2 mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                           {availableCountries.map(({ name, isoCode }) => (
                             <li key={`country-${isoCode}`}>
@@ -116,7 +124,10 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                       </li>
 
                       <li>
-                        <div className="text-xs font-semibold leading-6 text-gray-500">Select Languages</div>
+                        <div className="text-xs font-semibold leading-6 text-gray-500">
+                          {dictionary.locale.LocaleSelectModal.subTitles.language}
+                          {/* Select Languages */}
+                        </div>
                         <ul role="list" className="-mx-2 mt-2  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                           {availableLanguages.map(({ name, isoCode }, index) => (
                             <li key={`language-${isoCode}`}>

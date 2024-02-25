@@ -75,8 +75,51 @@ const ko = {
 
   /** Locale Components Localization */
   locale: {
-    'locale-seletor-trigger': {
-      title: 'Change Country/Language',
+    LocaleSelectorTrigger: {
+      title: '국가 / 언어 변경',
+    },
+    LocaleSelectModal: {
+      title: '국가 / 언어 선택',
+      closeBtn: { sr: '선택창 닫기' },
+      subTitles: {
+        country: '국가 선택',
+        language: '언어 선택',
+      },
+    },
+
+    LocaleDetectionModal: {
+      MatchedContents: {
+        h: '안녕하세요! 현재 $[detectedCountry]에 계십니다.',
+        p: `$[detectedCountry]에 계신 것을 확인하였고, $[currentCountry] 쇼핑몰에서 쇼핑 중이십니다. \n 우리는 귀하의 IP 주소와 브라우저 언어 설정을 통해 귀하의 시장과 언어를 할당합니다. 하지만, 시장을 변경하실 수 있습니다.`,
+        keepShopingBtn: {
+          title: '$[currentCountry] 에서 쇼핑 계속하기',
+        },
+        changeMarketBtn: {
+          title: '국가 또는 언어 변경하기',
+        },
+      },
+
+      NotMatchedContents: {
+        h: 'Hi! You are currently in $[detectedCountry]',
+        p: `We've detected that you are in $[detectedCountry] and are shopping on the $[currentCountry] storefront. \n Your locale and language have been set based on your IP address and browser settings, but you have the option to shop in a different country or language.`,
+        keepShopingBtn: {
+          title: 'Continue shopping in $[currentCountry]',
+        },
+        changeMarketBtn: {
+          title: 'Change country or language',
+        },
+      },
+
+      NotDetectedContents: {
+        h: 'Hi! You are currently in $[detectedCountry]',
+        p: `We've detected that you are in $[detectedCountry] and are shopping on the $[currentCountry] storefront. \n Your locale and language have been set based on your IP address and browser settings, but you have the option to shop in a different country or language.`,
+        keepShopingBtn: {
+          title: 'Continue shopping in $[currentCountry]',
+        },
+        changeMarketBtn: {
+          title: 'Change country or language',
+        },
+      },
     },
   },
 

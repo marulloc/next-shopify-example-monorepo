@@ -75,8 +75,29 @@ const en = {
 
   /** Locale Components Localization */
   locale: {
-    'locale-seletor-trigger': {
-      title: 'Change Country/Language',
+    LocaleSelectorTrigger: {
+      title: 'Change Country / Language',
+    },
+    LocaleSelectModal: {
+      title: 'Select Country/Language',
+      closeBtn: { sr: 'close selector' },
+      subTitles: {
+        country: 'Select Country',
+        language: 'Select Language',
+      },
+    },
+
+    LocaleDetectionModal: {
+      MatchedContents: {
+        h: 'Hi! You are currently in $[detectedCountry]',
+        p: `We've detected that you are in $[detectedCountry] and are shopping on the $[currentCountry] storefront. \n Your locale and language have been set based on your IP address and browser settings, but you have the option to shop in a different country or language.`,
+        keepShopingBtn: {
+          title: 'Continue shopping in $[currentCountry]',
+        },
+        changeMarketBtn: {
+          title: 'Change country or language',
+        },
+      },
     },
   },
 
