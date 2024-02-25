@@ -9,7 +9,7 @@ import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@
 import { localTheme } from '@/theme/local-theme';
 import IconButton from '@/components/IconButton';
 import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/SearchInputTrigger';
-import AltImage from '@/components/AltImage';
+import InitialIcon from '@/components/InitialIcon';
 import CollectionCard from '@/components/collection/CollectionCard';
 import LocaleIconTrigger from '@/components/locale/LocaleSelectModal/triggers/LocaleSelectModalIconTrigger';
 import { usePortalRecoil } from '@/context/ui/hooks';
@@ -83,7 +83,7 @@ const MenuDrawer = ({ menu, collections }: Props) => {
                               )}
                               onClick={() => closeDrawer()}
                             >
-                              <AltImage initial={title[0] || 'c'} />
+                              <InitialIcon initial={title[0] || 'c'} />
                               <span className="truncate">{title.toUpperCase()}</span>
                             </Link>
                           </li>

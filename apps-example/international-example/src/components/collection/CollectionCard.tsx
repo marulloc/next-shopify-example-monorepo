@@ -2,7 +2,7 @@ import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
-import AltImage from '../AltImage';
+import InitialIcon from '../InitialIcon';
 
 type Props = {
   variant: 'small' | 'big';
@@ -42,7 +42,7 @@ const SmallCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
           )}
         />
       ) : (
-        <AltImage initial={collection.title[0] || 'c'} />
+        <InitialIcon initial={collection.title[0] || 'c'} />
       )}
       <span className="truncate">{collection.title.toUpperCase()}</span>
     </article>

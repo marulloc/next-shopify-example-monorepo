@@ -7,10 +7,10 @@ import { classNames } from '@marulloc/components-library/utils';
 import IconButton from '../../IconButton';
 import { HiXMark } from 'react-icons/hi2';
 import ReactCountryFlag from 'react-country-flag';
-import AltImage from '../../AltImage';
 import { useSelectLocale } from '@/hooks/useLocale';
 import { usePortalRecoil } from '@/context/ui/hooks';
 import { useDictioanry } from '@/context/locale/hook';
+import InitialIcon from '@/components/InitialIcon';
 
 type TProps = {} & Pick<ToolkitLocale, 'availableCountries' | 'availableLanguages'>;
 
@@ -145,7 +145,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                                 )}
                               >
                                 <div>
-                                  <AltImage initial={isoCode[0]} />
+                                  <InitialIcon initial={isoCode[0]} />
                                 </div>
                                 <span className="truncate text-sm transition-all group-hover:scale-105">
                                   {name + ` (${isoCode})`}

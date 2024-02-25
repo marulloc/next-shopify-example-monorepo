@@ -4,7 +4,7 @@ type Props = {
   initial: string;
   className?: string;
 };
-const AltImage = ({ initial, className }: Props) => {
+const InitialIcon = ({ initial, className }: Props) => {
   return (
     <span
       className={classNames(
@@ -18,4 +18,4 @@ const AltImage = ({ initial, className }: Props) => {
   );
 };
 
-export default AltImage;
+export default InitialIcon;
