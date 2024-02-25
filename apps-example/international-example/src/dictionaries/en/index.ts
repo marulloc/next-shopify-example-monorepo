@@ -54,7 +54,24 @@ const en = {
   },
 
   /** Collectioon Components Localization */
-  collection: {},
+  collection: {
+    CollectionProducts: {
+      title: `Collection : `,
+      summary: {
+        p1: `Showing `,
+        p2: ` products`,
+      },
+    },
+  },
+
+  SortingDropdown: {
+    decription: `Sort by `,
+    keys: [
+      { name: 'sort', title: 'Relavance', value: 'relevance' },
+      { name: 'sort', title: 'Price: Low to High', value: 'plth' },
+      { name: 'sort', title: 'Price: High to Low', value: 'phtl' },
+    ],
+  },
 
   /** Locale Components Localization */
   locale: {
@@ -98,11 +115,6 @@ const en = {
         part2: `products for`,
       },
     },
-    'sorting-keys': [
-      { name: 'sort', title: 'Relavance', value: 'relevance' },
-      { name: 'sort', title: 'Price: Low to High', value: 'plth' },
-      { name: 'sort', title: 'Price: High to Low', value: 'phtl' },
-    ],
   },
 
   pages: {

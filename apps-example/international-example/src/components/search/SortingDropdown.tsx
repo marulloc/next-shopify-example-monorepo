@@ -5,15 +5,13 @@ import { HiChevronDown } from 'react-icons/hi2';
 import Dropdown from '@marulloc/components-library/Dropdown';
 import { localTheme } from '@/theme/local-theme';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
-
-const sortKeys = [
-  { name: 'sort', title: 'Relavance', value: 'relevance' },
-  { name: 'sort', title: 'Price: Low to High', value: 'plth' },
-  { name: 'sort', title: 'Price: High to Low', value: 'phtl' },
-];
+import { useDictioanry } from '@/context/locale/hook';
 
 const SortingDropdown = () => {
   const [{ sort: sortKey }, navigateWithQueryParams] = useSyncDataUrl({ keys: ['sort'] });
+  const dictionary = useDictioanry();
+
+  const sortKeys = dictionary.SortingDropdown.keys;
   const activeItem = sortKeys.find(({ value }) => value === sortKey) || sortKeys[0];
 
   return (
@@ -30,7 +28,7 @@ const SortingDropdown = () => {
             )}
           >
             <span className="">
-              {`Sort by `}
+              {`${dictionary.SortingDropdown.decription}  `}
               <span className={classNames(localTheme.text.color.base.main, 'font-bold')}>
                 &quot;{activeItem.title}&quot;
               </span>

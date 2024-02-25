@@ -1,6 +1,7 @@
 import { ShopifyCollection } from '../../@shopify-types/shopify-collection';
 import { Connection, ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
 import { ShopifyProduct } from '../../@shopify-types/shopify-product';
+import { ShopifySortKey } from '../../@shopify-types/shopify-search';
 
 export type GetCollectionService = {
   data: {
@@ -20,7 +21,7 @@ export type GetCollectionProductsService = {
   variables: {
     handle: string;
     reverse?: boolean;
-    sortKey?: string;
+    sortKey?: ShopifySortKey;
   } & ShopifyLocaleContext;
 };
 

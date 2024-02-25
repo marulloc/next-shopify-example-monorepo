@@ -8,7 +8,9 @@ import { flatConnection } from '../../utils/flat';
 import { storeFetch } from '../../utils/storeFetch';
 import { ToolkitCollection } from '../@toolkit-types/toolkit-collection';
 import { ToolkitProduct } from '../@toolkit-types/toolkit-product';
+import { ToolkitSortKey } from '../@toolkit-types/toolkit-search';
 import { parseProducts } from '../product/parser';
+import { parseSortParams } from '../search/parser';
 import { parseCollection, parseCollections } from './parser';
 import { GetCollectionProductsService, GetCollectionService, GetCollectionsService } from './types';
 
@@ -28,22 +30,22 @@ export const getCollection = async (handle: string, locale?: ShopifyLocaleContex
 
 export const getCollectionProducts = async ({
   collection,
-  reverse,
-  sortKey,
+  sortKey: sort,
   locale,
 }: {
   collection: string;
-  reverse?: boolean;
-  sortKey?: string;
+  sortKey?: ToolkitSortKey;
   locale?: ShopifyLocaleContext;
 }): Promise<ToolkitProduct[]> => {
+  const { sortKey, reverse } = parseSortParams(sort || 'relevance');
+
   const res = await storeFetch<GetCollectionProductsService>({
     query: getCollectionProductsQuery,
     // tags: [TAGS.collections, TAGS.products],
     variables: {
       handle: collection,
       reverse,
-      sortKey: sortKey === 'CREATED_AT' ? 'CREATED' : sortKey,
+      sortKey,
       country: locale?.country?.toUpperCase(),
       language: locale?.language?.toUpperCase(),
     },

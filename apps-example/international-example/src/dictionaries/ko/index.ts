@@ -54,7 +54,24 @@ const ko = {
   },
 
   /** Collectioon Components Localization */
-  collection: {},
+  collection: {
+    CollectionProducts: {
+      title: `컬렉션 : `,
+      summary: {
+        p1: ` `,
+        p2: `개의 상품목록`,
+      },
+    },
+  },
+
+  SortingDropdown: {
+    decription: `상품 정렬 `,
+    keys: [
+      { name: 'sort', title: '추천순', value: 'relevance' },
+      { name: 'sort', title: '가격 낮은 순', value: 'plth' },
+      { name: 'sort', title: '가격 높은 순', value: 'phtl' },
+    ],
+  },
 
   /** Locale Components Localization */
   locale: {
@@ -98,11 +115,6 @@ const ko = {
         part2: `products for`,
       },
     },
-    'sorting-keys': [
-      { name: 'sort', title: 'Relavance', value: 'relevance' },
-      { name: 'sort', title: 'Price: Low to High', value: 'plth' },
-      { name: 'sort', title: 'Price: High to Low', value: 'phtl' },
-    ],
   },
 
   pages: {

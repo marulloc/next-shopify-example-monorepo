@@ -3,6 +3,8 @@ import { getCollection, getCollectionProducts } from '@/@marulloc-shopify-nextap
 import Skeleton from '@/components/loading/Skeleton';
 import ProductCard from '@/components/product/ProductCard';
 import SortingDropdown from '@/components/search/SortingDropdown';
+import { useDictioanry } from '@/context/locale/hook';
+import { TDictionaries, getDictionary } from '@/dictionaries';
 import { localTheme } from '@/theme/local-theme';
 import { delay } from '@/utils/throttle';
 import { classNames } from '@marulloc/components-library/utils';
@@ -14,10 +16,10 @@ type TProps = {
   locale: { country: string; language: string };
 };
 const CollectionProducts = async ({ collection: handle, sort: sortKey, locale }: TProps) => {
-  await delay(3000);
-
+  await delay(1000);
   const collection = await getCollection(handle, locale);
   const products = await getCollectionProducts({ collection: handle, sortKey, locale });
+  const dictionary = await getDictionary(locale.language.toLowerCase() as TDictionaries);
 
   return (
     <>
@@ -32,17 +34,15 @@ const CollectionProducts = async ({ collection: handle, sort: sortKey, locale }:
           'bg-opacity-40 backdrop-blur-sm',
         )}
       >
-        {collection.title}
+        {dictionary.collection.CollectionProducts.title}
+        <span className="font-semibold">&quot;{collection?.title}&quot;</span>
       </section>
 
       <section className={classNames(localTheme.spacing.padding.x.medium, localTheme.spacing.padding.y.small)}>
         <div className="flex flex-col md:flex-row justify-between  ">
           <div>
             <p className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
-              {`Showing ${products.length} ${'products'} for Collection `}
-              <span className={classNames('font-bold', localTheme.text.color.base.main, localTheme.text.size.small)}>
-                &quot;{collection?.title}&quot;
-              </span>
+              {`${dictionary.collection.CollectionProducts.summary.p1} ${products.length} ${dictionary.collection.CollectionProducts.summary.p2}`}
             </p>
           </div>
 

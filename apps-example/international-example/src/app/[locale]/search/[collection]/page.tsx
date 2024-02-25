@@ -6,6 +6,7 @@ import { Metadata } from 'next';
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { Suspense } from 'react';
 import CollectionProducts, { CollectionProductsSkeleton } from '@/components/collection/CollectionProducts';
+import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
 
 type TParams = { locale: string; collection: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };
@@ -41,7 +42,7 @@ const CollectionPage = async ({ params, searchParams }: { params: TParams; searc
 
   return (
     <main className={classNames()}>
-      <Suspense fallback={<CollectionProductsSkeleton />}>
+      <Suspense fallback={<CollectionProductsSkeleton />} key={`${handle}-${sort}`}>
         <CollectionProducts
           collection={handle}
           sort={sort as ToolkitSortKey}
