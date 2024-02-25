@@ -6,19 +6,16 @@ import Header from '../../components/Header';
 import FloatingActionButton from '../../components/FloatingAction';
 import { classNames } from '@marulloc/components-library/utils';
 import { localTheme } from '@/theme/local-theme';
-import { cookies } from 'next/headers';
-import { TDetectionStatus } from '@/middleware';
 import CartMutationToast from '@/components/cart/CartMutationToast';
-import RecoilProvider from '@/context/RecoilProvider';
 import ToastController from './ToastController';
+import RecoilProvider from '@/context/RecoilProvider';
 import MenuDrawer from '@/components/menu/MenuDrawer';
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import LocaleSelectorModal from '@/components/locale/LocaleSelectModal';
 import SearchModal from '@/components/search/SearchModal';
-import LocaleAlertModal from '@/components/locale/LocaleAlertModal';
 import CartDrawer from '@/components/cart/CartDrawer';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import Tester from '@/components/locale/LocaleAlertModal/Tester';
+import LocaleDetectionModal from '@/components/locale/LocaleDetectionModal';
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();
@@ -57,10 +54,7 @@ const RootLayout = async ({
 }: Readonly<{ children: React.ReactNode; params: { locale: string } }>) => {
   const { countryCode: country, languageCode: language } = splitLocale(params.locale);
 
-  const { availableCountries, availableLanguages, ...rest } = await getLocale({ country, language });
-  const detectedCountry = String(cookies().get('detectedCountry')?.value);
-  const detectionStatus = String(cookies().get('detectionStatus')?.value) as TDetectionStatus;
-
+  const { availableCountries, availableLanguages, ...restLocaleData } = await getLocale({ country, language });
   const menu = await getMenu('custom-storefront-menu', { country, language });
   const collections = await getCollections({ country, language });
 
@@ -68,24 +62,20 @@ const RootLayout = async ({
     <html lang={language} className=" scroll-smooth">
       <body className={classNames('relative   overflow-hidden', localTheme.fill.base.muted)}>
         <RecoilProvider>
-          <MenuDrawer menu={menu} collections={collections} />
-          <LocaleSelectorModal availableCountries={availableCountries} availableLanguages={availableLanguages} />
-          <SearchModal />
-          <CartDrawer />
-          {/* <LocaleAlertModal
-            detectionStatus={detectionStatus}
-            detectedCountry={detectedCountry}
-            routingCountry={country}
-            routingLanguage={language}
-            availableCountries={availableCountries}
-            availableLanguages={availableLanguages}
-          /> */}
-          <Tester localeData={{ availableCountries, availableLanguages, ...rest }} />
+          <>
+            <MenuDrawer menu={menu} collections={collections} />
+            <LocaleSelectorModal availableCountries={availableCountries} availableLanguages={availableLanguages} />
+            <SearchModal />
+            <CartDrawer />
+            <LocaleDetectionModal localeData={{ availableCountries, availableLanguages, ...restLocaleData }} />
+            <FloatingActionButton />
+          </>
+
           {/* <CartMutationToast /> */}
           <Header locale={{ country, language }} />
           {children}
-          <FloatingActionButton />
         </RecoilProvider>
+        <SpeedInsights />
       </body>
     </html>
   );

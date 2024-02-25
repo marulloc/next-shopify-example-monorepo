@@ -13,7 +13,7 @@ type TProps = {
   localeData: ToolkitLocale;
 };
 
-const Tester = ({ localeData }: TProps) => {
+const LocaleDetectionModal = ({ localeData }: TProps) => {
   const localeDetection = useDetectLocale({ localeData });
   const [isActive, setIsActive] = useState(false);
 
@@ -23,51 +23,39 @@ const Tester = ({ localeData }: TProps) => {
   }, [localeDetection]);
 
   return (
-    <>
-      {/* <div className="w-full my-44 text-3xl bg-red-600 flex flex-col px-20 items-center space-y-10 ">
-        <div>{`Status : ${localeDetection.status}`}</div>
-        <div>{`Detected Country : ${localeDetection.detectedCountry?.name} = ${localeDetection.detectedCountry?.isoCode}`}</div>
-        <div>{`Current Country : ${localeDetection.currentCountry?.name} = ${localeDetection.currentCountry?.isoCode}`}</div>
-        <div>{`Current Language : ${localeDetection.currentLanguage?.name} = ${localeDetection.currentLanguage?.isoCode}`}</div>
-      </div> */}
-
-      <Drawer anchor="bottom" open={isActive} onClose={() => setIsActive(false)}>
-        <div>
-          <Drawer.Backdrop>
-            {() => <div className="h-screen w-screen bg-white/40 bg-opacity-20  "></div>}
-          </Drawer.Backdrop>
-          <Drawer.Contents>
-            {({ closeDrawer }) => (
-              <div className="w-full h-fit  flex justify-end group">
-                <div
-                  className={classNames(
-                    '  z-50  bg-white bg-opacity-70 shadow-xl rounded-lg backdrop-blur-sm border border-gray-200',
-                    localTheme.spacing.padding.xy.small,
-                    localTheme.spacing.margin.xy.small,
-                  )}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <div className=" text-2xl text-red-600">Tester</div>
-                  {localeDetection?.status === 'matched' && (
-                    <MatchedContents handleClose={closeDrawer} {...localeDetection} />
-                  )}
-                  {localeDetection?.status === 'not-matched' && (
-                    <NotMatchedContents handleClose={closeDrawer} {...localeDetection} />
-                  )}
-                  {localeDetection?.status === 'not-detected' && (
-                    <NotDetectedContents handleClose={closeDrawer} {...localeDetection} />
-                  )}
-                </div>
+    <Drawer anchor="bottom" open={isActive} onClose={() => setIsActive(false)}>
+      <div>
+        <Drawer.Backdrop>{() => <div className="h-screen w-screen bg-white/40 bg-opacity-20  "></div>}</Drawer.Backdrop>
+        <Drawer.Contents>
+          {({ closeDrawer }) => (
+            <div className="w-full h-fit  flex justify-end group">
+              <div
+                className={classNames(
+                  '  z-50  bg-white bg-opacity-70 shadow-xl rounded-lg backdrop-blur-sm border border-gray-200',
+                  localTheme.spacing.padding.xy.small,
+                  localTheme.spacing.margin.xy.small,
+                )}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {localeDetection?.status === 'matched' && (
+                  <MatchedContents handleClose={closeDrawer} {...localeDetection} />
+                )}
+                {localeDetection?.status === 'not-matched' && (
+                  <NotMatchedContents handleClose={closeDrawer} {...localeDetection} />
+                )}
+                {localeDetection?.status === 'not-detected' && (
+                  <NotDetectedContents handleClose={closeDrawer} {...localeDetection} />
+                )}
               </div>
-            )}
-          </Drawer.Contents>
-        </div>
-      </Drawer>
-    </>
+            </div>
+          )}
+        </Drawer.Contents>
+      </div>
+    </Drawer>
   );
 };
 
-export default Tester;
+export default LocaleDetectionModal;
 
 type TContentsProps = { handleClose: () => void } & ReturnType<typeof useDetectLocale>;
 
@@ -157,7 +145,7 @@ const NotMatchedContents = ({ handleClose, detectedCountry, currentCountry, curr
             handleClose();
           }}
         >
-          {`No, I'm in ${detectedCountry}`}
+          {`No, I'm in ${detectedCountry?.name}`}
         </button>
         <LocaleSelectModalChildrenTrigger
           type="button"
