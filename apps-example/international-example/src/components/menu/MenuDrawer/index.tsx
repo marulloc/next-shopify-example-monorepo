@@ -14,6 +14,7 @@ import AltImage from '@/components/AltImage';
 import CollectionCard from '@/components/collection/CollectionCard';
 import LocaleIconTrigger from '@/components/locale/LocaleSelectModal/triggers/LocaleSelectModalIconTrigger';
 import { usePortalRecoil } from '@/context/ui/hooks';
+import SuspenseWrapper from '@/components/SuspenseWrapper';
 
 type Props = {
   menu: ToolkitMenu;
@@ -47,7 +48,9 @@ const MenuDrawer = ({ menu, collections }: Props) => {
                 )}
               >
                 <div className="relative w-full" onClick={() => closeDrawer()}>
-                  <SearchFakeInputTrigger />
+                  <SuspenseWrapper>
+                    <SearchFakeInputTrigger />
+                  </SuspenseWrapper>
                 </div>
                 <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
                   <IconButton

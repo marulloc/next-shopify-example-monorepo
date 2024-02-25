@@ -16,6 +16,7 @@ import SearchModal from '@/components/search/SearchModal';
 import CartDrawer from '@/components/cart/CartDrawer';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import LocaleDetectionModal from '@/components/locale/LocaleDetectionModal';
+import SuspenseWrapper from '@/components/SuspenseWrapper';
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();
@@ -62,20 +63,20 @@ const RootLayout = async ({
     <html lang={language} className=" scroll-smooth">
       <body className={classNames('relative   overflow-hidden', localTheme.fill.base.muted)}>
         <RecoilProvider>
-          <>
+          <SuspenseWrapper>
             <MenuDrawer menu={menu} collections={collections} />
             <LocaleSelectorModal availableCountries={availableCountries} availableLanguages={availableLanguages} />
             <SearchModal />
             <CartDrawer />
             <LocaleDetectionModal localeData={{ availableCountries, availableLanguages, ...restLocaleData }} />
             <FloatingActionButton />
-          </>
+            <SpeedInsights />
+          </SuspenseWrapper>
 
           {/* <CartMutationToast /> */}
           <Header locale={{ country, language }} />
           {children}
         </RecoilProvider>
-        <SpeedInsights />
       </body>
     </html>
   );
