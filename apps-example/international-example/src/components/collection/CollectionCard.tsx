@@ -61,7 +61,7 @@ const BigCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
           alt={collection.image?.altText || `default-collection-${index + 1}`}
           width={collection.image?.width || 1200}
           height={collection.image?.height || 1200}
-          className="h-full w-full object-cover object-center"
+          className="h-full w-full object-cover object-center group-hover:scale-110  transition-all duration-300  "
         />
       </div>
       <h3 className={classNames('mt-4 font-semibold ', localTheme.text.size.small, localTheme.text.color.base.main)}>

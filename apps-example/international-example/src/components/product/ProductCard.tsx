@@ -82,7 +82,7 @@ const BigProductCard = ({ product, priceDefaultOpen = false }: Omit<TBigProductC
             alt={product.featuredImage?.altText || ''}
             width={product.featuredImage?.width}
             height={product.featuredImage?.height}
-            className="group-hover:scale-110 transition-all duration-300 w-full h-full"
+            className="h-full w-full object-cover object-center group-hover:scale-110  transition-all duration-300  "
           />
         ) : (
           <>NO IMAGE</>
