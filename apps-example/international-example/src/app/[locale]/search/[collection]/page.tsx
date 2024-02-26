@@ -7,6 +7,8 @@ import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/se
 import { Suspense } from 'react';
 import CollectionProducts, { CollectionProductsSkeleton } from '@/components/collection/CollectionProducts';
 import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
+import { localTheme } from '@/theme/local-theme';
+import { TDictionaries, getDictionary } from '@/dictionaries';
 
 type TParams = { locale: string; collection: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };
@@ -40,8 +42,25 @@ const CollectionPage = async ({ params, searchParams }: { params: TParams; searc
   const { countryCode, languageCode } = splitLocale(params.locale);
   const { collection: handle } = params;
 
+  const collection = await getCollection(handle, { country: countryCode, language: languageCode });
+  const dictionary = (await getDictionary(languageCode.toLowerCase() as TDictionaries)).collection.CollectionProducts;
+
   return (
     <main className={classNames()}>
+      <section
+        className={classNames(
+          localTheme.spacing.padding.x.medium,
+          localTheme.spacing.padding.y.small,
+          localTheme.fill.base.main,
+          localTheme.border.base.main,
+          'border-b',
+          'sticky top-16 z-20',
+          'bg-opacity-40 backdrop-blur-sm',
+        )}
+      >
+        {dictionary.title}
+        <span className="font-semibold">&quot;{collection?.title}&quot;</span>
+      </section>
       <Suspense fallback={<CollectionProductsSkeleton />} key={`${handle}-${sort}`}>
         <CollectionProducts
           collection={handle}
