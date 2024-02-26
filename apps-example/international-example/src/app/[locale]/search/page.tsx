@@ -5,9 +5,12 @@ import { classNames } from '@marulloc/components-library/utils';
 import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/SearchInputTrigger';
 import { Suspense } from 'react';
 import SearchResult, { SearchResultSkeleton } from '@/components/search/SearchResult';
+import { ServerRuntime } from 'next';
 
 type TParams = { locale: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };
+
+export const runtime: ServerRuntime = 'edge';
 
 const SearchPage = async ({ params, searchParams }: { params: TParams; searchParams?: TSearchParams }) => {
   const { sort, query, filter } = searchParams as { [key: string]: string };

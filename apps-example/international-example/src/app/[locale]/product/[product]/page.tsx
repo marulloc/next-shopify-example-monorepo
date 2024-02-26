@@ -7,8 +7,10 @@ import Recommendations, { RecommendationsSkeleton } from '@/components/product/R
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
-import { Metadata } from 'next';
+import { Metadata, ServerRuntime } from 'next';
 import { Suspense } from 'react';
+
+export const runtime: ServerRuntime = 'edge';
 
 type TParams = { locale: string; product: string };
 
@@ -20,14 +22,18 @@ export const generateMetadata = async ({ params }: { params: TParams }): Promise
   const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
 
   return {
-    metadataBase: new URL('http://localhost:3000'),
-    description: product.description,
+    title: product.seo?.title || product.title,
+    description: product.seo?.description || product.description,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true },
+    },
     openGraph: {
-      title: product.title,
-      description: product.description,
       images: [
         {
           url: product.featuredImage?.url || shopInfo.brand.coverImage.image.url,
+          alt: product.featuredImage?.altText || '',
           width: product.featuredImage?.width || shopInfo.brand.coverImage.image.width,
           height: product.featuredImage?.height || shopInfo.brand.coverImage.image.height,
         },
