@@ -18,7 +18,7 @@ type TProps = {
   locale: { country: string; language: string };
 };
 const CollectionProducts = async ({ collection: handle, sort: sortKey, locale }: TProps) => {
-  await delay(1000);
+  // await delay(1000);
   const products = await getCollectionProducts({ collection: handle, sortKey, locale });
   const dictionary = (await getDictionary(locale.language.toLowerCase() as TDictionaries)).collection
     .CollectionProducts;

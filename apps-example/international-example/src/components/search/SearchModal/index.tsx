@@ -15,6 +15,7 @@ import { useSelectLocale } from '@/hooks/useLocale';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import { usePortalRecoil } from '@/context/ui/hooks';
 import { useDictioanry } from '@/context/locale/hook';
+import { RiEmotionSadLine } from 'react-icons/ri';
 
 const SearchModal = () => {
   const { isActive, deactivate } = usePortalRecoil('search-modal');
@@ -139,6 +140,21 @@ const SearchModal = () => {
                         </Link>
                       </li>
                     ))}
+                    {predictiveResult.collections.length <= 0 && (
+                      <div
+                        className={classNames(
+                          ' h-28  border border-dashed flex justify-center items-center rounded-lg',
+                          localTheme.border.base.main,
+                          localTheme.text.size.medium,
+                          // localTheme.fill.base.muted,
+                          localTheme.text.color.base.main,
+                          'bg-opacity-70',
+                        )}
+                      >
+                        <RiEmotionSadLine className="h-6 w-6 mr-2" />
+                        {dictionary.noResult.title}
+                      </div>
+                    )}
                   </ul>
                   <ul>
                     <div className="text-xs font-semibold leading-6 text-gray-500">Products</div>
@@ -153,6 +169,21 @@ const SearchModal = () => {
                         </Link>
                       </li>
                     ))}
+                    {predictiveResult.products.length <= 0 && (
+                      <div
+                        className={classNames(
+                          ' h-28  border border-dashed flex justify-center items-center rounded-lg',
+                          localTheme.border.base.main,
+                          localTheme.text.size.medium,
+                          // localTheme.fill.base.muted,
+                          localTheme.text.color.base.main,
+                          'bg-opacity-70',
+                        )}
+                      >
+                        <RiEmotionSadLine className="h-6 w-6 mr-2" />
+                        {dictionary.noResult.title}
+                      </div>
+                    )}
                   </ul>
                 </div>
               </div>

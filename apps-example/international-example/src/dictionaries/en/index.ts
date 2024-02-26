@@ -143,6 +143,7 @@ const en = {
     SearchModal: {
       input: { sr: 'search items', placeholder: 'Search...' },
       closeBtn: { sr: 'close search panel' },
+      noResult: { title: 'No result were found' },
     },
 
     SearchResult: {

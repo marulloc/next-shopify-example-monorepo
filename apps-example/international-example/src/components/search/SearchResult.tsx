@@ -21,7 +21,7 @@ const SearchResult = async ({ query, sort: sortKey, locale }: TProps) => {
   const dictionary = await (await getDictionary(locale.language.toLowerCase() as TDictionaries)).search.SearchResult;
 
   return (
-    <>
+    <section>
       <div className="flex flex-col md:flex-row justify-between">
         <div>
           <p className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
@@ -53,7 +53,7 @@ const SearchResult = async ({ query, sort: sortKey, locale }: TProps) => {
           ))}
         </ul>
       </div>
-    </>
+    </section>
   );
 };
 
@@ -61,7 +61,7 @@ export default SearchResult;
 
 export const SearchResultSkeleton = () => {
   return (
-    <>
+    <section>
       <div className="flex flex-col md:flex-row justify-between">
         <div className={classNames('mb-4', 'w-1/3 h-3 sm:h-5')}>
           <Skeleton />
@@ -83,6 +83,6 @@ export const SearchResultSkeleton = () => {
           </li>
         </ul>
       </div>
-    </>
+    </section>
   );
 };

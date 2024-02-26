@@ -147,6 +147,7 @@ const ko = {
     SearchModal: {
       input: { sr: '상품 검색', placeholder: '검색어 입력...' },
       closeBtn: { sr: '검색창 닫기' },
+      noResult: { title: '검색결과가 없습니다.' },
     },
 
     SearchResult: {
