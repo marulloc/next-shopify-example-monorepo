@@ -21,7 +21,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
   const dictionary = await (await getDictionary(languageCode.toLowerCase() as TDictionaries)).pages.Main;
 
   return (
-    <main className={classNames(localTheme.fill.base.main, localTheme.spacing.container, 'shadow-xl')}>
+    <div className={classNames(localTheme.fill.base.main, localTheme.spacing.container, 'shadow-xl')}>
       {/* Hero */}
       <section className="relative max-h-screen ">
         <div className="absolute inset-0">
@@ -134,7 +134,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
       </section>
 
       {/* Information */}
-      <section className="relative  mt-24  ">
+      {/* <section className="relative  mt-24  ">
         <div className="absolute inset-0 group   ">
           <Image
             src={shopInfo.brand.coverImage.image.url}
@@ -169,8 +169,8 @@ const Home = async ({ params }: { params: { locale: string } }) => {
             {dictionary.information.p}
           </p>
         </div>
-      </section>
-    </main>
+      </section> */}
+    </div>
   );
 };
 

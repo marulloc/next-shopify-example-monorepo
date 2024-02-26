@@ -16,6 +16,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import LocaleDetectionModal from '@/components/locale/LocaleDetectionModal';
 import SuspenseWrapper from '@/components/SuspenseWrapper';
 import { TDictionaries, getDictionary } from '@/dictionaries';
+import Footer from '@/components/Footer';
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();
@@ -69,13 +70,23 @@ const RootLayout = async ({
             <LocaleSelectorModal availableCountries={availableCountries} availableLanguages={availableLanguages} />
             <SearchModal />
             <CartDrawer />
-            <LocaleDetectionModal localeData={{ availableCountries, availableLanguages, ...restLocaleData }} />
+            {/* <LocaleDetectionModal localeData={{ availableCountries, availableLanguages, ...restLocaleData }} /> */}
             <FloatingActionButton locale={{ country, language }} />
-            <SpeedInsights />
+            {/* <SpeedInsights /> */}
           </SuspenseWrapper>
 
           <Header locale={{ country, language }} />
-          {children}
+          <main>{children}</main>
+          <div
+            className={classNames(
+              localTheme.fill.base.main,
+              localTheme.spacing.container,
+              'shadow-2xl overflow-hidden',
+              'relative',
+            )}
+          >
+            <Footer locale={{ country, language }} />
+          </div>
         </RecoilProvider>
       </body>
     </html>
