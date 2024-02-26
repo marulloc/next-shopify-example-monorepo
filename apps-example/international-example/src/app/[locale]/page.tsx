@@ -97,7 +97,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
             Trends
           </h2>
           <Link
-            href="#"
+            href="/search"
             className={classNames(
               'font-semibold',
               localTheme.text.size.small,
