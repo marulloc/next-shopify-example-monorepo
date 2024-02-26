@@ -11,47 +11,34 @@ const Layout = async (props: { children: React.ReactNode; params: { locale: stri
   const collections = await getCollections({ country: countryCode, language: languageCode });
 
   return (
-    <div className=" ">
-      <div
+    <div className={classNames('flex-1 flex flex-col md:flex-row  ', ' border-b', localTheme.border.base.main)}>
+      <section
         className={classNames(
-          localTheme.spacing.container,
-          localTheme.fill.base.main,
-          'shadow-xl',
-          'relative',
-          'flex flex-col md:flex-row  pt-16 pb-6',
-          'min-h-screen ',
+          'flex-none md:max-w-[200px] relative h',
+          localTheme.spacing.padding.x.medium,
+          localTheme.spacing.padding.y.small,
         )}
       >
-        <div
-          className={classNames(
-            'flex-none md:max-w-[200px] relative',
-            localTheme.spacing.padding.x.medium,
-            localTheme.spacing.padding.y.small,
-          )}
-        >
-          <div className="sticky top-20 ">
-            <ul className=" ">
-              <div className="text-xs font-semibold leading-6 text-gray-500">All Collections</div>
-              {collections.map((collection, index) => (
-                <li key={`predictive-search-collection-${collection.handle}`} className="py-1">
-                  <Link href={collection.handleRoute} className="block p-1 -mx-1">
-                    <CollectionCard variant="small" collection={collection} index={index} />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ul className="sticky top-24 ">
+          <div className="text-xs font-semibold leading-6 text-gray-500">All Collections</div>
+          {collections.map((collection, index) => (
+            <li key={`predictive-search-collection-${collection.handle}`} className="py-1">
+              <Link href={collection.handleRoute} className="block p-1 -mx-1">
+                <CollectionCard variant="small" collection={collection} index={index} />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-        <div
-          className={classNames(
-            'order-last w-full  ',
-            'border-t md:border-l md:border-t-0',
-            localTheme.border.base.main,
-          )}
-        >
-          {props.children}
-        </div>
+      <div
+        className={classNames(
+          'order-last w-full  ',
+          'border-t md:border-l md:border-t-0 ',
+          localTheme.border.base.main,
+        )}
+      >
+        {props.children}
       </div>
     </div>
   );

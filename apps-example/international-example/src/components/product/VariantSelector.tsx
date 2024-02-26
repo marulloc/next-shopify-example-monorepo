@@ -29,7 +29,13 @@ const VariantSelector = ({ product }: TProps) => {
   }, [navigateWithParams, product.options, selectedOptions]);
 
   return (
-    <section className={classNames(localTheme.spacing.padding.xy.medium, 'lg:max-w-lg')}>
+    <section
+      className={classNames(
+        localTheme.spacing.margin.xy.medium,
+        localTheme.spacing.padding.xy.medium,
+        'lg:max-w-lg bg-white rounded-lg',
+      )}
+    >
       <div className={classNames(localTheme.spacing.padding.b.small)}>
         <h1 className={classNames(localTheme.text.size.large, 'font-semibold mb-1')}>{product.title}</h1>
         <ProductPrice
@@ -80,7 +86,7 @@ const VariantSelector = ({ product }: TProps) => {
                   <label
                     htmlFor={`${option.name}_${value}`}
                     className={classNames(
-                      'flex min-w-[48px] h-full items-center justify-center rounded-lg border bg-neutral-100 px-3 py-2 text-sm ',
+                      'flex min-w-[48px] h-full items-center justify-center rounded-lg border px-3 py-2 text-sm ',
                       'ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-indigo-600',
                       'peer-checked:ring-2 peer-checked:ring-indigo-600  ',
                       'cursor-pointer',

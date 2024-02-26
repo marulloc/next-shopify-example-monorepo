@@ -75,16 +75,16 @@ const RootLayout = async ({
             {/* <SpeedInsights /> */}
           </SuspenseWrapper>
 
-          <Header locale={{ country, language }} />
-          <main>{children}</main>
           <div
             className={classNames(
               localTheme.fill.base.main,
               localTheme.spacing.container,
-              'shadow-2xl overflow-hidden',
-              'relative',
+              'shadow-2xl relative min-h-screen',
+              'flex flex-col',
             )}
           >
+            <Header locale={{ country, language }} />
+            <main className=" flex-1  flex flex-col">{children}</main>
             <Footer locale={{ country, language }} />
           </div>
         </RecoilProvider>

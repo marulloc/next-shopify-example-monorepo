@@ -37,8 +37,8 @@ const CollectionPage = async ({ params, searchParams }: { params: TParams; searc
   const dictionary = (await getDictionary(languageCode.toLowerCase() as TDictionaries)).collection.CollectionProducts;
 
   return (
-    <main className={classNames()}>
-      <section
+    <section className={classNames()}>
+      <h3
         className={classNames(
           localTheme.spacing.padding.x.medium,
           localTheme.spacing.padding.y.small,
@@ -51,7 +51,7 @@ const CollectionPage = async ({ params, searchParams }: { params: TParams; searc
       >
         {dictionary.title}
         <span className="font-semibold">&quot;{collection?.title}&quot;</span>
-      </section>
+      </h3>
       <Suspense fallback={<CollectionProductsSkeleton />} key={`${handle}-${sort}`}>
         <CollectionProducts
           collection={handle}
@@ -59,7 +59,7 @@ const CollectionPage = async ({ params, searchParams }: { params: TParams; searc
           locale={{ country: countryCode, language: languageCode }}
         />
       </Suspense>
-    </main>
+    </section>
   );
 };
 

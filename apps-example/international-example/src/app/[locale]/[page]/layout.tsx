@@ -17,28 +17,23 @@ const StaticPageLayout = async ({ children, params }: TProps) => {
   ).filter((page) => page.handle !== handle);
 
   return (
-    <main
-      className={classNames(
-        localTheme.fill.base.main,
-        localTheme.spacing.container,
-        'shadow-xl relative   ',
-        'flex flex-col md:flex-row pt-16',
-        'min-h-screen h-fit md:h-screen',
-      )}
-    >
-      <div className={classNames(localTheme.spacing.padding.xy.medium, ' flex-1 flex-shrink-0 overflow-auto')}>
-        {children}
-      </div>
-
+    <div className={classNames('flex-1 flex flex-col md:flex-row  ', ' border-b', localTheme.border.base.main)}>
       <section
+        className={classNames('flex-1', localTheme.spacing.padding.x.medium, localTheme.spacing.padding.y.medium)}
+      >
+        {children}
+      </section>
+
+      <div
         className={classNames(
-          localTheme.spacing.padding.xy.medium,
-          'h-full w-full md:max-w-xs',
-          'border-l-0 md:border-l border-t md:border-t-0',
+          'flex-none md:w-[300px] relative ',
+          'border-t md:border-l md:border-t-0 ',
           localTheme.border.base.main,
+          localTheme.spacing.padding.x.medium,
+          localTheme.spacing.padding.y.medium,
         )}
       >
-        <p className={classNames('font-bold text-right  text-sm mt-8 md:-mt-6 mb-2', localTheme.text.color.base.muted)}>
+        <p className={classNames('font-semibold text-right  text-sm -mt-6  mb-2', localTheme.text.color.base.muted)}>
           Other Pages
         </p>
         <ul className={classNames(' grid grid-cols-2 md:grid-cols-1  mb-16', localTheme.spacing.gap.xy.small)}>
@@ -49,6 +44,7 @@ const StaticPageLayout = async ({ children, params }: TProps) => {
                   className={classNames(
                     'flex flex-col h-full p-2 border rounded-lg group-hover:ring-1 ring-gray-300 ring-inset',
                     localTheme.border.base.muted,
+                    'bg-white',
                   )}
                 >
                   <h4
@@ -74,8 +70,8 @@ const StaticPageLayout = async ({ children, params }: TProps) => {
             </li>
           ))}
         </ul>
-      </section>
-    </main>
+      </div>
+    </div>
   );
 };
 

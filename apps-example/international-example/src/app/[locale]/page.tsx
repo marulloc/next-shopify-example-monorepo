@@ -21,7 +21,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
   const dictionary = await (await getDictionary(languageCode.toLowerCase() as TDictionaries)).pages.Main;
 
   return (
-    <div className={classNames(localTheme.fill.base.main, localTheme.spacing.container, 'shadow-xl')}>
+    <div className="-mt-16">
       {/* Hero */}
       <section className="relative max-h-screen ">
         <div className="absolute inset-0">
@@ -84,7 +84,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
         </div>
       </section>
 
-      {/* Trends */}
+      {/* Products */}
       <section aria-labelledby="category-heading" className={classNames('mt-40 ', localTheme.spacing.padding.x.medium)}>
         <div className="flex justify-between items-center">
           <h2
@@ -94,7 +94,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
               localTheme.text.color.base.main,
             )}
           >
-            Trends
+            Products
           </h2>
           <Link
             href="/search"
@@ -122,7 +122,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
                 <li key={`home-product-${product.title}`}>
                   <Link
                     href={product.handleRoute}
-                    className={classNames('relative w-full aspect-square hover:shadow-md rounded-lg ')}
+                    className={classNames('relative w-full block aspect-square hover:shadow-md rounded-lg ')}
                   >
                     <ProductCard variant="big" product={product} />
                   </Link>
@@ -132,44 +132,6 @@ const Home = async ({ params }: { params: { locale: string } }) => {
           </div>
         </div>
       </section>
-
-      {/* Information */}
-      {/* <section className="relative  mt-24  ">
-        <div className="absolute inset-0 group   ">
-          <Image
-            src={shopInfo.brand.coverImage.image.url}
-            alt={shopInfo.brand.coverImage.image.altText || 'shopify-cover-image'}
-            width={shopInfo.brand.coverImage.image.width}
-            height={shopInfo.brand.coverImage.image.height}
-            className="h-full w-full object-cover object-right-top  "
-            priority={false}
-          />
-
-          <div className="absolute w-full h-1/4 top-0 bg-gradient-to-b from-gray-100 via-gray-100" />
-          <div className={classNames('absolute inset-0', localTheme.fill.base.main, 'bg-opacity-30 ')} />
-        </div>
-
-        <div className=" relative mx-auto max-w-7xl px-20 py-44  w-full h-full  ">
-          <h2
-            className={classNames(
-              'font-bold tracking-tight',
-              localTheme.text.size.extraLarge,
-              localTheme.text.color.base.main,
-            )}
-          >
-            {dictionary.information.h}
-          </h2>
-          <p
-            className={classNames(
-              'mt-8 tracking-tight ',
-              localTheme.text.size.medium,
-              localTheme.text.color.base.muted,
-            )}
-          >
-            {dictionary.information.p}
-          </p>
-        </div>
-      </section> */}
     </div>
   );
 };

@@ -17,7 +17,7 @@ const SearchPage = async ({ params, searchParams }: { params: TParams; searchPar
   const { countryCode, languageCode } = splitLocale(params.locale);
 
   return (
-    <main className={classNames()}>
+    <div>
       <div
         className={classNames(
           localTheme.spacing.padding.x.medium,
@@ -46,7 +46,7 @@ const SearchPage = async ({ params, searchParams }: { params: TParams; searchPar
           />
         </Suspense>
       </section>
-    </main>
+    </div>
   );
 };
 

@@ -75,8 +75,8 @@ const ProductPage = async ({ params }: { params: TParams }) => {
           </section>
         </div>
 
-        <div>
-          <section className={classNames(' hidden lg:block sticky top-16 flex-shrink-0')}>
+        <div className="pb-4 sm:pb-6 md:pb-8">
+          <section className={classNames(' hidden lg:block sticky top-24 flex-shrink-0  ')}>
             <ProductOptions handle={handle} locale={{ country: countryCode, language: languageCode }} />
           </section>
         </div>

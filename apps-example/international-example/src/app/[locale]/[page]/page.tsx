@@ -42,20 +42,17 @@ const StaticPage = async ({ params }: TPageParams) => {
         <p className={classNames(localTheme.text.size.small, 'text-left')}> {page.bodySummary}</p>
       </div>
 
-      <div className={classNames(localTheme.text.size.small, 'text-right mb-3 text-xs text-indigo-400')}>
+      <div className={classNames(localTheme.text.size.small, 'text-right mb-3 text-xs text-indigo-600')}>
         <p className=" text-right mt-1 text-xs  ">
           {`Last update : ${new Intl.DateTimeFormat(languageCode, {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
-          }).format(new Date(page.updatedAt))}.`}
+          }).format(new Date(page.updatedAt))}`}
         </p>
       </div>
 
-      <div
-        dangerouslySetInnerHTML={{ __html: page.body }}
-        className="prose bg-gray-100 text-gray-600 rounded-lg p-6 "
-      />
+      <div dangerouslySetInnerHTML={{ __html: page.body }} className="prose bg-white text-gray-600 rounded-lg p-6 " />
     </section>
   );
 };
