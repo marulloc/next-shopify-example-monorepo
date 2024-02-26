@@ -49,7 +49,26 @@ export default Recommendations;
 export const RecommendationsSkeleton = () => {
   return (
     <div className={classNames(localTheme.spacing.padding.xy.medium, ' ')}>
-      <Skeleton />
+      {/* <Skeleton /> */}
+      <div
+        className={classNames(
+          'overflow-auto  h-full w-full ',
+          'relative flex flex-nowrap    ',
+          localTheme.spacing.gap.x.medium,
+          'hide-scrollbar',
+        )}
+      >
+        <div className=" h-52 sm:h-64 md:h-80 lg:h-96 aspect-square  ">
+          <Skeleton />
+        </div>
+
+        <div className=" h-52 sm:h-64 md:h-80 lg:h-96 aspect-square  ">
+          <Skeleton />
+        </div>
+        <div className=" h-52 sm:h-64 md:h-80 lg:h-96 aspect-square  ">
+          <Skeleton />
+        </div>
+      </div>
     </div>
   );
 };

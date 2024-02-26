@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Carousel from '../Carousel';
 import { getProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
 import { delay } from '@/utils/throttle';
+import Skeleton from '../loading/Skeleton';
 
 type TProps = {
   handle: string;
@@ -12,7 +13,6 @@ type TProps = {
 };
 
 const ImageGallery = async ({ handle, locale }: TProps) => {
-  // await delay(5000);
   const product = await getProduct(handle, locale);
 
   return (
@@ -42,7 +42,9 @@ export const ImageGallerySkeleton = () => {
     <div
       className={classNames(localTheme.spacing.padding.xy.medium, 'w-full  aspect-square rounded-lg overflow-hidden ')}
     >
-      <div className="w-full h-full bg-gray-300 animate-pulse"></div>
+      <div className="w-full h-full ">
+        <Skeleton />
+      </div>
     </div>
   );
 };

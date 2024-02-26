@@ -4,6 +4,7 @@ import { localTheme } from '@/theme/local-theme';
 import { delay } from '@/utils/throttle';
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
+import Skeleton from '../loading/Skeleton';
 
 type TProps = {
   handle: string;
@@ -86,11 +87,35 @@ export default Description;
 
 export const DescriptionSkeleton = () => {
   return (
-    <div className={classNames(localTheme.spacing.padding.xy.medium, ' min-h-[300px] lg:min-h-[600px]')}>
+    <div className={classNames(localTheme.spacing.padding.xy.medium, ' min-h-[300px] lg:min-h-[600px] space-y-10')}>
       <div className="space-y-2">
-        <div className="w-full h-8 bg-gray-300 animate-pulse"></div>
-        <div className="w-full h-8 bg-gray-300 animate-pulse"></div>
-        <div className="w-full h-8 bg-gray-300 animate-pulse"></div>
+        <div className="w-full h-8 ">
+          <Skeleton />
+        </div>
+        <div className="w-full h-8 ">
+          <Skeleton />
+        </div>
+        <div className="w-full h-8 ">
+          <Skeleton />
+        </div>
+        <div className="w-1/2 h-8 ">
+          <Skeleton />
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <div className="w-full h-8 ">
+          <Skeleton />
+        </div>
+        <div className="w-full h-8 ">
+          <Skeleton />
+        </div>
+        <div className="w-full h-8 ">
+          <Skeleton />
+        </div>
+        <div className="w-1/2 h-8 ">
+          <Skeleton />
+        </div>
       </div>
     </div>
   );

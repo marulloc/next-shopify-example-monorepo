@@ -6,6 +6,7 @@ import ProductOptions, { ProductOptionsSkeleton } from '@/components/product/Pro
 import Recommendations, { RecommendationsSkeleton } from '@/components/product/Recommendations';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
+import { delay } from '@/utils/throttle';
 import { classNames } from '@marulloc/components-library/utils';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
