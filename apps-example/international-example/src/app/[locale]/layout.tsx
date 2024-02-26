@@ -55,7 +55,7 @@ const RootLayout = async ({
   const { countryCode: country, languageCode: language } = splitLocale(params.locale);
 
   const { availableCountries, availableLanguages, ...restLocaleData } = await getLocale({ country, language });
-  const menu = await getMenu('custom-storefront-menu', { country, language });
+  const menu = await getMenu('international-example-menu', language);
   const collections = await getCollections({ country, language });
 
   const dictionary = await getDictionary(language.toLowerCase() as TDictionaries);

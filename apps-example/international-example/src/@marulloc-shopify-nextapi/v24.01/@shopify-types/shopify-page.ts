@@ -4,7 +4,7 @@ export type ShopifyPage = {
   id: ShopifyGid;
   title: string;
   handle: string;
-  body: string;
+  body: string | TrustedHTML;
   bodySummary: string;
   seo: ShopifySEO;
   createdAt: string;

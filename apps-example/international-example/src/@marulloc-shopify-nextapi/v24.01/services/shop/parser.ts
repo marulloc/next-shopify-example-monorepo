@@ -1,10 +1,13 @@
 import { ShopifyLocalization, ShopifyMenuItem } from '../../@shopify-types/shopify-shop';
 
-export const parseMenu = (menuItems?: Array<ShopifyMenuItem>) => {
+export const parseMenu = (menuItems?: Array<ShopifyMenuItem>, language?: string | undefined | null) => {
+  const targetBase = `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}`;
+  const localizeTarget = `/${language?.toLowerCase()}`;
+
   return (
     menuItems?.map((item) => ({
       title: item.title,
-      url: item.url.replace(`https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}`, ''),
+      url: item.url.replace(targetBase, '').replace(localizeTarget, ''),
     })) || []
   );
 };

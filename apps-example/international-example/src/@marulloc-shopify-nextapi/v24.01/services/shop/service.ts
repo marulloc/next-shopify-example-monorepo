@@ -17,18 +17,17 @@ export const getLocale = async (locale?: ShopifyLocaleContext): Promise<ToolkitL
   return parseLocale(res.body.data.localization);
 };
 
-export const getMenu = async (handle: string, locale?: ShopifyLocaleContext): Promise<ToolkitMenu> => {
+export const getMenu = async (handle: string, language?: ShopifyLocaleContext['language']): Promise<ToolkitMenu> => {
   const res = await storeFetch<GetMenuService>({
     query: getMenuQuery,
     // tags: [TAGS.collections]
     variables: {
       handle,
-      country: locale?.country?.toUpperCase(),
-      language: locale?.language?.toUpperCase(),
+      language: language?.toUpperCase(),
     },
   });
 
-  return parseMenu(res.body.data.menu?.items);
+  return parseMenu(res.body.data.menu?.items, language);
 };
 
 export const getShopInfo = async (locale?: ShopifyLocaleContext): Promise<ToolkitShopInfo> => {

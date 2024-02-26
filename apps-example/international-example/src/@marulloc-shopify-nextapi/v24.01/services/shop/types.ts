@@ -15,7 +15,7 @@ export type GetMenuService = {
   };
   variables: {
     handle: string;
-  } & ShopifyLocaleContext;
+  } & Pick<ShopifyLocaleContext, 'language'>;
 };
 
 export type GetShopInfoService = {
