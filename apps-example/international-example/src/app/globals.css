@@ -13,66 +13,54 @@
 }
 
 @layer components {
-  .prose {
-    h1 {
-      @apply text-3xl font-bold md:text-4xl lg:text-5xl mt-20 mb-8;
-    }
-    h2 {
-      @apply text-2xl font-bold md:text-3xl lg:text-4xl mt-16 mb-8;
-    }
-    h3 {
-      @apply text-xl font-semibold md:text-2xl lg:text-3xl mt-12 mb-8;
-    }
-    h4 {
-      @apply text-lg font-semibold md:text-xl lg:text-2xl mt-8 mb-3;
-    }
-    h5 {
-      @apply text-base font-semibold md:text-lg lg:text-xl my-4;
-    }
-    h6 {
-      @apply text-base font-semibold md:text-lg lg:text-xl my-4;
-    }
-    p {
-      @apply text-sm md:text-base my-2 leading-6;
-    }
-    a {
-      @apply text-sm md:text-base text-indigo-400 hover:text-indigo-600 cursor-pointer;
-    }
-    blockquote {
-      @apply text-sm md:text-base border-indigo-400 border-l-4 bg-zinc-800 my-8 [&>p]:m-0 p-6 py-4;
-    }
-    hr {
-      @apply border-b border-zinc-600 border my-12;
-    }
-    li {
-      @apply my-1 pl-2;
-      @apply text-sm md:text-base;
-    }
-    ul {
-      @apply list-disc ml-6 my-2;
-      @apply text-sm md:text-base;
-    }
-    ol {
-      @apply list-decimal ml-6 my-2;
-      @apply text-sm md:text-base;
-    }
-    /* table {
-      @apply w-full text-white mb-4 p-0 border-collapse border border-red-600;
-      @apply [&>tr]:border-t [&>tr]:border-gray-500 [&>tr]:bg-white [&>tr]:m-0 [&>tr]:p-0 [&>tr:nth-child(2n)]:bg-gray-800;
-      @apply [&>*>tr]:border-t [&>*>tr]:border-gray-500 [&>*>tr]:bg-gray-600 [&>*>tr]:m-0 [&>*>tr]:p-0 [&>*>tr:nth-child(2n)]:bg-gray-800;
-      @apply [&>th]:font-bold [&>th]:border [&>th]:bg-gray-900 [&>th]:border-gray-500 [&>th]:text-left [&>th]:m-0 [&>th]:p-1 [&>th:first-child]:mt-0 [&>th:last-child]:mb-0;
-      @apply [&>*>th]:font-bold [&>*>th]:border [&>*>th]:bg-gray-900 [&>*>th]:border-gray-500 [&>*>th]:text-left [&>*>th]:m-0 [&>*>th]:p-1 [&>*>th:first-child]:mt-0 [&>*>th:last-child]:mb-0;
-      @apply [&>*>*>th]:font-bold [&>*>*>th]:border [&>*>*>th]:bg-gray-900 [&>*>*>th]:border-gray-500 [&>*>*>th]:text-left [&>*>*>th]:m-0 [&>*>*>th]:p-1 [&>*>*>th:first-child]:mt-0 [&>*>*>th:last-child]:mb-0;
-      @apply [&>td]:border [&>td]:border-gray-500 [&>td]:text-left [&>td]:p-1 [&>td:first-child]:mt-0 [&>td:last-child]mb-0;
-      @apply [&>*>td]:border [&>*>td]:border-gray-500 [&>*>td]:text-left [&>*>td]:p-1 [&>*>td:first-child]:mt-0 [&>*>td:last-child]mb-0;
-      @apply [&>*>*>td]:border [&>*>*>td]:border-gray-500 [&>*>*>td]:text-left [&>*>*>td]:p-1 [&>*>*>td:first-child]:mt-0 [&>*>*>td:last-child]mb-0;
-    } */
-    img {
-      @apply rounded-lg mx-auto;
-    }
+  .prose > h1 {
+    @apply text-3xl font-bold md:text-4xl lg:text-5xl mt-20 mb-8;
+  }
+  .prose > h2 {
+    @apply text-2xl font-bold md:text-3xl lg:text-4xl mt-16 mb-8;
+  }
+  .prose > h3 {
+    @apply text-xl font-semibold md:text-2xl lg:text-3xl mt-12 mb-8;
+  }
+  .prose > h4 {
+    @apply text-lg font-semibold md:text-xl lg:text-2xl mt-8 mb-3;
+  }
+  .prose > h5 {
+    @apply text-base font-semibold md:text-lg lg:text-xl my-4;
+  }
+  .prose > h6 {
+    @apply text-base font-semibold md:text-lg lg:text-xl my-4;
+  }
+  .prosee > p {
+    @apply text-sm md:text-base my-2 leading-6;
+  }
+  .pros > a {
+    @apply text-sm md:text-base text-indigo-400 hover:text-indigo-600 cursor-pointer;
+  }
+  .prose > blockquote {
+    @apply text-sm md:text-base border-indigo-400 border-l-4 bg-zinc-800 my-8 [&>p]:m-0 p-6 py-4;
+  }
+  .prose > hr {
+    @apply border-b border-zinc-600 border my-12;
+  }
+  .prose > li {
+    @apply my-1 pl-2;
+    @apply text-sm md:text-base;
+  }
+  .prose > ul {
+    @apply list-disc ml-6 my-2;
+    @apply text-sm md:text-base;
+  }
+  .prose > ol {
+    @apply list-decimal ml-6 my-2;
+    @apply text-sm md:text-base;
+  }
 
-    code {
-      @apply max-w-full overflow-auto rounded-lg text-sm  inline-flex p-0.5 px-1.5 text-red-400;
-    }
+  .prose > img {
+    @apply rounded-lg mx-auto;
+  }
+
+  .prose > code {
+    @apply max-w-full overflow-auto rounded-lg text-sm  inline-flex p-0.5 px-1.5 text-red-400;
   }
 }
