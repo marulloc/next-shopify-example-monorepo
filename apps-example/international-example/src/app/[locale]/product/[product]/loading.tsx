@@ -18,9 +18,6 @@ const Loading = () => {
             )}
           >
             <ImageGallerySkeleton />
-            {/* <Suspense fallback={<ImageGallerySkeleton />}>
-          <ImageGallery handle={handle} locale={{ country: countryCode, language: languageCode }} />
-        </Suspense> */}
           </section>
 
           <section
@@ -31,34 +28,22 @@ const Loading = () => {
             )}
           >
             <ProductOptionsSkeleton />
-            {/* <Suspense fallback={<ProductOptionsSkeleton />}>
-          <ProductOptions handle={handle} locale={{ country: countryCode, language: languageCode }} />
-        </Suspense> */}
           </section>
 
           <section className={classNames()}>
             <DescriptionSkeleton />
-            {/* <Suspense fallback={<DescriptionSkeleton />}>
-          <Description handle={handle} locale={{ country: countryCode, language: languageCode }} />
-        </Suspense> */}
           </section>
         </div>
 
         <div>
           <section className={classNames(' hidden lg:block sticky top-16 flex-shrink-0')}>
             <ProductOptionsSkeleton />
-            {/* <Suspense fallback={<ProductOptionsSkeleton />}>
-          <ProductOptions handle={handle} locale={{ country: countryCode, language: languageCode }} />
-        </Suspense> */}
           </section>
         </div>
       </div>
 
       <section className={classNames('border-t ', localTheme.border.base.main)}>
         <RecommendationsSkeleton />
-        {/* <Suspense fallback={<RecommendationsSkeleton />}>
-      <Recommendations handle={handle} locale={{ country: countryCode, language: languageCode }} />
-    </Suspense> */}
       </section>
     </main>
   );

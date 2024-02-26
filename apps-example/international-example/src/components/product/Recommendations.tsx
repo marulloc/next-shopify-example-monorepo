@@ -16,12 +16,13 @@ type TProps = {
 };
 
 const Recommendations = async ({ product: origin, handle, locale }: TProps) => {
-  // await delay(3000);
   const product = await getProduct(handle, locale);
   const recommendations = await getProductRecommendations(product!.id, locale);
   const dictionary = await (
     await getDictionary(locale.language.toLowerCase() as TDictionaries)
   ).product.Recommendations;
+
+  await delay(1000);
 
   return (
     <div className={classNames(localTheme.spacing.padding.xy.medium, ' ')}>
