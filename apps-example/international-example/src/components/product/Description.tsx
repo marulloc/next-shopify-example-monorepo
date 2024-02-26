@@ -41,16 +41,6 @@ const Description = async ({ handle, locale }: TProps) => {
               <p className="text-gray-700 mb-4">{dictionary.mock.summary.intro}</p>
             </div>
 
-            <div className=" rounded-lg overflow-hidden m-16">
-              <Image
-                src={product.featuredImage.url}
-                alt={product.featuredImage.altText || ''}
-                width={product.featuredImage.width}
-                height={product.featuredImage.height}
-                className="object-cover object-center    "
-              />
-            </div>
-
             <div>
               <h3 className={classNames(localTheme.text.size.large, 'font-semibold mb-2')}>
                 {dictionary.mock.features.title}
