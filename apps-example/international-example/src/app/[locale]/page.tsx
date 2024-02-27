@@ -20,8 +20,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
 
   return (
     <Box as="main" level={0} className="-mt-16">
-      {/* Hero */}
-      <section className="relative max-h-screen ">
+      <Box as="section" level={0} className="relative max-h-screen ">
         <div className="absolute inset-0">
           <Image
             src="/default-alt-images/information.png"
@@ -29,17 +28,14 @@ const Home = async ({ params }: { params: { locale: string } }) => {
             width={1400}
             height={1000}
             className="h-full w-full object-cover object-center"
-            priority
           />
-          <div
-            className={classNames('absolute w-full h-1/4 bottom-0', 'bg-gradient-to-t from-gray-100 via-gray-100')}
-          />
+          <div className={classNames('absolute w-full h-1/4 bottom-0 bg-gradient-to-t from-gray-100 via-gray-100')} />
           <div className={classNames('absolute inset-0', localTheme.fill.base.main, 'bg-opacity-30 ')} />
         </div>
 
         <div className="relative px-20 py-64 sm:py-80 w-full h-full  ">
           <div className=" w-full max-w-md h-full text-center">
-            <h2
+            <h1
               className={classNames(
                 'font-bold tracking-tight',
                 localTheme.text.size.extraLarge,
@@ -47,7 +43,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
               )}
             >
               {shopInfo.name}
-            </h2>
+            </h1>
             <p
               className={classNames(
                 'mt-8 tracking-tight ',
@@ -59,10 +55,10 @@ const Home = async ({ params }: { params: { locale: string } }) => {
             </p>
           </div>
         </div>
-      </section>
+      </Box>
 
       {/* Collections */}
-      <section aria-labelledby="collection-heading" className={classNames(' ', localTheme.spacing.padding.x.medium)}>
+      <Box as="section" className={classNames(localTheme.spacing.padding.x.medium)}>
         <h2
           className={classNames(
             'font-bold tracking-tight',
@@ -80,10 +76,9 @@ const Home = async ({ params }: { params: { locale: string } }) => {
             </Link>
           ))}
         </div>
-      </section>
+      </Box>
 
-      {/* Products */}
-      <section aria-labelledby="category-heading" className={classNames('mt-40 ', localTheme.spacing.padding.x.medium)}>
+      <Box as="section" className={classNames('mt-40 ', localTheme.spacing.padding.x.medium)}>
         <div className="flex justify-between items-center">
           <h2
             className={classNames(
@@ -129,7 +124,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
             </ul>
           </div>
         </div>
-      </section>
+      </Box>
     </Box>
   );
 };

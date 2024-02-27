@@ -35,7 +35,7 @@ const Footer = async ({ locale }: Props) => {
       </div>
 
       <Box as="section" level={0} className=" relative px-20 py-44  w-full h-full  ">
-        <h4
+        <p
           className={classNames(
             'font-bold tracking-tight',
             localTheme.text.size.extraLarge,
@@ -43,7 +43,7 @@ const Footer = async ({ locale }: Props) => {
           )}
         >
           {dictionary.information.h}
-        </h4>
+        </p>
         <p
           className={classNames('mt-8 tracking-tight ', localTheme.text.size.medium, localTheme.text.color.base.muted)}
         >

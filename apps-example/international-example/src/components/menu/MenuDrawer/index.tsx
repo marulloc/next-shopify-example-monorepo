@@ -53,7 +53,7 @@ const MenuDrawer = ({ menu, collections }: Props) => {
               level={2}
               className={classNames('px-4 py-4 sm:px-6', 'flex items-center justify-between ')}
             >
-              <h3 className="sr-only">Menu bar</h3>
+              <h2 className="sr-only">Menu navigation panel</h2>
               <div className="relative w-full" onClick={() => closeDrawer()}>
                 <SearchFakeInputTrigger />
               </div>
@@ -70,7 +70,7 @@ const MenuDrawer = ({ menu, collections }: Props) => {
             </Box>
 
             <Box
-              as="main"
+              as="section"
               variant="glassy"
               level={4}
               className={classNames('flex-1 overflow-y-auto px-4 py-4 sm:px-6')}

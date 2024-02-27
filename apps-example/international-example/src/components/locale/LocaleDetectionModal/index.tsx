@@ -31,7 +31,7 @@ const LocaleDetectionModal = ({ localeData }: TProps) => {
           {({ closeDrawer }) => (
             <div className="w-full h-fit  flex justify-end group">
               <Card
-                as="article"
+                as="aside"
                 variant="glassy"
                 level={3}
                 className={classNames(

@@ -3,7 +3,6 @@ import MenuIconTrigger from '../../components/menu/MenuDrawer/triggers/MenuIconT
 import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-common';
 import SearchIconTrigger from '../../components/search/SearchModal/triggers/SearchIconTrigger';
 import Logo from '../../components/Logo';
-import { localTheme } from '@/theme/local-theme';
 import CartIconTrigger from '../../components/cart/CartDrawer/triggers/CartIconTrigger';
 import Box from '@/components/@common/semantic/Box';
 
@@ -23,7 +22,7 @@ const Header = async ({ locale }: Props) => {
         'px-4 sm:px-6 lg:px-8',
       )}
     >
-      <nav aria-label="Top">
+      <Box as="nav" level={0}>
         <div className="flex h-16 items-center justify-between">
           <div className="flex flex-1 items-center -ml-2">
             <MenuIconTrigger />
@@ -40,7 +39,7 @@ const Header = async ({ locale }: Props) => {
             </div>
           </div>
         </div>
-      </nav>
+      </Box>
     </Box>
   );
 };

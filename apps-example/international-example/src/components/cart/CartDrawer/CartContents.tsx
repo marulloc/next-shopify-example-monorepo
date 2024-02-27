@@ -33,7 +33,7 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
         level={2}
         className={classNames('px-4 py-4 sm:px-6', 'flex items-center justify-between ')}
       >
-        <h1 className="text-lg font-medium text-gray-900">{dictionary.title}</h1>
+        <h2 className="text-lg font-medium text-gray-900">{dictionary.title}</h2>
         <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
           <IconButton
             srName="close panel"
@@ -46,7 +46,7 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
         </div>
       </Box>
 
-      <Box as="main" variant="glassy" level={4} className={classNames('flex-1 overflow-y-auto px-4 py-4 sm:px-6')}>
+      <Box as="section" variant="glassy" level={4} className={classNames('flex-1 overflow-y-auto px-4 py-4 sm:px-6')}>
         <ul role="list" className="-my-6 divide-y divide-gray-300">
           {cart?.lines?.map((cartLine) => (
             <li key={`side-cart-${cartLine.merchandise.title}` + Math.random()}>

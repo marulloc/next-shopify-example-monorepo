@@ -39,7 +39,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
             onClick={() => closeModal()}
           >
             <Card
-              as="section"
+              as="aside"
               level={0}
               onClick={(e) => e.stopPropagation()}
               className={classNames(
@@ -54,7 +54,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                 level={2}
                 className={classNames('px-4 py-4 sm:px-6', 'flex items-center justify-between ')}
               >
-                <h3 className="text-lg font-medium text-gray-900">{dictionary.locale.LocaleSelectModal.title}</h3>
+                <h2 className="text-lg font-medium text-gray-900">{dictionary.locale.LocaleSelectModal.title}</h2>
 
                 <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
                   <IconButton
@@ -68,7 +68,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
               </Box>
 
               <Box
-                as="main"
+                as="section"
                 variant="glassy"
                 level={4}
                 className={classNames('flex-1 overflow-y-auto', 'px-4 py-4 sm:px-6')}

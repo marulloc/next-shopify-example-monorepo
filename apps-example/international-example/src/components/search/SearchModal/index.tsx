@@ -60,7 +60,7 @@ const SearchModal = () => {
             onClick={() => closeModal()}
           >
             <Card
-              as="section"
+              as="aside"
               level={0}
               onClick={(e) => e.stopPropagation()}
               className={classNames(
@@ -69,7 +69,7 @@ const SearchModal = () => {
                 'flex flex-col divide-y divide-gray-300',
               )}
             >
-              <h1 className="sr-only">Search Items</h1>
+              <h2 className="sr-only">Search Items</h2>
               <Box
                 as="header"
                 variant="glassy"
@@ -124,7 +124,7 @@ const SearchModal = () => {
               </Box>
 
               <Box
-                as="main"
+                as="section"
                 variant="glassy"
                 level={4}
                 className={classNames('flex-1 overflow-y-auto  ', 'px-4 py-4 sm:px-6')}
