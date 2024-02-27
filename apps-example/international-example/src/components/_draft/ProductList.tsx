@@ -24,7 +24,8 @@ const ProductList = ({ products, variant, subProps }: TProductListProps) => {
     variant === 'big'
       ? classNames('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8', ulProps?.className)
       : classNames('space-y-4', ulProps?.className);
-  const liClassName = variant === 'big' ? classNames('aspect-square', liProps?.className) : liProps?.className;
+  const liClassName =
+    variant === 'big' ? classNames('aspect-square', liProps?.className) : classNames('py-1', liProps?.className);
 
   return (
     <ul {...ulProps} className={ulClassName}>

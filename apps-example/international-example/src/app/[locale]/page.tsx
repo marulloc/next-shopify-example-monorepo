@@ -1,9 +1,8 @@
 import { getCollectionProducts, getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import Box from '@/components/@common/semantic/Box';
+import CollectionList from '@/components/_draft/CollectionList';
 import ProductList from '@/components/_draft/ProductList';
-import CollectionCard from '@/components/collection/CollectionCard';
-import ProductCard from '@/components/product/ProductCard';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
@@ -70,12 +69,8 @@ const Home = async ({ params }: { params: { locale: string } }) => {
           Collections
         </h2>
 
-        <div className={classNames('mt-4 grid grid-cols-3', localTheme.spacing.gap.xy.medium)}>
-          {collections.map((collection, index) => (
-            <Link key={`home-${collection.title}`} href={collection.handleRoute} className="group block">
-              <CollectionCard variant="big" collection={collection} index={index} />
-            </Link>
-          ))}
+        <div className="mt-4 ">
+          <CollectionList collections={collections} variant="big" />
         </div>
       </Box>
 

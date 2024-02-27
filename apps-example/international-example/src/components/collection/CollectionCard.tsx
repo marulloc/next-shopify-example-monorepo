@@ -5,12 +5,12 @@ import Image from 'next/image';
 import InitialIcon from '../InitialIcon';
 import Card from '../@common/semantic/Card';
 
-type Props = {
+export type TCollectionCardProps = {
   variant: 'small' | 'big';
   index: number;
 } & { collection: ToolkitCollection };
 
-const CollectionCard = ({ variant, collection, index }: Props) => {
+const CollectionCard = ({ variant, collection, index }: TCollectionCardProps) => {
   switch (variant) {
     case 'small':
       return <SmallCollectionCard collection={collection} index={index} />;
@@ -23,7 +23,7 @@ const CollectionCard = ({ variant, collection, index }: Props) => {
 
 export default CollectionCard;
 
-const SmallCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
+const SmallCollectionCard = ({ collection, index }: Omit<TCollectionCardProps, 'variant'>) => {
   return (
     <Card
       level={0}
@@ -52,12 +52,12 @@ const SmallCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
   );
 };
 
-const BigCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
+const BigCollectionCard = ({ collection, index }: Omit<TCollectionCardProps, 'variant'>) => {
   return (
     <Card level={0} className="border-0">
       <div
         aria-hidden="true"
-        className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg lg:aspect-h-6 lg:aspect-w-5  opacity-90 border"
+        className="group aspect-h-2 aspect-w-3 overflow-hidden rounded-lg lg:aspect-h-6 lg:aspect-w-5  opacity-90 border"
       >
         <Image
           src={collection.image?.url || `/default-alt-images/collection-${index + 1}.png`}

@@ -9,8 +9,6 @@ import { throttle } from '@/utils/throttle';
 import { usePredictiveSearch } from '@/hooks/usePredictiveSearch';
 import { localTheme } from '@/theme/local-theme';
 import IconButton from '@/components/IconButton';
-import CollectionCard from '@/components/collection/CollectionCard';
-import ProductCard from '@/components/product/ProductCard';
 import { useSelectLocale } from '@/hooks/useLocale';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import { usePortalRecoil } from '@/context/ui/hooks';
@@ -19,6 +17,7 @@ import { RiEmotionSadLine } from 'react-icons/ri';
 import Card from '@/components/@common/semantic/Card';
 import Box from '@/components/@common/semantic/Box';
 import ProductList from '@/components/_draft/ProductList';
+import CollectionList from '@/components/_draft/CollectionList';
 
 const SearchModal = () => {
   const { isActive, deactivate } = usePortalRecoil('search-modal');
@@ -130,15 +129,17 @@ const SearchModal = () => {
                 level={4}
                 className={classNames('flex-1 overflow-y-auto  ', 'px-4 py-4 sm:px-6')}
               >
-                <ul className="pt-2 pb-4">
-                  <div className="text-xs font-semibold leading-6 text-gray-500">Collections</div>
-                  {predictiveResult.collections.map((collection, index) => (
-                    <li key={`predictive-search-collection-${collection.handle}`} className="py-1">
-                      <Link href={collection.handleRoute} className="block p-1 -mx-1" onClick={() => closeModal()}>
-                        <CollectionCard variant="small" collection={collection} index={index} />
-                      </Link>
-                    </li>
-                  ))}
+                <ul className="pt-2 pb-6">
+                  <h3 className="text-xs font-semibold leading-6 text-gray-500">Collections</h3>
+
+                  <div className="mt-2">
+                    <CollectionList
+                      collections={predictiveResult.collections}
+                      variant="small"
+                      subProps={{ Link: { onClick: closeModal } }}
+                    />
+                  </div>
+
                   {predictiveResult.collections.length <= 0 && (
                     <div
                       className={classNames(
@@ -155,13 +156,15 @@ const SearchModal = () => {
                   )}
                 </ul>
                 <div>
-                  <div className="text-xs font-semibold leading-6 text-gray-500">Products</div>
+                  <h3 className="text-xs font-semibold leading-6 text-gray-500">Products</h3>
 
-                  <ProductList
-                    products={predictiveResult.products}
-                    variant="small"
-                    subProps={{ Link: { onClick: () => closeModal() } }}
-                  />
+                  <div className="mt-2">
+                    <ProductList
+                      products={predictiveResult.products}
+                      variant="small"
+                      subProps={{ Link: { onClick: closeModal } }}
+                    />
+                  </div>
 
                   {predictiveResult.products.length <= 0 && (
                     <div

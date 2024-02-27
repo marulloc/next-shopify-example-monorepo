@@ -1,4 +1,5 @@
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
+import CollectionList from '@/components/_draft/CollectionList';
 import CollectionCard from '@/components/collection/CollectionCard';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
@@ -20,16 +21,13 @@ const Layout = async ({ children, params }: { children: React.ReactNode; params:
           localTheme.spacing.padding.y.small,
         )}
       >
-        <ul className="sticky top-24 ">
-          <div className="text-xs font-semibold leading-6 text-gray-500">All Collections</div>
-          {collections.map((collection, index) => (
-            <li key={`predictive-search-collection-${collection.handle}`} className="py-1">
-              <Link href={collection.handleRoute} className="block p-1 -mx-1">
-                <CollectionCard variant="small" collection={collection} index={index} />
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="sticky top-24">
+          <h3 className="text-xs font-semibold leading-6 text-gray-500">All Collections</h3>
+
+          <div className="mt-2">
+            <CollectionList collections={collections} variant="small" />
+          </div>
+        </div>
       </section>
 
       <div

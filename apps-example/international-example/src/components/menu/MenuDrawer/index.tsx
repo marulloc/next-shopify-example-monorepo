@@ -10,12 +10,12 @@ import { localTheme } from '@/theme/local-theme';
 import IconButton from '@/components/IconButton';
 import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/SearchInputTrigger';
 import InitialIcon from '@/components/InitialIcon';
-import CollectionCard from '@/components/collection/CollectionCard';
 import LocaleIconTrigger from '@/components/locale/LocaleSelectModal/triggers/LocaleSelectModalIconTrigger';
 import { usePortalRecoil } from '@/context/ui/hooks';
 import { useDictioanry } from '@/context/locale/hook';
 import GithubLink from './triggers/GithubLink';
 import Box from '@/components/@common/semantic/Box';
+import CollectionList from '@/components/_draft/CollectionList';
 
 type Props = {
   menu: ToolkitMenu;
@@ -78,37 +78,37 @@ const MenuDrawer = ({ menu, collections }: Props) => {
               <nav className="flex flex-1 flex-col">
                 <ul role="list" className="mt-2 flex flex-1 flex-col gap-y-14">
                   <li>
-                    <div className="text-xs font-semibold leading-6 text-gray-500">Menus</div>
-                    <ul role="list" className="-mx-2 mt-2 space-y-1">
-                      {[{ title: 'home', url: '/' }, ...menu].map(({ title, url }) => (
-                        <li key={`side-menu-${title}`}>
-                          <Link
-                            href={url}
-                            className={classNames(
-                              'text-gray-700 hover:text-indigo-600  ',
-                              'group flex gap-x-3 rounded-md p-2 text-sm leading-6 ',
-                            )}
-                            onClick={() => closeDrawer()}
-                          >
-                            <InitialIcon initial={title[0] || 'c'} />
-                            <span className="truncate">{title.toUpperCase()}</span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
+                    <h4 className="text-xs font-semibold leading-6 text-gray-500">Menus</h4>
+                    <div className="mt-2">
+                      <ul role="list" className="space-y-4">
+                        {[{ title: 'home', url: '/' }, ...menu].map(({ title, url }) => (
+                          <li key={`side-menu-${title}`} className="py-1">
+                            <Link
+                              href={url}
+                              className={classNames(
+                                'text-gray-700 hover:text-indigo-600  ',
+                                'group flex gap-x-3 rounded-md  text-sm leading-6 ',
+                              )}
+                              onClick={() => closeDrawer()}
+                            >
+                              <InitialIcon initial={title[0] || 'c'} />
+                              <span className="truncate">{title.toUpperCase()}</span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </li>
 
                   <li>
-                    <div className="text-xs font-semibold leading-6 text-gray-500">Collections</div>
-                    <ul role="list" className="-mx-2 mt-2 space-y-1">
-                      {collections.map((collection, index) => (
-                        <li key={`sidemenu-collection-${collection.title}`}>
-                          <Link href={collection.handleRoute} className="block p-2" onClick={() => closeDrawer()}>
-                            <CollectionCard variant="small" collection={collection} index={index} />
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
+                    <h4 className="text-xs font-semibold leading-6 text-gray-500">Collections</h4>
+                    <div className="mt-2">
+                      <CollectionList
+                        collections={collections}
+                        variant="small"
+                        subProps={{ Link: { onClick: closeDrawer } }}
+                      />
+                    </div>
                   </li>
                 </ul>
               </nav>
