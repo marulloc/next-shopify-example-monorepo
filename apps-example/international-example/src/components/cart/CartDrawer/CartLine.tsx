@@ -11,6 +11,7 @@ import { localTheme } from '@/theme/local-theme';
 import IconButton from '../../IconButton';
 import { useSetCartLineOptimistic } from '@/context/cart/hooks';
 import { useDictioanry } from '@/context/locale/hook';
+import Box from '@/components/@common/semantic/Box';
 
 type Props = {
   cartLine: ToolkitCartLine;
@@ -27,8 +28,7 @@ const CartLine = ({ cartLine }: Props) => {
 
   if (cartLine.quantity <= 0) return null;
   return (
-    <div className={classNames('py-6 flex min-h-24 px-3 -mx-3 md:px-6 md:-mx-6')}>
-      {/* Image */}
+    <Box as="article" level={0} className={classNames('py-6 flex min-h-24 px-3 -mx-3 md:px-6 md:-mx-6')}>
       <div className={classNames('h-24 aspect-square flex-shrink-0 overflow-hidden', 'rounded-lg')}>
         <Image
           src={cartLine.merchandise.product.featuredImage.url || ''}
@@ -92,7 +92,7 @@ const CartLine = ({ cartLine }: Props) => {
           </div>
         </div>
       </div>
-    </div>
+    </Box>
   );
 };
 

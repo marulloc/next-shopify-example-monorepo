@@ -1,5 +1,6 @@
 import { getCollectionProducts, getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
+import Box from '@/components/@common/semantic/Box';
 import CollectionCard from '@/components/collection/CollectionCard';
 import ProductCard from '@/components/product/ProductCard';
 import { localTheme } from '@/theme/local-theme';
@@ -17,15 +18,8 @@ const Home = async ({ params }: { params: { locale: string } }) => {
     getCollectionProducts({ collection: 'automated-collection', locale: { country, language } }),
   ]);
 
-  // const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
-  // const collections = await getCollections({ country: countryCode, language: languageCode });
-  // const products = await getCollectionProducts({
-  //   collection: 'automated-collection',
-  //   locale: { country: countryCode, language: languageCode },
-  // });
-
   return (
-    <div className="-mt-16">
+    <Box as="main" level={0} className="-mt-16">
       {/* Hero */}
       <section className="relative max-h-screen ">
         <div className="absolute inset-0">
@@ -136,7 +130,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
           </div>
         </div>
       </section>
-    </div>
+    </Box>
   );
 };
 

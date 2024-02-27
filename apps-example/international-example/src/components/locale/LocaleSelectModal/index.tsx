@@ -11,6 +11,8 @@ import { useSelectLocale } from '@/hooks/useLocale';
 import { usePortalRecoil } from '@/context/ui/hooks';
 import { useDictioanry } from '@/context/locale/hook';
 import InitialIcon from '@/components/InitialIcon';
+import Card from '@/components/@common/semantic/Card';
+import Box from '@/components/@common/semantic/Box';
 
 type TProps = {} & Pick<ToolkitLocale, 'availableCountries' | 'availableLanguages'>;
 
@@ -25,7 +27,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
         {({ closeModal }) => (
           <div
             onClick={() => closeModal()}
-            className={classNames('w-full h-full', 'bg-gray-500 bg-opacity-20 backdrop-blur-sm')}
+            className={classNames(' isolate w-full h-full', 'bg-gray-500 bg-opacity-40  ')}
           />
         )}
       </Modal.Backdrop>
@@ -36,148 +38,134 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
             className={classNames('absolute inset-x-0 top-0 md:top-20  flex justify-center')}
             onClick={() => closeModal()}
           >
-            <div
+            <Card
+              as="section"
+              level={0}
               onClick={(e) => e.stopPropagation()}
               className={classNames(
-                'rounded-lg',
                 'h-screen md:h-fit  md:max-h-[calc(100vh-164px)] overflow-hidden',
                 'w-full max-w-3xl m-0 md:m-2',
+                'flex flex-col divide-y divide-gray-300',
               )}
             >
-              <div className="flex flex-col h-full w-full ">
-                {/* Header */}
-                <div
-                  className={classNames(
-                    'px-4 py-4 sm:px-6',
-                    'flex items-center justify-between ',
-                    'bg-white bg-opacity-90  border-b border-gray-200',
-                  )}
-                >
-                  <p className="text-lg font-medium text-gray-900">
-                    {dictionary.locale.LocaleSelectModal.title}
-                    {/* Select Country/Language */}
-                  </p>
-                  <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
-                    <IconButton
-                      className={classNames(localTheme.text.color.base.muted, localTheme.text.color.base.hover)}
-                      onClick={() => closeModal()}
-                    >
-                      <HiXMark className="h-6 w-6" aria-hidden="true" />
-                      <span className="sr-only">{dictionary.locale.LocaleSelectModal.closeBtn.sr}</span>
-                    </IconButton>
-                  </div>
-                </div>
+              <Box
+                as="header"
+                variant="glassy"
+                level={2}
+                className={classNames('px-4 py-4 sm:px-6', 'flex items-center justify-between ')}
+              >
+                <h3 className="text-lg font-medium text-gray-900">{dictionary.locale.LocaleSelectModal.title}</h3>
 
-                {/* Main */}
-                <div
-                  className={classNames(
-                    'flex-1 overflow-y-auto    ',
-                    'px-4 py-4 sm:px-6',
-                    'bg-white bg-opacity-80     border-gray-200  ',
-                  )}
-                >
-                  <nav className="flex flex-1 flex-col">
-                    <ul role="list" className="mt-2 flex flex-1 flex-col gap-y-14">
-                      <li>
-                        <div className="text-xs font-semibold leading-6 text-gray-500">
-                          {dictionary.locale.LocaleSelectModal.subTitles.country}
-                          {/* Select Countries */}
-                        </div>
-                        <ul role="list" className="-mx-2 mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                          {availableCountries.map(({ name, isoCode }) => (
-                            <li key={`country-${isoCode}`}>
+                <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
+                  <IconButton
+                    className={classNames(localTheme.text.color.base.muted, localTheme.text.color.base.hover)}
+                    onClick={() => closeModal()}
+                  >
+                    <HiXMark className="h-6 w-6" aria-hidden="true" />
+                    <span className="sr-only">{dictionary.locale.LocaleSelectModal.closeBtn.sr}</span>
+                  </IconButton>
+                </div>
+              </Box>
+
+              <Box
+                as="main"
+                variant="glassy"
+                level={4}
+                className={classNames('flex-1 overflow-y-auto', 'px-4 py-4 sm:px-6')}
+              >
+                <nav className="flex flex-1 flex-col">
+                  <ul role="list" className="mt-2 flex flex-1 flex-col gap-y-14">
+                    <li>
+                      <div className="text-xs font-semibold leading-6 text-gray-500">
+                        {dictionary.locale.LocaleSelectModal.subTitles.country}
+                      </div>
+                      <ul role="list" className="-mx-2 mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        {availableCountries.map(({ name, isoCode }) => (
+                          <li key={`country-${isoCode}`}>
+                            <div
+                              onClick={() => {
+                                setLocale({ country: isoCode });
+                                closeModal();
+                              }}
+                              className={classNames(
+                                'text-gray-700 cursor-pointer',
+                                isSameISOCode(countryCode, isoCode)
+                                  ? 'text-indigo-600 bg-white ring-1 ring-indigo-600 pointer-events-none'
+                                  : 'hover:text-indigo-600 hover:ring-1 hover:ring-indigo-500 hover:bg-white  transition-all',
+                                'group flex gap-x-3 rounded-md p-2 text-sm leading-6 relative items-center ',
+                              )}
+                            >
+                              <span className=" ">
+                                <ReactCountryFlag
+                                  countryCode={isoCode}
+                                  style={{ fontSize: '1.5em', lineHeight: '1em' }}
+                                  svg={false}
+                                />
+                              </span>
+                              <span className="truncate text-sm transition-all group-hover:scale-105">
+                                {name + ` (${isoCode})`}
+                              </span>
                               <div
-                                onClick={() => {
-                                  setLocale({ country: isoCode });
-                                  closeModal();
-                                }}
                                 className={classNames(
-                                  'text-gray-700 cursor-pointer',
-                                  isSameISOCode(countryCode, isoCode)
-                                    ? 'text-indigo-600 bg-white ring-1 ring-indigo-600 pointer-events-none'
-                                    : 'hover:text-indigo-600 hover:ring-1 hover:ring-indigo-500 hover:bg-white  transition-all',
-                                  'group flex gap-x-3 rounded-md p-2 text-sm leading-6 relative items-center ',
+                                  'absolute bg-white ring-1 text-xs ring-indigo-600 rounded-lg px-1 py-0',
+                                  isSameISOCode(countryCode, isoCode) ? 'block -top-2 right-2' : 'hidden',
                                 )}
                               >
-                                <span className=" ">
-                                  <ReactCountryFlag
-                                    countryCode={isoCode}
-                                    style={{ fontSize: '1.5em', lineHeight: '1em' }}
-                                    svg={false}
-                                  />
-                                </span>
-                                <span className="truncate text-sm transition-all group-hover:scale-105">
-                                  {name + ` (${isoCode})`}
-                                </span>
-                                <div
-                                  className={classNames(
-                                    'absolute bg-white ring-1 text-xs ring-indigo-600 rounded-lg px-1 py-0',
-                                    isSameISOCode(countryCode, isoCode) ? 'block -top-2 right-2' : 'hidden',
-                                  )}
-                                >
-                                  now
-                                </div>
+                                now
                               </div>
-                            </li>
-                          ))}
-                        </ul>
-                      </li>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
 
-                      <li>
-                        <div className="text-xs font-semibold leading-6 text-gray-500">
-                          {dictionary.locale.LocaleSelectModal.subTitles.language}
-                          {/* Select Languages */}
-                        </div>
-                        <ul role="list" className="-mx-2 mt-2  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                          {availableLanguages.map(({ name, isoCode }, index) => (
-                            <li key={`language-${isoCode}`}>
+                    <li>
+                      <div className="text-xs font-semibold leading-6 text-gray-500">
+                        {dictionary.locale.LocaleSelectModal.subTitles.language}
+                      </div>
+                      <ul role="list" className="-mx-2 mt-2  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        {availableLanguages.map(({ name, isoCode }, index) => (
+                          <li key={`language-${isoCode}`}>
+                            <div
+                              onClick={() => {
+                                setLocale({ language: isoCode });
+                                closeModal();
+                              }}
+                              className={classNames(
+                                'text-gray-700 cursor-pointer',
+                                isSameISOCode(languageCode, isoCode)
+                                  ? 'text-indigo-600 bg-white ring-1 ring-indigo-600 pointer-events-none'
+                                  : 'hover:text-indigo-600 hover:ring-1 hover:ring-indigo-500 hover:bg-white  transition-all',
+                                'group flex gap-x-3 rounded-md p-2 text-sm leading-6 relative items-center ',
+                              )}
+                            >
+                              <div>
+                                <InitialIcon initial={isoCode[0]} />
+                              </div>
+                              <span className="truncate text-sm transition-all group-hover:scale-105">
+                                {name + ` (${isoCode})`}
+                              </span>
                               <div
-                                onClick={() => {
-                                  setLocale({ language: isoCode });
-                                  closeModal();
-                                }}
                                 className={classNames(
-                                  'text-gray-700 cursor-pointer',
-                                  isSameISOCode(languageCode, isoCode)
-                                    ? 'text-indigo-600 bg-white ring-1 ring-indigo-600 pointer-events-none'
-                                    : 'hover:text-indigo-600 hover:ring-1 hover:ring-indigo-500 hover:bg-white  transition-all',
-                                  'group flex gap-x-3 rounded-md p-2 text-sm leading-6 relative items-center ',
+                                  'absolute bg-white ring-1 text-xs ring-indigo-600 rounded-lg px-1 py-0',
+                                  isSameISOCode(languageCode, isoCode) ? 'block -top-2 right-2' : 'hidden',
                                 )}
                               >
-                                <div>
-                                  <InitialIcon initial={isoCode[0]} />
-                                </div>
-                                <span className="truncate text-sm transition-all group-hover:scale-105">
-                                  {name + ` (${isoCode})`}
-                                </span>
-                                <div
-                                  className={classNames(
-                                    'absolute bg-white ring-1 text-xs ring-indigo-600 rounded-lg px-1 py-0',
-                                    isSameISOCode(languageCode, isoCode) ? 'block -top-2 right-2' : 'hidden',
-                                  )}
-                                >
-                                  now
-                                </div>
+                                now
                               </div>
-                            </li>
-                          ))}
-                        </ul>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </Box>
 
-                {/* Footer */}
-                <div
-                  className={classNames(
-                    'px-3 py-3  md:px-6 md:py-6',
-                    'bg-white bg-opacity-90  border-t border-gray-200',
-                  )}
-                >
-                  <div className=" text-indigo-600 flex space-x-2 items-center justify-end  text-xs">{/*  */}</div>
-                </div>
-              </div>
-            </div>
+              <Box as="footer" variant="glassy" level={2} className={classNames('px-3 py-3  md:px-6 md:py-6')}>
+                <div className=" text-indigo-600 flex space-x-2 items-center justify-end  text-xs">{/*  */}</div>
+              </Box>
+            </Card>
           </div>
         )}
       </Modal.Contents>

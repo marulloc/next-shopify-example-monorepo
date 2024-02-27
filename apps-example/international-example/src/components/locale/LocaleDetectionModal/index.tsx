@@ -8,6 +8,7 @@ import { classNames } from '@marulloc/components-library/utils';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { MatchedContents, NotDetectedContents, NotMatchedContents } from './AlertContents';
+import Card from '@/components/@common/semantic/Card';
 
 type TProps = {
   localeData: ToolkitLocale;
@@ -29,13 +30,15 @@ const LocaleDetectionModal = ({ localeData }: TProps) => {
         <Drawer.Contents>
           {({ closeDrawer }) => (
             <div className="w-full h-fit  flex justify-end group">
-              <div
+              <Card
+                as="article"
+                variant="glassy"
+                level={3}
                 className={classNames(
-                  '  z-50  bg-white bg-opacity-70 shadow-xl rounded-lg backdrop-blur-sm border border-gray-200',
+                  'shadow-xl z-50',
                   localTheme.spacing.padding.xy.small,
                   localTheme.spacing.margin.xy.small,
                 )}
-                onClick={(e) => e.stopPropagation()}
               >
                 {localeDetection?.status === 'matched' && (
                   <MatchedContents handleClose={closeDrawer} {...localeDetection} />
@@ -46,7 +49,7 @@ const LocaleDetectionModal = ({ localeData }: TProps) => {
                 {localeDetection?.status === 'not-detected' && (
                   <NotDetectedContents handleClose={closeDrawer} {...localeDetection} />
                 )}
-              </div>
+              </Card>
             </div>
           )}
         </Drawer.Contents>

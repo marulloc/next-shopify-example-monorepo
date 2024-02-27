@@ -5,6 +5,7 @@ import SearchIconTrigger from '../../components/search/SearchModal/triggers/Sear
 import Logo from '../../components/Logo';
 import { localTheme } from '@/theme/local-theme';
 import CartIconTrigger from '../../components/cart/CartDrawer/triggers/CartIconTrigger';
+import Box from '@/components/@common/semantic/Box';
 
 type Props = {
   locale?: ShopifyLocaleContext;
@@ -12,18 +13,17 @@ type Props = {
 
 const Header = async ({ locale }: Props) => {
   return (
-    <header className=" isolate sticky top-0 w-full z-30 ">
-      <nav
-        aria-label="Top"
-        className={classNames(
-          localTheme.spacing.container,
-          localTheme.fill.base.main,
-          localTheme.border.base.main,
-          'border-b',
-          'bg-opacity-40 backdrop-blur-sm',
-          'px-4 sm:px-6 lg:px-8',
-        )}
-      >
+    <Box
+      as="header"
+      variant="glassy"
+      level={1}
+      className={classNames(
+        'bg-white/40 bg-opacity-20 shadow-md',
+        'isolate sticky top-0 w-full z-30',
+        'px-4 sm:px-6 lg:px-8',
+      )}
+    >
+      <nav aria-label="Top">
         <div className="flex h-16 items-center justify-between">
           <div className="flex flex-1 items-center -ml-2">
             <MenuIconTrigger />
@@ -41,7 +41,7 @@ const Header = async ({ locale }: Props) => {
           </div>
         </div>
       </nav>
-    </header>
+    </Box>
   );
 };
 

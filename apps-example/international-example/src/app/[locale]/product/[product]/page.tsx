@@ -1,9 +1,11 @@
 import { getProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
+import Box from '@/components/@common/semantic/Box';
 import Description from '@/components/product/Description';
 import ImageGallery from '@/components/product/ImageGallery';
 import ProductOptions from '@/components/product/ProductOptions';
 import Recommendations, { RecommendationsSkeleton } from '@/components/product/Recommendations';
+import { TDictionaries, getDictionary } from '@/dictionaries';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
@@ -18,8 +20,6 @@ export const generateMetadata = async ({ params }: { params: TParams }): Promise
   const { countryCode: country, languageCode: language } = splitLocale(params.locale);
   const { product: handle } = params;
 
-  // const product = await getProduct(handle, { country: countryCode, language: languageCode });
-  // const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
   const [shopInfo, product] = await Promise.all([
     getShopInfo({ country, language }),
     getProduct(handle, { country, language }),
@@ -50,6 +50,12 @@ const ProductPage = async ({ params }: { params: TParams }) => {
   const { countryCode: country, languageCode: language } = splitLocale(params.locale);
   const { product: handle } = params;
 
+  const [product, dict] = await Promise.all([
+    getProduct(handle, { country, language }),
+    getDictionary(language as TDictionaries),
+  ]);
+  const dictionary = dict.product;
+
   return (
     <main className={classNames(' relative min-h-screen  ')}>
       <div className="flex flex-col lg:flex-row">
@@ -61,7 +67,8 @@ const ProductPage = async ({ params }: { params: TParams }) => {
               localTheme.border.base.main + ' border-b',
             )}
           >
-            <ImageGallery handle={handle} locale={{ country, language }} />
+            <h3 className="sr-only">Product Images</h3>
+            <ImageGallery product={product} />
           </section>
 
           <section
@@ -71,26 +78,30 @@ const ProductPage = async ({ params }: { params: TParams }) => {
               localTheme.border.base.main + ' border-b',
             )}
           >
-            <ProductOptions handle={handle} locale={{ country, language }} />
+            <h3 className="sr-only">Product Options</h3>
+            <ProductOptions product={product} dict={dictionary} />
           </section>
 
           <section className={classNames()}>
-            <Description handle={handle} locale={{ country, language }} />
+            <h3 className="sr-only">Product Detail</h3>
+            <Description product={product} dict={dictionary} />
           </section>
         </div>
 
         <div className="pb-4 sm:pb-6 md:pb-8">
           <section className={classNames(' hidden lg:block sticky top-24 flex-shrink-0  ')}>
-            <ProductOptions handle={handle} locale={{ country, language }} />
+            <h3 className="sr-only">Product Options</h3>
+            <ProductOptions product={product} dict={dictionary} />
           </section>
         </div>
       </div>
 
-      <section className={classNames('border-t ', localTheme.border.base.main)}>
+      <Box as="aside" level={0} className={classNames('border-t ', localTheme.border.base.main)}>
+        <h3 className="sr-only">Related Products</h3>
         <Suspense fallback={<RecommendationsSkeleton />}>
-          <Recommendations handle={handle} locale={{ country, language }} />
+          <Recommendations locale={{ country, language }} product={product} dict={dictionary} />
         </Suspense>
-      </section>
+      </Box>
     </main>
   );
 };

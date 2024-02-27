@@ -9,6 +9,7 @@ import { localTheme } from '@/theme/local-theme';
 import { delay } from '@/utils/throttle';
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
+import Box from '../@common/semantic/Box';
 
 type TProps = {
   query: string;
@@ -16,9 +17,6 @@ type TProps = {
   locale: { country: string; language: string };
 };
 const SearchResult = async ({ query, sort: sortKey, locale }: TProps) => {
-  // await delay(1000);
-  // const products = await getProductsSearch({ query, sortKey, filters: [], locale });
-  // const dictionary = await (await getDictionary(locale.language.toLowerCase() as TDictionaries)).search.SearchResult;
   const [products, dict] = await Promise.all([
     getProductsSearch({ query, sortKey, filters: [], locale }),
     getDictionary(locale.language as TDictionaries),
@@ -26,10 +24,10 @@ const SearchResult = async ({ query, sort: sortKey, locale }: TProps) => {
   const dictionary = dict.search.SearchResult;
 
   return (
-    <section>
+    <Box as="main" level={0}>
       <div className="flex flex-col md:flex-row justify-between">
-        <div>
-          <p className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
+        <Box as="header" level={0}>
+          <h1 className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
             {dictionaryReplacer(dictionary.summary, [
               { target: 'number', replace: products.length },
               {
@@ -39,15 +37,16 @@ const SearchResult = async ({ query, sort: sortKey, locale }: TProps) => {
                 ),
               },
             ])}
-          </p>
-        </div>
+          </h1>
+        </Box>
 
         <div className="flex-shrink-0 flex justify-start md:justify-end mb-4  py-1 -my-1 px-3 -mx-3">
           <SortingDropdown />
         </div>
       </div>
 
-      <div>
+      <Box as="section" level={0}>
+        <h3 className="sr-only">Search result</h3>
         <ul className={classNames('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ', localTheme.spacing.gap.xy.small)}>
           {products.map((product) => (
             <li key={`product-card-${product.handle}`} className=" aspect-square">
@@ -57,8 +56,8 @@ const SearchResult = async ({ query, sort: sortKey, locale }: TProps) => {
             </li>
           ))}
         </ul>
-      </div>
-    </section>
+      </Box>
+    </Box>
   );
 };
 

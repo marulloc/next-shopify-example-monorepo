@@ -3,6 +3,7 @@ import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import ProductPrice from './ProductPrice';
 import Image from 'next/image';
+import Card from '../@common/semantic/Card';
 
 type Props = TSmallProductCardProps | TBigProductCardProps;
 
@@ -25,7 +26,7 @@ type TSmallProductCardProps = {
 };
 const SmallProductCard = ({ product }: Omit<Props, 'variant'>) => {
   return (
-    <article className="group flex items-center  space-x-6">
+    <Card level={0} className=" border-0 group flex items-center  space-x-6">
       <div
         className={classNames(
           'aspect-square h-14 w-14 bg-gray-400 ',
@@ -56,7 +57,7 @@ const SmallProductCard = ({ product }: Omit<Props, 'variant'>) => {
           <ProductPrice priceRange={product.priceRange} />
         </div>
       </div>
-    </article>
+    </Card>
   );
 };
 
@@ -68,7 +69,7 @@ type TBigProductCardProps = {
 
 const BigProductCard = ({ product, priceDefaultOpen = false }: Omit<TBigProductCardProps, 'variant'>) => {
   return (
-    <article className="relative group h-full rounded-lg overflow-hidden   ">
+    <Card as="article" level={2} className="relative group h-full rounded-lg overflow-hidden border-0">
       <div
         className={classNames(
           'w-full h-full relative',
@@ -106,6 +107,6 @@ const BigProductCard = ({ product, priceDefaultOpen = false }: Omit<TBigProductC
           />
         </div>
       </div>
-    </article>
+    </Card>
   );
 };

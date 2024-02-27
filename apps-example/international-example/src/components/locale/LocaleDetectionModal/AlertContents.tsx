@@ -17,7 +17,7 @@ export const MatchedContents = ({ handleClose, detectedCountry, currentCountry }
   const dictionary = useDictioanry().locale.LocaleDetectionModal.MatchedContents;
 
   return (
-    <div className="max-w-xl py-4 ">
+    <div className="max-w-xl   pb-4 sm:pb-0 ">
       <div className="flex">
         <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full   bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
           <HiCheck className="h-6 w-6 text-green-600  animate-pulse" aria-hidden="true" />
@@ -64,7 +64,7 @@ export const NotMatchedContents = ({ handleClose, detectedCountry, currentCountr
   const dictionary = useDictioanry().locale.LocaleDetectionModal.NotMatchedContents;
 
   return (
-    <div className="max-w-xl  ">
+    <div className="max-w-xl   pb-4 sm:pb-0 ">
       <div className="flex">
         <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full   bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
           <HiExclamationTriangle className="h-6 w-6 text-red-600  animate-pulse" aria-hidden="true" />
@@ -115,7 +115,7 @@ export const NotDetectedContents = ({ handleClose, currentCountry }: TContentsPr
   const dictionary = useDictioanry().locale.LocaleDetectionModal.NotDetectedContents;
 
   return (
-    <div className="max-w-xl  ">
+    <div className="max-w-xl   pb-4 sm:pb-0 ">
       <div className="flex">
         <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full   bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
           <HiExclamationTriangle className="h-6 w-6 text-red-600  animate-pulse" aria-hidden="true" />

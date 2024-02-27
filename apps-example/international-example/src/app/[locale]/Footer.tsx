@@ -1,4 +1,5 @@
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
+import Box from '@/components/@common/semantic/Box';
 import { TDictionaries, getDictionary } from '@/dictionaries';
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
@@ -11,8 +12,6 @@ type Props = {
 const Footer = async ({ locale }: Props) => {
   const { country, language } = locale;
 
-  // const shopInfo = await getShopInfo({ country, language });
-  // const dictionary = await (await getDictionary(language.toLowerCase() as TDictionaries)).pages.Main;
   const [shopInfo, dict] = await Promise.all([
     getShopInfo({ country, language }),
     getDictionary(language as TDictionaries),
@@ -20,7 +19,7 @@ const Footer = async ({ locale }: Props) => {
   const dictionary = dict.pages.Main;
 
   return (
-    <footer className="relative">
+    <Box as="footer" level={0} className="relative">
       <div className="absolute inset-0 group   ">
         <Image
           src={shopInfo.brand.coverImage.image.url}
@@ -35,8 +34,8 @@ const Footer = async ({ locale }: Props) => {
         <div className={classNames('absolute inset-0', localTheme.fill.base.main, 'bg-opacity-30 ')} />
       </div>
 
-      <div className=" relative px-20 py-44  w-full h-full  ">
-        <h2
+      <Box as="section" level={0} className=" relative px-20 py-44  w-full h-full  ">
+        <h4
           className={classNames(
             'font-bold tracking-tight',
             localTheme.text.size.extraLarge,
@@ -44,14 +43,14 @@ const Footer = async ({ locale }: Props) => {
           )}
         >
           {dictionary.information.h}
-        </h2>
+        </h4>
         <p
           className={classNames('mt-8 tracking-tight ', localTheme.text.size.medium, localTheme.text.color.base.muted)}
         >
           {dictionary.information.p}
         </p>
-      </div>
-    </footer>
+      </Box>
+    </Box>
   );
 };
 

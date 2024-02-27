@@ -55,11 +55,6 @@ const RootLayout = async ({
 }: Readonly<{ children: React.ReactNode; params: { locale: string } }>) => {
   const { countryCode: country, languageCode: language } = splitLocale(params.locale);
 
-  // const { availableCountries, availableLanguages, ...restLocaleData } = await getLocale({ country, language });
-  // const menu = await getMenu('international-example-menu', language);
-  // const collections = await getCollections({ country, language });
-  // const dictionary = await getDictionary(language.toLowerCase() as TDictionaries);
-
   const [localeData, menu, collections, dictionary] = await Promise.all([
     getLocale({ country, language }),
     getMenu('international-example-menu', language),
@@ -79,7 +74,7 @@ const RootLayout = async ({
             />
             <SearchModal />
             <CartDrawer />
-            <LocaleDetectionModal localeData={localeData} />
+            {/* <LocaleDetectionModal localeData={localeData} /> */}
             <FloatingActionButton locale={{ country, language }} />
             <SpeedInsights />
           </Suspense>
@@ -93,7 +88,7 @@ const RootLayout = async ({
             )}
           >
             <Header locale={{ country, language }} />
-            <main className=" flex-1  flex flex-col">{children}</main>
+            <div className=" flex-1  flex flex-col">{children}</div>
             <Footer locale={{ country, language }} />
           </div>
         </RecoilProvider>

@@ -7,32 +7,23 @@ import Link from 'next/link';
 import ScrollCarousel from '../ScrollCarousel';
 import { delay } from '@/utils/throttle';
 import Skeleton from '@/components/loading/Skeleton';
-import { TDictionaries, getDictionary } from '@/dictionaries';
+import { TDictionaries, TDictionary, getDictionary } from '@/dictionaries';
+import Box from '../@common/semantic/Box';
 
 type TProps = {
-  product?: ToolkitProduct;
-  handle: string;
+  product: ToolkitProduct;
+  dict: TDictionary['product'];
   locale: { country: string; language: string };
 };
 
-const Recommendations = async ({ product: origin, handle, locale }: TProps) => {
-  // const product = await getProduct(handle, locale);
-  // const recommendations = await getProductRecommendations(product!.id, locale);
-  // const dictionary = await (
-  //   await getDictionary(locale.language.toLowerCase() as TDictionaries)
-  // ).product.Recommendations;
-
-  const [product, dict] = await Promise.all([
-    getProduct(handle, locale),
-    getDictionary(locale.language as TDictionaries),
-  ]);
+const Recommendations = async ({ product, dict, locale }: TProps) => {
   const recommendations = await getProductRecommendations(product!.id, locale);
-  const dictionary = dict?.product.Recommendations;
+  const dictionary = dict?.Recommendations;
 
-  await delay(1000);
+  // await delay(1000);
 
   return (
-    <div className={classNames(localTheme.spacing.padding.xy.medium, ' ')}>
+    <Box as="div" level={0} className={classNames(localTheme.spacing.padding.xy.medium, ' ')}>
       <p className={classNames(localTheme.text.size.medium, localTheme.spacing.padding.b.small, 'font-bold')}>
         {dictionary.title}
       </p>
@@ -43,12 +34,13 @@ const Recommendations = async ({ product: origin, handle, locale }: TProps) => {
             href={recom.handleRoute}
             key={`${product.title}-recommendation-${recom.title}`}
             className=" h-52 sm:h-64 md:h-80 lg:h-96 aspect-square  "
+            prefetch={false}
           >
             <ProductCard variant="big" product={recom} priceDefaultOpen={false} />
           </Link>
         ))}
       </ScrollCarousel>
-    </div>
+    </Box>
   );
 };
 

@@ -15,7 +15,7 @@ const CartDrawer = () => {
         {({ closeDrawer }) => (
           <div
             onClick={() => closeDrawer()}
-            className={classNames(' isolate w-full h-full', 'bg-gray-500 bg-opacity-20 backdrop-blur-sm ')}
+            className={classNames(' isolate w-full h-full', 'bg-gray-500 bg-opacity-40  ')}
           />
         )}
       </Drawer.Backdrop>

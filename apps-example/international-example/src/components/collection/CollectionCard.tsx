@@ -3,6 +3,7 @@ import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import InitialIcon from '../InitialIcon';
+import Card from '../@common/semantic/Card';
 
 type Props = {
   variant: 'small' | 'big';
@@ -24,18 +25,20 @@ export default CollectionCard;
 
 const SmallCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
   return (
-    <article
+    <Card
+      level={0}
       className={classNames(
+        'border-0',
         'text-gray-700 hover:text-indigo-600  ',
-        'group flex gap-x-3 rounded-md  text-sm leading-6',
+        'group flex gap-x-3 text-sm leading-6',
       )}
     >
       {collection.image || index < 3 ? (
         <Image
           src={collection.image?.url || `/default-alt-images/collection-${index + 1}.png`}
           alt={collection.image?.altText || `default-collection-${index + 1}`}
-          width={collection.image?.width || 1200}
-          height={collection.image?.height || 1200}
+          width={collection.image?.width || 30}
+          height={collection.image?.height || 30}
           className={classNames(
             'border-gray-200 group-hover:border-indigo-600 ',
             'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border',
@@ -45,13 +48,13 @@ const SmallCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
         <InitialIcon initial={collection.title[0] || 'c'} />
       )}
       <span className="truncate">{collection.title.toUpperCase()}</span>
-    </article>
+    </Card>
   );
 };
 
 const BigCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
   return (
-    <article>
+    <Card level={0} className="border-0">
       <div
         aria-hidden="true"
         className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg lg:aspect-h-6 lg:aspect-w-5  opacity-90 border"
@@ -70,6 +73,6 @@ const BigCollectionCard = ({ collection, index }: Omit<Props, 'variant'>) => {
       <p className={classNames('mt-1 text-sm  ', localTheme.text.size.small, localTheme.text.color.base.muted)}>
         {collection.description || `default collection`}
       </p>
-    </article>
+    </Card>
   );
 };
