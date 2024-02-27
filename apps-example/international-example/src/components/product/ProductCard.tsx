@@ -5,9 +5,9 @@ import ProductPrice from './ProductPrice';
 import Image from 'next/image';
 import Card from '../@common/semantic/Card';
 
-type Props = TSmallProductCardProps | TBigProductCardProps;
+export type TPRoductCardProps = TSmallProductCardProps | TBigProductCardProps;
 
-const ProductCard = ({ variant, product, ...rest }: Props) => {
+const ProductCard = ({ variant, product, ...rest }: TPRoductCardProps) => {
   switch (variant) {
     case 'small':
       return <SmallProductCard product={product} />;
@@ -24,7 +24,7 @@ type TSmallProductCardProps = {
   variant: 'small';
   product: ToolkitProduct;
 };
-const SmallProductCard = ({ product }: Omit<Props, 'variant'>) => {
+const SmallProductCard = ({ product }: Omit<TSmallProductCardProps, 'variant'>) => {
   return (
     <Card level={0} className=" border-0 group flex items-center  space-x-6">
       <div

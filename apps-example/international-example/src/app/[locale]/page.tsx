@@ -1,6 +1,7 @@
 import { getCollectionProducts, getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import Box from '@/components/@common/semantic/Box';
+import ProductList from '@/components/_draft/ProductList';
 import CollectionCard from '@/components/collection/CollectionCard';
 import ProductCard from '@/components/product/ProductCard';
 import { localTheme } from '@/theme/local-theme';
@@ -104,25 +105,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
         </div>
 
         <div className="mt-4 ">
-          <div className="relative  ">
-            <ul
-              className={classNames(
-                'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ',
-                localTheme.spacing.gap.xy.medium,
-              )}
-            >
-              {products.map((product) => (
-                <li key={`home-product-${product.title}`}>
-                  <Link
-                    href={product.handleRoute}
-                    className={classNames('relative w-full block aspect-square rounded-lg ')}
-                  >
-                    <ProductCard variant="big" product={product} />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ProductList products={products} variant="big" />
         </div>
       </Box>
     </Box>

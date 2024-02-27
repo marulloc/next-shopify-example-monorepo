@@ -18,6 +18,7 @@ import { useDictioanry } from '@/context/locale/hook';
 import { RiEmotionSadLine } from 'react-icons/ri';
 import Card from '@/components/@common/semantic/Card';
 import Box from '@/components/@common/semantic/Box';
+import ProductList from '@/components/_draft/ProductList';
 
 const SearchModal = () => {
   const { isActive, deactivate } = usePortalRecoil('search-modal');
@@ -153,19 +154,15 @@ const SearchModal = () => {
                     </div>
                   )}
                 </ul>
-                <ul>
+                <div>
                   <div className="text-xs font-semibold leading-6 text-gray-500">Products</div>
-                  {predictiveResult.products.map((product) => (
-                    <li key={`predictive-search-product-${product.handle}`}>
-                      <Link
-                        href={product.handleRoute}
-                        onClick={() => closeModal()}
-                        className={classNames('py-2 block')}
-                      >
-                        <ProductCard variant="small" product={product} />
-                      </Link>
-                    </li>
-                  ))}
+
+                  <ProductList
+                    products={predictiveResult.products}
+                    variant="small"
+                    subProps={{ Link: { onClick: () => closeModal() } }}
+                  />
+
                   {predictiveResult.products.length <= 0 && (
                     <div
                       className={classNames(
@@ -180,7 +177,7 @@ const SearchModal = () => {
                       {dictionary.noResult.title}
                     </div>
                   )}
-                </ul>
+                </div>
               </Box>
               <Box as="footer" variant="glassy" level={2} className={classNames('px-3 py-3  md:px-6 md:py-6')}>
                 <div className=" text-indigo-600 flex space-x-2 items-center justify-end  text-xs">{/*  */}</div>

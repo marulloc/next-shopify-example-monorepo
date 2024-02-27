@@ -10,6 +10,7 @@ import { delay } from '@/utils/throttle';
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
 import Box from '../@common/semantic/Box';
+import ProductList from '../_draft/ProductList';
 
 type TProps = {
   collection: string;
@@ -41,15 +42,7 @@ const CollectionProducts = async ({ collection: handle, sort: sortKey, locale }:
 
       <Box as="section" level={0}>
         <h3 className="sr-only">{`Collection's product list`}</h3>
-        <ul className={classNames('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ', localTheme.spacing.gap.xy.small)}>
-          {products.map((product) => (
-            <li key={`collection-${handle}-product-card-${product.handle}`} className=" aspect-square">
-              <Link href={product.handleRoute} key={`home-product-card-${product.handle}`}>
-                <ProductCard variant="big" product={product} />
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <ProductList products={products} variant="big" />
       </Box>
     </Box>
   );
