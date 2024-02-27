@@ -58,7 +58,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
       </Box>
 
       {/* Collections */}
-      <Box as="section" className={classNames(localTheme.spacing.padding.x.medium)}>
+      <Box as="section" level={0} className={classNames(localTheme.spacing.padding.x.medium)}>
         <h2
           className={classNames(
             'font-bold tracking-tight',
@@ -78,7 +78,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
         </div>
       </Box>
 
-      <Box as="section" className={classNames('mt-40 ', localTheme.spacing.padding.x.medium)}>
+      <Box as="section" level={0} className={classNames('mt-40 ', localTheme.spacing.padding.x.medium)}>
         <div className="flex justify-between items-center">
           <h2
             className={classNames(

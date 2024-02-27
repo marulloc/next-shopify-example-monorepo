@@ -57,8 +57,10 @@ const ProductPage = async ({ params }: { params: TParams }) => {
   const dictionary = dict.product;
 
   return (
-    <main className={classNames(' relative min-h-screen  ')}>
-      <div className="flex flex-col lg:flex-row">
+    <div className={classNames(' relative min-h-screen  ')}>
+      <Box as="main" level={0} className="flex flex-col lg:flex-row">
+        <h1 className="sr-only">{product.title}</h1>
+
         <div className={classNames('h-full flex-1 lg:border-r', localTheme.border.base.main)}>
           <section
             className={classNames(
@@ -67,42 +69,31 @@ const ProductPage = async ({ params }: { params: TParams }) => {
               localTheme.border.base.main + ' border-b',
             )}
           >
-            <h3 className="sr-only">Product Images</h3>
             <ImageGallery product={product} />
           </section>
 
-          <section
-            className={classNames(
-              'block lg:hidden ',
-              localTheme.fill.base.main + ' bg-opacity-40 backdrop-blur-sm',
-              localTheme.border.base.main + ' border-b',
-            )}
-          >
-            <h3 className="sr-only">Product Options</h3>
+          <section className={classNames('block lg:hidden bg-white ', localTheme.border.base.main + ' border-b')}>
             <ProductOptions product={product} dict={dictionary} />
           </section>
 
           <section className={classNames()}>
-            <h3 className="sr-only">Product Detail</h3>
             <Description product={product} dict={dictionary} />
           </section>
         </div>
 
         <div className="pb-4 sm:pb-6 md:pb-8">
           <section className={classNames(' hidden lg:block sticky top-24 flex-shrink-0  ')}>
-            <h3 className="sr-only">Product Options</h3>
             <ProductOptions product={product} dict={dictionary} />
           </section>
         </div>
-      </div>
+      </Box>
 
       <Box as="aside" level={0} className={classNames('border-t ', localTheme.border.base.main)}>
-        <h3 className="sr-only">Related Products</h3>
         <Suspense fallback={<RecommendationsSkeleton />}>
           <Recommendations locale={{ country, language }} product={product} dict={dictionary} />
         </Suspense>
       </Box>
-    </main>
+    </div>
   );
 };
 

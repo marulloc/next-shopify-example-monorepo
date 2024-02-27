@@ -15,12 +15,8 @@ const Header = async ({ locale }: Props) => {
     <Box
       as="header"
       variant="glassy"
-      level={1}
-      className={classNames(
-        'bg-white/40 bg-opacity-20 shadow-md',
-        'isolate sticky top-0 w-full z-30',
-        'px-4 sm:px-6 lg:px-8',
-      )}
+      level={5}
+      className={classNames(' border-b border-gray-300 ', 'isolate sticky top-0 w-full z-30', 'px-4 sm:px-6 lg:px-8')}
     >
       <Box as="nav" level={0}>
         <div className="flex h-16 items-center justify-between">

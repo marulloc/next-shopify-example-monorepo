@@ -1,4 +1,6 @@
 import { getPage } from '@/@marulloc-shopify-nextapi/v24.01/services/page/service';
+import Box from '@/components/@common/semantic/Box';
+import Card from '@/components/@common/semantic/Card';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
@@ -36,24 +38,27 @@ const StaticPage = async ({ params }: TPageParams) => {
   const [page] = await Promise.all([getPage(pageHandle, { country, language })]);
 
   return (
-    <section>
-      <div className="bg-indigo-100 text-indigo-600 rounded-lg p-6 mb-1">
-        <h1 className={classNames('text-2xl sm:text-3xl md:text-4xl font-bold pb-3 mb-3 border-b')}>{page.title}</h1>
-        <p className={classNames(localTheme.text.size.small, 'text-left')}> {page.bodySummary}</p>
-      </div>
+    <div>
+      <p className=" text-right mb-2 text-xs  ">
+        {`Last update : ${new Intl.DateTimeFormat(language, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }).format(new Date(page.updatedAt))}`}
+      </p>
+      <Card as="section" level={0} className="border-0 p-6 ">
+        <Card
+          as="header"
+          level={2}
+          className="border-0 -mx-6 -mt-6 shadow-md bg-indigo-200 text-indigo-800 rounded-lg p-6  "
+        >
+          <h1 className={classNames('text-xl sm:text-2xl md:text-3xl font-bold pb-3 mb-3')}>{page.title}</h1>
+          <p className={classNames('text-xs  w-full md:w-2/3', 'text-left')}> {page.bodySummary}</p>
+        </Card>
 
-      <div className={classNames(localTheme.text.size.small, 'text-right mb-3 text-xs text-indigo-600')}>
-        <p className=" text-right mt-1 text-xs  ">
-          {`Last update : ${new Intl.DateTimeFormat(language, {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          }).format(new Date(page.updatedAt))}`}
-        </p>
-      </div>
-
-      <div dangerouslySetInnerHTML={{ __html: page.body }} className="prose bg-white text-gray-600 rounded-lg p-6 " />
-    </section>
+        <div className="prose mt-6" dangerouslySetInnerHTML={{ __html: page.body }} />
+      </Card>
+    </div>
   );
 };
 

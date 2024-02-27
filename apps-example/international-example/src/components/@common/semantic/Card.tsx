@@ -4,11 +4,11 @@ const STYLE_CONSTANT = {
   normal: ['bg-transparent', 'bg-white', 'bg-gray-50', 'bg-gray-100', 'bg-gray-200', 'bg-gray-300'],
   glassy: [
     'bg-transparent',
-    'bg-white bg-opacity-90 backdrop-blur-sm',
-    'bg-white bg-opacity-80 backdrop-blur-sm',
-    'bg-white bg-opacity-70 backdrop-blur-sm',
-    'bg-gray-50 bg-opacity-70 backdrop-blur-sm',
-    'bg-gray-100 bg-opacity-70 backdrop-blur-sm',
+    'bg-white bg-opacity-90 backdrop-blur-md',
+    'bg-white bg-opacity-80 backdrop-blur-md',
+    'bg-white bg-opacity-70 backdrop-blur-md',
+    'bg-gray-50 bg-opacity-70 backdrop-blur-md',
+    'bg-gray-100 bg-opacity-70 backdrop-blur-md',
   ],
 } as const;
 

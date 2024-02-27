@@ -33,11 +33,11 @@ const ProductOptions = ({ product, dict }: TProps) => {
 
   return (
     <Card
-      level={2}
+      level={0}
       as="div"
       className={classNames(
         'border-0',
-        localTheme.spacing.margin.xy.medium,
+        // localTheme.spacing.margin.xy.medium,
         localTheme.spacing.padding.xy.medium,
         'lg:max-w-lg ',
       )}
@@ -51,7 +51,7 @@ const ProductOptions = ({ product, dict }: TProps) => {
       </div>
 
       <form onSubmit={(e) => e.preventDefault()}>
-        <h4
+        <h3
           className={classNames(
             'border-b text-right',
             localTheme.border.base.muted,
@@ -61,7 +61,7 @@ const ProductOptions = ({ product, dict }: TProps) => {
           )}
         >
           {dictionary.title}
-        </h4>
+        </h3>
         {product.options.map((option, index) => (
           <fieldset
             key={`${product.title}-option-${option.name}`}
@@ -76,7 +76,7 @@ const ProductOptions = ({ product, dict }: TProps) => {
             >
               {`${index + 1}. ${option.name}`}
             </legend>
-            <ul className={classNames(' flex md:grid flex-wrap md:grid-cols-3 gap-3')}>
+            <ul className={classNames(' flex md:grid flex-wrap md:grid-cols-4 gap-3')}>
               {option.values.map((value) => (
                 <li key={`${option.name}_${value}`} className="relative h-full">
                   <input
@@ -163,7 +163,6 @@ export default React.memo(ProductOptions);
 
 export const ProductOptionsSkeleton = () => {
   return (
-    // Same with VariantSelector's style
     <div className={classNames(localTheme.spacing.padding.xy.medium, 'lg:max-w-lg', ' min-w-full lg:min-w-[500px]')}>
       <div className={classNames(localTheme.spacing.padding.b.small, 'border-b', localTheme.border.base.muted)}>
         <h1 className={classNames(localTheme.text.size.large, 'font-semibold mb-2')}>

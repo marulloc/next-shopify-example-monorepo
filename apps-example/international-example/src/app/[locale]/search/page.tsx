@@ -6,6 +6,7 @@ import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/Sea
 import { Suspense } from 'react';
 import SearchResult, { SearchResultSkeleton } from '@/components/search/SearchResult';
 import { ServerRuntime } from 'next';
+import Box from '@/components/@common/semantic/Box';
 
 type TParams = { locale: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };
@@ -17,7 +18,7 @@ const SearchPage = async ({ params, searchParams }: { params: TParams; searchPar
   const { countryCode: country, languageCode: language } = splitLocale(params.locale);
 
   return (
-    <div>
+    <Box as="main" level={0}>
       <div
         className={classNames(
           localTheme.spacing.padding.x.medium,
@@ -29,20 +30,19 @@ const SearchPage = async ({ params, searchParams }: { params: TParams; searchPar
           'bg-opacity-40 backdrop-blur-sm',
         )}
       >
+        <h1 className="sr-only">Search Result</h1>
         <div className="w-full rounded-xl bg-gray-50 bg-opacity-80">
           <SearchFakeInputTrigger />
         </div>
       </div>
 
-      <section className={classNames(localTheme.spacing.padding.x.medium, localTheme.spacing.padding.y.small)}>
-        <Suspense
-          fallback={<SearchResultSkeleton />}
-          key={`${query}-${sort}-${filter}`} // for remount (making suspense)
-        >
-          <SearchResult query={query} sort={sort as ToolkitSortKey} locale={{ country, language }} />
-        </Suspense>
-      </section>
-    </div>
+      <Suspense
+        fallback={<SearchResultSkeleton />}
+        key={`${query}-${sort}-${filter}`} // for remount (making suspense)
+      >
+        <SearchResult query={query} sort={sort as ToolkitSortKey} locale={{ country, language }} />
+      </Suspense>
+    </Box>
   );
 };
 

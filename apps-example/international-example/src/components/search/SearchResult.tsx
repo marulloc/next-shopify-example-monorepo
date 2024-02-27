@@ -24,26 +24,28 @@ const SearchResult = async ({ query, sort: sortKey, locale }: TProps) => {
   const dictionary = dict.search.SearchResult;
 
   return (
-    <Box as="main" level={0}>
-      <div className="flex flex-col md:flex-row justify-between">
-        <Box as="header" level={0}>
-          <h1 className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
-            {dictionaryReplacer(dictionary.summary, [
-              { target: 'number', replace: products.length },
-              {
-                target: 'query',
-                replace: (
-                  <span className={classNames('font-bold', localTheme.text.color.base.main)}>&quot;{query}&quot;</span>
-                ),
-              },
-            ])}
-          </h1>
-        </Box>
+    <Box
+      as="div"
+      level={0}
+      className={classNames(localTheme.spacing.padding.x.medium, localTheme.spacing.padding.y.small)}
+    >
+      <Box as="header" level={0} className="flex flex-col md:flex-row justify-between">
+        <h2 className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
+          {dictionaryReplacer(dictionary.summary, [
+            { target: 'number', replace: products.length },
+            {
+              target: 'query',
+              replace: (
+                <span className={classNames('font-bold', localTheme.text.color.base.main)}>&quot;{query}&quot;</span>
+              ),
+            },
+          ])}
+        </h2>
 
         <div className="flex-shrink-0 flex justify-start md:justify-end mb-4  py-1 -my-1 px-3 -mx-3">
           <SortingDropdown />
         </div>
-      </div>
+      </Box>
 
       <Box as="section" level={0}>
         <h3 className="sr-only">Search result</h3>

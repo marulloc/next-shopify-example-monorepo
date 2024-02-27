@@ -16,9 +16,9 @@ const Description = async ({ product, dict }: TProps) => {
 
   return (
     <Box as="div" level={0} className={classNames(localTheme.spacing.padding.xy.medium)}>
-      <p className={classNames(localTheme.text.size.medium, localTheme.spacing.padding.b.small, 'font-bold')}>
+      <h3 className={classNames(localTheme.text.size.medium, localTheme.spacing.padding.b.small, 'font-bold')}>
         {dictionary.title}
-      </p>
+      </h3>
 
       {/* Real Shopify Description */}
       {/* {product.descriptionHtml && <div dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}></div>} */}
@@ -26,15 +26,20 @@ const Description = async ({ product, dict }: TProps) => {
       <div className={classNames(localTheme.text.size.medium)}>
         <div className={classNames('mb-6  space-y-2', localTheme.text.size.small)}>
           {dictionary.mock.warning.map((contents, index) => (
-            <p key={`${product.title}-info-${index}`} className="p-4 bg-indigo-100 rounded-lg text-indigo-800">
+            <Card
+              as="article"
+              level={2}
+              key={`${product.title}-info-${index}`}
+              className="p-4 bg-indigo-100 rounded-lg text-indigo-800"
+            >
               {contents}
-            </p>
+            </Card>
           ))}
         </div>
 
-        <Card as="div" level={2} className=" border-0 p-6 space-y-10 ">
+        <Card as="section" level={0} className=" border-0 p-6 space-y-10 ">
           <div>
-            <h1 className={classNames(localTheme.text.size.extraLarge, 'font-bold mb-2')}>{product.title}</h1>
+            <h2 className={classNames(localTheme.text.size.extraLarge, 'font-bold mb-2')}>{product.title}</h2>
             <p className="text-gray-700 mb-4">{dictionary.mock.summary.intro}</p>
           </div>
 

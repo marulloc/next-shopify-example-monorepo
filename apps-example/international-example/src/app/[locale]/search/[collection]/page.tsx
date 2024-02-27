@@ -7,6 +7,7 @@ import { Suspense } from 'react';
 import CollectionProducts, { CollectionProductsSkeleton } from '@/components/collection/CollectionProducts';
 import { localTheme } from '@/theme/local-theme';
 import { TDictionaries, getDictionary } from '@/dictionaries';
+import Box from '@/components/@common/semantic/Box';
 
 type TParams = { locale: string; collection: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };
@@ -17,7 +18,6 @@ export const generateMetadata = async ({ params }: { params: TParams }): Promise
   const { countryCode: country, languageCode: language } = splitLocale(params.locale);
   const { collection: handle } = params;
 
-  // const collection = await getCollection(handle, { country: countryCode, language: languageCode });
   const [collection] = await Promise.all([getCollection(handle, { country, language })]);
 
   return {
@@ -31,8 +31,6 @@ const CollectionPage = async ({ params, searchParams }: { params: TParams; searc
   const { countryCode: country, languageCode: language } = splitLocale(params.locale);
   const { collection: handle } = params;
 
-  // const collection = await getCollection(handle, { country, language });
-  // const dictionary = (await getDictionary(language as TDictionaries)).collection.CollectionProducts;
   const [collection, dict] = await Promise.all([
     getCollection(handle, { country, language }),
     getDictionary(language as TDictionaries),
@@ -40,8 +38,8 @@ const CollectionPage = async ({ params, searchParams }: { params: TParams; searc
   const dictionary = dict?.collection.CollectionProducts;
 
   return (
-    <section className={classNames()}>
-      <h3
+    <Box as="main" level={0} className={classNames()}>
+      <h1
         className={classNames(
           localTheme.spacing.padding.x.medium,
           localTheme.spacing.padding.y.small,
@@ -54,11 +52,12 @@ const CollectionPage = async ({ params, searchParams }: { params: TParams; searc
       >
         {dictionary.title}
         <span className="font-semibold">&quot;{collection?.title}&quot;</span>
-      </h3>
+      </h1>
+
       <Suspense fallback={<CollectionProductsSkeleton />} key={`${handle}-${sort}`}>
         <CollectionProducts collection={handle} sort={sort as ToolkitSortKey} locale={{ country, language }} />
       </Suspense>
-    </section>
+    </Box>
   );
 };
 

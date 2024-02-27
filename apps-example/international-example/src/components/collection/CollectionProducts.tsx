@@ -25,21 +25,22 @@ const CollectionProducts = async ({ collection: handle, sort: sortKey, locale }:
 
   return (
     <Box
-      as="section"
+      as="div"
       level={0}
       className={classNames(localTheme.spacing.padding.x.medium, localTheme.spacing.padding.y.small)}
     >
       <Box as="header" level={0} className="flex flex-col md:flex-row justify-between  ">
-        <h1 className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
+        <h2 className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
           {dictionaryReplacer(dictionary.p, [{ target: 'number', replace: products.length }])}
-        </h1>
+        </h2>
 
         <div className="flex-shrink-0 flex justify-start md:justify-end mb-4  py-1 -my-1 px-3 -mx-3">
           <SortingDropdown />
         </div>
       </Box>
 
-      <Box as="main" level={0}>
+      <Box as="section" level={0}>
+        <h3 className="sr-only">{`Collection's product list`}</h3>
         <ul className={classNames('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ', localTheme.spacing.gap.xy.small)}>
           {products.map((product) => (
             <li key={`collection-${handle}-product-card-${product.handle}`} className=" aspect-square">
