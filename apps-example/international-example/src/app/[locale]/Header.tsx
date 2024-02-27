@@ -1,10 +1,10 @@
 import { classNames } from '@marulloc/components-library/utils';
-import MenuIconTrigger from './menu/MenuDrawer/triggers/MenuIconTrigger';
+import MenuIconTrigger from '../../components/menu/MenuDrawer/triggers/MenuIconTrigger';
 import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-common';
-import SearchIconTrigger from './search/SearchModal/triggers/SearchIconTrigger';
-import Logo from './Logo';
+import SearchIconTrigger from '../../components/search/SearchModal/triggers/SearchIconTrigger';
+import Logo from '../../components/Logo';
 import { localTheme } from '@/theme/local-theme';
-import CartIconTrigger from './cart/CartDrawer/triggers/CartIconTrigger';
+import CartIconTrigger from '../../components/cart/CartDrawer/triggers/CartIconTrigger';
 
 type Props = {
   locale?: ShopifyLocaleContext;

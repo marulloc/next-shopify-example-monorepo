@@ -13,7 +13,6 @@ import InitialIcon from '@/components/InitialIcon';
 import CollectionCard from '@/components/collection/CollectionCard';
 import LocaleIconTrigger from '@/components/locale/LocaleSelectModal/triggers/LocaleSelectModalIconTrigger';
 import { usePortalRecoil } from '@/context/ui/hooks';
-import SuspenseWrapper from '@/components/SuspenseWrapper';
 import { useDictioanry } from '@/context/locale/hook';
 import GithubLink from './triggers/GithubLink';
 
@@ -50,9 +49,7 @@ const MenuDrawer = ({ menu, collections }: Props) => {
                 )}
               >
                 <div className="relative w-full" onClick={() => closeDrawer()}>
-                  <SuspenseWrapper>
-                    <SearchFakeInputTrigger />
-                  </SuspenseWrapper>
+                  <SearchFakeInputTrigger />
                 </div>
                 <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
                   <IconButton
