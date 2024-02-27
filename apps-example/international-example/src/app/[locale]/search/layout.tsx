@@ -5,10 +5,11 @@ import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
 
-const Layout = async (props: { children: React.ReactNode; params: { locale: string } }) => {
-  const { countryCode, languageCode } = splitLocale(props.params.locale);
+const Layout = async ({ children, params }: { children: React.ReactNode; params: { locale: string } }) => {
+  const { countryCode: country, languageCode: language } = splitLocale(params.locale);
 
-  const collections = await getCollections({ country: countryCode, language: languageCode });
+  // const collections = await getCollections({ country: countryCode, language: languageCode });
+  const [collections] = await Promise.all([getCollections({ country, language })]);
 
   return (
     <div className={classNames('flex-1 flex flex-col md:flex-row  ', ' border-b', localTheme.border.base.main)}>
@@ -38,7 +39,7 @@ const Layout = async (props: { children: React.ReactNode; params: { locale: stri
           localTheme.border.base.main,
         )}
       >
-        {props.children}
+        {children}
       </div>
     </div>
   );

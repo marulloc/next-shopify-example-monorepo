@@ -8,7 +8,8 @@ const dictionaries = {
 };
 
 export const getDictionary = async (locale: TDictionaries) => {
-  if (!dictionaries[locale]) throw Error(`Cannot found ${locale}'s dictionary`);
+  const lowerLocale = locale.toLowerCase() as TDictionaries;
+  if (!dictionaries[lowerLocale]) throw Error(`Cannot found ${locale}'s dictionary`);
 
-  return dictionaries[locale]();
+  return dictionaries[lowerLocale]();
 };

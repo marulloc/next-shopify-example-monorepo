@@ -13,7 +13,7 @@ type TProps = {
 };
 
 const ImageGallery = async ({ handle, locale }: TProps) => {
-  const product = await getProduct(handle, locale);
+  const [product] = await Promise.all([getProduct(handle, locale)]);
 
   return (
     <div

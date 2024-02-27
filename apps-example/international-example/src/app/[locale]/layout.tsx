@@ -55,11 +55,17 @@ const RootLayout = async ({
 }: Readonly<{ children: React.ReactNode; params: { locale: string } }>) => {
   const { countryCode: country, languageCode: language } = splitLocale(params.locale);
 
-  const { availableCountries, availableLanguages, ...restLocaleData } = await getLocale({ country, language });
-  const menu = await getMenu('international-example-menu', language);
-  const collections = await getCollections({ country, language });
+  // const { availableCountries, availableLanguages, ...restLocaleData } = await getLocale({ country, language });
+  // const menu = await getMenu('international-example-menu', language);
+  // const collections = await getCollections({ country, language });
+  // const dictionary = await getDictionary(language.toLowerCase() as TDictionaries);
 
-  const dictionary = await getDictionary(language.toLowerCase() as TDictionaries);
+  const [localeData, menu, collections, dictionary] = await Promise.all([
+    getLocale({ country, language }),
+    getMenu('international-example-menu', language),
+    getCollections({ country, language }),
+    getDictionary(language.toLowerCase() as TDictionaries),
+  ]);
 
   return (
     <html lang={language} className=" scroll-smooth">
@@ -67,10 +73,13 @@ const RootLayout = async ({
         <RecoilProvider locale={{ country, language }} dictionary={dictionary}>
           <Suspense>
             <MenuDrawer menu={menu} collections={collections} />
-            <LocaleSelectorModal availableCountries={availableCountries} availableLanguages={availableLanguages} />
+            <LocaleSelectorModal
+              availableCountries={localeData.availableCountries}
+              availableLanguages={localeData.availableLanguages}
+            />
             <SearchModal />
             <CartDrawer />
-            <LocaleDetectionModal localeData={{ availableCountries, availableLanguages, ...restLocaleData }} />
+            <LocaleDetectionModal localeData={localeData} />
             <FloatingActionButton locale={{ country, language }} />
             <SpeedInsights />
           </Suspense>

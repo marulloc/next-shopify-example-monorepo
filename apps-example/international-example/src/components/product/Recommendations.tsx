@@ -16,11 +16,18 @@ type TProps = {
 };
 
 const Recommendations = async ({ product: origin, handle, locale }: TProps) => {
-  const product = await getProduct(handle, locale);
+  // const product = await getProduct(handle, locale);
+  // const recommendations = await getProductRecommendations(product!.id, locale);
+  // const dictionary = await (
+  //   await getDictionary(locale.language.toLowerCase() as TDictionaries)
+  // ).product.Recommendations;
+
+  const [product, dict] = await Promise.all([
+    getProduct(handle, locale),
+    getDictionary(locale.language as TDictionaries),
+  ]);
   const recommendations = await getProductRecommendations(product!.id, locale);
-  const dictionary = await (
-    await getDictionary(locale.language.toLowerCase() as TDictionaries)
-  ).product.Recommendations;
+  const dictionary = dict?.product.Recommendations;
 
   await delay(1000);
 
@@ -50,7 +57,6 @@ export default Recommendations;
 export const RecommendationsSkeleton = () => {
   return (
     <div className={classNames(localTheme.spacing.padding.xy.medium, ' ')}>
-      {/* <Skeleton /> */}
       <div
         className={classNames(
           'overflow-auto  h-full w-full ',

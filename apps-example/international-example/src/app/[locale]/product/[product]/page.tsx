@@ -15,11 +15,15 @@ export const runtime: ServerRuntime = 'edge';
 type TParams = { locale: string; product: string };
 
 export const generateMetadata = async ({ params }: { params: TParams }): Promise<Metadata> => {
-  const { countryCode, languageCode } = splitLocale(params.locale);
+  const { countryCode: country, languageCode: language } = splitLocale(params.locale);
   const { product: handle } = params;
 
-  const product = await getProduct(handle, { country: countryCode, language: languageCode });
-  const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
+  // const product = await getProduct(handle, { country: countryCode, language: languageCode });
+  // const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
+  const [shopInfo, product] = await Promise.all([
+    getShopInfo({ country, language }),
+    getProduct(handle, { country, language }),
+  ]);
 
   return {
     title: product.seo?.title || product.title,
@@ -43,7 +47,7 @@ export const generateMetadata = async ({ params }: { params: TParams }): Promise
 };
 
 const ProductPage = async ({ params }: { params: TParams }) => {
-  const { countryCode, languageCode } = splitLocale(params.locale);
+  const { countryCode: country, languageCode: language } = splitLocale(params.locale);
   const { product: handle } = params;
 
   return (
@@ -57,7 +61,7 @@ const ProductPage = async ({ params }: { params: TParams }) => {
               localTheme.border.base.main + ' border-b',
             )}
           >
-            <ImageGallery handle={handle} locale={{ country: countryCode, language: languageCode }} />
+            <ImageGallery handle={handle} locale={{ country, language }} />
           </section>
 
           <section
@@ -67,24 +71,24 @@ const ProductPage = async ({ params }: { params: TParams }) => {
               localTheme.border.base.main + ' border-b',
             )}
           >
-            <ProductOptions handle={handle} locale={{ country: countryCode, language: languageCode }} />
+            <ProductOptions handle={handle} locale={{ country, language }} />
           </section>
 
           <section className={classNames()}>
-            <Description handle={handle} locale={{ country: countryCode, language: languageCode }} />
+            <Description handle={handle} locale={{ country, language }} />
           </section>
         </div>
 
         <div className="pb-4 sm:pb-6 md:pb-8">
           <section className={classNames(' hidden lg:block sticky top-24 flex-shrink-0  ')}>
-            <ProductOptions handle={handle} locale={{ country: countryCode, language: languageCode }} />
+            <ProductOptions handle={handle} locale={{ country, language }} />
           </section>
         </div>
       </div>
 
       <section className={classNames('border-t ', localTheme.border.base.main)}>
         <Suspense fallback={<RecommendationsSkeleton />}>
-          <Recommendations handle={handle} locale={{ country: countryCode, language: languageCode }} />
+          <Recommendations handle={handle} locale={{ country, language }} />
         </Suspense>
       </section>
     </main>

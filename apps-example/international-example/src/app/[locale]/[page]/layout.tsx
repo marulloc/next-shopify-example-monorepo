@@ -10,11 +10,12 @@ type TProps = {
 };
 
 const StaticPageLayout = async ({ children, params }: TProps) => {
-  const { countryCode, languageCode } = splitLocale(params.locale);
+  const { countryCode: country, languageCode: language } = splitLocale(params.locale);
   const { page: handle } = params;
-  const others = await (
-    await getPages({ country: countryCode, language: languageCode })
-  ).filter((page) => page.handle !== handle);
+
+  // const others = await (await getPages({ country, language })).filter((page) => page.handle !== handle);
+  const [pages] = await Promise.all([getPages({ country, language })]);
+  const otherPages = pages.filter((page) => page.handle !== handle);
 
   return (
     <div className={classNames('flex-1 flex flex-col md:flex-row  ', ' border-b', localTheme.border.base.main)}>
@@ -37,7 +38,7 @@ const StaticPageLayout = async ({ children, params }: TProps) => {
           Other Pages
         </p>
         <ul className={classNames(' grid grid-cols-2 md:grid-cols-1  mb-16', localTheme.spacing.gap.xy.small)}>
-          {others.map((page) => (
+          {otherPages.map((page) => (
             <li key={`article-${page.title}`} className=" ">
               <Link href={`/${page.handle}`} className="group  block  h-full w-full ">
                 <article
@@ -59,7 +60,7 @@ const StaticPageLayout = async ({ children, params }: TProps) => {
                     {page.bodySummary}
                   </p>
                   <p className=" text-right mt-1 text-xs  ">
-                    {new Intl.DateTimeFormat(languageCode, {
+                    {new Intl.DateTimeFormat(language, {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric',

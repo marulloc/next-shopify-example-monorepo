@@ -12,7 +12,8 @@ type TProps = {
 
 const ProductOptionsServerWrapper = async ({ handle, locale }: TProps) => {
   // await delay(5000);
-  const product = await getProduct(handle, locale);
+  // const product = await getProduct(handle, locale);
+  const [product] = await Promise.all([getProduct(handle, locale)]);
 
   return <VariantSelector product={product} />;
 };

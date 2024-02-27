@@ -1,10 +1,8 @@
 import { ToolkitSortKey } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-search';
-import { getCollection, getCollectionProducts } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
-import { extractGid } from '@/@marulloc-shopify-nextapi/v24.01/utils/gid';
+import { getCollectionProducts } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import Skeleton from '@/components/loading/Skeleton';
 import ProductCard from '@/components/product/ProductCard';
 import SortingDropdown from '@/components/search/SortingDropdown';
-import { useDictioanry } from '@/context/locale/hook';
 import { TDictionaries, getDictionary } from '@/dictionaries';
 import { dictionaryReplacer } from '@/dictionaries/utils';
 import { localTheme } from '@/theme/local-theme';
@@ -19,9 +17,14 @@ type TProps = {
 };
 const CollectionProducts = async ({ collection: handle, sort: sortKey, locale }: TProps) => {
   // await delay(1000);
-  const products = await getCollectionProducts({ collection: handle, sortKey, locale });
-  const dictionary = (await getDictionary(locale.language.toLowerCase() as TDictionaries)).collection
-    .CollectionProducts;
+  // const products = await getCollectionProducts({ collection: handle, sortKey, locale });
+  // const dictionary = (await getDictionary(locale.language.toLowerCase() as TDictionaries)).collection
+  //   .CollectionProducts;
+  const [products, dict] = await Promise.all([
+    getCollectionProducts({ collection: handle, locale }),
+    getDictionary(locale.language as TDictionaries),
+  ]);
+  const dictionary = dict.collection.CollectionProducts;
 
   return (
     <section className={classNames(localTheme.spacing.padding.x.medium, localTheme.spacing.padding.y.small)}>

@@ -3,10 +3,8 @@ import { getCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/colle
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import { Metadata, ServerRuntime } from 'next';
-import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { Suspense } from 'react';
 import CollectionProducts, { CollectionProductsSkeleton } from '@/components/collection/CollectionProducts';
-import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
 import { localTheme } from '@/theme/local-theme';
 import { TDictionaries, getDictionary } from '@/dictionaries';
 
@@ -16,11 +14,11 @@ type TSearchParams = { [key: string]: string | string[] | undefined };
 export const runtime: ServerRuntime = 'edge';
 
 export const generateMetadata = async ({ params }: { params: TParams }): Promise<Metadata> => {
-  const { countryCode, languageCode } = splitLocale(params.locale);
+  const { countryCode: country, languageCode: language } = splitLocale(params.locale);
   const { collection: handle } = params;
 
-  const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
-  const collection = await getCollection(handle, { country: countryCode, language: languageCode });
+  // const collection = await getCollection(handle, { country: countryCode, language: languageCode });
+  const [collection] = await Promise.all([getCollection(handle, { country, language })]);
 
   return {
     title: collection.seo?.title || collection.title,
@@ -30,11 +28,16 @@ export const generateMetadata = async ({ params }: { params: TParams }): Promise
 
 const CollectionPage = async ({ params, searchParams }: { params: TParams; searchParams?: TSearchParams }) => {
   const { sort, query, filter } = searchParams as { [key: string]: string };
-  const { countryCode, languageCode } = splitLocale(params.locale);
+  const { countryCode: country, languageCode: language } = splitLocale(params.locale);
   const { collection: handle } = params;
 
-  const collection = await getCollection(handle, { country: countryCode, language: languageCode });
-  const dictionary = (await getDictionary(languageCode.toLowerCase() as TDictionaries)).collection.CollectionProducts;
+  // const collection = await getCollection(handle, { country, language });
+  // const dictionary = (await getDictionary(language as TDictionaries)).collection.CollectionProducts;
+  const [collection, dict] = await Promise.all([
+    getCollection(handle, { country, language }),
+    getDictionary(language as TDictionaries),
+  ]);
+  const dictionary = dict?.collection.CollectionProducts;
 
   return (
     <section className={classNames()}>
@@ -53,11 +56,7 @@ const CollectionPage = async ({ params, searchParams }: { params: TParams; searc
         <span className="font-semibold">&quot;{collection?.title}&quot;</span>
       </h3>
       <Suspense fallback={<CollectionProductsSkeleton />} key={`${handle}-${sort}`}>
-        <CollectionProducts
-          collection={handle}
-          sort={sort as ToolkitSortKey}
-          locale={{ country: countryCode, language: languageCode }}
-        />
+        <CollectionProducts collection={handle} sort={sort as ToolkitSortKey} locale={{ country, language }} />
       </Suspense>
     </section>
   );

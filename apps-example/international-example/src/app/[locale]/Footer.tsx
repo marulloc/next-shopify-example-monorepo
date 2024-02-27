@@ -11,8 +11,13 @@ type Props = {
 const Footer = async ({ locale }: Props) => {
   const { country, language } = locale;
 
-  const shopInfo = await getShopInfo({ country, language });
-  const dictionary = await (await getDictionary(language.toLowerCase() as TDictionaries)).pages.Main;
+  // const shopInfo = await getShopInfo({ country, language });
+  // const dictionary = await (await getDictionary(language.toLowerCase() as TDictionaries)).pages.Main;
+  const [shopInfo, dict] = await Promise.all([
+    getShopInfo({ country, language }),
+    getDictionary(language as TDictionaries),
+  ]);
+  const dictionary = dict.pages.Main;
 
   return (
     <footer className="relative">

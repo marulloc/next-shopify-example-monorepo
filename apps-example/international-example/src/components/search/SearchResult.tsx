@@ -17,8 +17,13 @@ type TProps = {
 };
 const SearchResult = async ({ query, sort: sortKey, locale }: TProps) => {
   // await delay(1000);
-  const products = await getProductsSearch({ query, sortKey, filters: [], locale });
-  const dictionary = await (await getDictionary(locale.language.toLowerCase() as TDictionaries)).search.SearchResult;
+  // const products = await getProductsSearch({ query, sortKey, filters: [], locale });
+  // const dictionary = await (await getDictionary(locale.language.toLowerCase() as TDictionaries)).search.SearchResult;
+  const [products, dict] = await Promise.all([
+    getProductsSearch({ query, sortKey, filters: [], locale }),
+    getDictionary(locale.language as TDictionaries),
+  ]);
+  const dictionary = dict.search.SearchResult;
 
   return (
     <section>

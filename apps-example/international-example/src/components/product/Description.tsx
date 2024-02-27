@@ -13,8 +13,13 @@ type TProps = {
 
 const Description = async ({ handle, locale }: TProps) => {
   // await delay(5000);
-  const product = await getProduct(handle, locale);
-  const dictionary = await (await getDictionary(locale.language.toLowerCase() as TDictionaries)).product.Description;
+  // const product = await getProduct(handle, locale);
+  // const dictionary = await (await getDictionary(locale.language.toLowerCase() as TDictionaries)).product.Description;
+  const [product, dict] = await Promise.all([
+    getProduct(handle, locale),
+    getDictionary(locale.language as TDictionaries),
+  ]);
+  const dictionary = dict?.product.Description;
 
   return (
     <div className={classNames(localTheme.spacing.padding.xy.medium)}>

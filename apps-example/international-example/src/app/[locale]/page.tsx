@@ -2,7 +2,6 @@ import { getCollectionProducts, getCollections } from '@/@marulloc-shopify-nexta
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import CollectionCard from '@/components/collection/CollectionCard';
 import ProductCard from '@/components/product/ProductCard';
-import { TDictionaries, getDictionary } from '@/dictionaries';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
@@ -10,15 +9,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const Home = async ({ params }: { params: { locale: string } }) => {
-  const { countryCode, languageCode } = splitLocale(params.locale);
-  const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
+  const { countryCode: country, languageCode: language } = splitLocale(params.locale);
 
-  const collections = await getCollections({ country: countryCode, language: languageCode });
-  const products = await getCollectionProducts({
-    collection: 'automated-collection',
-    locale: { country: countryCode, language: languageCode },
-  });
-  const dictionary = await (await getDictionary(languageCode.toLowerCase() as TDictionaries)).pages.Main;
+  const [shopInfo, collections, products] = await Promise.all([
+    getShopInfo({ country, language }),
+    getCollections({ country, language }),
+    getCollectionProducts({ collection: 'automated-collection', locale: { country, language } }),
+  ]);
+
+  // const shopInfo = await getShopInfo({ country: countryCode, language: languageCode });
+  // const collections = await getCollections({ country: countryCode, language: languageCode });
+  // const products = await getCollectionProducts({
+  //   collection: 'automated-collection',
+  //   locale: { country: countryCode, language: languageCode },
+  // });
 
   return (
     <div className="-mt-16">

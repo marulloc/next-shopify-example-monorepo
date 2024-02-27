@@ -14,7 +14,7 @@ export const runtime: ServerRuntime = 'edge';
 
 const SearchPage = async ({ params, searchParams }: { params: TParams; searchParams?: TSearchParams }) => {
   const { sort, query, filter } = searchParams as { [key: string]: string };
-  const { countryCode, languageCode } = splitLocale(params.locale);
+  const { countryCode: country, languageCode: language } = splitLocale(params.locale);
 
   return (
     <div>
@@ -39,11 +39,7 @@ const SearchPage = async ({ params, searchParams }: { params: TParams; searchPar
           fallback={<SearchResultSkeleton />}
           key={`${query}-${sort}-${filter}`} // for remount (making suspense)
         >
-          <SearchResult
-            query={query}
-            sort={sort as ToolkitSortKey}
-            locale={{ country: countryCode, language: languageCode }}
-          />
+          <SearchResult query={query} sort={sort as ToolkitSortKey} locale={{ country, language }} />
         </Suspense>
       </section>
     </div>

@@ -12,10 +12,10 @@ type TPageParams = {
 };
 
 export const generateMetadata = async ({ params }: TPageParams): Promise<Metadata> => {
-  const { countryCode, languageCode } = splitLocale(params.locale);
+  const { countryCode: country, languageCode: language } = splitLocale(params.locale);
   const { page: pageHandle } = params;
 
-  const page = await getPage(pageHandle, { country: countryCode.toUpperCase(), language: languageCode.toUpperCase() });
+  const [page] = await Promise.all([getPage(pageHandle, { country, language })]);
 
   if (!page) return notFound();
   return {
@@ -30,10 +30,10 @@ export const generateMetadata = async ({ params }: TPageParams): Promise<Metadat
 };
 
 const StaticPage = async ({ params }: TPageParams) => {
-  const { countryCode, languageCode } = splitLocale(params.locale);
+  const { countryCode: country, languageCode: language } = splitLocale(params.locale);
   const { page: pageHandle } = params;
 
-  const page = await getPage(pageHandle, { country: countryCode.toUpperCase(), language: languageCode.toUpperCase() });
+  const [page] = await Promise.all([getPage(pageHandle, { country, language })]);
 
   return (
     <section>
@@ -44,7 +44,7 @@ const StaticPage = async ({ params }: TPageParams) => {
 
       <div className={classNames(localTheme.text.size.small, 'text-right mb-3 text-xs text-indigo-600')}>
         <p className=" text-right mt-1 text-xs  ">
-          {`Last update : ${new Intl.DateTimeFormat(languageCode, {
+          {`Last update : ${new Intl.DateTimeFormat(language, {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
