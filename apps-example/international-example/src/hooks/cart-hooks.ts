@@ -14,7 +14,7 @@ import { useGetLocale } from '@/hooks/locale-hooks';
  */
 export const useGetLoadableCart = () => {
   const loadableCart = useRecoilValueLoadable(atomCart);
-  return loadableCart;
+  return loadableCart as Readonly<typeof loadableCart>;
 };
 
 /**
@@ -54,7 +54,7 @@ export const useCartLineOptimisticMutation = (lineId: ToolkitCartLine['id']) => 
     });
   }, [lineId, setCartLineOptimistic]);
 
-  return { updateQty, deleteLine };
+  return { updateQty, deleteLine } as const;
 };
 
 /**

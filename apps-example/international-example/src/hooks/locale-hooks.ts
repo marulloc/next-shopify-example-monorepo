@@ -13,7 +13,7 @@ import { useRecoilValue } from 'recoil';
  */
 export const useGetLocale = () => {
   const locale = useRecoilValue(atomLocale);
-  return locale;
+  return locale as Readonly<typeof locale>;
 };
 
 /**
@@ -22,7 +22,7 @@ export const useGetLocale = () => {
  */
 export const useGetDictioanry = () => {
   const dictionary = useRecoilValue(atomDictionary);
-  return dictionary;
+  return dictionary as Readonly<typeof dictionary>;
 };
 
 type TReturn = {
@@ -66,7 +66,7 @@ export const useDetectLocaleMatch = (localeData: ToolkitLocale) => {
     })();
   }, [currentConuntryCode, currentLanguageCode, localeData]);
 
-  return result;
+  return result as Readonly<typeof result>;
 };
 
 /**

@@ -8,12 +8,7 @@ type TParams = {
   initialValue: { [key: string]: string | null };
 };
 
-type TReturn = [
-  { selectedOptions: { [key: string]: string | null }; selectedVariant: ToolkitProduct['variants'][number] | null },
-  (key: string, value: string) => void,
-];
-
-export const useSelectVariant = ({ product, initialValue }: TParams): TReturn => {
+export const useSelectVariant = ({ product, initialValue }: TParams) => {
   const [selectedOptions, setSelectedOptions] = useState(initialValue);
 
   const selectedVariant = useMemo(() => {
@@ -29,5 +24,5 @@ export const useSelectVariant = ({ product, initialValue }: TParams): TReturn =>
     [setSelectedOptions],
   );
 
-  return [{ selectedOptions, selectedVariant }, select];
+  return [{ selectedOptions, selectedVariant }, select] as const;
 };

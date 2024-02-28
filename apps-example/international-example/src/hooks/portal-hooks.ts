@@ -15,7 +15,7 @@ export const useGetPortalRecole = (portalName: TPortalConstants) => {
   );
 
   if (!targetPortalStatus) throw Error(`Cannot found Portal(named ${portalName})`);
-  return targetPortalStatus as TPortalValue;
+  return targetPortalStatus as Readonly<TPortalValue>;
 };
 
 /**
@@ -50,7 +50,7 @@ export const useSetPortalRecoil = (portalName: TPortalConstants) => {
     [portalName, setPortals],
   );
 
-  return { activate, deactivate };
+  return { activate, deactivate } as const;
 };
 
 /**

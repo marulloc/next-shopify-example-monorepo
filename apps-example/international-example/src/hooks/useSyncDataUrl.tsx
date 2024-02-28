@@ -12,12 +12,7 @@ type TParams<T extends string[]> = {
   targetPathname?: string;
 };
 
-type TReturn<T extends string[]> = [
-  QueryParams<T>,
-  (userQueryParams: Record<string, string | null>, keepKeys?: string[]) => void,
-];
-
-export const useSyncDataUrl = <T extends string[]>({ keys, targetPathname }: TParams<T>): TReturn<T> => {
+export const useSyncDataUrl = <T extends string[]>({ keys, targetPathname }: TParams<T>) => {
   const router = useRouter();
   const currentPathname = usePathname();
   const searchParams = useSearchParams();
@@ -29,8 +24,8 @@ export const useSyncDataUrl = <T extends string[]>({ keys, targetPathname }: TPa
     }, {} as QueryParams<T>);
   }, [keys, searchParams]);
 
-  const navigateWithQueryParams: TReturn<T>[1] = useCallback(
-    (userQueryParams, keepKeys) => {
+  const navigateWithQueryParams = useCallback(
+    (userQueryParams: Record<string, string | null>, keepKeys: string[]) => {
       const newSearchParams = new URLSearchParams();
 
       if (keepKeys) {
@@ -57,5 +52,5 @@ export const useSyncDataUrl = <T extends string[]>({ keys, targetPathname }: TPa
     [currentPathname, router, searchParams, targetPathname],
   );
 
-  return [queryParams, navigateWithQueryParams];
+  return [queryParams, navigateWithQueryParams] as const;
 };
