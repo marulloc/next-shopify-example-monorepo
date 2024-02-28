@@ -7,7 +7,7 @@ import { localTheme } from '@/theme/local-theme';
 import IconButton from '@/components/IconButton';
 import Price from '@/components/Price';
 import { useRecoilValueLoadable } from 'recoil';
-import { atomOptimisticCart } from '@/context/cart/atom';
+import { atomOptimisticCart } from '@/context/cart-atoms';
 import CartLine from './CartLine';
 import React from 'react';
 import { useDictioanry } from '@/context/locale/hook';

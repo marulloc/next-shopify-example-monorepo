@@ -1,7 +1,7 @@
 'use client';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { atomDictionary, atomLocale } from './atom';
+import { atomDictionary, atomLocale } from '../locale-atoms';
 import { useParams } from 'next/navigation';
 import { splitLocale } from '@/utils/locale';
 import { useEffect } from 'react';

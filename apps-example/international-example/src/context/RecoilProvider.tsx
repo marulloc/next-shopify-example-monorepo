@@ -1,7 +1,7 @@
 'use client';
 
 import { RecoilRoot } from 'recoil';
-import { atomDictionary, atomLocale } from './locale/atom';
+import { atomDictionary, atomLocale } from './locale-atoms';
 import { TDictionary } from '@/dictionaries';
 
 type TProps = {

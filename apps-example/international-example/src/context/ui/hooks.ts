@@ -1,5 +1,5 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { TPortalConstants, TPortalValue, atomPortalController } from './atom';
+import { TPortalConstants, TPortalValue, atomPortalController } from '../portal-atoms';
 
 export const useGetPortalRecole = (portalName: TPortalConstants) => {
   const portals = useRecoilValue(atomPortalController);

@@ -6,7 +6,7 @@ import { ShopifyProductVariant } from '@/@marulloc-shopify-nextapi/v24.01/@shopi
 import { addToCart } from '@/@marulloc-shopify-nextapi/v24.01/services/cart/service';
 import { useState } from 'react';
 import { ToolkitCartLine } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-cart';
-import { atomOptimisticCart, atomOptimisticCartLines } from './atom';
+import { atomOptimisticCart, atomOptimisticCartLines } from '../cart-atoms';
 
 /**
  *

@@ -5,7 +5,7 @@ import { HiOutlineShoppingBag } from 'react-icons/hi2';
 import IconButton from '@/components/IconButton';
 import { localTheme } from '@/theme/local-theme';
 import { useRecoilValueLoadable } from 'recoil';
-import { atomOptimisticCart } from '@/context/cart/atom';
+import { atomOptimisticCart } from '@/context/cart-atoms';
 import { Suspense } from 'react';
 import { useSetPortalRecoil } from '@/context/ui/hooks';
 import { useDictioanry } from '@/context/locale/hook';
