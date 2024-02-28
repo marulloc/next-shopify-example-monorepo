@@ -24,6 +24,7 @@ const SearchResult = async ({ query, sort: sortKey, locale }: TProps) => {
   ]);
   const dictionary = dict.search.SearchResult;
 
+  await delay(2000);
   return (
     <Box
       as="div"
@@ -59,6 +60,36 @@ const SearchResult = async ({ query, sort: sortKey, locale }: TProps) => {
 export default SearchResult;
 
 export const SearchResultSkeleton = () => {
+  return (
+    <Box
+      as="div"
+      level={0}
+      className={classNames(localTheme.spacing.padding.x.medium, localTheme.spacing.padding.y.small)}
+    >
+      <Box as="header" level={0} className="flex flex-col md:flex-row justify-between">
+        <div className={classNames('mb-4', 'w-1/3 h-3 sm:h-5')}>
+          <Skeleton />
+        </div>
+      </Box>
+
+      <div>
+        <ul className={classNames('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ', localTheme.spacing.gap.xy.small)}>
+          <li className=" aspect-square">
+            <Skeleton />
+          </li>
+
+          <li className=" aspect-square">
+            <Skeleton />
+          </li>
+
+          <li className=" aspect-square">
+            <Skeleton />
+          </li>
+        </ul>
+      </div>
+    </Box>
+  );
+
   return (
     <section>
       <div className="flex flex-col md:flex-row justify-between">
