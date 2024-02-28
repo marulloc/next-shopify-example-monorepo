@@ -1,6 +1,6 @@
 import { ToolkitPredictiveSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-search';
 import { getPredictiveSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/search/service';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 /**
  *
@@ -23,15 +23,18 @@ export const usePredictiveSearch = ({ locale }: { locale?: { country: string; la
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handlePredictive = async (value: string) => {
-    setStatus('pending');
-    const { products, collections } = await getPredictiveSearch(value, {
-      country: locale?.country,
-      language: locale?.language,
-    });
-    setPredictiveResult({ products, collections });
-    setStatus('loaded');
-  };
+  const predictiveSearch = useCallback(
+    async (value: string) => {
+      setStatus('pending');
+      const { products, collections } = await getPredictiveSearch(value, {
+        country: locale?.country,
+        language: locale?.language,
+      });
+      setPredictiveResult({ products, collections });
+      setStatus('loaded');
+    },
+    [locale?.country, locale?.language],
+  );
 
-  return [{ predictiveResult, status }, handlePredictive] as const;
+  return [{ predictiveResult, status }, predictiveSearch] as const;
 };

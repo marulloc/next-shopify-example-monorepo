@@ -4,7 +4,7 @@ import { ToolkitLocale } from '@/@marulloc-shopify-nextapi/v24.01/services/@tool
 import { atomDictionary, atomLocale } from '@/context/locale-atoms';
 import { isSameISOCode } from '@/utils/locale';
 import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
 /**
@@ -79,16 +79,19 @@ export const useSelectLocale = () => {
   const router = useRouter();
   const { locale: currentLocale } = useParams();
 
-  const setLocale = ({ country, language }: { country: string; language: string }): void => {
-    const newLocale = `${country.toLowerCase()}-${language.toLowerCase()}`;
-    const newPathname = pathname.replace(currentLocale as string, newLocale);
+  const routeToSelectedLocale = useCallback(
+    ({ country, language }: { country: string; language: string }): void => {
+      const newLocale = `${country.toLowerCase()}-${language.toLowerCase()}`;
+      const newPathname = pathname.replace(currentLocale as string, newLocale);
 
-    const paramsString = searchParams.toString();
-    const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
+      const paramsString = searchParams.toString();
+      const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
 
-    // Change locale by routing (locale atom init when redirect)
-    router.push(newPathname + queryString);
-  };
+      // Change locale by routing (locale atom init when redirect)
+      router.push(newPathname + queryString);
+    },
+    [currentLocale, pathname, router, searchParams],
+  );
 
-  return setLocale;
+  return routeToSelectedLocale;
 };

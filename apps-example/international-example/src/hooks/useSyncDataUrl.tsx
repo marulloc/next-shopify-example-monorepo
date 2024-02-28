@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 type QueryParams<T extends string[]> = {
   [K in T[number]]: string | null;
@@ -29,30 +29,33 @@ export const useSyncDataUrl = <T extends string[]>({ keys, targetPathname }: TPa
     }, {} as QueryParams<T>);
   }, [keys, searchParams]);
 
-  const navigateWithQueryParams: TReturn<T>[1] = (userQueryParams, keepKeys) => {
-    const newSearchParams = new URLSearchParams();
+  const navigateWithQueryParams: TReturn<T>[1] = useCallback(
+    (userQueryParams, keepKeys) => {
+      const newSearchParams = new URLSearchParams();
 
-    if (keepKeys) {
-      keepKeys.forEach((key) => {
-        const prevValue = searchParams.get(key);
-        if (prevValue) newSearchParams.set(key, prevValue);
+      if (keepKeys) {
+        keepKeys.forEach((key) => {
+          const prevValue = searchParams.get(key);
+          if (prevValue) newSearchParams.set(key, prevValue);
+        });
+      }
+
+      Object.entries(userQueryParams).forEach(([paramKey, paramValue]) => {
+        if (paramValue) newSearchParams.set(paramKey, paramValue);
+        else newSearchParams.delete(paramKey);
       });
-    }
 
-    Object.entries(userQueryParams).forEach(([paramKey, paramValue]) => {
-      if (paramValue) newSearchParams.set(paramKey, paramValue);
-      else newSearchParams.delete(paramKey);
-    });
+      const newParams = newSearchParams.toString();
+      const queryString = `${newParams.length ? '?' : ''}${newParams}`;
 
-    const newParams = newSearchParams.toString();
-    const queryString = `${newParams.length ? '?' : ''}${newParams}`;
-
-    if (targetPathname && targetPathname !== currentPathname) {
-      router.push(targetPathname + queryString, { scroll: false });
-    } else {
-      router.replace((targetPathname ?? currentPathname) + queryString, { scroll: false });
-    }
-  };
+      if (targetPathname && targetPathname !== currentPathname) {
+        router.push(targetPathname + queryString, { scroll: false });
+      } else {
+        router.replace((targetPathname ?? currentPathname) + queryString, { scroll: false });
+      }
+    },
+    [currentPathname, router, searchParams, targetPathname],
+  );
 
   return [queryParams, navigateWithQueryParams];
 };
