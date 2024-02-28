@@ -6,15 +6,14 @@ import Link from 'next/link';
 import { localTheme } from '@/theme/local-theme';
 import IconButton from '@/components/IconButton';
 import Price from '@/components/Price';
-import { useRecoilValueLoadable } from 'recoil';
-import { atomOptimisticCart } from '@/context/cart-atoms';
 import CartLine from './CartLine';
 import React from 'react';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 import Box from '@/components/@common/semantic/Box';
+import { useGetLoadableCart } from '@/hooks/cart-hooks';
 
 const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
-  const { state, contents: cart } = useRecoilValueLoadable(atomOptimisticCart);
+  const { state, contents: cart } = useGetLoadableCart();
   const dictionary = useGetDictioanry().cart.CartContents;
 
   if (state !== 'hasValue') return null;

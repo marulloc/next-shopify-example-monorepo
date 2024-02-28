@@ -9,7 +9,7 @@ import { HiPlus, HiMinus } from 'react-icons/hi2';
 import React from 'react';
 import { localTheme } from '@/theme/local-theme';
 import IconButton from '../../IconButton';
-import { useSetCartLineOptimistic } from '@/context/cart/hooks';
+import { useCartLineOptimisticMutation } from '@/hooks/cart-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 import Box from '@/components/@common/semantic/Box';
 
@@ -18,7 +18,7 @@ type Props = {
 };
 
 const CartLine = ({ cartLine }: Props) => {
-  const { updateQty, deleteLine } = useSetCartLineOptimistic(cartLine.id);
+  const { updateQty, deleteLine } = useCartLineOptimisticMutation(cartLine.id);
   const dictionary = useGetDictioanry();
 
   const handleInput = (qty: number) => updateQty(qty);

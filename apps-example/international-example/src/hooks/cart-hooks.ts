@@ -5,16 +5,24 @@ import { ShopifyProductVariant } from '@/@marulloc-shopify-nextapi/v24.01/@shopi
 import { addToCart } from '@/@marulloc-shopify-nextapi/v24.01/services/cart/service';
 import { useState } from 'react';
 import { ToolkitCartLine } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-cart';
-import { atomOptimisticCart, atomOptimisticCartLines } from '../cart-atoms';
+import { atomCart, atomOptimisticCartLines } from '../context/cart-atoms';
 import { useGetLocale } from '@/hooks/locale-hooks';
+
+/**
+ *
+ * @returns
+ */
+export const useGetLoadableCart = () => {
+  const loadableCart = useRecoilValueLoadable(atomCart);
+  return loadableCart;
+};
 
 /**
  *
  * @param lineId
  * @returns
  */
-
-export const useSetCartLineOptimistic = (lineId: ToolkitCartLine['id']) => {
+export const useCartLineOptimisticMutation = (lineId: ToolkitCartLine['id']) => {
   const setCartLineOptimistic = useSetRecoilState(atomOptimisticCartLines);
 
   const updateQty = (qty: number) => {
@@ -51,10 +59,10 @@ export const useSetCartLineOptimistic = (lineId: ToolkitCartLine['id']) => {
  * @returns
  */
 export const useAddToCart = () => {
+  const { contents: cart } = useGetLoadableCart();
+  const setCart = useSetRecoilState(atomCart);
   const locale = useGetLocale();
   const [state, setState] = useState<'waiting' | 'adding'>('waiting');
-  const { contents: cart } = useRecoilValueLoadable(atomOptimisticCart);
-  const setCart = useSetRecoilState(atomOptimisticCart);
 
   const addItem = async (variantId: ShopifyProductVariant['id'], quantity: number) => {
     setState('adding');

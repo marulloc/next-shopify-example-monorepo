@@ -20,7 +20,7 @@ const store = typeof window !== 'undefined' ? window.localStorage : null;
  *
  *
  */
-export const atomOptimisticCart = atom({
+export const atomCart = atom({
   key: 'cart-atom-with-locale',
   default: selector({
     key: 'cart-with-locale-loader',
@@ -86,12 +86,12 @@ export const atomOptimisticCartLines = selector({
   get: ({ get: subscribe }) => {
     if (!store) return [];
 
-    const cart = subscribe(atomOptimisticCart);
+    const cart = subscribe(atomCart);
     if (!cart) return [];
     return cart.lines;
   },
   set: ({ set }, newValue) => {
-    set(atomOptimisticCart, (cart) => {
+    set(atomCart, (cart) => {
       if (!cart) return;
       if (!newValue || newValue instanceof DefaultValue) return cart;
 

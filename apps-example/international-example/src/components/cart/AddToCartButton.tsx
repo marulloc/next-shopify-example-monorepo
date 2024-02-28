@@ -1,7 +1,7 @@
 'use client';
 
 import { ShopifyProductVariant } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-product';
-import { useAddToCart } from '@/context/cart/hooks';
+import { useAddToCart } from '@/hooks/cart-hooks';
 import { useSetPortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 import { classNames } from '@marulloc/components-library/utils';
