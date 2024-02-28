@@ -3,7 +3,7 @@ import Box from '@/components/@common/semantic/Box';
 import Card from '@/components/@common/semantic/Card';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
-import { delay } from '@/utils/throttle';
+import { delay } from '@/utils/asyncUtils';
 import { classNames } from '@marulloc/components-library/utils';
 import { Metadata, ServerRuntime } from 'next';
 import { notFound } from 'next/navigation';

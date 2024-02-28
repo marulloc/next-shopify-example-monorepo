@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ChangeEvent, useEffect, useRef } from 'react';
 import Modal from '@marulloc/components-library/Modal';
 import { HiXMark, HiOutlineMagnifyingGlass } from 'react-icons/hi2';
-import { throttle } from '@/utils/throttle';
+import { throttle } from '@/utils/asyncUtils';
 import { usePredictiveSearch } from '@/hooks/usePredictiveSearch';
 import { localTheme } from '@/theme/local-theme';
 import IconButton from '@/components/IconButton';

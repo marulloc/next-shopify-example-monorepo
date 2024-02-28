@@ -5,7 +5,7 @@ import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
 import ScrollCarousel from '../ScrollCarousel';
-import { delay } from '@/utils/throttle';
+import { delay } from '@/utils/asyncUtils';
 import Skeleton from '@/components/loading/Skeleton';
 import { TDictionaries, TDictionary, getDictionary } from '@/dictionaries';
 import Box from '../@common/semantic/Box';

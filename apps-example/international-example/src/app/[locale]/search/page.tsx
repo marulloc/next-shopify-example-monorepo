@@ -7,7 +7,7 @@ import { Suspense } from 'react';
 import SearchResult, { SearchResultSkeleton } from '@/components/search/SearchResult';
 import { ServerRuntime } from 'next';
 import Box from '@/components/@common/semantic/Box';
-import { delay } from '@/utils/throttle';
+import { delay } from '@/utils/asyncUtils';
 
 type TParams = { locale: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };

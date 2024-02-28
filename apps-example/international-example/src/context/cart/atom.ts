@@ -11,7 +11,7 @@ import {
   updateCartLocale,
 } from '@/@marulloc-shopify-nextapi/v24.01/services/cart/service';
 import { useEffect, useState } from 'react';
-import { debounce } from '@/utils/throttle';
+import { debounce } from '@/utils/asyncUtils';
 import { deepCompare } from '@/utils/compare';
 import { ShopifyProductVariant } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-product';
 import { useGetLocale } from '../locale/hook';

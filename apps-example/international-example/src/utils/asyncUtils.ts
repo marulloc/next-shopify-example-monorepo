@@ -33,10 +33,7 @@ export const debounce = <T extends (...args: any[]) => void>(callback: T, timeou
 };
 
 export const delay = (ms: number) => {
-  // Promise 객체를 반환합니다.
   return new Promise((resolve) => {
-    // setTimeout을 사용하여 지정된 시간(ms) 후에 resolve 함수를 호출합니다.
-    // 이는 Promise가 성공적으로 완료되었음을 나타냅니다.
     setTimeout(resolve, ms);
   });
 };

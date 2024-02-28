@@ -6,7 +6,7 @@ import SortingDropdown from '@/components/search/SortingDropdown';
 import { TDictionaries, getDictionary } from '@/dictionaries';
 import { dictionaryReplacer } from '@/dictionaries/utils';
 import { localTheme } from '@/theme/local-theme';
-import { delay } from '@/utils/throttle';
+import { delay } from '@/utils/asyncUtils';
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
 import Box from '../@common/semantic/Box';
