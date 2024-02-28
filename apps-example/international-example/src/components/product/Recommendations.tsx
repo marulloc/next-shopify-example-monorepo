@@ -20,7 +20,7 @@ const Recommendations = async ({ product, dict, locale }: TProps) => {
   const recommendations = await getProductRecommendations(product!.id, locale);
   const dictionary = dict?.Recommendations;
 
-  // await delay(1000);
+  // await delay(2000);
 
   return (
     <Box as="div" level={0} className={classNames(localTheme.spacing.padding.xy.medium, ' ')}>

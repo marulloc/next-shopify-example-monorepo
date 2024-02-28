@@ -32,16 +32,7 @@ const ProductOptions = ({ product, dict }: TProps) => {
   }, [navigateWithParams, product.options, selectedOptions]);
 
   return (
-    <Card
-      level={0}
-      as="div"
-      className={classNames(
-        'border-0',
-        // localTheme.spacing.margin.xy.medium,
-        localTheme.spacing.padding.xy.medium,
-        'lg:max-w-lg ',
-      )}
-    >
+    <Card level={0} as="div" className={classNames('border-0', localTheme.spacing.padding.xy.medium)}>
       <div className={classNames(localTheme.spacing.padding.b.small)}>
         <h1 className={classNames(localTheme.text.size.large, 'font-semibold mb-1')}>{product.title}</h1>
         <ProductPrice
@@ -163,15 +154,43 @@ export default React.memo(ProductOptions);
 
 export const ProductOptionsSkeleton = () => {
   return (
-    <div className={classNames(localTheme.spacing.padding.xy.medium, 'lg:max-w-lg', ' min-w-full lg:min-w-[500px]')}>
-      <div className={classNames(localTheme.spacing.padding.b.small, 'border-b', localTheme.border.base.muted)}>
-        <h1 className={classNames(localTheme.text.size.large, 'font-semibold mb-2')}>
+    <div className={classNames('border-0  w-full lg:w-[500px]', localTheme.spacing.padding.xy.medium)}>
+      <div className={classNames(localTheme.spacing.padding.b.small)}>
+        <div className="h-4 mb-2">
           <Skeleton />
-        </h1>
-        <Skeleton />
+        </div>
+        <div className="h-4 w-1/3">
+          <Skeleton />
+        </div>
       </div>
 
-      <div></div>
+      <div className={classNames('border-b   flex justify-end ', localTheme.border.base.muted, 'font-semibold mb-3')}>
+        <div className=" w-1/4 h-4 mb-2">
+          <Skeleton />
+        </div>
+      </div>
+
+      <ul className={classNames(' flex md:grid flex-wrap md:grid-cols-4 gap-3')}>
+        <li className="w-full h-8 min-w-[48px]">
+          <Skeleton />
+        </li>{' '}
+        <li className="w-full h-8 min-w-[48px]">
+          <Skeleton />
+        </li>{' '}
+        <li className="w-full h-8 min-w-[48px]">
+          <Skeleton />
+        </li>{' '}
+        <li className="w-full h-8 min-w-[48px]">
+          <Skeleton />
+        </li>
+      </ul>
+
+      <div>
+        <div className={classNames('my-4 border-b', localTheme.border.base.muted)}></div>
+        <div className="w-full h-12 ">
+          <Skeleton />
+        </div>
+      </div>
     </div>
   );
 };
