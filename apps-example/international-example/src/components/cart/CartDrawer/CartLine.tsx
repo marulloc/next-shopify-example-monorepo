@@ -10,7 +10,7 @@ import React from 'react';
 import { localTheme } from '@/theme/local-theme';
 import IconButton from '../../IconButton';
 import { useSetCartLineOptimistic } from '@/context/cart/hooks';
-import { useDictioanry } from '@/context/locale/hook';
+import { useGetDictioanry } from '@/hooks/locale-hooks';
 import Box from '@/components/@common/semantic/Box';
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 
 const CartLine = ({ cartLine }: Props) => {
   const { updateQty, deleteLine } = useSetCartLineOptimistic(cartLine.id);
-  const dictionary = useDictioanry();
+  const dictionary = useGetDictioanry();
 
   const handleInput = (qty: number) => updateQty(qty);
   const handlePlus = () => updateQty(cartLine.quantity + 1);

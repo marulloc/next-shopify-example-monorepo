@@ -5,12 +5,11 @@ import { HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import { localTheme } from '@/theme/local-theme';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import { useSetPortalRecoil } from '@/context/ui/hooks';
-import { useDictioanry } from '@/context/locale/hook';
-
+import { useGetDictioanry } from '@/hooks/locale-hooks';
 const SearchFakeInputTrigger = () => {
   const { activate } = useSetPortalRecoil('search-modal');
   const [{ query }] = useSyncDataUrl({ keys: ['query'], targetPathname: '/search' });
-  const dictionary = useDictioanry().search.SearchFakeInputTrigger;
+  const dictionary = useGetDictioanry().search.SearchFakeInputTrigger;
 
   return (
     <div className={classNames('isolate relative group cursor-text')} onClick={() => activate()}>

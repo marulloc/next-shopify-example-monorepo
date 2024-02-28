@@ -38,7 +38,7 @@ const CollectionNavWrapper = async ({ locale }: TCollectionNavProps) => {
 export default CollectionNavWrapper;
 
 const CollectionNav = async ({ locale }: TCollectionNavProps) => {
-  await delay(1000);
+  // await delay(1000);
   const collections = await getCollections(locale);
 
   return <CollectionList collections={collections} variant="small" />;

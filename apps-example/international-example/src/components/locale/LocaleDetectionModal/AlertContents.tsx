@@ -1,9 +1,8 @@
 'use client';
 
-import { useDetectLocale } from '@/hooks/useLocale';
 import { HiExclamationTriangle, HiCheck } from 'react-icons/hi2';
 import LocaleSelectModalChildrenTrigger from '../LocaleSelectModal/triggers/LocaleSelectModalChildrenTrigger';
-import { useDictioanry } from '@/context/locale/hook';
+import { useDetectLocaleMatch, useGetDictioanry } from '@/hooks/locale-hooks';
 import React from 'react';
 import { dictionaryReplacer } from '@/dictionaries/utils';
 import Box from '@/components/@common/semantic/Box';
@@ -12,10 +11,10 @@ const CountryName = ({ name }: { name: string }) => <span className="font-bold  
 
 type TContentsProps = {
   handleClose: () => void;
-} & ReturnType<typeof useDetectLocale>;
+} & ReturnType<typeof useDetectLocaleMatch>;
 
 export const MatchedContents = ({ handleClose, detectedCountry, currentCountry }: TContentsProps) => {
-  const dictionary = useDictioanry().locale.LocaleDetectionModal.MatchedContents;
+  const dictionary = useGetDictioanry().locale.LocaleDetectionModal.MatchedContents;
 
   return (
     <Box as="section" className="max-w-xl   pb-4 sm:pb-0 ">
@@ -62,7 +61,7 @@ export const MatchedContents = ({ handleClose, detectedCountry, currentCountry }
 };
 
 export const NotMatchedContents = ({ handleClose, detectedCountry, currentCountry }: TContentsProps) => {
-  const dictionary = useDictioanry().locale.LocaleDetectionModal.NotMatchedContents;
+  const dictionary = useGetDictioanry().locale.LocaleDetectionModal.NotMatchedContents;
 
   return (
     <Box as="section" className="max-w-xl   pb-4 sm:pb-0 ">
@@ -113,7 +112,7 @@ export const NotMatchedContents = ({ handleClose, detectedCountry, currentCountr
   );
 };
 export const NotDetectedContents = ({ handleClose, currentCountry }: TContentsProps) => {
-  const dictionary = useDictioanry().locale.LocaleDetectionModal.NotDetectedContents;
+  const dictionary = useGetDictioanry().locale.LocaleDetectionModal.NotDetectedContents;
 
   return (
     <Box as="section" className="max-w-xl   pb-4 sm:pb-0 ">

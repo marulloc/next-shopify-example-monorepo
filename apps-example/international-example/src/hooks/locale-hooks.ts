@@ -1,62 +1,49 @@
 'use client';
 
 import { ToolkitLocale } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
-import { getLocale } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
-import { splitLocale } from '@/utils/locale';
+import { atomDictionary, atomLocale } from '@/context/locale-atoms';
+import { isSameISOCode } from '@/utils/locale';
 import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 
-const isSameISOCode = (code1: string, code2: string) => {
-  return code1.toUpperCase() === code2.toUpperCase();
+/**
+ *
+ * @returns
+ */
+export const useGetLocale = () => {
+  const locale = useRecoilValue(atomLocale);
+  return locale;
 };
 
-export const useLocale = () => {
-  const { locale } = useParams();
-  const { countryCode, languageCode } = splitLocale(locale as string);
-
-  return { locale, countryCode, languageCode };
+/**
+ *
+ * @returns
+ */
+export const useGetDictioanry = () => {
+  const dictionary = useRecoilValue(atomDictionary);
+  return dictionary;
 };
 
-export const useSelectLocale = () => {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const { locale: currentLocale, countryCode: currentConuntry, languageCode: currentLanguage } = useLocale();
-
-  const setLocale = ({ country, language }: { country?: string; language?: string }): void => {
-    const newLocale = `${(country || currentConuntry).toLowerCase()}-${(language || currentLanguage).toLowerCase()}`;
-    const newPathname = pathname.replace(currentLocale as string, newLocale);
-
-    const paramsString = searchParams.toString();
-    const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
-
-    router.push(newPathname + queryString);
-  };
-
-  return {
-    locale: currentLocale,
-    countryCode: currentConuntry.toUpperCase(),
-    languageCode: currentLanguage.toUpperCase(),
-    setLocale,
-    isSameISOCode,
-  };
-};
-
-type TParams = {
-  localeData: ToolkitLocale;
-};
 type TReturn = {
   status: 'matched' | 'not-matched' | 'not-detected';
   currentCountry: ToolkitLocale['availableCountries'][number];
   currentLanguage: ToolkitLocale['availableLanguages'][number];
   detectedCountry: ToolkitLocale['availableCountries'][number] | undefined;
 };
-export const useDetectLocale = ({ localeData }: TParams) => {
-  const { countryCode: currentConuntryCode, languageCode: currentLanguageCode } = useLocale();
+
+/**
+ * @feature resolve cookie getter timing error -> call api for getting cookie
+ * @param localeData
+ * @returns
+ */
+export const useDetectLocaleMatch = (localeData: ToolkitLocale) => {
+  const { country: currentConuntryCode, language: currentLanguageCode } = useGetLocale();
   const [result, setResult] = useState<TReturn | null>(null);
 
   useEffect(() => {
     (async () => {
+      // Get Cookie from api call
       const [{ detectedCountry: detectedCountryCode }] = await Promise.all([
         fetch('/api/locale-detection').then((response) => response.json() as Promise<{ detectedCountry: string }>),
       ]);
@@ -80,4 +67,28 @@ export const useDetectLocale = ({ localeData }: TParams) => {
   }, [currentConuntryCode, currentLanguageCode, localeData]);
 
   return result;
+};
+
+/**
+ * @summary change locale by routing (locale atom init when redirect)
+ * @returns
+ */
+export const useSelectLocale = () => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const { locale: currentLocale } = useParams();
+
+  const setLocale = ({ country, language }: { country: string; language: string }): void => {
+    const newLocale = `${country.toLowerCase()}-${language.toLowerCase()}`;
+    const newPathname = pathname.replace(currentLocale as string, newLocale);
+
+    const paramsString = searchParams.toString();
+    const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
+
+    // Change locale by routing (locale atom init when redirect)
+    router.push(newPathname + queryString);
+  };
+
+  return setLocale;
 };

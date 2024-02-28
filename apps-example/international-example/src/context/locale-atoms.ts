@@ -1,17 +1,8 @@
 import { TDictionary } from '@/dictionaries';
 import { atom } from 'recoil';
 
-type TAtomLocale = {
-  country: string | null;
-  language: string | null;
-};
-
-export const atomLocale = atom<TAtomLocale>({
+export const atomLocale = atom<{ country: string; language: string }>({
   key: 'locale',
-  default: {
-    country: null,
-    language: null,
-  },
 });
 
 export const atomDictionary = atom<TDictionary>({

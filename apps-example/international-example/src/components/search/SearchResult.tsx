@@ -24,7 +24,7 @@ const SearchResult = async ({ query, sort: sortKey, locale }: TProps) => {
   ]);
   const dictionary = dict.search.SearchResult;
 
-  await delay(2000);
+  // await delay(2000);
   return (
     <Box
       as="div"

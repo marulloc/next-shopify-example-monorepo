@@ -5,11 +5,10 @@ import { HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import IconButton from '@/components/IconButton';
 import { localTheme } from '@/theme/local-theme';
 import { useSetPortalRecoil } from '@/context/ui/hooks';
-import { useDictioanry } from '@/context/locale/hook';
-
+import { useGetDictioanry } from '@/hooks/locale-hooks';
 const SearchIconTrigger = () => {
   const { activate } = useSetPortalRecoil('search-modal');
-  const dictionary = useDictioanry().search.SearchIconTrigger;
+  const dictionary = useGetDictioanry().search.SearchIconTrigger;
 
   return (
     <IconButton

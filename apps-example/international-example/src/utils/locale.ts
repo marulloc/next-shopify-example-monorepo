@@ -7,3 +7,7 @@ export const splitLocale = (locale: string): { countryCode: string; languageCode
   const [countryCode, languageCode] = parts;
   return { countryCode, languageCode };
 };
+
+export const isSameISOCode = (code1: string, code2: string) => {
+  return code1.toUpperCase() === code2.toUpperCase();
+};

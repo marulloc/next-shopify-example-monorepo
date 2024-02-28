@@ -2,8 +2,8 @@
 
 import { ShopifyProductVariant } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-product';
 import { useAddToCart } from '@/context/cart/hooks';
-import { useDictioanry } from '@/context/locale/hook';
 import { useSetPortalRecoil } from '@/context/ui/hooks';
+import { useGetDictioanry } from '@/hooks/locale-hooks';
 import { classNames } from '@marulloc/components-library/utils';
 import { useMemo } from 'react';
 
@@ -25,7 +25,7 @@ const AddToCartButton = <T extends React.ElementType = 'button'>({
 }: TProps<T>) => {
   const [state, addItem] = useAddToCart();
   const { activate } = useSetPortalRecoil('cart-drawer');
-  const dictionary = useDictioanry();
+  const dictionary = useGetDictioanry();
 
   const componentStates: { state: TAddToCartBtnStates; fullForm: string } = useMemo(() => {
     if (!variant) return { state: 'notYet', fullForm: dictionary.cart.AddToCart.states.notYet };

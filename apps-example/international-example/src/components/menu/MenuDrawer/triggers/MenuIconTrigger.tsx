@@ -5,11 +5,10 @@ import { HiBars3 } from 'react-icons/hi2';
 import IconButton from '@/components/IconButton';
 import { localTheme } from '@/theme/local-theme';
 import { useSetPortalRecoil } from '@/context/ui/hooks';
-import { useDictioanry } from '@/context/locale/hook';
-
+import { useGetDictioanry } from '@/hooks/locale-hooks';
 const MenuIconTrigger = () => {
   const { activate } = useSetPortalRecoil('menu-drawer');
-  const dictionary = useDictioanry().menu.MenuTrigger;
+  const dictionary = useGetDictioanry().menu.MenuTrigger;
 
   return (
     <IconButton

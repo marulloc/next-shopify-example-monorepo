@@ -1,20 +1,16 @@
 'use client';
 
-import { DefaultValue, atom, selector, useRecoilValueLoadable, useSetRecoilState } from 'recoil';
+import { DefaultValue, atom, selector } from 'recoil';
 import { atomLocale } from './locale-atoms';
-import { ToolkitCart, ToolkitCartLine } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-cart';
+import { ToolkitCart } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-cart';
 import {
-  addToCart,
   createCart,
   getCart,
   updateCartLines,
   updateCartLocale,
 } from '@/@marulloc-shopify-nextapi/v24.01/services/cart/service';
-import { useEffect, useState } from 'react';
 import { debounce } from '@/utils/asyncUtils';
 import { deepCompare } from '@/utils/compare';
-import { ShopifyProductVariant } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-product';
-import { useGetLocale } from './locale/hook';
 
 const STORAGE_KEY = 'marulloc-cart';
 const store = typeof window !== 'undefined' ? window.localStorage : null;

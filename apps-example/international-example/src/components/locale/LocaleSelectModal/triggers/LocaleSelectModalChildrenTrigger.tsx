@@ -1,6 +1,6 @@
 'use client';
 
-import { useDictioanry } from '@/context/locale/hook';
+import { useGetDictioanry } from '@/hooks/locale-hooks';
 import { useSetPortalRecoil } from '@/context/ui/hooks';
 
 type TProps<T extends React.ElementType = 'button'> = {
@@ -14,7 +14,7 @@ const LocaleSelectModalChildrenTrigger = <T extends React.ElementType = 'button'
   ...restProps
 }: TProps<T>) => {
   const { activate } = useSetPortalRecoil('locale-select-modal');
-  const dictionary = useDictioanry();
+  const dictionary = useGetDictioanry();
 
   const Component = as ?? 'button';
   return (

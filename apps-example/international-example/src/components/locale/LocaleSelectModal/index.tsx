@@ -7,19 +7,20 @@ import { classNames } from '@marulloc/components-library/utils';
 import IconButton from '../../IconButton';
 import { HiXMark } from 'react-icons/hi2';
 import ReactCountryFlag from 'react-country-flag';
-import { useSelectLocale } from '@/hooks/useLocale';
 import { usePortalRecoil } from '@/context/ui/hooks';
-import { useDictioanry } from '@/context/locale/hook';
+import { useGetDictioanry, useGetLocale, useSelectLocale } from '@/hooks/locale-hooks';
 import InitialIcon from '@/components/InitialIcon';
 import Card from '@/components/@common/semantic/Card';
 import Box from '@/components/@common/semantic/Box';
+import { isSameISOCode } from '@/utils/locale';
 
 type TProps = {} & Pick<ToolkitLocale, 'availableCountries' | 'availableLanguages'>;
 
 const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) => {
-  const { locale, countryCode, languageCode, setLocale, isSameISOCode } = useSelectLocale();
+  const { country, language } = useGetLocale();
+  const selectLocale = useSelectLocale();
   const { isActive, deactivate } = usePortalRecoil('locale-select-modal');
-  const dictionary = useDictioanry();
+  const dictionary = useGetDictioanry();
 
   return (
     <Modal open={isActive} onClose={() => deactivate()}>
@@ -84,12 +85,12 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                           <li key={`country-${isoCode}`}>
                             <div
                               onClick={() => {
-                                setLocale({ country: isoCode });
+                                selectLocale({ country: isoCode, language });
                                 closeModal();
                               }}
                               className={classNames(
                                 'text-gray-700 cursor-pointer',
-                                isSameISOCode(countryCode, isoCode)
+                                isSameISOCode(country, isoCode)
                                   ? 'text-indigo-600 bg-white ring-1 ring-indigo-600 pointer-events-none'
                                   : 'hover:text-indigo-600 hover:ring-1 hover:ring-indigo-500 hover:bg-white  transition-all',
                                 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 relative items-center ',
@@ -108,7 +109,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                               <div
                                 className={classNames(
                                   'absolute bg-white ring-1 text-xs ring-indigo-600 rounded-lg px-1 py-0',
-                                  isSameISOCode(countryCode, isoCode) ? 'block -top-2 right-2' : 'hidden',
+                                  isSameISOCode(country, isoCode) ? 'block -top-2 right-2' : 'hidden',
                                 )}
                               >
                                 now
@@ -128,12 +129,12 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                           <li key={`language-${isoCode}`}>
                             <div
                               onClick={() => {
-                                setLocale({ language: isoCode });
+                                selectLocale({ country, language: isoCode });
                                 closeModal();
                               }}
                               className={classNames(
                                 'text-gray-700 cursor-pointer',
-                                isSameISOCode(languageCode, isoCode)
+                                isSameISOCode(language, isoCode)
                                   ? 'text-indigo-600 bg-white ring-1 ring-indigo-600 pointer-events-none'
                                   : 'hover:text-indigo-600 hover:ring-1 hover:ring-indigo-500 hover:bg-white  transition-all',
                                 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 relative items-center ',
@@ -148,7 +149,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                               <div
                                 className={classNames(
                                   'absolute bg-white ring-1 text-xs ring-indigo-600 rounded-lg px-1 py-0',
-                                  isSameISOCode(languageCode, isoCode) ? 'block -top-2 right-2' : 'hidden',
+                                  isSameISOCode(language, isoCode) ? 'block -top-2 right-2' : 'hidden',
                                 )}
                               >
                                 now

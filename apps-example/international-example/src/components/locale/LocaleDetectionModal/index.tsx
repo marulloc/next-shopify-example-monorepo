@@ -1,7 +1,6 @@
 'use client';
 
 import { ToolkitLocale } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
-import { useDetectLocale } from '@/hooks/useLocale';
 import { localTheme } from '@/theme/local-theme';
 import Drawer from '@marulloc/components-library/Drawer';
 import { classNames } from '@marulloc/components-library/utils';
@@ -9,13 +8,14 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 import { MatchedContents, NotDetectedContents, NotMatchedContents } from './AlertContents';
 import Card from '@/components/@common/semantic/Card';
+import { useDetectLocaleMatch } from '@/hooks/locale-hooks';
 
 type TProps = {
   localeData: ToolkitLocale;
 };
 
 const LocaleDetectionModal = ({ localeData }: TProps) => {
-  const localeDetection = useDetectLocale({ localeData });
+  const localeDetection = useDetectLocaleMatch(localeData);
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {

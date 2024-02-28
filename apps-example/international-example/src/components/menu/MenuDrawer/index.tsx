@@ -12,7 +12,7 @@ import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/Sea
 import InitialIcon from '@/components/InitialIcon';
 import LocaleIconTrigger from '@/components/locale/LocaleSelectModal/triggers/LocaleSelectModalIconTrigger';
 import { usePortalRecoil } from '@/context/ui/hooks';
-import { useDictioanry } from '@/context/locale/hook';
+import { useGetDictioanry } from '@/hooks/locale-hooks';
 import GithubLink from './triggers/GithubLink';
 import Box from '@/components/@common/semantic/Box';
 import CollectionList from '@/components/_draft/CollectionList';
@@ -24,7 +24,7 @@ type Props = {
 
 const MenuDrawer = ({ menu, collections }: Props) => {
   const { isActive, deactivate } = usePortalRecoil('menu-drawer');
-  const dictionary = useDictioanry().menu.MenuDrawer;
+  const dictionary = useGetDictioanry().menu.MenuDrawer;
 
   return (
     <Drawer anchor="left" open={isActive} onClose={() => deactivate()}>

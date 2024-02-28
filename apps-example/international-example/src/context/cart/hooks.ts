@@ -1,12 +1,12 @@
 'use client';
 
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
-import { useGetLocale } from '../locale/hook';
 import { ShopifyProductVariant } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-product';
 import { addToCart } from '@/@marulloc-shopify-nextapi/v24.01/services/cart/service';
 import { useState } from 'react';
 import { ToolkitCartLine } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-cart';
 import { atomOptimisticCart, atomOptimisticCartLines } from '../cart-atoms';
+import { useGetLocale } from '@/hooks/locale-hooks';
 
 /**
  *

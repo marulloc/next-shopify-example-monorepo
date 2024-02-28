@@ -10,12 +10,12 @@ import { useRecoilValueLoadable } from 'recoil';
 import { atomOptimisticCart } from '@/context/cart-atoms';
 import CartLine from './CartLine';
 import React from 'react';
-import { useDictioanry } from '@/context/locale/hook';
+import { useGetDictioanry } from '@/hooks/locale-hooks';
 import Box from '@/components/@common/semantic/Box';
 
 const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
   const { state, contents: cart } = useRecoilValueLoadable(atomOptimisticCart);
-  const dictionary = useDictioanry().cart.CartContents;
+  const dictionary = useGetDictioanry().cart.CartContents;
 
   if (state !== 'hasValue') return null;
   return (

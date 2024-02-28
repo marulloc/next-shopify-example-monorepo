@@ -5,11 +5,10 @@ import { HiChevronDown } from 'react-icons/hi2';
 import Dropdown from '@marulloc/components-library/Dropdown';
 import { localTheme } from '@/theme/local-theme';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
-import { useDictioanry } from '@/context/locale/hook';
-
+import { useGetDictioanry } from '@/hooks/locale-hooks';
 const SortingDropdown = () => {
   const [{ sort: sortKey }, navigateWithQueryParams] = useSyncDataUrl({ keys: ['sort'] });
-  const dictionary = useDictioanry();
+  const dictionary = useGetDictioanry();
 
   const sortKeys = dictionary.SortingDropdown.keys;
   const activeItem = sortKeys.find(({ value }) => value === sortKey) || sortKeys[0];

@@ -9,10 +9,9 @@ import { throttle } from '@/utils/asyncUtils';
 import { usePredictiveSearch } from '@/hooks/usePredictiveSearch';
 import { localTheme } from '@/theme/local-theme';
 import IconButton from '@/components/IconButton';
-import { useSelectLocale } from '@/hooks/useLocale';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import { usePortalRecoil } from '@/context/ui/hooks';
-import { useDictioanry } from '@/context/locale/hook';
+import { useGetDictioanry, useGetLocale } from '@/hooks/locale-hooks';
 import { RiEmotionSadLine } from 'react-icons/ri';
 import Card from '@/components/@common/semantic/Card';
 import Box from '@/components/@common/semantic/Box';
@@ -21,10 +20,10 @@ import CollectionList from '@/components/_draft/CollectionList';
 
 const SearchModal = () => {
   const { isActive, deactivate } = usePortalRecoil('search-modal');
-  const { countryCode: country, languageCode: language } = useSelectLocale();
-  const [{ predictiveResult }, handlePredictive] = usePredictiveSearch({ locale: { country, language } });
+  const locale = useGetLocale();
+  const [{ predictiveResult }, handlePredictive] = usePredictiveSearch({ locale });
   const [{}, navigateWithQueryParams] = useSyncDataUrl({ keys: ['query'], targetPathname: '/search' });
-  const dictionary = useDictioanry().search.SearchModal;
+  const dictionary = useGetDictioanry().search.SearchModal;
 
   const inputRef = useRef<HTMLInputElement>(null);
 

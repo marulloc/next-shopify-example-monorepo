@@ -8,11 +8,10 @@ import { useRecoilValueLoadable } from 'recoil';
 import { atomOptimisticCart } from '@/context/cart-atoms';
 import { Suspense } from 'react';
 import { useSetPortalRecoil } from '@/context/ui/hooks';
-import { useDictioanry } from '@/context/locale/hook';
-
+import { useGetDictioanry } from '@/hooks/locale-hooks';
 const CartIconTrigger = () => {
   const { activate } = useSetPortalRecoil('cart-drawer');
-  const dictionary = useDictioanry();
+  const dictionary = useGetDictioanry();
   const { state, contents: cart } = useRecoilValueLoadable(atomOptimisticCart);
   const totalQty = cart?.totalQuantity || 0;
 
