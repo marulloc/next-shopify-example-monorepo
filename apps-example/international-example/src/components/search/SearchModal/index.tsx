@@ -20,8 +20,7 @@ import CollectionList from '@/components/_draft/CollectionList';
 
 const SearchModal = () => {
   const [{ isActive }, { deactivate }] = usePortalRecoil('search-modal');
-  const locale = useGetLocale();
-  const [{ predictiveResult }, handlePredictive] = usePredictiveSearch({ locale });
+  const [{ predictiveResult }, handlePredictive] = usePredictiveSearch();
   const [{}, navigateWithQueryParams] = useSyncDataUrl({ keys: ['query'], targetPathname: '/search' });
   const dictionary = useGetDictioanry().search.SearchModal;
 
