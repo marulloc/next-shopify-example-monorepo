@@ -7,7 +7,7 @@ import { classNames } from '@marulloc/components-library/utils';
 import IconButton from '../../IconButton';
 import { HiXMark } from 'react-icons/hi2';
 import ReactCountryFlag from 'react-country-flag';
-import { usePortalRecoil } from '@/context/ui/hooks';
+import { usePortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry, useGetLocale, useSelectLocale } from '@/hooks/locale-hooks';
 import InitialIcon from '@/components/InitialIcon';
 import Card from '@/components/@common/semantic/Card';

@@ -7,7 +7,7 @@ import { localTheme } from '@/theme/local-theme';
 import { useRecoilValueLoadable } from 'recoil';
 import { atomOptimisticCart } from '@/context/cart-atoms';
 import { Suspense } from 'react';
-import { useSetPortalRecoil } from '@/context/ui/hooks';
+import { useSetPortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 const CartIconTrigger = () => {
   const { activate } = useSetPortalRecoil('cart-drawer');

@@ -1,6 +1,11 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { TPortalConstants, TPortalValue, atomPortalController } from '../portal-atoms';
+import { TPortalConstants, TPortalValue, atomPortalController } from '../context/portal-atoms';
 
+/**
+ *
+ * @param portalName
+ * @returns
+ */
 export const useGetPortalRecole = (portalName: TPortalConstants) => {
   const portals = useRecoilValue(atomPortalController);
   const targetPortalStatus = portals.find((portal) => portal.portalName === portalName);
@@ -8,6 +13,11 @@ export const useGetPortalRecole = (portalName: TPortalConstants) => {
   return targetPortalStatus as TPortalValue;
 };
 
+/**
+ *
+ * @param portalName
+ * @returns
+ */
 export const useSetPortalRecoil = (portalName: TPortalConstants) => {
   const setPortals = useSetRecoilState(atomPortalController);
 
@@ -32,6 +42,11 @@ export const useSetPortalRecoil = (portalName: TPortalConstants) => {
   return { activate, deactivate };
 };
 
+/**
+ *
+ * @param portalName
+ * @returns
+ */
 export const usePortalRecoil = (portalName: TPortalConstants) => {
   const [portals, setPortals] = useRecoilState(atomPortalController);
 

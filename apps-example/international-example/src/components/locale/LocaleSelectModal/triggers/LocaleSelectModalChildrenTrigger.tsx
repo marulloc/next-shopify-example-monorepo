@@ -1,7 +1,7 @@
 'use client';
 
 import { useGetDictioanry } from '@/hooks/locale-hooks';
-import { useSetPortalRecoil } from '@/context/ui/hooks';
+import { useSetPortalRecoil } from '@/hooks/portal-hooks';
 
 type TProps<T extends React.ElementType = 'button'> = {
   children: React.ReactNode;

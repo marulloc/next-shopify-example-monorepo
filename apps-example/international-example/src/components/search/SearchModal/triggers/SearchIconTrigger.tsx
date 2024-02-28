@@ -4,7 +4,7 @@ import { classNames } from '@marulloc/components-library/utils';
 import { HiOutlineMagnifyingGlass } from 'react-icons/hi2';
 import IconButton from '@/components/IconButton';
 import { localTheme } from '@/theme/local-theme';
-import { useSetPortalRecoil } from '@/context/ui/hooks';
+import { useSetPortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 const SearchIconTrigger = () => {
   const { activate } = useSetPortalRecoil('search-modal');

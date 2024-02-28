@@ -10,7 +10,7 @@ import { usePredictiveSearch } from '@/hooks/usePredictiveSearch';
 import { localTheme } from '@/theme/local-theme';
 import IconButton from '@/components/IconButton';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
-import { usePortalRecoil } from '@/context/ui/hooks';
+import { usePortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry, useGetLocale } from '@/hooks/locale-hooks';
 import { RiEmotionSadLine } from 'react-icons/ri';
 import Card from '@/components/@common/semantic/Card';

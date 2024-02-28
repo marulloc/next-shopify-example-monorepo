@@ -11,7 +11,7 @@ import IconButton from '@/components/IconButton';
 import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/SearchInputTrigger';
 import InitialIcon from '@/components/InitialIcon';
 import LocaleIconTrigger from '@/components/locale/LocaleSelectModal/triggers/LocaleSelectModalIconTrigger';
-import { usePortalRecoil } from '@/context/ui/hooks';
+import { usePortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 import GithubLink from './triggers/GithubLink';
 import Box from '@/components/@common/semantic/Box';

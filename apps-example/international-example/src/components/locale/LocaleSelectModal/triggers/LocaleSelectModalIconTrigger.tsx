@@ -3,7 +3,7 @@
 import { classNames } from '@marulloc/components-library/utils';
 import { localTheme } from '@/theme/local-theme';
 import { HiOutlineGlobeAsiaAustralia } from 'react-icons/hi2';
-import { useSetPortalRecoil } from '@/context/ui/hooks';
+import { useSetPortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 const LocaleSelectModalIconTrigger = () => {
   const { activate } = useSetPortalRecoil('locale-select-modal');
