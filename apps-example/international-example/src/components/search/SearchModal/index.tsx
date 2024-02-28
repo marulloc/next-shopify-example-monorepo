@@ -19,7 +19,7 @@ import ProductList from '@/components/_draft/ProductList';
 import CollectionList from '@/components/_draft/CollectionList';
 
 const SearchModal = () => {
-  const { isActive, deactivate } = usePortalRecoil('search-modal');
+  const [{ isActive }, { deactivate }] = usePortalRecoil('search-modal');
   const locale = useGetLocale();
   const [{ predictiveResult }, handlePredictive] = usePredictiveSearch({ locale });
   const [{}, navigateWithQueryParams] = useSyncDataUrl({ keys: ['query'], targetPathname: '/search' });

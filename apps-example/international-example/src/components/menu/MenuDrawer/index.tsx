@@ -23,7 +23,7 @@ type Props = {
 };
 
 const MenuDrawer = ({ menu, collections }: Props) => {
-  const { isActive, deactivate } = usePortalRecoil('menu-drawer');
+  const [{ isActive }, { deactivate }] = usePortalRecoil('menu-drawer');
   const dictionary = useGetDictioanry().menu.MenuDrawer;
 
   return (

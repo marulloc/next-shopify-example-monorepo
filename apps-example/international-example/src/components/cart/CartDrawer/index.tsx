@@ -7,7 +7,7 @@ import { usePortalRecoil } from '@/hooks/portal-hooks';
 import CartContents from './CartContents';
 
 const CartDrawer = () => {
-  const { isActive, deactivate } = usePortalRecoil('cart-drawer');
+  const [{ isActive }, { deactivate }] = usePortalRecoil('cart-drawer');
 
   return (
     <Drawer anchor="right" open={isActive} onClose={() => deactivate()}>

@@ -17,9 +17,10 @@ import { isSameISOCode } from '@/utils/locale';
 type TProps = {} & Pick<ToolkitLocale, 'availableCountries' | 'availableLanguages'>;
 
 const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) => {
+  const [{ isActive }, { deactivate }] = usePortalRecoil('locale-select-modal');
   const { country, language } = useGetLocale();
   const selectLocale = useSelectLocale();
-  const { isActive, deactivate } = usePortalRecoil('locale-select-modal');
+
   const dictionary = useGetDictioanry();
 
   return (
