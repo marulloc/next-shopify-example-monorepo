@@ -3,6 +3,7 @@ import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/se
 import Box from '@/components/@common/semantic/Box';
 import CollectionList from '@/components/_draft/CollectionList';
 import ProductList from '@/components/_draft/ProductList';
+import Typography from '@/components/_draft/Typography';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
@@ -30,45 +31,29 @@ const Home = async ({ params }: { params: { locale: string } }) => {
             className="h-full w-full object-cover object-center"
           />
           <div className={classNames('absolute w-full h-1/4 bottom-0 bg-gradient-to-t from-gray-100 via-gray-100')} />
-          <div className={classNames('absolute inset-0', localTheme.fill.base.main, 'bg-opacity-30 ')} />
+          <div
+            className={classNames('absolute inset-0', localTheme.fill.base.main, ' bg-opacity-60 md:bg-opacity-40 ')}
+          />
         </div>
 
         <div className="relative px-20 py-64 sm:py-80 w-full h-full  ">
-          <div className=" w-full max-w-md h-full text-center">
-            <h1
-              className={classNames(
-                'font-bold tracking-tight',
-                localTheme.text.size.extraLarge,
-                localTheme.text.color.base.main,
-              )}
-            >
+          <div className=" w-full max-w-md h-full text-left">
+            <Typography as="h1" size="3xl" colorWeight="accent" className="tracking-tighter font-bold">
               {shopInfo.name}
-            </h1>
-            <p
-              className={classNames(
-                'mt-8 tracking-tight ',
-                localTheme.text.size.medium,
-                localTheme.text.color.base.muted,
-              )}
-            >
+            </Typography>
+
+            <Typography as="p" size="lg" className="tracking-tighter mt-4 md:w-2/3">
               {shopInfo.description}
-            </p>
+            </Typography>
           </div>
         </div>
       </Box>
 
       {/* Collections */}
       <Box as="section" level={0} className={classNames(localTheme.spacing.padding.x.medium)}>
-        <h2
-          className={classNames(
-            'font-bold tracking-tight',
-            localTheme.text.size.large,
-            localTheme.text.color.base.main,
-          )}
-        >
+        <Typography as="h3" size="xl" className="tracking-wide font-semibold">
           Collections
-        </h2>
-
+        </Typography>
         <div className="mt-4 ">
           <CollectionList collections={collections} variant="big" />
         </div>
@@ -76,26 +61,14 @@ const Home = async ({ params }: { params: { locale: string } }) => {
 
       <Box as="section" level={0} className={classNames('mt-40 ', localTheme.spacing.padding.x.medium)}>
         <div className="flex justify-between items-center">
-          <h2
-            className={classNames(
-              'font-bold tracking-tight',
-              localTheme.text.size.large,
-              localTheme.text.color.base.main,
-            )}
-          >
+          <Typography as="h3" size="xl" className="tracking-wide font-semibold">
             Products
-          </h2>
-          <Link
-            href="/search"
-            className={classNames(
-              'font-semibold',
-              localTheme.text.size.small,
-              localTheme.text.color.primary.main,
-              localTheme.text.color.primary.hover,
-            )}
-          >
-            Browse all products
-            <span aria-hidden="true"> &rarr;</span>
+          </Typography>
+          <Link href="/search">
+            <Typography as="span" color="primary" size="sm" className="font-semibold hover:text-indigo-800">
+              Browse all products
+              <span aria-hidden="true"> &rarr;</span>
+            </Typography>
           </Link>
         </div>
 

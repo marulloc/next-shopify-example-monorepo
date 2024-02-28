@@ -84,7 +84,7 @@ type TTypograhpyProps<T extends TTypograhpyTags = 'span'> = {
   TTypograhpyColorProps &
   TTypographySizeProps;
 
-export const Typography = <T extends TTypograhpyTags = 'span'>({
+const Typography = <T extends TTypograhpyTags = 'span'>({
   as,
   size = 'md',
   responsive = true,

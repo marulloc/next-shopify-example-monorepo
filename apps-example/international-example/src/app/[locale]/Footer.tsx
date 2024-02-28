@@ -1,5 +1,6 @@
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import Box from '@/components/@common/semantic/Box';
+import Typography from '@/components/_draft/Typography';
 import { TDictionaries, getDictionary } from '@/dictionaries';
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
@@ -31,24 +32,19 @@ const Footer = async ({ locale }: Props) => {
         />
 
         <div className="absolute w-full h-1/4 top-0 bg-gradient-to-b from-gray-100 via-gray-100" />
-        <div className={classNames('absolute inset-0', localTheme.fill.base.main, 'bg-opacity-30 ')} />
+        <div
+          className={classNames('absolute inset-0', localTheme.fill.base.main, ' bg-opacity-60 md:bg-opacity-40 ')}
+        />
       </div>
 
-      <Box as="section" level={0} className=" relative px-20 py-44  w-full h-full  ">
-        <p
-          className={classNames(
-            'font-bold tracking-tight',
-            localTheme.text.size.extraLarge,
-            localTheme.text.color.base.main,
-          )}
-        >
+      <Box as="section" level={0} className=" relative px-20 py-44  w-full h-full">
+        <Typography as="h3" size="3xl" colorWeight="accent" className="tracking-tighter font-bold">
           {dictionary.information.h}
-        </p>
-        <p
-          className={classNames('mt-8 tracking-tight ', localTheme.text.size.medium, localTheme.text.color.base.muted)}
-        >
+        </Typography>
+
+        <Typography as="p" size="lg" className="tracking-tighter mt-4 md:w-2/3">
           {dictionary.information.p}
-        </p>
+        </Typography>
       </Box>
     </Box>
   );
