@@ -31,10 +31,10 @@
   .prose > h6 {
     @apply text-base font-semibold md:text-lg lg:text-xl my-4;
   }
-  .prosee > p {
+  .prose > p {
     @apply text-sm md:text-base my-2 leading-6;
   }
-  .pros > a {
+  .prose > a {
     @apply text-sm md:text-base text-indigo-400 hover:text-indigo-600 cursor-pointer;
   }
   .prose > blockquote {
