@@ -15,7 +15,7 @@ const SearchFakeInputTrigger = () => {
     <div className={classNames('isolate relative group cursor-text')} onClick={() => activate()}>
       <div className="absolute inset-y-0 left-0 flex items-center pl-3">
         <HiOutlineMagnifyingGlass
-          className={classNames('h-5 w-5', 'group-hover:scale-110', localTheme.text.color.base.muted)}
+          className={classNames('h-5 w-5', 'group-hover:scale-110 text-default-accent')}
           aria-hidden="true"
         />
       </div>

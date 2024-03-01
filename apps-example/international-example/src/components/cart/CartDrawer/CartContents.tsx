@@ -11,6 +11,7 @@ import React from 'react';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 import Box from '@/components/@common/semantic/Box';
 import { useGetLoadableCart } from '@/hooks/cart-hooks';
+import Typography from '@/components/_draft/Typography';
 
 const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
   const { state, contents: cart } = useGetLoadableCart();
@@ -30,17 +31,20 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
         as="header"
         variant="glassy"
         level={2}
-        className={classNames('px-4 py-4 sm:px-6', 'flex items-center justify-between ')}
+        className={classNames('px-4 py-2 sm:py-4 sm:px-6', 'flex items-center justify-between ')}
       >
-        <h2 className="text-lg font-medium text-gray-900">{dictionary.title}</h2>
+        <Typography as="h3" size="lg">
+          {dictionary.title}
+        </Typography>
+
         <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
           <IconButton
             srName="close panel"
-            className={classNames(localTheme.text.color.base.muted, localTheme.text.color.base.hover)}
             onClick={() => closeDrawer()}
+            className="text-default-muted hover:text-default-accent"
           >
             <HiXMark className="h-6 w-6" aria-hidden="true" />
-            <span className=" sr-only">{dictionary.closeBtn.sr}</span>
+            <Typography className=" sr-only">{dictionary.closeBtn.sr}</Typography>
           </IconButton>
         </div>
       </Box>
@@ -56,35 +60,31 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
       </Box>
 
       <Box as="footer" variant="glassy" level={2} className={classNames('px-6 py-6')}>
-        <div className={classNames('mb-6 ', localTheme.text.size.small, 'text-gray-500')}>
-          <div className="mb-1 flex items-center justify-between py-1">
-            <p>{dictionary.footer.taxes.title}</p>
-            <div>
-              {cart?.cost.totalTaxAmount ? (
-                <Price
-                  className={classNames(localTheme.text.color.primary.main, 'text-right ', 'font-semibold')}
-                  amount={cart?.cost.totalTaxAmount?.amount || '0'}
-                  currencyCode={cart?.cost.totalTaxAmount?.currencyCode || ''}
-                />
-              ) : (
-                <span>-</span>
-              )}
-            </div>
-          </div>
+        <div className={classNames('mb-6 ')}>
+          <section className="mb-1 flex items-center justify-between py-1">
+            <Typography as="h4">{dictionary.footer.taxes.title}</Typography>
+            <Typography as="p" color="primary-base" className=" font-semibold">
+              <Price
+                amount={cart?.cost.totalTaxAmount?.amount || '0'}
+                currencyCode={cart?.cost.totalTaxAmount?.currencyCode || ''}
+              />
+            </Typography>
+          </section>
 
-          <div className="mb-1 flex items-center justify-between py-1">
-            <p>{dictionary.footer.shipping.title}</p>
-            <p className="text-right">{dictionary.footer.shipping.p}</p>
-          </div>
+          <section className="mb-1 flex items-center justify-between py-1">
+            <Typography as="h4">{dictionary.footer.shipping.title}</Typography>
+            <Typography as="p">{dictionary.footer.shipping.p}</Typography>
+          </section>
 
-          <div className="mb-1 flex items-center justify-between py-1">
-            <p>{dictionary.footer.total.title}</p>
-            <Price
-              className={classNames('text-right text-indigo-600 ', 'font-semibold')}
-              amount={cart?.cost.totalAmount.amount || ''}
-              currencyCode={cart?.cost.totalAmount.currencyCode || ''}
-            />
-          </div>
+          <section className="mb-1 flex items-center justify-between py-1">
+            <Typography as="h4">{dictionary.footer.total.title}</Typography>
+            <Typography as="p" color="primary-base" className=" font-semibold">
+              <Price
+                amount={cart?.cost.totalAmount?.amount || '0'}
+                currencyCode={cart?.cost.totalAmount?.currencyCode || ''}
+              />
+            </Typography>
+          </section>
         </div>
 
         <div className=" ">
@@ -92,9 +92,11 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
             href={cart?.checkoutUrl || '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+            className="block text-center px-6 py-3 rounded-md bg-indigo-600 hover:bg-indigo-700"
           >
-            {dictionary.footer.checkout.title}
+            <Typography as="span" color="primary-contrast" className=" font-semibold">
+              {dictionary.footer.checkout.title}
+            </Typography>
           </Link>
         </div>
       </Box>

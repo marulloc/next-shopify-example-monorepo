@@ -38,20 +38,22 @@ const Home = async ({ params }: { params: { locale: string } }) => {
 
         <div className="relative px-20 py-64 sm:py-80 w-full h-full  ">
           <div className=" w-full max-w-md h-full text-left">
-            <Typography as="h1" size="3xl" colorWeight="accent" className="tracking-tighter font-bold">
+            <Typography as="h1" size="3xl" color="default-accent" className="tracking-tighter font-bold">
               {shopInfo.name}
             </Typography>
 
-            <Typography as="p" size="lg" className="tracking-tighter mt-4 md:w-2/3">
-              {shopInfo.description}
-            </Typography>
+            <div className="mt-4 md:w-2/3">
+              <Typography as="p" size="lg" className="tracking-tighter">
+                {shopInfo.description}
+              </Typography>
+            </div>
           </div>
         </div>
       </Box>
 
       {/* Collections */}
       <Box as="section" level={0} className={classNames(localTheme.spacing.padding.x.medium)}>
-        <Typography as="h3" size="xl" className="tracking-wide font-semibold">
+        <Typography as="h3" size="xl" color="default-base" className="tracking-wide font-semibold">
           Collections
         </Typography>
         <div className="mt-4 ">
@@ -61,11 +63,17 @@ const Home = async ({ params }: { params: { locale: string } }) => {
 
       <Box as="section" level={0} className={classNames('mt-40 ', localTheme.spacing.padding.x.medium)}>
         <div className="flex justify-between items-center">
-          <Typography as="h3" size="xl" className="tracking-wide font-semibold">
+          <Typography as="h3" size="xl" color="default-base" className="tracking-wide font-semibold">
             Products
           </Typography>
           <Link href="/search">
-            <Typography as="span" color="primary" size="sm" className="font-semibold hover:text-indigo-800">
+            <Typography
+              as="span"
+              size="sm"
+              noWarn
+              color="primary-base"
+              className="font-semibold hover:text-primary-accent "
+            >
               Browse all products
               <span aria-hidden="true"> &rarr;</span>
             </Typography>

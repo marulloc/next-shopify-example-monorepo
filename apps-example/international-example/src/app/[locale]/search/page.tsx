@@ -8,6 +8,7 @@ import SearchResult, { SearchResultSkeleton } from '@/components/search/SearchRe
 import { ServerRuntime } from 'next';
 import Box from '@/components/@common/semantic/Box';
 import { delay } from '@/utils/asyncUtils';
+import Typography from '@/components/_draft/Typography';
 
 type TParams = { locale: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };
@@ -31,7 +32,9 @@ const SearchPage = async ({ params, searchParams }: { params: TParams; searchPar
           'bg-opacity-40 backdrop-blur-sm',
         )}
       >
-        <h1 className="sr-only">Search Result</h1>
+        <Typography as="h1" className="sr-only">
+          Search Result
+        </Typography>
         <div className="w-full rounded-xl bg-gray-50 bg-opacity-80">
           <SearchFakeInputTrigger />
         </div>

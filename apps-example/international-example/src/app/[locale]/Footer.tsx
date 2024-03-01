@@ -38,13 +38,15 @@ const Footer = async ({ locale }: Props) => {
       </div>
 
       <Box as="section" level={0} className=" relative px-20 py-44  w-full h-full">
-        <Typography as="h3" size="3xl" colorWeight="accent" className="tracking-tighter font-bold">
+        <Typography as="h3" size="3xl" className="tracking-tighter font-bold text-default-accent">
           {dictionary.information.h}
         </Typography>
 
-        <Typography as="p" size="lg" className="tracking-tighter mt-4 md:w-2/3">
-          {dictionary.information.p}
-        </Typography>
+        <div className="mt-4 md:w-2/3">
+          <Typography as="p" size="lg" className="tracking-tighter text-default-base">
+            {dictionary.information.p}
+          </Typography>
+        </div>
       </Box>
     </Box>
   );

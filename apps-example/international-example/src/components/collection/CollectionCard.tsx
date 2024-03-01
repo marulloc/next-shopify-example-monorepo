@@ -4,6 +4,7 @@ import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import InitialIcon from '../InitialIcon';
 import Card from '../@common/semantic/Card';
+import Typography from '../_draft/Typography';
 
 export type TCollectionCardProps = {
   variant: 'small' | 'big';
@@ -54,10 +55,10 @@ const SmallCollectionCard = ({ collection, index }: Omit<TCollectionCardProps, '
 
 const BigCollectionCard = ({ collection, index }: Omit<TCollectionCardProps, 'variant'>) => {
   return (
-    <Card level={0} className="border-0">
+    <Card level={0} className="border-0 group">
       <div
         aria-hidden="true"
-        className="group aspect-h-2 aspect-w-3 overflow-hidden rounded-lg lg:aspect-h-6 lg:aspect-w-5  opacity-90 border"
+        className="  aspect-h-2 aspect-w-3 overflow-hidden rounded-lg lg:aspect-h-6 lg:aspect-w-5  opacity-90 border"
       >
         <Image
           src={collection.image?.url || `/default-alt-images/collection-${index + 1}.png`}
@@ -67,12 +68,17 @@ const BigCollectionCard = ({ collection, index }: Omit<TCollectionCardProps, 'va
           className="h-full w-full object-cover object-center group-hover:scale-110  transition-all duration-300  "
         />
       </div>
-      <h3 className={classNames('mt-4 font-semibold ', localTheme.text.size.small, localTheme.text.color.base.main)}>
+      <Typography
+        as="h4"
+        size="md"
+        color="default-base"
+        className={classNames('mt-4 font-semibold group-hover:text-primary-base ')}
+      >
         {collection.title.toUpperCase()}
-      </h3>
-      <p className={classNames('mt-1 text-sm  ', localTheme.text.size.small, localTheme.text.color.base.muted)}>
+      </Typography>
+      <Typography as="p" size="sm" color="default-muted" className={classNames('mt-0 text-sm  ')}>
         {collection.description || `default collection`}
-      </p>
+      </Typography>
     </Card>
   );
 };

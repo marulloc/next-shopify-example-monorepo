@@ -1,5 +1,5 @@
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
-import { getProduct, getProductRecommendations } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
+import { getProductRecommendations } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
 import ProductCard from '@/components/product/ProductCard';
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
@@ -7,8 +7,9 @@ import Link from 'next/link';
 import ScrollCarousel from '../ScrollCarousel';
 import { delay } from '@/utils/asyncUtils';
 import Skeleton from '@/components/loading/Skeleton';
-import { TDictionaries, TDictionary, getDictionary } from '@/dictionaries';
+import { TDictionary } from '@/dictionaries';
 import Box from '../@common/semantic/Box';
+import Typography from '../_draft/Typography';
 
 type TProps = {
   product: ToolkitProduct;
@@ -24,9 +25,9 @@ const Recommendations = async ({ product, dict, locale }: TProps) => {
 
   return (
     <Box as="div" level={0} className={classNames(localTheme.spacing.padding.xy.medium, ' ')}>
-      <p className={classNames(localTheme.text.size.medium, localTheme.spacing.padding.b.small, 'font-bold')}>
+      <Typography as="h3" size="lg" className={classNames(localTheme.spacing.padding.b.small, 'font-bold')}>
         {dictionary.title}
-      </p>
+      </Typography>
 
       <ScrollCarousel>
         {recommendations.map((recom) => (

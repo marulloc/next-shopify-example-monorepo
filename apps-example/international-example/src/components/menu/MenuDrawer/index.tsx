@@ -16,6 +16,7 @@ import { useGetDictioanry } from '@/hooks/locale-hooks';
 import GithubLink from './triggers/GithubLink';
 import Box from '@/components/@common/semantic/Box';
 import CollectionList from '@/components/_draft/CollectionList';
+import Typography from '@/components/_draft/Typography';
 
 type Props = {
   menu: ToolkitMenu;
@@ -60,7 +61,7 @@ const MenuDrawer = ({ menu, collections }: Props) => {
               <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
                 <IconButton
                   srName="close panel"
-                  className={classNames(localTheme.text.color.base.muted, localTheme.text.color.base.hover)}
+                  className={classNames('text-default-muted hover:text-default-accent')}
                   onClick={() => closeDrawer()}
                 >
                   <HiXMark className="h-6 w-6" aria-hidden="true" />
@@ -78,7 +79,9 @@ const MenuDrawer = ({ menu, collections }: Props) => {
               <nav className="flex flex-1 flex-col">
                 <ul role="list" className="mt-2 flex flex-1 flex-col gap-y-14">
                   <li>
-                    <h4 className="text-xs font-semibold leading-6 text-gray-500">Menus</h4>
+                    <Typography as="h4" size="xs" color="default-muted" className=" tracking-wider">
+                      Menu
+                    </Typography>
                     <div className="mt-2">
                       <ul role="list" className="space-y-4">
                         {[{ title: 'home', url: '/' }, ...menu].map(({ title, url }) => (
@@ -86,13 +89,15 @@ const MenuDrawer = ({ menu, collections }: Props) => {
                             <Link
                               href={url}
                               className={classNames(
-                                'text-gray-700 hover:text-indigo-600  ',
-                                'group flex gap-x-3 rounded-md  text-sm leading-6 ',
+                                'text-default-base hover:text-primary-base  ',
+                                'group flex gap-x-3 rounded-md items-center',
                               )}
                               onClick={() => closeDrawer()}
                             >
                               <InitialIcon initial={title[0] || 'c'} />
-                              <span className="truncate">{title.toUpperCase()}</span>
+                              <Typography as="span" size="sm" noWarn className="truncate">
+                                {title.toUpperCase()}
+                              </Typography>
                             </Link>
                           </li>
                         ))}
@@ -101,7 +106,9 @@ const MenuDrawer = ({ menu, collections }: Props) => {
                   </li>
 
                   <li>
-                    <h4 className="text-xs font-semibold leading-6 text-gray-500">Collections</h4>
+                    <Typography as="h4" size="xs" color="default-muted" className=" tracking-wider">
+                      Collections
+                    </Typography>
                     <div className="mt-2">
                       <CollectionList
                         collections={collections}

@@ -8,6 +8,7 @@ import CollectionProducts, { CollectionProductsSkeleton } from '@/components/col
 import { localTheme } from '@/theme/local-theme';
 import { TDictionaries, getDictionary } from '@/dictionaries';
 import Box from '@/components/@common/semantic/Box';
+import Typography from '@/components/_draft/Typography';
 
 type TParams = { locale: string; collection: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };
@@ -39,7 +40,7 @@ const CollectionPage = async ({ params, searchParams }: { params: TParams; searc
 
   return (
     <Box as="main" level={0} className={classNames()}>
-      <h1
+      <div
         className={classNames(
           localTheme.spacing.padding.x.medium,
           localTheme.spacing.padding.y.small,
@@ -50,9 +51,11 @@ const CollectionPage = async ({ params, searchParams }: { params: TParams; searc
           'bg-opacity-40 backdrop-blur-sm',
         )}
       >
-        {dictionary.title}
-        <span className="font-semibold">&quot;{collection?.title}&quot;</span>
-      </h1>
+        <Typography as="h1">
+          {dictionary.title}
+          <span className="font-semibold text-default-accent">&quot;{collection?.title}&quot;</span>
+        </Typography>
+      </div>
 
       <Suspense fallback={<CollectionProductsSkeleton />} key={`${handle}-${sort}`}>
         <CollectionProducts collection={handle} sort={sort as ToolkitSortKey} locale={{ country, language }} />

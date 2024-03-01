@@ -4,6 +4,7 @@ import { classNames } from '@marulloc/components-library/utils';
 import ProductPrice from './ProductPrice';
 import Image from 'next/image';
 import Card from '../@common/semantic/Card';
+import Typography from '../_draft/Typography';
 
 export type TPRoductCardProps = TSmallProductCardProps | TBigProductCardProps;
 
@@ -94,17 +95,20 @@ const BigProductCard = ({ product, priceDefaultOpen = false }: Omit<TBigProductC
         className={classNames(
           'absolute bottom-0 h-1/2 w-full rounded-none z-10',
           'transform transition-all  duration-500',
-          priceDefaultOpen ? '' : 'group-hover:visible invisible group-hover:translate-y-0 translate-y-full',
-
+          priceDefaultOpen // default open at mobile size
+            ? ''
+            : 'md:group-hover:visible md:invisible md:group-hover:translate-y-0 md:translate-y-full',
           'bg-gradient-to-t  from-gray-50 bg-opacity-90',
         )}
       >
         <div className=" h-full p-4 flex flex-col justify-end items-end">
-          <h2 className={classNames(localTheme.text.size.small, localTheme.text.color.base.main)}>{product.title}</h2>
-          <ProductPrice
-            priceRange={product.priceRange}
-            className={classNames(localTheme.text.size.small, localTheme.text.color.primary.main)}
-          />
+          <Typography as="h2" size="sm" noWarn color="default-accent">
+            {product.title}
+          </Typography>
+
+          <Typography as="span" size="sm" noWarn color="primary-base">
+            <ProductPrice priceRange={product.priceRange} />
+          </Typography>
         </div>
       </div>
     </Card>

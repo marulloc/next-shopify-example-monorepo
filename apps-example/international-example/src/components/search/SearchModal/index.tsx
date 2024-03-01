@@ -17,6 +17,7 @@ import Card from '@/components/@common/semantic/Card';
 import Box from '@/components/@common/semantic/Box';
 import ProductList from '@/components/_draft/ProductList';
 import CollectionList from '@/components/_draft/CollectionList';
+import Typography from '@/components/_draft/Typography';
 
 const SearchModal = () => {
   const [{ isActive }, { deactivate }] = usePortalRecoil('search-modal');
@@ -84,7 +85,7 @@ const SearchModal = () => {
                   <div className={classNames('relative group w-full')}>
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3">
                       <HiOutlineMagnifyingGlass
-                        className={classNames('h-5 w-5', 'group-hover:scale-110', localTheme.text.color.base.muted)}
+                        className={classNames('h-5 w-5', 'group-hover:scale-110 text-default-accent')}
                         aria-hidden="true"
                       />
                     </div>
@@ -112,7 +113,7 @@ const SearchModal = () => {
 
                 <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
                   <IconButton
-                    className={classNames(localTheme.text.color.base.muted, localTheme.text.color.base.hover)}
+                    className={classNames('text-default-muted hover:text-default-accent ')}
                     onClick={() => closeModal()}
                   >
                     <HiXMark className="h-6 w-6" aria-hidden="true" />
@@ -128,7 +129,9 @@ const SearchModal = () => {
                 className={classNames('flex-1 overflow-y-auto  ', 'px-4 py-4 sm:px-6')}
               >
                 <ul className="pt-2 pb-6">
-                  <h3 className="text-xs font-semibold leading-6 text-gray-500">Collections</h3>
+                  <Typography as="h3" size="xs" noWarn className="font-semibold tracking-wider">
+                    Collections
+                  </Typography>
 
                   <div className="mt-2">
                     <CollectionList
@@ -143,18 +146,20 @@ const SearchModal = () => {
                       className={classNames(
                         ' h-28  border border-dashed flex justify-center items-center rounded-lg',
                         localTheme.border.base.main,
-                        localTheme.text.size.medium,
-                        localTheme.text.color.base.main,
                         'bg-opacity-70',
                       )}
                     >
-                      <RiEmotionSadLine className="h-6 w-6 mr-2" />
-                      {dictionary.noResult.title}
+                      <Typography size="md" as="p" color="default-accent" className="flex items-center ">
+                        <RiEmotionSadLine className="h-5 w-5 inline mr-2" />
+                        {dictionary.noResult.title}
+                      </Typography>
                     </div>
                   )}
                 </ul>
                 <div>
-                  <h3 className="text-xs font-semibold leading-6 text-gray-500">Products</h3>
+                  <Typography as="h3" size="xs" noWarn className="font-semibold tracking-wider">
+                    Products
+                  </Typography>
 
                   <div className="mt-2">
                     <ProductList
@@ -169,13 +174,13 @@ const SearchModal = () => {
                       className={classNames(
                         ' h-28  border border-dashed flex justify-center items-center rounded-lg',
                         localTheme.border.base.main,
-                        localTheme.text.size.medium,
-                        localTheme.text.color.base.main,
                         'bg-opacity-70',
                       )}
                     >
-                      <RiEmotionSadLine className="h-6 w-6 mr-2" />
-                      {dictionary.noResult.title}
+                      <Typography size="md" as="p" color="default-accent" className="flex items-center ">
+                        <RiEmotionSadLine className="h-5 w-5 inline mr-2" />
+                        {dictionary.noResult.title}
+                      </Typography>
                     </div>
                   )}
                 </div>

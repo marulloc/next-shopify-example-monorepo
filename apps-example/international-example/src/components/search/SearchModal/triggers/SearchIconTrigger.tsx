@@ -11,10 +11,7 @@ const SearchIconTrigger = () => {
   const dictionary = useGetDictioanry().search.SearchIconTrigger;
 
   return (
-    <IconButton
-      className={classNames(localTheme.text.color.base.main, localTheme.text.color.base.hover, 'p-2')}
-      onClick={() => activate()}
-    >
+    <IconButton className={classNames(' text-default-muted hover:text-default-accent p-2')} onClick={() => activate()}>
       <HiOutlineMagnifyingGlass className="h-6 w-6" aria-hidden="true" />
       <span className="sr-only">{dictionary.sr}</span>
     </IconButton>

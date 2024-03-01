@@ -12,6 +12,7 @@ import IconButton from '../../IconButton';
 import { useCartLineOptimisticMutation } from '@/hooks/cart-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 import Box from '@/components/@common/semantic/Box';
+import Typography from '@/components/_draft/Typography';
 
 type Props = {
   cartLine: ToolkitCartLine;
@@ -42,31 +43,27 @@ const CartLine = ({ cartLine }: Props) => {
       <div className={classNames('ml-4 flex-1   flex flex-col justify-between')}>
         <div className="flex justify-between  ">
           <div>
-            <h3 className={classNames(localTheme.text.size.small, localTheme.text.color.base.main)}>
+            <Typography as="h3" size="md" color="default-accent" className={classNames('hover:text-primary-base')}>
               <Link href={cartLine.merchandise.product.handleRoute}>{cartLine.merchandise.product.title}</Link>
-            </h3>
-            <p className={classNames('text-xs mt-1', localTheme.text.color.base.disabled)}>
+            </Typography>
+            <Typography as="p" size="sm" noWarn color="default-base" className={classNames('mt-1')}>
               {cartLine.merchandise.title}
-            </p>
+            </Typography>
           </div>
 
           <div className="flex-shrink-0  ">
-            <Price
-              className={classNames(localTheme.text.size.small, localTheme.text.color.base.main)}
-              currencyCode={cartLine.cost.totalAmount.currencyCode}
-              amount={cartLine.cost.totalAmount.amount}
-            />
+            <Typography as="p" size="sm" noWarn>
+              <Price currencyCode={cartLine.cost.totalAmount.currencyCode} amount={cartLine.cost.totalAmount.amount} />
+            </Typography>
           </div>
         </div>
 
         <div className="flex justify-between items-end ">
           <div>
-            <button
-              type="button"
-              className={classNames(localTheme.text.size.small, localTheme.text.color.primary.main)}
-              onClick={handleDelete}
-            >
-              {dictionary.cart.CartLine.removeBtn.title}
+            <button type="button" onClick={handleDelete}>
+              <Typography as="span" size="sm" noWarn color="primary-base">
+                {dictionary.cart.CartLine.removeBtn.title}
+              </Typography>
               <span className="sr-only">{dictionary.cart.CartLine.removeBtn.sr}</span>
             </button>
           </div>
@@ -79,7 +76,6 @@ const CartLine = ({ cartLine }: Props) => {
             <p className="w-6 text-center">
               <input
                 className="w-full text-sm bg-transparent  block text-center"
-                id="Line Quantity"
                 defaultValue={cartLine.quantity}
                 onBlur={(e) => handleInput(Number(e.target.value))}
               ></input>

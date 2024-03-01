@@ -17,7 +17,7 @@ const CartIconTrigger = () => {
   return (
     <IconButton
       srName="items in cart, view bag"
-      className={classNames(localTheme.text.color.base.main, localTheme.text.color.base.hover, 'p-2')}
+      className={classNames('p-2 text-default-muted hover:text-default-accent')}
       onClick={() => activate()}
     >
       <HiOutlineShoppingBag className="h-6 w-6 flex-shrink-0 " aria-hidden="true" />

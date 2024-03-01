@@ -6,6 +6,7 @@ import Dropdown from '@marulloc/components-library/Dropdown';
 import { localTheme } from '@/theme/local-theme';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
+import Typography from '../_draft/Typography';
 const SortingDropdown = () => {
   const [{ sort: sortKey }, navigateWithQueryParams] = useSyncDataUrl({ keys: ['sort'] });
   const dictionary = useGetDictioanry();
@@ -17,25 +18,27 @@ const SortingDropdown = () => {
     <Dropdown id="product-sorting">
       <Dropdown.Trigger>
         {() => (
-          <p
-            className={classNames(
-              localTheme.text.size.small,
-              localTheme.text.color.base.muted,
-              localTheme.text.color.base.hover,
-              localTheme.fill.base.hover,
-              'flex space-x-2 justify-end items-center  cursor-pointer rounded-lg px-2 -mx-2',
-            )}
-          >
-            <span className="">
-              {`${dictionary.SortingDropdown.decription}  `}
-              <span className={classNames(localTheme.text.color.base.main, 'font-bold')}>
-                &quot;{activeItem.title}&quot;
+          <div className={classNames('flex space-x-2 justify-end items-center  cursor-pointer rounded-lg px-2 -mx-2')}>
+            <Typography
+              as="p"
+              size="sm"
+              noWarn
+              color="default-base"
+              className={classNames(
+                'hover:text-default-accent',
+                localTheme.fill.base.hover,
+                'flex space-x-2 justify-end items-center  cursor-pointer rounded-lg px-2 -mx-2',
+              )}
+            >
+              <span className="">
+                {`${dictionary.SortingDropdown.decription}  `}
+                <span className={classNames('text-default-accent', 'font-bold')}>&quot;{activeItem.title}&quot;</span>
               </span>
-            </span>
-            <span>
-              <HiChevronDown className="h-4 w-4" />
-            </span>
-          </p>
+              <span>
+                <HiChevronDown className="h-4 w-4" />
+              </span>
+            </Typography>
+          </div>
         )}
       </Dropdown.Trigger>
 
@@ -49,15 +52,7 @@ const SortingDropdown = () => {
           >
             <ul className="space-y-2   ">
               {sortKeys.map((item) => (
-                <li
-                  key={`sort-key-${item.value}`}
-                  className={classNames(
-                    localTheme.text.size.small,
-                    localTheme.text.color.base.hover,
-                    localTheme.text.color.base.muted,
-                    'hover:scale-105  rounded-lg',
-                  )}
-                >
+                <li key={`sort-key-${item.value}`} className={classNames('group', 'hover:scale-105  rounded-lg')}>
                   <div
                     className="w-full block cursor-pointer "
                     onClick={() => {
@@ -65,7 +60,15 @@ const SortingDropdown = () => {
                       closeDropdown();
                     }}
                   >
-                    <span>{item.title}</span>
+                    <Typography
+                      as="span"
+                      size="sm"
+                      noWarn
+                      color="default-base"
+                      className="group-hover:text-default-accent"
+                    >
+                      {item.title}
+                    </Typography>
                   </div>
                 </li>
               ))}

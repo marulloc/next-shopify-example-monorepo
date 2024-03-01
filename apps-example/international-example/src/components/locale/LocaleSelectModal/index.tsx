@@ -60,7 +60,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
 
                 <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
                   <IconButton
-                    className={classNames(localTheme.text.color.base.muted, localTheme.text.color.base.hover)}
+                    className={classNames('text-default-muted hover:text-default-accent ')}
                     onClick={() => closeModal()}
                   >
                     <HiXMark className="h-6 w-6" aria-hidden="true" />
@@ -92,8 +92,8 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                               className={classNames(
                                 'text-gray-700 cursor-pointer',
                                 isSameISOCode(country, isoCode)
-                                  ? 'text-indigo-600 bg-white ring-1 ring-indigo-600 pointer-events-none'
-                                  : 'hover:text-indigo-600 hover:ring-1 hover:ring-indigo-500 hover:bg-white  transition-all',
+                                  ? 'text-primary-base bg-white ring-1 ring-indigo-600 pointer-events-none'
+                                  : 'hover:text-primary-base hover:ring-1 hover:ring-indigo-500 hover:bg-white  transition-all',
                                 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 relative items-center ',
                               )}
                             >
@@ -136,8 +136,8 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                               className={classNames(
                                 'text-gray-700 cursor-pointer',
                                 isSameISOCode(language, isoCode)
-                                  ? 'text-indigo-600 bg-white ring-1 ring-indigo-600 pointer-events-none'
-                                  : 'hover:text-indigo-600 hover:ring-1 hover:ring-indigo-500 hover:bg-white  transition-all',
+                                  ? 'text-primary-base bg-white ring-1 ring-indigo-600 pointer-events-none'
+                                  : 'hover:text-primary-base hover:ring-1 hover:ring-indigo-500 hover:bg-white  transition-all',
                                 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 relative items-center ',
                               )}
                             >
@@ -165,7 +165,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
               </Box>
 
               <Box as="footer" variant="glassy" level={2} className={classNames('px-3 py-3  md:px-6 md:py-6')}>
-                <div className=" text-indigo-600 flex space-x-2 items-center justify-end  text-xs">{/*  */}</div>
+                <div className=" text-primary-base flex space-x-2 items-center justify-end  text-xs">{/*  */}</div>
               </Box>
             </Card>
           </div>

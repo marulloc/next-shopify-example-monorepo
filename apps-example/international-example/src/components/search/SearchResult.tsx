@@ -11,6 +11,7 @@ import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
 import Box from '../@common/semantic/Box';
 import ProductList from '../_draft/ProductList';
+import Typography from '../_draft/Typography';
 
 type TProps = {
   query: string;
@@ -31,28 +32,28 @@ const SearchResult = async ({ query, sort: sortKey, locale }: TProps) => {
       level={0}
       className={classNames(localTheme.spacing.padding.x.medium, localTheme.spacing.padding.y.small)}
     >
-      <Box as="header" level={0} className="flex flex-col md:flex-row justify-between">
-        <h2 className={classNames('mb-4', localTheme.text.color.base.muted, localTheme.text.size.small)}>
+      <header className="flex flex-col md:flex-row justify-end md:justify-between  text-right md:text-left ">
+        <Typography as="h2" color="default-muted" size="sm" noWarn className={classNames('mb-4 ')}>
           {dictionaryReplacer(dictionary.summary, [
             { target: 'number', replace: products.length },
             {
               target: 'query',
-              replace: (
-                <span className={classNames('font-bold', localTheme.text.color.base.main)}>&quot;{query}&quot;</span>
-              ),
+              replace: <span className={classNames('font-bold', 'text-default-accent')}>&quot;{query}&quot;</span>,
             },
           ])}
-        </h2>
+        </Typography>
 
-        <div className="flex-shrink-0 flex justify-start md:justify-end mb-4  py-1 -my-1 px-3 -mx-3">
+        <div className="flex-shrink-0 flex  justify-end mb-4  py-1 -my-1 px-3 -mx-3 text-right md:text-left">
           <SortingDropdown />
         </div>
-      </Box>
+      </header>
 
-      <Box as="section" level={0}>
-        <h3 className="sr-only">Search result</h3>
+      <section>
+        <Typography as="h3" className="sr-only">
+          Search result
+        </Typography>
         <ProductList products={products} variant="big" />
-      </Box>
+      </section>
     </Box>
   );
 };
