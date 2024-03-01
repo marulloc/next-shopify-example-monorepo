@@ -5,9 +5,9 @@ const STYLE_CONSTANT = {
   glassy: [
     'bg-transparent',
     'bg-white bg-opacity-90 backdrop-blur-sm',
-    'bg-white bg-opacity-80 backdrop-blur-sm',
+    'bg-white bg-opacity-80 backdrop-blur-sm', //
     'bg-white bg-opacity-70 backdrop-blur-sm',
-    'bg-gray-50 bg-opacity-70 backdrop-blur-sm',
+    'bg-gray-50 bg-opacity-70 backdrop-blur-sm', //
     'bg-gray-100 bg-opacity-70 backdrop-blur-sm',
   ],
 } as const;

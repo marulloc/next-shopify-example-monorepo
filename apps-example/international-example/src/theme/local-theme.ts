@@ -1,33 +1,5 @@
 import { classNames } from '@marulloc/components-library/utils';
 
-const text = {
-  color: {
-    base: {
-      main: classNames('text-gray-800'),
-      muted: classNames('text-gray-600'),
-      hover: classNames('hover:text-gray-950'),
-      contrast: classNames('text-gray-100'),
-      disabled: classNames('text-gray-500'),
-    },
-    primary: {
-      main: classNames('text-indigo-600'),
-      muted: classNames('text-indigo-400'),
-      hover: classNames('hover:text-indigo-800'),
-    },
-    secondary: {
-      main: classNames('text-green-600'),
-      muted: classNames('text-green-400'),
-      hover: classNames('hover:text-green-800'),
-    },
-  },
-  size: {
-    small: classNames('text-xs sm:text-sm'),
-    medium: classNames('text-sm sm:text-base md:text-lg'),
-    large: classNames('text-base sm:text-lg md:text-xl'),
-    extraLarge: classNames('text-lg sm:text-xl md:text-2xl'),
-  },
-};
-
 const fill = {
   base: {
     main: classNames('bg-gray-100'),
@@ -44,27 +16,6 @@ const fill = {
     main: classNames('bg-rose-500'),
     muted: classNames('bg-rose-400'),
     hover: classNames('hover:bg-pink-600'),
-  },
-};
-
-const border = {
-  base: {
-    main: classNames('border-gray-300'),
-    muted: classNames('border-gray-200'),
-    hover: classNames('hover:border-gray-400'),
-    disabled: classNames('opacity-50'),
-  },
-  primary: {
-    main: classNames('border-indigo-500'),
-    muted: classNames('border-indigo-400'),
-    hover: classNames('hover:border-indigo-600'),
-    disabled: classNames('opacity-50'),
-  },
-  secondary: {
-    main: classNames('border-green-500'),
-    muted: classNames('border-green-400'),
-    hover: classNames('hover:border-green-600'),
-    disabled: classNames('opacity-50'),
   },
 };
 
@@ -151,8 +102,6 @@ const spacing = {
 };
 
 export const localTheme = {
-  text,
   fill,
-  border,
   spacing,
 };

@@ -37,7 +37,7 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
           {dictionary.title}
         </Typography>
 
-        <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
+        <div className={classNames('ml-4 flex items-center border rounded-lg', 'border-gray-300')}>
           <IconButton
             srName="close panel"
             onClick={() => closeDrawer()}

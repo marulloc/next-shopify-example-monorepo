@@ -68,7 +68,7 @@ const CartLine = ({ cartLine }: Props) => {
             </button>
           </div>
 
-          <div className={classNames('flex flex-row items-center rounded-lg', 'border', localTheme.border.base.main)}>
+          <div className={classNames('flex flex-row items-center rounded-lg', 'border', 'border-gray-300')}>
             <IconButton className="px-1" onClick={handleMinus}>
               <HiMinus className="h-4 w-4  " />
               <span className="sr-only">{dictionary.cart.CartLine.minusBtn.sr}</span>

@@ -103,7 +103,7 @@ const SearchModal = () => {
                         'text-xs ',
                         'pl-10 pr-3 py-2',
                         'border',
-                        localTheme.border.base.main,
+                        'border-gray-300',
                         'focus-within:ring-0 ring-zinc-400 ring-inset',
                       )}
                     />
@@ -111,7 +111,7 @@ const SearchModal = () => {
                   </div>
                 </form>
 
-                <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
+                <div className={classNames('ml-4 flex items-center border rounded-lg', 'border-gray-300')}>
                   <IconButton
                     className={classNames('text-default-muted hover:text-default-accent ')}
                     onClick={() => closeModal()}
@@ -145,7 +145,7 @@ const SearchModal = () => {
                     <div
                       className={classNames(
                         ' h-28  border border-dashed flex justify-center items-center rounded-lg',
-                        localTheme.border.base.main,
+                        'border-gray-300',
                         'bg-opacity-70',
                       )}
                     >
@@ -173,7 +173,7 @@ const SearchModal = () => {
                     <div
                       className={classNames(
                         ' h-28  border border-dashed flex justify-center items-center rounded-lg',
-                        localTheme.border.base.main,
+                        'border-gray-300',
                         'bg-opacity-70',
                       )}
                     >

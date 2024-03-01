@@ -58,7 +58,7 @@ const MenuDrawer = ({ menu, collections }: Props) => {
               <div className="relative w-full" onClick={() => closeDrawer()}>
                 <SearchFakeInputTrigger />
               </div>
-              <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
+              <div className={classNames('ml-4 flex items-center border rounded-lg', 'border-gray-300')}>
                 <IconButton
                   srName="close panel"
                   className={classNames('text-default-muted hover:text-default-accent')}

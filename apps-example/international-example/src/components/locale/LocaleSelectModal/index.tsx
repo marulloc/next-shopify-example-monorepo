@@ -58,7 +58,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
               >
                 <h2 className="text-lg font-medium text-gray-900">{dictionary.locale.LocaleSelectModal.title}</h2>
 
-                <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
+                <div className={classNames('ml-4 flex items-center border rounded-lg', 'border-gray-300')}>
                   <IconButton
                     className={classNames('text-default-muted hover:text-default-accent ')}
                     onClick={() => closeModal()}

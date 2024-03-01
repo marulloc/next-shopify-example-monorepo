@@ -45,7 +45,7 @@ const CollectionPage = async ({ params, searchParams }: { params: TParams; searc
           localTheme.spacing.padding.x.medium,
           localTheme.spacing.padding.y.small,
           localTheme.fill.base.main,
-          localTheme.border.base.main,
+          'border-gray-300',
           'border-b',
           'sticky top-16 z-20',
           'bg-opacity-40 backdrop-blur-sm',

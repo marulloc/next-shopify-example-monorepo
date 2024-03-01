@@ -49,7 +49,7 @@ const ProductOptions = ({ product, dict }: TProps) => {
           size="sm"
           color="default-muted"
           noWarn
-          className={classNames('border-b text-right', localTheme.border.base.muted, 'font-semibold mb-3')}
+          className={classNames('border-b text-right', 'border-gray-200', 'font-semibold mb-3')}
         >
           {dictionary.title}
         </Typography>
@@ -95,7 +95,7 @@ const ProductOptions = ({ product, dict }: TProps) => {
         ))}
 
         <div>
-          <div className={classNames('my-4 border-b', localTheme.border.base.muted)}></div>
+          <div className={classNames('my-4 border-b', 'border-gray-200')}></div>
           <div>
             <div className="mb-4">
               {selectedVariant && (
@@ -157,7 +157,7 @@ export const ProductOptionsSkeleton = () => {
         </div>
       </div>
 
-      <div className={classNames('border-b   flex justify-end ', localTheme.border.base.muted, 'font-semibold mb-3')}>
+      <div className={classNames('border-b   flex justify-end ', 'border-gray-200', 'font-semibold mb-3')}>
         <div className=" w-1/4 h-4 mb-2">
           <Skeleton />
         </div>
@@ -179,7 +179,7 @@ export const ProductOptionsSkeleton = () => {
       </ul>
 
       <div>
-        <div className={classNames('my-4 border-b', localTheme.border.base.muted)}></div>
+        <div className={classNames('my-4 border-b', 'border-gray-200')}></div>
         <div className="w-full h-12 ">
           <Skeleton />
         </div>

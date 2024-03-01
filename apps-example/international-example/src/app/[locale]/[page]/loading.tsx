@@ -5,7 +5,7 @@ import { classNames } from '@marulloc/components-library/utils';
 
 const StaticPageLoading = () => {
   return (
-    <main className={classNames('flex-1 flex flex-col md:flex-row  ', ' border-b', localTheme.border.base.main)}>
+    <main className={classNames('flex-1 flex flex-col md:flex-row  ', ' border-b', 'border-gray-300')}>
       <div className={classNames('flex-1', localTheme.spacing.padding.xy.medium, 'max-w-4xl mx-auto')}>
         <section className=" p-0 ">
           <Card

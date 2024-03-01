@@ -61,13 +61,13 @@ const ProductPage = async ({ params }: { params: TParams }) => {
       <div className="flex flex-col lg:flex-row">
         <h1 className="sr-only">{product.title}</h1>
 
-        <div className={classNames('h-full flex-1 lg:border-r', localTheme.border.base.main)}>
-          <section className={classNames(localTheme.border.base.main + ' border-b')}>
+        <div className={classNames('h-full flex-1 lg:border-r', 'border-gray-300')}>
+          <section className={classNames('border-gray-300', ' border-b')}>
             <ImageGallery product={product} />
           </section>
 
           {/* lg- block */}
-          <section className={classNames('block lg:hidden bg-white ', localTheme.border.base.main + ' border-b')}>
+          <section className={classNames('block lg:hidden bg-white ', 'border-gray-300', ' border-b')}>
             <ProductOptions product={product} dict={dictionary} />
           </section>
 
@@ -84,7 +84,7 @@ const ProductPage = async ({ params }: { params: TParams }) => {
         </div>
       </div>
 
-      <aside className={classNames('border-t ', localTheme.border.base.main)}>
+      <aside className={classNames('border-t ', 'border-gray-300')}>
         <Suspense fallback={<RecommendationsSkeleton />}>
           <Recommendations locale={{ country, language }} product={product} dict={dictionary} />
         </Suspense>

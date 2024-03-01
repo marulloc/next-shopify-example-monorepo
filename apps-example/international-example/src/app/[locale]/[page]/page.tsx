@@ -40,7 +40,7 @@ const StaticPage = async ({ params }: TPageParams) => {
   const [page] = await Promise.all([getPage(pageHandle, { country, language })]);
 
   return (
-    <main className={classNames('flex-1 flex flex-col md:flex-row  ', ' border-b', localTheme.border.base.main)}>
+    <main className={classNames('flex-1 flex flex-col md:flex-row  ', ' border-b', 'border-gray-300')}>
       <div className={classNames('flex-1', localTheme.spacing.padding.xy.medium, 'max-w-4xl mx-auto')}>
         <Typography as="p" size="xs" noWarn className="text-right mb-2">
           {`Last update : ${new Intl.DateTimeFormat(language, {

@@ -7,7 +7,7 @@ const Layout = async ({ children, params }: { children: React.ReactNode; params:
   const { countryCode: country, languageCode: language } = splitLocale(params.locale);
 
   return (
-    <div className={classNames('flex-1 flex flex-col md:flex-row  ', ' border-b', localTheme.border.base.main)}>
+    <div className={classNames('flex-1 flex flex-col md:flex-row  ', ' border-b', 'border-gray-300')}>
       <section
         className={classNames(
           'flex-none md:max-w-[200px] relative',
@@ -20,13 +20,7 @@ const Layout = async ({ children, params }: { children: React.ReactNode; params:
         </div>
       </section>
 
-      <div
-        className={classNames(
-          'order-last w-full  ',
-          'border-t md:border-l md:border-t-0 ',
-          localTheme.border.base.main,
-        )}
-      >
+      <div className={classNames('order-last w-full  ', 'border-t md:border-l md:border-t-0 ', 'border-gray-300')}>
         {children}
       </div>
     </div>
