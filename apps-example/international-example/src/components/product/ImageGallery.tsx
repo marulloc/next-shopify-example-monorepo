@@ -1,11 +1,10 @@
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
-import { localTheme } from '@/theme/local-theme';
+
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import Carousel from '../Carousel';
 import Skeleton from '../loading/Skeleton';
-import Card from '../@common/semantic/Card';
-import Box from '../@common/semantic/Box';
+import SemanticBox from '../_draft/SemanticBox';
 
 type TProps = {
   product: ToolkitProduct;
@@ -13,16 +12,11 @@ type TProps = {
 
 const ImageGallery = async ({ product }: TProps) => {
   return (
-    <Box
-      as="div"
-      level={0}
-      className={classNames(localTheme.spacing.padding.xy.medium, 'w-full  aspect-square rounded-lg overflow-hidden ')}
-    >
+    <div className={classNames('w-full h-full rounded-lg overflow-hidden ')}>
       <Carousel>
         {product.images.map((image, idx) => (
-          <Card
+          <SemanticBox
             as="figure"
-            level={2}
             key={`${product.title}-image-${idx}`}
             className="border-0 overflow-hidden w-full h-full"
           >
@@ -34,10 +28,10 @@ const ImageGallery = async ({ product }: TProps) => {
               className="w-full h-full object-cover object-center  "
             />
             <figcaption className="sr-onyl">{image.altText || `${product.title}-image-${idx}`}</figcaption>
-          </Card>
+          </SemanticBox>
         ))}
       </Carousel>
-    </Box>
+    </div>
   );
 };
 
@@ -45,9 +39,7 @@ export default ImageGallery;
 
 export const ImageGallerySkeleton = () => {
   return (
-    <div
-      className={classNames(localTheme.spacing.padding.xy.medium, 'w-full  aspect-square rounded-lg overflow-hidden ')}
-    >
+    <div className={classNames('p-4 sm:p-6 md:p-8', 'w-full  aspect-square rounded-lg overflow-hidden ')}>
       <div className="w-full h-full ">
         <Skeleton />
       </div>

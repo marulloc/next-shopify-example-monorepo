@@ -1,10 +1,10 @@
 import { classNames } from '@marulloc/components-library/utils';
-import MenuIconTrigger from '../../components/menu/MenuDrawer/triggers/MenuIconTrigger';
+import MenuIconTrigger from '../menu/MenuDrawer/triggers/MenuIconTrigger';
 import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-common';
-import SearchIconTrigger from '../../components/search/SearchModal/triggers/SearchIconTrigger';
-import Logo from '../../components/Logo';
-import CartIconTrigger from '../../components/cart/CartDrawer/triggers/CartIconTrigger';
-import Box from '@/components/@common/semantic/Box';
+import SearchIconTrigger from '../search/SearchModal/triggers/SearchIconTrigger';
+import Logo from '../Logo';
+import CartIconTrigger from '../cart/CartDrawer/triggers/CartIconTrigger';
+import SemanticBox from '@/components/_draft/SemanticBox';
 
 type Props = {
   locale?: ShopifyLocaleContext;
@@ -12,13 +12,13 @@ type Props = {
 
 const Header = async ({ locale }: Props) => {
   return (
-    <Box
+    <SemanticBox
       as="header"
-      variant="glassy"
-      level={5}
-      className={classNames(' border-b border-gray-300 ', 'isolate sticky top-0 w-full z-30', 'px-4 sm:px-6 lg:px-8')}
+      fill="glassy-default-base"
+      p={{ dir: 'x', size: 'md' }}
+      className={classNames('border-b border-default-base  ', 'isolate sticky top-0 w-full z-30')}
     >
-      <Box as="nav" level={0}>
+      <nav>
         <div className="flex h-16 items-center justify-between">
           <div className="flex flex-1 items-center -ml-2">
             <MenuIconTrigger />
@@ -35,8 +35,8 @@ const Header = async ({ locale }: Props) => {
             </div>
           </div>
         </div>
-      </Box>
-    </Box>
+      </nav>
+    </SemanticBox>
   );
 };
 

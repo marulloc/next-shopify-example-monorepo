@@ -2,7 +2,7 @@
 
 import { classNames } from '@marulloc/components-library/utils';
 import { HiOutlineMagnifyingGlass } from 'react-icons/hi2';
-import { localTheme } from '@/theme/local-theme';
+
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import { useSetPortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
@@ -15,7 +15,7 @@ const SearchFakeInputTrigger = () => {
     <div className={classNames('isolate relative group cursor-text')} onClick={() => activate()}>
       <div className="absolute inset-y-0 left-0 flex items-center pl-3">
         <HiOutlineMagnifyingGlass
-          className={classNames('h-5 w-5', 'group-hover:scale-110', localTheme.text.color.base.muted)}
+          className={classNames('h-5 w-5', 'group-hover:scale-110 text-default-accent')}
           aria-hidden="true"
         />
       </div>
@@ -32,7 +32,7 @@ const SearchFakeInputTrigger = () => {
           'text-xs ',
           'pl-10 pr-3 py-2',
           'border',
-          localTheme.border.base.main,
+          'border-gray-300',
         )}
       />
       <span className="sr-only">{dictionary.sr}</span>

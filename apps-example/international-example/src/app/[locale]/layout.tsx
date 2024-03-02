@@ -2,10 +2,9 @@ import type { Metadata } from 'next';
 import '../globals.css';
 import { getLocale, getMenu, getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { splitLocale } from '@/utils/locale';
-import Header from './Header';
+import Header from '../../components/shop/Header';
 import FloatingActionButton from '../../components/FloatingAction';
 import { classNames } from '@marulloc/components-library/utils';
-import { localTheme } from '@/theme/local-theme';
 import RecoilProvider from '@/context/RecoilProvider';
 import MenuDrawer from '@/components/menu/MenuDrawer';
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
@@ -15,8 +14,9 @@ import CartDrawer from '@/components/cart/CartDrawer';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import LocaleDetectionModal from '@/components/locale/LocaleDetectionModal';
 import { TDictionaries, getDictionary } from '@/dictionaries';
-import Footer from '@/app/[locale]/Footer';
+import Footer from '@/components/shop/Footer';
 import { Suspense } from 'react';
+import SemanticBox from '@/components/_draft/SemanticBox';
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();
@@ -64,34 +64,33 @@ const RootLayout = async ({
 
   return (
     <html lang={language} className=" scroll-smooth">
-      <body className={classNames('relative   overflow-hidden', localTheme.fill.base.muted)}>
-        <RecoilProvider locale={{ country, language }} dictionary={dictionary}>
-          <Suspense>
-            <MenuDrawer menu={menu} collections={collections} />
-            <LocaleSelectorModal
-              availableCountries={localeData.availableCountries}
-              availableLanguages={localeData.availableLanguages}
-            />
-            <SearchModal />
-            <CartDrawer />
-            {/* <LocaleDetectionModal localeData={localeData} /> */}
-            <FloatingActionButton locale={{ country, language }} />
-            <SpeedInsights />
-          </Suspense>
+      <body className={classNames('relative   overflow-hidden')}>
+        <SemanticBox as="div" fill="default-muted" className={classNames(' ')}>
+          <RecoilProvider locale={{ country, language }} dictionary={dictionary}>
+            <Suspense>
+              <MenuDrawer menu={menu} collections={collections} />
+              <LocaleSelectorModal
+                availableCountries={localeData.availableCountries}
+                availableLanguages={localeData.availableLanguages}
+              />
+              <SearchModal />
+              <CartDrawer />
+              <LocaleDetectionModal localeData={localeData} />
+              <FloatingActionButton locale={{ country, language }} />
+              <SpeedInsights />
+            </Suspense>
 
-          <div
-            className={classNames(
-              localTheme.fill.base.main,
-              localTheme.spacing.container,
-              'shadow-2xl relative min-h-screen',
-              'flex flex-col',
-            )}
-          >
-            <Header locale={{ country, language }} />
-            <div className=" flex-1  flex flex-col">{children}</div>
-            <Footer locale={{ country, language }} />
-          </div>
-        </RecoilProvider>
+            <SemanticBox
+              as="div"
+              fill="default-base"
+              className={classNames('max-w-7xl mx-auto shadow-2xl relative min-h-screen', 'flex flex-col')}
+            >
+              <Header locale={{ country, language }} />
+              <div className=" flex-1  flex flex-col">{children}</div>
+              <Footer locale={{ country, language }} />
+            </SemanticBox>
+          </RecoilProvider>
+        </SemanticBox>
       </body>
     </html>
   );

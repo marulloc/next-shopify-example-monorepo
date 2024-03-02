@@ -1,18 +1,18 @@
 'use client';
 
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
-import { localTheme } from '@/theme/local-theme';
+
 import { classNames } from '@marulloc/components-library/utils';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect } from 'react';
 import ProductPrice from '@/components/product/ProductPrice';
 import Price from '@/components/Price';
 import LoadingDots from '@/components/loading/LoadingDots';
 import { useSelectVariant } from '@/hooks/useSelectProductVariant';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import AddToCartButton from '../cart/AddToCartButton';
-import Card from '../@common/semantic/Card';
 import { TDictionary } from '@/dictionaries';
 import Skeleton from '../loading/Skeleton';
+import Typography from '../_draft/Typography';
 
 type TProps = {
   product: ToolkitProduct;
@@ -32,40 +32,30 @@ const ProductOptions = ({ product, dict }: TProps) => {
   }, [navigateWithParams, product.options, selectedOptions]);
 
   return (
-    <Card level={0} as="div" className={classNames('border-0', localTheme.spacing.padding.xy.medium)}>
-      <div className={classNames(localTheme.spacing.padding.b.small)}>
-        <h1 className={classNames(localTheme.text.size.large, 'font-semibold mb-1')}>{product.title}</h1>
-        <ProductPrice
-          priceRange={product.priceRange}
-          className={classNames(localTheme.text.size.medium, localTheme.text.color.base.main)}
-        />
+    <div>
+      <div className={classNames('pb-2 sm:pb-4 md:pb-6')}>
+        <Typography as="h1" size="xl" color="default-accent" className={classNames('font-semibold mb-1')}>
+          {product.title}
+        </Typography>
+        <Typography as="span" size="lg">
+          <ProductPrice priceRange={product.priceRange} />
+        </Typography>
       </div>
 
       <form onSubmit={(e) => e.preventDefault()}>
-        <h3
-          className={classNames(
-            'border-b text-right',
-            localTheme.border.base.muted,
-            localTheme.text.color.base.muted,
-            localTheme.text.size.small,
-            'font-semibold mb-3',
-          )}
+        <Typography
+          as="h3"
+          size="sm"
+          color="default-muted"
+          noWarn
+          className={classNames('border-b text-right', 'border-gray-200', 'font-semibold mb-3')}
         >
           {dictionary.title}
-        </h3>
+        </Typography>
         {product.options.map((option, index) => (
-          <fieldset
-            key={`${product.title}-option-${option.name}`}
-            className={classNames(localTheme.spacing.margin.y.small)}
-          >
-            <legend
-              className={classNames(
-                localTheme.spacing.padding.b.extraSmall,
-                localTheme.text.size.small,
-                localTheme.text.color.base.muted,
-              )}
-            >
-              {`${index + 1}. ${option.name}`}
+          <fieldset key={`${product.title}-option-${option.name}`} className={classNames('my-2 sm:my-4 md:my-6')}>
+            <legend className={classNames('pb-1 sm:pb-2 md:pb-3')}>
+              <Typography as="span" size="sm" noWarn>{`${index + 1}. ${option.name}`}</Typography>
             </legend>
             <ul className={classNames(' flex md:grid flex-wrap md:grid-cols-4 gap-3')}>
               {option.values.map((value) => (
@@ -86,11 +76,12 @@ const ProductOptions = ({ product, dict }: TProps) => {
                       'ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-indigo-600',
                       'peer-checked:ring-2 peer-checked:ring-indigo-600  ',
                       'cursor-pointer',
-                      localTheme.text.size.small,
                     )}
                     onClick={() => selectOption(option.name, value)}
                   >
-                    {value}
+                    <Typography as="span" size="sm" noWarn color="default-accent" className=" ">
+                      {value}
+                    </Typography>
                   </label>
                   <div className="absolute hidden inset-0  peer-checked:block  " />
                 </li>
@@ -100,19 +91,19 @@ const ProductOptions = ({ product, dict }: TProps) => {
         ))}
 
         <div>
-          <div className={classNames('my-4 border-b', localTheme.border.base.muted)}></div>
+          <div className={classNames('my-4 border-b', 'border-gray-200')}></div>
           <div>
             <div className="mb-4">
               {selectedVariant && (
                 <div>
-                  <p className={classNames('text-xs', localTheme.text.color.base.main)}>
+                  <Typography as="p" size="sm" noWarn className={classNames('text-xs')}>
                     <span className={classNames('pb-1')}> {`Selected price : `} </span>
                     <span>&quot;{selectedVariant.title}&quot;</span>{' '}
-                  </p>
+                  </Typography>
 
-                  <div className="text-lg  md:text-xl text-indigo-600">
+                  <Typography size="2xl" color="primary-base" className="md:text-xl">
                     <Price currencyCode={selectedVariant.price.currencyCode} amount={selectedVariant.price.amount} />
-                  </div>
+                  </Typography>
                 </div>
               )}
             </div>
@@ -123,30 +114,28 @@ const ProductOptions = ({ product, dict }: TProps) => {
                 className={({ state }) => {
                   return classNames(
                     'block w-full rounded-lg text-center py-3  shadow-lg',
-                    localTheme.text.color.base.contrast,
-
-                    state === 'notYet' && classNames(localTheme.fill.secondary.main, localTheme.fill.secondary.hover),
-                    state === 'soldOut' && classNames(localTheme.fill.base.disabled, localTheme.fill.base.muted, ' '),
-                    state === 'adding' && classNames(localTheme.fill.primary.main, localTheme.fill.primary.hover, ' '),
-                    state === 'waiting' && classNames(localTheme.fill.primary.main, localTheme.fill.primary.hover, ' '),
+                    state === 'notYet' && classNames('bg-secondary-muted text-secondary-contrast'),
+                    state === 'soldOut' && classNames('bg-default-contrast  text-primary-contrast  '),
+                    state === 'adding' && classNames('bg-primary-base text-primary-contrast'),
+                    state === 'waiting' && classNames('bg-primary-base text-primary-contrast'),
                   );
                 }}
               >
                 {({ state, fullForm }) => (
-                  <>
+                  <Typography size="lg">
                     {state === 'adding' ? (
                       <LoadingDots className="my-2 m-4" />
                     ) : (
                       <span className={classNames()}>{fullForm}</span>
                     )}
-                  </>
+                  </Typography>
                 )}
               </AddToCartButton>
             </div>
           </div>
         </div>
       </form>
-    </Card>
+    </div>
   );
 };
 
@@ -154,8 +143,8 @@ export default React.memo(ProductOptions);
 
 export const ProductOptionsSkeleton = () => {
   return (
-    <div className={classNames('border-0  w-full lg:w-[500px]', localTheme.spacing.padding.xy.medium)}>
-      <div className={classNames(localTheme.spacing.padding.b.small)}>
+    <div className={classNames('border-0  w-full lg:w-[500px]', 'p-4 sm:p-6 md:p-8')}>
+      <div className={classNames('pb-2 sm:pb-4 md:pb-6')}>
         <div className="h-4 mb-2">
           <Skeleton />
         </div>
@@ -164,7 +153,7 @@ export const ProductOptionsSkeleton = () => {
         </div>
       </div>
 
-      <div className={classNames('border-b   flex justify-end ', localTheme.border.base.muted, 'font-semibold mb-3')}>
+      <div className={classNames('border-b   flex justify-end ', 'border-gray-200', 'font-semibold mb-3')}>
         <div className=" w-1/4 h-4 mb-2">
           <Skeleton />
         </div>
@@ -186,7 +175,7 @@ export const ProductOptionsSkeleton = () => {
       </ul>
 
       <div>
-        <div className={classNames('my-4 border-b', localTheme.border.base.muted)}></div>
+        <div className={classNames('my-4 border-b', 'border-gray-200')}></div>
         <div className="w-full h-12 ">
           <Skeleton />
         </div>
