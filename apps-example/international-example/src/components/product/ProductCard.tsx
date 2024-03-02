@@ -1,5 +1,5 @@
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
-import { localTheme } from '@/theme/local-theme';
+
 import { classNames } from '@marulloc/components-library/utils';
 import ProductPrice from './ProductPrice';
 import Image from 'next/image';
@@ -67,13 +67,7 @@ type TBigProductCardProps = {
 const BigProductCard = ({ product, priceDefaultOpen = false }: Omit<TBigProductCardProps, 'variant'>) => {
   return (
     <article className="relative group h-full rounded-lg overflow-hidden border-0">
-      <div
-        className={classNames(
-          'w-full h-full relative',
-          'text-zinc-200 flex justify-center items-center',
-          localTheme.fill.base.muted,
-        )}
-      >
+      <div className={classNames('w-full h-full relative', 'flex justify-center items-center', 'bg-default-muted')}>
         {product.featuredImage ? (
           <Image
             src={product.featuredImage?.url}

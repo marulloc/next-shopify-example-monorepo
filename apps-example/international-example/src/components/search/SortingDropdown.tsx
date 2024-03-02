@@ -3,10 +3,11 @@
 import { classNames } from '@marulloc/components-library/utils';
 import { HiChevronDown } from 'react-icons/hi2';
 import Dropdown from '@marulloc/components-library/Dropdown';
-import { localTheme } from '@/theme/local-theme';
+
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 import Typography from '../_draft/Typography';
+
 const SortingDropdown = () => {
   const [{ sort: sortKey }, navigateWithQueryParams] = useSyncDataUrl({ keys: ['sort'] });
   const dictionary = useGetDictioanry();
@@ -18,7 +19,7 @@ const SortingDropdown = () => {
     <Dropdown id="product-sorting">
       <Dropdown.Trigger>
         {() => (
-          <div className={classNames('flex space-x-2 justify-end items-center  cursor-pointer rounded-lg px-2 -mx-2')}>
+          <div className={classNames('group flex space-x-2 justify-end items-center  cursor-pointer  px-2 -mx-2')}>
             <Typography
               as="p"
               size="sm"
@@ -26,11 +27,10 @@ const SortingDropdown = () => {
               color="default-base"
               className={classNames(
                 'hover:text-default-accent',
-                localTheme.fill.base.hover,
                 'flex space-x-2 justify-end items-center  cursor-pointer rounded-lg px-2 -mx-2',
               )}
             >
-              <span className="">
+              <span className=" group-hover:underline underline-offset-2">
                 {`${dictionary.SortingDropdown.decription}  `}
                 <span className={classNames('text-default-accent', 'font-bold')}>&quot;{activeItem.title}&quot;</span>
               </span>

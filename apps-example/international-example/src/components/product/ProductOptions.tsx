@@ -1,7 +1,7 @@
 'use client';
 
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
-import { localTheme } from '@/theme/local-theme';
+
 import { classNames } from '@marulloc/components-library/utils';
 import React, { useEffect } from 'react';
 import ProductPrice from '@/components/product/ProductPrice';
@@ -33,7 +33,7 @@ const ProductOptions = ({ product, dict }: TProps) => {
 
   return (
     <div>
-      <div className={classNames(localTheme.spacing.padding.b.small)}>
+      <div className={classNames('pb-2 sm:pb-4 md:pb-6')}>
         <Typography as="h1" size="xl" color="default-accent" className={classNames('font-semibold mb-1')}>
           {product.title}
         </Typography>
@@ -53,11 +53,8 @@ const ProductOptions = ({ product, dict }: TProps) => {
           {dictionary.title}
         </Typography>
         {product.options.map((option, index) => (
-          <fieldset
-            key={`${product.title}-option-${option.name}`}
-            className={classNames(localTheme.spacing.margin.y.small)}
-          >
-            <legend className={classNames(localTheme.spacing.padding.b.extraSmall)}>
+          <fieldset key={`${product.title}-option-${option.name}`} className={classNames('my-2 sm:my-4 md:my-6')}>
+            <legend className={classNames('pb-1 sm:pb-2 md:pb-3')}>
               <Typography as="span" size="sm" noWarn>{`${index + 1}. ${option.name}`}</Typography>
             </legend>
             <ul className={classNames(' flex md:grid flex-wrap md:grid-cols-4 gap-3')}>
@@ -117,15 +114,15 @@ const ProductOptions = ({ product, dict }: TProps) => {
                 className={({ state }) => {
                   return classNames(
                     'block w-full rounded-lg text-center py-3  shadow-lg',
-                    state === 'notYet' && classNames(localTheme.fill.secondary.main, localTheme.fill.secondary.hover),
-                    state === 'soldOut' && classNames(localTheme.fill.base.disabled, localTheme.fill.base.muted, ' '),
-                    state === 'adding' && classNames(localTheme.fill.primary.main, localTheme.fill.primary.hover, ' '),
-                    state === 'waiting' && classNames(localTheme.fill.primary.main, localTheme.fill.primary.hover, ' '),
+                    state === 'notYet' && classNames('bg-secondary-muted text-secondary-contrast'),
+                    state === 'soldOut' && classNames('bg-default-contrast  text-primary-contrast  '),
+                    state === 'adding' && classNames('bg-primary-base text-primary-contrast'),
+                    state === 'waiting' && classNames('bg-primary-base text-primary-contrast'),
                   );
                 }}
               >
                 {({ state, fullForm }) => (
-                  <Typography size="lg" color="primary-contrast">
+                  <Typography size="lg">
                     {state === 'adding' ? (
                       <LoadingDots className="my-2 m-4" />
                     ) : (
@@ -146,8 +143,8 @@ export default React.memo(ProductOptions);
 
 export const ProductOptionsSkeleton = () => {
   return (
-    <div className={classNames('border-0  w-full lg:w-[500px]', localTheme.spacing.padding.xy.medium)}>
-      <div className={classNames(localTheme.spacing.padding.b.small)}>
+    <div className={classNames('border-0  w-full lg:w-[500px]', 'p-4 sm:p-6 md:p-8')}>
+      <div className={classNames('pb-2 sm:pb-4 md:pb-6')}>
         <div className="h-4 mb-2">
           <Skeleton />
         </div>

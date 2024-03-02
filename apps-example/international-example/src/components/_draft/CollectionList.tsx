@@ -1,7 +1,7 @@
 import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-collection';
 import CollectionCard, { TCollectionCardProps } from '../collection/CollectionCard';
 import { classNames } from '@marulloc/components-library/utils';
-import { localTheme } from '@/theme/local-theme';
+
 import Link, { LinkProps } from 'next/link';
 
 export type TCollectionListProps = {

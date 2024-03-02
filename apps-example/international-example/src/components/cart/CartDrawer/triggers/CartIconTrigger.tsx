@@ -3,7 +3,6 @@
 import { classNames } from '@marulloc/components-library/utils';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
 import IconButton from '@/components/IconButton';
-import { localTheme } from '@/theme/local-theme';
 import { useSetPortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 import { useGetLoadableCart } from '@/hooks/cart-hooks';
@@ -29,10 +28,10 @@ const CartIconTrigger = () => {
             'px-1 h-4',
             'flex items-center justify-center',
             'shadow-2xl rounded-full  overflow-ellipsis',
-            localTheme.fill.primary.main,
+            'bg-primary-base',
           )}
         >
-          <span className="text-xs text-white     ">{totalQty >= 10 ? '9+' : cart?.totalQuantity}</span>
+          <span className="text-xs text-primary-contrast">{totalQty >= 10 ? '9+' : cart?.totalQuantity}</span>
         </div>
       )}
     </IconButton>

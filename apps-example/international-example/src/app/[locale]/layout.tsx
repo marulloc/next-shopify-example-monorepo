@@ -5,7 +5,6 @@ import { splitLocale } from '@/utils/locale';
 import Header from '../../components/shop/Header';
 import FloatingActionButton from '../../components/FloatingAction';
 import { classNames } from '@marulloc/components-library/utils';
-import { localTheme } from '@/theme/local-theme';
 import RecoilProvider from '@/context/RecoilProvider';
 import MenuDrawer from '@/components/menu/MenuDrawer';
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';

@@ -1,7 +1,7 @@
 'use client';
 
 import { ToolkitLocale } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
-import { localTheme } from '@/theme/local-theme';
+
 import Drawer from '@marulloc/components-library/Drawer';
 import { classNames } from '@marulloc/components-library/utils';
 import { useEffect, useState } from 'react';
@@ -27,13 +27,7 @@ const LocaleDetectionModal = ({ localeData }: TProps) => {
     <Drawer anchor="bottom" open={isActive} onClose={() => setIsActive(false)}>
       <div>
         <Drawer.Backdrop>
-          {({ closeDrawer }) => (
-            <SemanticBox
-              fill="glassy-backdrop"
-              onClick={() => closeDrawer()}
-              className={classNames('isolate w-full h-full')}
-            />
-          )}
+          {({ closeDrawer }) => <SemanticBox fill="glassy-backdrop" className={classNames('isolate w-full h-full')} />}
         </Drawer.Backdrop>
         <Drawer.Contents>
           {({ closeDrawer }) => (
@@ -43,7 +37,7 @@ const LocaleDetectionModal = ({ localeData }: TProps) => {
                 fill="glassy-default-accent"
                 p={{ dir: 'xy', size: 'sm' }}
                 m={{ dir: 'xy', size: 'sm' }}
-                className={classNames('shadow-xl z-50 rounded-lg  ')}
+                className={classNames('shadow-xl z-50 rounded-lg ')}
               >
                 {localeDetection?.status === 'matched' && (
                   <MatchedContents handleClose={closeDrawer} {...localeDetection} />

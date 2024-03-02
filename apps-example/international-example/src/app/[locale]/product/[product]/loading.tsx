@@ -2,7 +2,7 @@ import { DescriptionSkeleton } from '@/components/product/Description';
 import { ImageGallerySkeleton } from '@/components/product/ImageGallery';
 import { ProductOptionsSkeleton } from '@/components/product/ProductOptions';
 import { RecommendationsSkeleton } from '@/components/product/Recommendations';
-import { localTheme } from '@/theme/local-theme';
+
 import { classNames } from '@marulloc/components-library/utils';
 
 const Loading = () => {

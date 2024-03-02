@@ -2,7 +2,7 @@ import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/se
 import SemanticBox from '@/components/_draft/SemanticBox';
 import Typography from '@/components/_draft/Typography';
 import { TDictionaries, getDictionary } from '@/dictionaries';
-import { localTheme } from '@/theme/local-theme';
+
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 
@@ -32,9 +32,7 @@ const Footer = async ({ locale }: Props) => {
         />
 
         <div className="absolute w-full h-1/4 top-0 bg-gradient-to-b from-gray-100 via-gray-100" />
-        <div
-          className={classNames('absolute inset-0', localTheme.fill.base.main, ' bg-opacity-60 md:bg-opacity-40 ')}
-        />
+        <div className={classNames('absolute inset-0', 'bg-default-base', ' bg-opacity-60 md:bg-opacity-40 ')} />
       </div>
 
       <section className=" relative px-20 py-44  w-full h-full">

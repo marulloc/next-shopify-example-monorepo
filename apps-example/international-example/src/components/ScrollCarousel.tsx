@@ -1,6 +1,5 @@
 'use client';
 
-import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -70,8 +69,7 @@ const ScrollCarousel = ({ children }: Props) => {
         ref={scrollRef}
         className={classNames(
           'overflow-auto  h-full w-full ',
-          'relative flex flex-nowrap    ',
-          localTheme.spacing.gap.x.medium,
+          'relative flex flex-nowrap  gap-x-4 sm:gap-x-6 md:gap-x-8  ',
           'hide-scrollbar',
         )}
       >

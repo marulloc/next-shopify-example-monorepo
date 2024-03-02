@@ -4,7 +4,7 @@ import Skeleton from '@/components/loading/Skeleton';
 import SortingDropdown from '@/components/search/SortingDropdown';
 import { TDictionaries, getDictionary } from '@/dictionaries';
 import { dictionaryReplacer } from '@/dictionaries/utils';
-import { localTheme } from '@/theme/local-theme';
+
 import { classNames } from '@marulloc/components-library/utils';
 import ProductList from '../_draft/ProductList';
 import Typography from '../_draft/Typography';
@@ -57,7 +57,7 @@ export const SearchResultSkeleton = () => {
       </div>
 
       <div>
-        <ul className={classNames('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ', localTheme.spacing.gap.xy.small)}>
+        <ul className={classNames('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ', 'gap-2 sm:gap-4 md:gap-6')}>
           <li className=" aspect-square">
             <Skeleton />
           </li>

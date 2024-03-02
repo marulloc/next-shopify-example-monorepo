@@ -4,7 +4,7 @@ import Skeleton from '@/components/loading/Skeleton';
 import SortingDropdown from '@/components/search/SortingDropdown';
 import { TDictionaries, getDictionary } from '@/dictionaries';
 import { dictionaryReplacer } from '@/dictionaries/utils';
-import { localTheme } from '@/theme/local-theme';
+
 import { classNames } from '@marulloc/components-library/utils';
 import ProductList from '../_draft/ProductList';
 import Typography from '../_draft/Typography';
@@ -42,7 +42,7 @@ export default CollectionProducts;
 
 export const CollectionProductsSkeleton = () => {
   return (
-    <section className={classNames(localTheme.spacing.padding.x.medium, localTheme.spacing.padding.y.small)}>
+    <section className={classNames('px-4 sm:px-6 md:px-8', 'py-2 sm:py-4 md:py-6')}>
       <div className="flex flex-col md:flex-row justify-between">
         <div className={classNames('mb-4', 'w-1/3 h-3 sm:h-5')}>
           <Skeleton />
@@ -50,7 +50,7 @@ export const CollectionProductsSkeleton = () => {
       </div>
 
       <div>
-        <ul className={classNames('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ', localTheme.spacing.gap.xy.small)}>
+        <ul className={classNames('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ', 'gap-2 sm:gap-4 md:gap-6')}>
           <li className=" aspect-square">
             <Skeleton />
           </li>

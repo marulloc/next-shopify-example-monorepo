@@ -1,5 +1,5 @@
 import { getPage } from '@/@marulloc-shopify-nextapi/v24.01/services/page/service';
-import { localTheme } from '@/theme/local-theme';
+
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import { Metadata, ServerRuntime } from 'next';
@@ -39,7 +39,7 @@ const StaticPage = async ({ params }: TPageParams) => {
 
   return (
     <div className={classNames('flex-1 flex flex-col md:flex-row  ', ' border-b', 'border-gray-300')}>
-      <div className={classNames('flex-1', localTheme.spacing.padding.xy.medium, 'max-w-4xl mx-auto')}>
+      <SemanticBox as="main" p={{ dir: 'xy', size: 'md' }} className={classNames('flex-1 max-w-4xl mx-auto')}>
         <Typography as="p" size="xs" noWarn className="text-right mb-2">
           {`Last update : ${new Intl.DateTimeFormat(language, {
             year: 'numeric',
@@ -48,7 +48,7 @@ const StaticPage = async ({ params }: TPageParams) => {
           }).format(new Date(page.updatedAt))}`}
         </Typography>
 
-        <main>
+        <div>
           <SemanticBox
             as="header"
             fill="primary-muted"
@@ -64,8 +64,8 @@ const StaticPage = async ({ params }: TPageParams) => {
           </SemanticBox>
 
           <section className="prose mt-6 p-6" dangerouslySetInnerHTML={{ __html: page.body }} />
-        </main>
-      </div>
+        </div>
+      </SemanticBox>
     </div>
   );
 };

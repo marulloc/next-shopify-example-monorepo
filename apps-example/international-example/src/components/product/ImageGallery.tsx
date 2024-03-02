@@ -1,5 +1,5 @@
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
-import { localTheme } from '@/theme/local-theme';
+
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import Carousel from '../Carousel';
@@ -39,9 +39,7 @@ export default ImageGallery;
 
 export const ImageGallerySkeleton = () => {
   return (
-    <div
-      className={classNames(localTheme.spacing.padding.xy.medium, 'w-full  aspect-square rounded-lg overflow-hidden ')}
-    >
+    <div className={classNames('p-4 sm:p-6 md:p-8', 'w-full  aspect-square rounded-lg overflow-hidden ')}>
       <div className="w-full h-full ">
         <Skeleton />
       </div>

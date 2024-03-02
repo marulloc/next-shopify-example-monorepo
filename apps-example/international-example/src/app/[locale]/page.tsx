@@ -4,7 +4,7 @@ import CollectionList from '@/components/_draft/CollectionList';
 import ProductList from '@/components/_draft/ProductList';
 import SemanticBox from '@/components/_draft/SemanticBox';
 import Typography from '@/components/_draft/Typography';
-import { localTheme } from '@/theme/local-theme';
+
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
@@ -31,9 +31,7 @@ const Home = async ({ params }: { params: { locale: string } }) => {
             className="h-full w-full object-cover object-center"
           />
           <div className={classNames('absolute w-full h-1/4 bottom-0 bg-gradient-to-t from-gray-100 via-gray-100')} />
-          <div
-            className={classNames('absolute inset-0', localTheme.fill.base.main, ' bg-opacity-60 md:bg-opacity-40 ')}
-          />
+          <div className={classNames('absolute inset-0', 'bg-default-base', ' bg-opacity-60 md:bg-opacity-40 ')} />
         </div>
 
         <div className="relative px-20 py-64 sm:py-80 w-full h-full  ">

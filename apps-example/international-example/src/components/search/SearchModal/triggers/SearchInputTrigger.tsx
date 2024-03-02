@@ -2,7 +2,7 @@
 
 import { classNames } from '@marulloc/components-library/utils';
 import { HiOutlineMagnifyingGlass } from 'react-icons/hi2';
-import { localTheme } from '@/theme/local-theme';
+
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import { useSetPortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';

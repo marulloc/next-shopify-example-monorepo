@@ -5,7 +5,7 @@ import ImageGallery from '@/components/product/ImageGallery';
 import ProductOptions from '@/components/product/ProductOptions';
 import Recommendations, { RecommendationsSkeleton } from '@/components/product/Recommendations';
 import { TDictionaries, getDictionary } from '@/dictionaries';
-import { localTheme } from '@/theme/local-theme';
+
 import { splitLocale } from '@/utils/locale';
 import { delay } from '@/utils/asyncUtils';
 import { classNames } from '@marulloc/components-library/utils';

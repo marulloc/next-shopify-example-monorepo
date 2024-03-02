@@ -5,7 +5,7 @@ import { classNames } from '@marulloc/components-library/utils';
 import { Metadata, ServerRuntime } from 'next';
 import { Suspense } from 'react';
 import CollectionProducts, { CollectionProductsSkeleton } from '@/components/collection/CollectionProducts';
-import { localTheme } from '@/theme/local-theme';
+
 import { TDictionaries, getDictionary } from '@/dictionaries';
 import Typography from '@/components/_draft/Typography';
 import SemanticBox from '@/components/_draft/SemanticBox';

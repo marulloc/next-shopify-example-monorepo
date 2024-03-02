@@ -7,7 +7,7 @@ import Price from '../../Price';
 import { classNames } from '@marulloc/components-library/utils';
 import { HiPlus, HiMinus } from 'react-icons/hi2';
 import React from 'react';
-import { localTheme } from '@/theme/local-theme';
+
 import IconButton from '../../IconButton';
 import { useCartLineOptimisticMutation } from '@/hooks/cart-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';

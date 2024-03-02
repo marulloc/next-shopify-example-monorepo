@@ -1,5 +1,5 @@
 import { TDictionary } from '@/dictionaries';
-import { localTheme } from '@/theme/local-theme';
+
 import { classNames } from '@marulloc/components-library/utils';
 import Skeleton from '../loading/Skeleton';
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
@@ -16,7 +16,7 @@ const Description = async ({ product, dict }: TProps) => {
 
   return (
     <div>
-      <Typography as="h3" size="lg" className={classNames(localTheme.spacing.padding.b.small, 'font-bold')}>
+      <Typography as="h3" size="lg" className={classNames('pb-2 sm:pb-4 md:pb-6', 'font-bold')}>
         {dictionary.title}
       </Typography>
 
@@ -87,7 +87,7 @@ export default Description;
 
 export const DescriptionSkeleton = () => {
   return (
-    <div className={classNames(localTheme.spacing.padding.xy.medium, ' min-h-[300px] lg:min-h-[600px] space-y-10')}>
+    <div className={classNames('p-4 sm:p-6 md:p-8', ' min-h-[300px] lg:min-h-[600px] space-y-10')}>
       <div className="space-y-2">
         <div className="w-full h-8 ">
           <Skeleton />

@@ -35,7 +35,7 @@ const config: Config = {
           muted: 'rgb(229 231 235)', //=> gray-200
           base: 'rgb(243 244 246)', //=> gray-100
           accent: 'rgb(249 250 251)', //=> gray-50
-          contrast: 'rgb(0 0 0)',
+          contrast: 'rgb(31 41 55)', //=> gray-800
         },
         primary: {
           muted: 'rgb(99 102 241)', //=> indigo-400
@@ -56,7 +56,7 @@ const config: Config = {
           muted: 'rgb(229 231 235)', //=> gray-200
           base: 'rgb(209 213 219)', //=> gray-300
           accent: 'rgb(156 163 175)', //=> gray-400
-          contrast: 'rgb(0 0 0)',
+          contrast: 'rgb(31 41 55)', //=> gray-800
         },
         primary: {
           muted: 'rgb(99 102 241)', //=> indigo-400
@@ -77,7 +77,7 @@ const config: Config = {
           muted: 'rgb(229 231 235)', //=> gray-200
           base: 'rgb(209 213 219)', //=> gray-300
           accent: 'rgb(156 163 175)', //=> gray-400
-          contrast: 'rgb(0 0 0)',
+          contrast: 'rgb(31 41 55)', //=> gray-800
         },
         primary: {
           muted: 'rgb(99 102 241)', //=> indigo-400
@@ -97,7 +97,7 @@ const config: Config = {
           muted: 'rgb(229 231 235)', //=> gray-200
           base: 'rgb(209 213 219)', //=> gray-300
           accent: 'rgb(156 163 175)', //=> gray-400
-          contrast: 'rgb(0 0 0)',
+          contrast: 'rgb(31 41 55)', //=> gray-800
         },
         primary: {
           muted: 'rgb(99 102 241)', //=> indigo-400
