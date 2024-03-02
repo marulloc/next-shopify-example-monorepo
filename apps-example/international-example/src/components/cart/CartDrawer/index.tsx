@@ -5,6 +5,7 @@ import Drawer from '@marulloc/components-library/Drawer';
 import React from 'react';
 import { usePortalRecoil } from '@/hooks/portal-hooks';
 import CartContents from './CartContents';
+import SemanticBox from '@/components/SemanticBox';
 
 const CartDrawer = () => {
   const [{ isActive }, { deactivate }] = usePortalRecoil('cart-drawer');
@@ -13,9 +14,10 @@ const CartDrawer = () => {
     <Drawer anchor="right" open={isActive} onClose={() => deactivate()}>
       <Drawer.Backdrop>
         {({ closeDrawer }) => (
-          <div
+          <SemanticBox
+            fill="glassy-backdrop"
             onClick={() => closeDrawer()}
-            className={classNames(' isolate w-full h-full', 'bg-gray-500 bg-opacity-40  ')}
+            className={classNames('isolate w-full h-full')}
           />
         )}
       </Drawer.Backdrop>

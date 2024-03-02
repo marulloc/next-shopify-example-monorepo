@@ -1,9 +1,9 @@
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
-import { localTheme } from '@/theme/local-theme';
+
 import { classNames } from '@marulloc/components-library/utils';
 import ProductPrice from './ProductPrice';
 import Image from 'next/image';
-import Card from '../@common/semantic/Card';
+import Typography from '../Typography';
 
 export type TPRoductCardProps = TSmallProductCardProps | TBigProductCardProps;
 
@@ -26,12 +26,12 @@ type TSmallProductCardProps = {
 };
 const SmallProductCard = ({ product }: Omit<TSmallProductCardProps, 'variant'>) => {
   return (
-    <Card level={0} className=" border-0 group flex items-center  space-x-6">
+    <article className="group flex items-center space-x-6">
       <div
         className={classNames(
-          'aspect-square h-14 w-14 bg-gray-400 ',
+          'aspect-square h-14 w-14 bg-default-muted ',
           'rounded-lg flex justify-center items-center overflow-hidden',
-          'border group-hover:border-indigo-600 group-hover:text-indigo-600',
+          'border group-hover:border-primary-base',
         )}
       >
         {product.featuredImage && (
@@ -46,18 +46,15 @@ const SmallProductCard = ({ product }: Omit<TSmallProductCardProps, 'variant'>) 
         )}
       </div>
 
-      <div
-        className={classNames(
-          'text-base',
-          'text-gray-600 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
-        )}
-      >
-        <h2>{product.title}</h2>
-        <div className={classNames('text-sm')}>
+      <div>
+        <Typography as="h4" color="default-accent" size="sm" className="group-hover:text-primary-base mb-1">
+          {product.title}
+        </Typography>
+        <Typography size="sm" color="default-muted" className="group-hover:text-primary-base">
           <ProductPrice priceRange={product.priceRange} />
-        </div>
+        </Typography>
       </div>
-    </Card>
+    </article>
   );
 };
 
@@ -69,14 +66,8 @@ type TBigProductCardProps = {
 
 const BigProductCard = ({ product, priceDefaultOpen = false }: Omit<TBigProductCardProps, 'variant'>) => {
   return (
-    <Card as="article" level={2} className="relative group h-full rounded-lg overflow-hidden border-0">
-      <div
-        className={classNames(
-          'w-full h-full relative',
-          'text-zinc-200 flex justify-center items-center',
-          localTheme.fill.base.muted,
-        )}
-      >
+    <article className="relative group h-full rounded-lg overflow-hidden border-0">
+      <div className={classNames('w-full h-full relative', 'flex justify-center items-center', 'bg-default-muted')}>
         {product.featuredImage ? (
           <Image
             src={product.featuredImage?.url}
@@ -94,19 +85,22 @@ const BigProductCard = ({ product, priceDefaultOpen = false }: Omit<TBigProductC
         className={classNames(
           'absolute bottom-0 h-1/2 w-full rounded-none z-10',
           'transform transition-all  duration-500',
-          priceDefaultOpen ? '' : 'group-hover:visible invisible group-hover:translate-y-0 translate-y-full',
-
+          priceDefaultOpen // default open at mobile size
+            ? ''
+            : 'md:group-hover:visible md:invisible md:group-hover:translate-y-0 md:translate-y-full',
           'bg-gradient-to-t  from-gray-50 bg-opacity-90',
         )}
       >
         <div className=" h-full p-4 flex flex-col justify-end items-end">
-          <h2 className={classNames(localTheme.text.size.small, localTheme.text.color.base.main)}>{product.title}</h2>
-          <ProductPrice
-            priceRange={product.priceRange}
-            className={classNames(localTheme.text.size.small, localTheme.text.color.primary.main)}
-          />
+          <Typography as="h4" size="sm" noWarn color="default-accent">
+            {product.title}
+          </Typography>
+
+          <Typography as="span" size="sm" noWarn color="primary-base">
+            <ProductPrice priceRange={product.priceRange} />
+          </Typography>
         </div>
       </div>
-    </Card>
+    </article>
   );
 };

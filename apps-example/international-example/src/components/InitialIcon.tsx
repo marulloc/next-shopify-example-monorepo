@@ -8,8 +8,8 @@ const InitialIcon = ({ initial, className }: Props) => {
   return (
     <span
       className={classNames(
-        'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
-        'flex h-6 w-6 pt-0.5 shrink-0 items-center justify-center rounded-lg border text-[0.7rem] font-medium bg-white',
+        'text-default-muted/80 border-default-muted group-hover:border-primary-base group-hover:text-primary-base',
+        'flex h-6 w-6 pt-0.5 shrink-0 items-center justify-center rounded-lg border text-[0.7rem] font-medium bg-default-accent',
         className,
       )}
     >

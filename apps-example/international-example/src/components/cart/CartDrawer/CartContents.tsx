@@ -3,14 +3,14 @@
 import { classNames } from '@marulloc/components-library/utils';
 import { HiXMark } from 'react-icons/hi2';
 import Link from 'next/link';
-import { localTheme } from '@/theme/local-theme';
 import IconButton from '@/components/IconButton';
-import Price from '@/components/Price';
+import Price from '@/components/product/Price';
 import CartLine from './CartLine';
 import React from 'react';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
-import Box from '@/components/@common/semantic/Box';
 import { useGetLoadableCart } from '@/hooks/cart-hooks';
+import Typography from '@/components/Typography';
+import SemanticBox from '@/components/SemanticBox';
 
 const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
   const { state, contents: cart } = useGetLoadableCart();
@@ -18,87 +18,86 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
 
   if (state !== 'hasValue') return null;
   return (
-    <Box
-      as="aside"
-      level={0}
+    <aside
       className={classNames(
         'isolate w-screen max-w-md h-screen overflow-hidden',
-        'flex flex-col  divide-y divide-gray-200',
+        'flex flex-col divide-y divide-default-muted ',
       )}
     >
-      <Box
+      <SemanticBox
         as="header"
-        variant="glassy"
-        level={2}
-        className={classNames('px-4 py-4 sm:px-6', 'flex items-center justify-between ')}
+        p={[{ dir: 'xy', size: 'md' }]}
+        fill="glassy-default-accent"
+        className={classNames('flex items-center justify-between md:px-6 md:py-6')}
       >
-        <h2 className="text-lg font-medium text-gray-900">{dictionary.title}</h2>
-        <div className={classNames('ml-4 flex items-center border rounded-lg', localTheme.border.base.main)}>
+        <Typography as="h3" size="lg">
+          {dictionary.title}
+        </Typography>
+
+        <div className={classNames('ml-4 flex items-center border rounded-lg', 'border-default-muted')}>
           <IconButton
             srName="close panel"
-            className={classNames(localTheme.text.color.base.muted, localTheme.text.color.base.hover)}
             onClick={() => closeDrawer()}
+            className="text-default-muted hover:text-default-accent"
           >
             <HiXMark className="h-6 w-6" aria-hidden="true" />
-            <span className=" sr-only">{dictionary.closeBtn.sr}</span>
+            <Typography className=" sr-only">{dictionary.closeBtn.sr}</Typography>
           </IconButton>
         </div>
-      </Box>
+      </SemanticBox>
 
-      <Box as="section" variant="glassy" level={4} className={classNames('flex-1 overflow-y-auto px-4 py-4 sm:px-6')}>
-        <ul role="list" className="-my-6 divide-y divide-gray-300">
+      <SemanticBox as="section" fill="glassy-default-base" className={classNames(' flex-1 overflow-y-auto    ')}>
+        <ul role="list" className=" divide-y divide-default-base ">
           {cart?.lines?.map((cartLine) => (
             <li key={`side-cart-${cartLine.merchandise.title}` + Math.random()}>
               <CartLine cartLine={cartLine} />
             </li>
           ))}
         </ul>
-      </Box>
+      </SemanticBox>
 
-      <Box as="footer" variant="glassy" level={2} className={classNames('px-6 py-6')}>
-        <div className={classNames('mb-6 ', localTheme.text.size.small, 'text-gray-500')}>
+      <SemanticBox as="footer" fill="glassy-default-accent" p={{ dir: 'xy', size: 'sm' }} className="md:p-4">
+        <SemanticBox as="section" m={{ dir: 'b', size: 'sm' }}>
           <div className="mb-1 flex items-center justify-between py-1">
-            <p>{dictionary.footer.taxes.title}</p>
-            <div>
-              {cart?.cost.totalTaxAmount ? (
-                <Price
-                  className={classNames(localTheme.text.color.primary.main, 'text-right ', 'font-semibold')}
-                  amount={cart?.cost.totalTaxAmount?.amount || '0'}
-                  currencyCode={cart?.cost.totalTaxAmount?.currencyCode || ''}
-                />
-              ) : (
-                <span>-</span>
-              )}
-            </div>
+            <Typography as="h4">{dictionary.footer.taxes.title}</Typography>
+            <Typography as="p" color="primary-base" className=" font-semibold">
+              <Price
+                amount={cart?.cost.totalTaxAmount?.amount || '0'}
+                currencyCode={cart?.cost.totalTaxAmount?.currencyCode || ''}
+              />
+            </Typography>
           </div>
 
           <div className="mb-1 flex items-center justify-between py-1">
-            <p>{dictionary.footer.shipping.title}</p>
-            <p className="text-right">{dictionary.footer.shipping.p}</p>
+            <Typography as="h4">{dictionary.footer.shipping.title}</Typography>
+            <Typography as="p">{dictionary.footer.shipping.p}</Typography>
           </div>
 
           <div className="mb-1 flex items-center justify-between py-1">
-            <p>{dictionary.footer.total.title}</p>
-            <Price
-              className={classNames('text-right text-indigo-600 ', 'font-semibold')}
-              amount={cart?.cost.totalAmount.amount || ''}
-              currencyCode={cart?.cost.totalAmount.currencyCode || ''}
-            />
+            <Typography as="h4">{dictionary.footer.total.title}</Typography>
+            <Typography as="p" color="primary-base" className=" font-semibold">
+              <Price
+                amount={cart?.cost.totalAmount?.amount || '0'}
+                currencyCode={cart?.cost.totalAmount?.currencyCode || ''}
+              />
+            </Typography>
           </div>
-        </div>
+        </SemanticBox>
 
         <div className=" ">
           <Link
             href={cart?.checkoutUrl || '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+            className="block text-center px-6 py-3 rounded-md bg-primary-base hover:bg-primary-accent"
           >
-            {dictionary.footer.checkout.title}
+            <Typography as="span" color="primary-contrast" className=" font-semibold">
+              {dictionary.footer.checkout.title}
+            </Typography>
           </Link>
         </div>
-      </Box>
-    </Box>
+      </SemanticBox>
+    </aside>
   );
 };
 

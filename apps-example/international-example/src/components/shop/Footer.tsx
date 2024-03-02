@@ -1,8 +1,8 @@
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
-import Box from '@/components/@common/semantic/Box';
-import Typography from '@/components/_draft/Typography';
+import SemanticBox from '@/components/SemanticBox';
+import Typography from '@/components/Typography';
 import { TDictionaries, getDictionary } from '@/dictionaries';
-import { localTheme } from '@/theme/local-theme';
+
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 
@@ -20,7 +20,7 @@ const Footer = async ({ locale }: Props) => {
   const dictionary = dict.pages.Main;
 
   return (
-    <Box as="footer" level={0} className="relative">
+    <SemanticBox as="footer" className="relative">
       <div className="absolute inset-0 group   ">
         <Image
           src={shopInfo.brand.coverImage.image.url}
@@ -32,21 +32,21 @@ const Footer = async ({ locale }: Props) => {
         />
 
         <div className="absolute w-full h-1/4 top-0 bg-gradient-to-b from-gray-100 via-gray-100" />
-        <div
-          className={classNames('absolute inset-0', localTheme.fill.base.main, ' bg-opacity-60 md:bg-opacity-40 ')}
-        />
+        <div className={classNames('absolute inset-0', 'bg-default-base', ' bg-opacity-60 md:bg-opacity-40 ')} />
       </div>
 
-      <Box as="section" level={0} className=" relative px-20 py-44  w-full h-full">
-        <Typography as="h3" size="3xl" colorWeight="accent" className="tracking-tighter font-bold">
+      <section className=" relative px-20 py-44  w-full h-full">
+        <Typography as="h3" size="3xl" className="tracking-tighter font-bold text-default-accent">
           {dictionary.information.h}
         </Typography>
 
-        <Typography as="p" size="lg" className="tracking-tighter mt-4 md:w-2/3">
-          {dictionary.information.p}
-        </Typography>
-      </Box>
-    </Box>
+        <div className="mt-4 md:w-2/3">
+          <Typography as="p" size="lg" className="tracking-tighter text-default-base">
+            {dictionary.information.p}
+          </Typography>
+        </div>
+      </section>
+    </SemanticBox>
   );
 };
 

@@ -1,21 +1,21 @@
-import { DescriptionSkeleton } from '@/components/product/Description';
-import { ImageGallerySkeleton } from '@/components/product/ImageGallery';
-import { ProductOptionsSkeleton } from '@/components/product/ProductOptions';
-import { RecommendationsSkeleton } from '@/components/product/Recommendations';
-import { localTheme } from '@/theme/local-theme';
+import { DescriptionSkeleton } from '@/components/product/detail/Description';
+import { ImageGallerySkeleton } from '@/components/product/detail/ImageGallery';
+import { ProductOptionsSkeleton } from '@/components/product/detail/ProductOptions';
+import { RecommendationsSkeleton } from '@/components/product/detail/Recommendations';
+
 import { classNames } from '@marulloc/components-library/utils';
 
 const Loading = () => {
   return (
     <div className={classNames(' relative min-h-screen  ')}>
       <div className="flex flex-col lg:flex-row">
-        <div className={classNames('h-full flex-1 lg:border-r', localTheme.border.base.main)}>
-          <div className={classNames(localTheme.border.base.main + ' border-b')}>
+        <div className={classNames('h-full flex-1 lg:border-r border-default-base')}>
+          <div className={classNames('border-default-base border-b')}>
             <ImageGallerySkeleton />
           </div>
 
           {/* lg- block */}
-          <div className={classNames('block lg:hidden ', localTheme.border.base.main + ' border-b')}>
+          <div className={classNames('block lg:hidden border-default-base border-b')}>
             <ProductOptionsSkeleton />
           </div>
 
@@ -32,7 +32,7 @@ const Loading = () => {
         </div>
       </div>
 
-      <div className={classNames('border-t ', localTheme.border.base.main)}>
+      <div className={classNames('border-t  border-default-base')}>
         <RecommendationsSkeleton />
       </div>
     </div>

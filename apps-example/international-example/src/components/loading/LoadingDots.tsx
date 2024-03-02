@@ -5,7 +5,7 @@ type Props = {
   defaultClassName?: string;
   className?: string;
 };
-const LoadingDots = ({ defaultClassName = 'bg-white w-2 h-2  mx-auto', className }: Props) => {
+const LoadingDots = ({ defaultClassName = 'bg-default-accent w-2 h-2  mx-auto', className }: Props) => {
   return <span className={classNames('loader', defaultClassName, className)}></span>;
 };
 
