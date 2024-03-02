@@ -70,7 +70,7 @@ const SearchModal = () => {
                 as="header"
                 p={[{ dir: 'xy', size: 'md' }]}
                 fill="glassy-default-accent"
-                className={classNames('flex items-center justify-between ')}
+                className={classNames('flex items-center justify-between md:py-6 md:px-6 ')}
               >
                 <form
                   onSubmit={(e) => {

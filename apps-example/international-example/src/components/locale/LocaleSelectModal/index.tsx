@@ -50,9 +50,9 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
             >
               <SemanticBox
                 as="header"
-                p={[{ dir: 'xy', size: 'sm' }]}
+                p={[{ dir: 'xy', size: 'md' }]}
                 fill="glassy-default-accent"
-                className={classNames('flex items-center justify-between md:p-4 ')}
+                className={classNames('flex items-center justify-between md:px-6 md:py-6')}
               >
                 <h2 className="text-lg font-medium text-default-accent">{dictionary.locale.LocaleSelectModal.title}</h2>
 

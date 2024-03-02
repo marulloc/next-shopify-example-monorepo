@@ -48,9 +48,9 @@ const MenuDrawer = ({ menu, collections }: Props) => {
           >
             <SemanticBox
               as="header"
-              p={[{ dir: 'xy', size: 'sm' }]}
+              p={[{ dir: 'xy', size: 'md' }]}
               fill="glassy-default-accent"
-              className={classNames('flex items-center justify-between md:p-4 ')}
+              className={classNames('flex items-center justify-between md:px-6 md:py-6 ')}
             >
               <h2 className="sr-only">Menu navigation panel</h2>
               <div className="relative w-full" onClick={() => closeDrawer()}>

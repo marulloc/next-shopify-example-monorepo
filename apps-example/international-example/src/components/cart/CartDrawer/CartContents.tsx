@@ -26,9 +26,9 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
     >
       <SemanticBox
         as="header"
-        p={[{ dir: 'xy', size: 'sm' }]}
+        p={[{ dir: 'xy', size: 'md' }]}
         fill="glassy-default-accent"
-        className={classNames('flex items-center justify-between md:p-4 ')}
+        className={classNames('flex items-center justify-between md:px-6 md:py-6')}
       >
         <Typography as="h3" size="lg">
           {dictionary.title}
