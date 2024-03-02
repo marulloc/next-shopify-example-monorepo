@@ -9,13 +9,13 @@ const Loading = () => {
   return (
     <div className={classNames(' relative min-h-screen  ')}>
       <div className="flex flex-col lg:flex-row">
-        <div className={classNames('h-full flex-1 lg:border-r border-gray-300')}>
-          <div className={classNames('border-gray-300 border-b')}>
+        <div className={classNames('h-full flex-1 lg:border-r border-default-base')}>
+          <div className={classNames('border-default-base border-b')}>
             <ImageGallerySkeleton />
           </div>
 
           {/* lg- block */}
-          <div className={classNames('block lg:hidden border-gray-300 border-b')}>
+          <div className={classNames('block lg:hidden border-default-base border-b')}>
             <ProductOptionsSkeleton />
           </div>
 
@@ -32,7 +32,7 @@ const Loading = () => {
         </div>
       </div>
 
-      <div className={classNames('border-t  border-gray-300')}>
+      <div className={classNames('border-t  border-default-base')}>
         <RecommendationsSkeleton />
       </div>
     </div>

@@ -69,7 +69,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
 
               <SemanticBox
                 as="section"
-                p={[{ dir: 'xy', size: 'md' }]}
+                p={[{ dir: 'x', size: 'md' }]}
                 fill="glassy-default-base"
                 className={classNames('flex-1 overflow-y-auto md:p-4')}
               >
@@ -88,7 +88,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                                 closeModal();
                               }}
                               className={classNames(
-                                'text-gray-700 cursor-pointer',
+                                'text-default-muted cursor-pointer',
                                 isSameISOCode(country, isoCode)
                                   ? 'text-primary-base bg-default-accent ring-1 ring-primary-base pointer-events-none'
                                   : 'hover:text-primary-base hover:ring-1 hover:ring-primary-base hover:bg-default-accent  transition-all',
@@ -132,7 +132,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
                                 closeModal();
                               }}
                               className={classNames(
-                                'text-gray-700 cursor-pointer',
+                                'text-default-muted cursor-pointer',
                                 isSameISOCode(language, isoCode)
                                   ? 'text-primary-base bg-default-accent ring-1 ring-primary-base pointer-events-none'
                                   : 'hover:text-primary-base hover:ring-1 hover:ring-primary-base hover:bg-default-accent  transition-all',

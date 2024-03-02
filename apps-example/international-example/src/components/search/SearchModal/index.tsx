@@ -100,15 +100,14 @@ const SearchModal = () => {
                         'text-xs ',
                         'pl-10 pr-3 py-2',
                         'border',
-                        'border-gray-300',
-                        'focus-within:ring-0 ring-zinc-400 ring-inset',
+                        'border-default-base  ',
                       )}
                     />
                     <span className="sr-only"> {dictionary.input.sr} </span>
                   </div>
                 </form>
 
-                <div className={classNames('ml-4 flex items-center border rounded-lg', 'border-gray-300')}>
+                <div className={classNames('ml-4 flex items-center border rounded-lg', 'border-default-base')}>
                   <IconButton
                     className={classNames('text-default-muted hover:text-default-accent ')}
                     onClick={() => closeModal()}
@@ -142,7 +141,7 @@ const SearchModal = () => {
                     <div
                       className={classNames(
                         ' h-28  border border-dashed flex justify-center items-center rounded-lg',
-                        'border-gray-300',
+                        'border-default-base',
                         'bg-opacity-70',
                       )}
                     >
@@ -170,7 +169,7 @@ const SearchModal = () => {
                     <div
                       className={classNames(
                         ' h-28  border border-dashed flex justify-center items-center rounded-lg',
-                        'border-gray-300',
+                        'border-default-base',
                         'bg-opacity-70',
                       )}
                     >
@@ -183,9 +182,12 @@ const SearchModal = () => {
                 </div>
               </SemanticBox>
 
-              <SemanticBox as="footer" fill="glassy-default-accent" p={{ dir: 'xy', size: 'sm' }} className="md:p-4">
-                <div className=" text-indigo-600 flex space-x-2 items-center justify-end  text-xs">{/*  */}</div>
-              </SemanticBox>
+              <SemanticBox
+                as="footer"
+                fill="glassy-default-accent"
+                p={{ dir: 'xy', size: 'sm' }}
+                className="md:p-4"
+              ></SemanticBox>
             </aside>
           </div>
         )}

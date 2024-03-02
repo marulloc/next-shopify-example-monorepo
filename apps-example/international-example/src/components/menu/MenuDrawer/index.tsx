@@ -43,7 +43,7 @@ const MenuDrawer = ({ menu, collections }: Props) => {
           <aside
             className={classNames(
               'isolate w-screen max-w-md  h-screen overflow-hidden ',
-              'flex flex-col  divide-y divide-gray-200',
+              'flex flex-col  divide-y divide-default-muted',
             )}
           >
             <SemanticBox

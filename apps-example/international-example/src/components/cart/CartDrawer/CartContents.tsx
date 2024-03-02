@@ -89,7 +89,7 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
             href={cart?.checkoutUrl || '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-center px-6 py-3 rounded-md bg-indigo-600 hover:bg-indigo-700"
+            className="block text-center px-6 py-3 rounded-md bg-primary-base hover:bg-primary-accent"
           >
             <Typography as="span" color="primary-contrast" className=" font-semibold">
               {dictionary.footer.checkout.title}

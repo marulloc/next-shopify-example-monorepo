@@ -11,7 +11,7 @@ type TCollectionNavProps = {
 const CollectionNavWrapper = async ({ locale }: TCollectionNavProps) => {
   return (
     <>
-      <h3 className="text-xs font-semibold leading-6 text-gray-500">All Collections</h3>
+      <h3 className="text-xs font-semibold leading-6 text-default-muted">All Collections</h3>
       <div className="mt-2">
         <Suspense
           fallback={

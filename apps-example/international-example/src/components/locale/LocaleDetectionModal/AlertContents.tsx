@@ -22,13 +22,13 @@ export const MatchedContents = ({ handleClose, detectedCountry, currentCountry }
           <HiCheck className="h-6 w-6 text-green-600  animate-pulse" aria-hidden="true" />
         </div>
         <div className="mt-3  ml-2  sm:ml-4 sm:mt-0 sm:text-left">
-          <h3 className="text-base font-semibold leading-6 text-gray-900">
+          <h3 className="text-base font-semibold leading-6 text-default-accent">
             {dictionaryReplacer(dictionary.h, [
               { target: 'detectedCountry', replace: <CountryName name={detectedCountry?.name || ''} /> },
             ])}
           </h3>
           <div className="mt-1">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-default-muted">
               {dictionaryReplacer(dictionary.p, [
                 { target: 'detectedCountry', replace: <CountryName name={detectedCountry?.name || ''} /> },
                 { target: 'currentCountry', replace: <CountryName name={currentCountry.name || ''} /> },
@@ -40,7 +40,7 @@ export const MatchedContents = ({ handleClose, detectedCountry, currentCountry }
       <div className="mt-5 sm:ml-10 sm:mt-4 sm:flex sm:pl-4">
         <button
           type="button"
-          className=" inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50   sm:w-auto"
+          className=" inline-flex w-full justify-center rounded-md bg-default-accent px-3 py-2 text-sm font-semibold text-default-accent shadow-sm ring-1 ring-inset ring-default-base hover:bg-default-accent   sm:w-auto"
           onClick={handleClose}
         >
           {dictionaryReplacer(dictionary.keepShopingBtn.title, [
@@ -49,7 +49,7 @@ export const MatchedContents = ({ handleClose, detectedCountry, currentCountry }
         </button>
         <LocaleSelectModalChildrenTrigger
           type="button"
-          className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
+          className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-default-contrast shadow-sm hover:bg-green-500 sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
           onClick={handleClose}
         >
           {dictionary.changeMarketBtn.title}
@@ -69,14 +69,14 @@ export const NotMatchedContents = ({ handleClose, detectedCountry, currentCountr
           <HiExclamationTriangle className="h-6 w-6 text-red-600  animate-pulse" aria-hidden="true" />
         </div>
         <div className="mt-3  ml-2  sm:ml-4 sm:mt-0 sm:text-left">
-          <h3 className="text-base font-semibold leading-6 text-gray-900">
+          <h3 className="text-base font-semibold leading-6 text-default-accent">
             {dictionaryReplacer(dictionary.h, [
               { target: 'detectedCountry', replace: <CountryName name={detectedCountry?.name || ''} /> },
               { target: 'currentCountry', replace: <CountryName name={currentCountry.name || ''} /> },
             ])}
           </h3>
           <div className="mt-1">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-default-muted">
               {dictionaryReplacer(dictionary.p, [
                 { target: 'detectedCountry', replace: <CountryName name={detectedCountry?.name || ''} /> },
                 { target: 'currentCountry', replace: <CountryName name={currentCountry.name || ''} /> },
@@ -88,10 +88,10 @@ export const NotMatchedContents = ({ handleClose, detectedCountry, currentCountr
       <div className="mt-5 sm:ml-10 sm:mt-4 sm:flex sm:pl-4">
         <button
           type="button"
-          className=" inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50   sm:w-auto"
+          className=" inline-flex w-full justify-center rounded-md bg-default-accent px-3 py-2 text-sm font-semibold text-default-accent shadow-sm ring-1 ring-inset ring-default-base hover:bg-default-accent   sm:w-auto"
           onClick={handleClose}
         >
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-default-muted">
             {dictionaryReplacer(dictionary.keepShopingBtn.title, [
               { target: 'currentCountry', replace: <CountryName name={currentCountry.name || ''} /> },
             ])}
@@ -99,7 +99,7 @@ export const NotMatchedContents = ({ handleClose, detectedCountry, currentCountr
         </button>
         <LocaleSelectModalChildrenTrigger
           type="button"
-          className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
+          className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-default-contrast shadow-sm hover:bg-red-500 sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
           onClick={handleClose}
         >
           {dictionaryReplacer(dictionary.changeMarketBtn.title, [
@@ -120,9 +120,9 @@ export const NotDetectedContents = ({ handleClose, currentCountry }: TContentsPr
           <HiExclamationTriangle className="h-6 w-6 text-red-600  animate-pulse" aria-hidden="true" />
         </div>
         <div className="mt-3  ml-2  sm:ml-4 sm:mt-0 sm:text-left">
-          <h3 className="text-base font-semibold leading-6 text-gray-900">{dictionary.h}</h3>
+          <h3 className="text-base font-semibold leading-6 text-default-accent">{dictionary.h}</h3>
           <div className="mt-1">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-default-muted">
               {dictionaryReplacer(dictionary.p, [
                 { target: 'currentCountry', replace: <CountryName name={currentCountry.name || ''} /> },
               ])}
@@ -133,7 +133,7 @@ export const NotDetectedContents = ({ handleClose, currentCountry }: TContentsPr
       <div className="mt-5 sm:ml-10 sm:mt-4 sm:flex sm:pl-4">
         <button
           type="button"
-          className=" inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50   sm:w-auto"
+          className=" inline-flex w-full justify-center rounded-md bg-default-accent px-3 py-2 text-sm font-semibold text-default-accent shadow-sm ring-1 ring-inset ring-default-base hover:bg-default-accent   sm:w-auto"
           onClick={handleClose}
         >
           {dictionaryReplacer(dictionary.keepShopingBtn.title, [
@@ -142,7 +142,7 @@ export const NotDetectedContents = ({ handleClose, currentCountry }: TContentsPr
         </button>
         <LocaleSelectModalChildrenTrigger
           type="button"
-          className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
+          className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-default-contrast shadow-sm hover:bg-red-500 sm:w-auto mt-3 sm:ml-3 sm:mt-0 "
           onClick={handleClose}
         >
           {dictionary.changeMarketBtn.title}

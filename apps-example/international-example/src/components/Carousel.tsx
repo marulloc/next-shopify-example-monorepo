@@ -83,8 +83,8 @@ const Carousel = ({ children }: { children: React.ReactElement[] }) => {
           curIdx === 0 ? 'invisible' : 'invisible group-hover:visible opacity-0 group-hover:opacity-100 ',
         )}
       >
-        <IconButton onClick={goPrev} className={classNames('p-1 rounded-full bg-opacity-40 bg-gray-400')}>
-          <HiMiniChevronLeft className="h-5 md:h-8 w-5 md:w-8 text-white" />
+        <IconButton onClick={goPrev} className={classNames('p-1 rounded-full bg-opacity-40 bg-default-contrast/30')}>
+          <HiMiniChevronLeft className="h-5 md:h-8 w-5 md:w-8 text-default-contrast" />
         </IconButton>
       </div>
 
@@ -96,29 +96,30 @@ const Carousel = ({ children }: { children: React.ReactElement[] }) => {
             : 'invisible group-hover:visible opacity-0 group-hover:opacity-100 ',
         )}
       >
-        <IconButton onClick={goNext} className={classNames('p-1 rounded-full bg-opacity-40 bg-gray-400')}>
-          <HiMiniChevronRight className=" h-5 md:h-8 w-5 md:w-8 text-white" />
+        <IconButton onClick={goNext} className={classNames('p-1 rounded-full bg-opacity-40 bg-default-contrast/30')}>
+          <HiMiniChevronRight className=" h-5 md:h-8 w-5 md:w-8 text-default-contrast" />
         </IconButton>
       </div>
+      {children.length > 1 && (
+        <div id="carousel-goto-buttons" className="absolute w-full flex bottom-4 justify-center ">
+          <div className="flex justify-center w-fit px-2 py-2  hover:scale-125 transition-all duration-30 bg-default-contrast/20 rounded-full overflow-hidden shadow-lg ">
+            {React.Children.map(children as React.ReactNode, (slide, slideIndex) => (
+              <button
+                key={slideIndex}
+                onClick={() => goto(slideIndex)}
+                className={classNames(
+                  'block text-lg w-2 h-2  rounded-lg  mx-1  cursor-pointer transition-all duration-500',
 
-      <div id="carousel-goto-buttons" className="absolute w-full flex bottom-4 justify-center ">
-        <div className="flex justify-center w-fit px-2 py-2  hover:scale-125 transition-all duration-30 ">
-          {React.Children.map(children as React.ReactNode, (slide, slideIndex) => (
-            <button
-              key={slideIndex}
-              onClick={() => goto(slideIndex)}
-              className={classNames(
-                'block text-lg w-2 h-2  rounded-lg  mx-1  cursor-pointer transition-all duration-500',
-
-                'shadow-2xl',
-                curIdx === slideIndex
-                  ? 'bg-indigo-400 scale-125'
-                  : 'bg-opacity-50 bg-gray-400  hover:scale-125 hover:bg-white hover:ring-1 hover:ring-indigo-400 duration-100',
-              )}
-            />
-          ))}
+                  'shadow-2xl',
+                  curIdx === slideIndex
+                    ? 'bg-primary-base scale-125  '
+                    : 'bg-default-accent hover:scale-125 hover:bg-default-accent  hover:ring-primary-base duration-100    ',
+                )}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

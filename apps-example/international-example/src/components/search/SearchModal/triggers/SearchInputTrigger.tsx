@@ -32,7 +32,7 @@ const SearchFakeInputTrigger = () => {
           'text-xs ',
           'pl-10 pr-3 py-2',
           'border',
-          'border-gray-300',
+          'border-default-base',
         )}
       />
       <span className="sr-only">{dictionary.sr}</span>

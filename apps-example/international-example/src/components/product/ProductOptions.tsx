@@ -48,7 +48,7 @@ const ProductOptions = ({ product, dict }: TProps) => {
           size="sm"
           color="default-muted"
           noWarn
-          className={classNames('border-b text-right', 'border-gray-200', 'font-semibold mb-3')}
+          className={classNames('border-b text-right', 'border-default-muted', 'font-semibold mb-3')}
         >
           {dictionary.title}
         </Typography>
@@ -73,8 +73,8 @@ const ProductOptions = ({ product, dict }: TProps) => {
                     htmlFor={`${option.name}_${value}`}
                     className={classNames(
                       'flex min-w-[48px] h-full items-center justify-center rounded-lg border px-3 py-2 text-sm ',
-                      'ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-indigo-600',
-                      'peer-checked:ring-2 peer-checked:ring-indigo-600  ',
+                      'ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primary-base',
+                      'peer-checked:ring-2 peer-checked:ring-primary-base  ',
                       'cursor-pointer',
                     )}
                     onClick={() => selectOption(option.name, value)}
@@ -91,7 +91,7 @@ const ProductOptions = ({ product, dict }: TProps) => {
         ))}
 
         <div>
-          <div className={classNames('my-4 border-b', 'border-gray-200')}></div>
+          <div className={classNames('my-4 border-b', 'border-default-muted')}></div>
           <div>
             <div className="mb-4">
               {selectedVariant && (
@@ -153,7 +153,7 @@ export const ProductOptionsSkeleton = () => {
         </div>
       </div>
 
-      <div className={classNames('border-b   flex justify-end ', 'border-gray-200', 'font-semibold mb-3')}>
+      <div className={classNames('border-b   flex justify-end ', 'border-default-muted', 'font-semibold mb-3')}>
         <div className=" w-1/4 h-4 mb-2">
           <Skeleton />
         </div>
@@ -175,7 +175,7 @@ export const ProductOptionsSkeleton = () => {
       </ul>
 
       <div>
-        <div className={classNames('my-4 border-b', 'border-gray-200')}></div>
+        <div className={classNames('my-4 border-b', 'border-default-muted')}></div>
         <div className="w-full h-12 ">
           <Skeleton />
         </div>

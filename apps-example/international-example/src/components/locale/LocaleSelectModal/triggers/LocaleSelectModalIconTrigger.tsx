@@ -21,7 +21,7 @@ const LocaleSelectModalIconTrigger = () => {
       >
         <div
           className={classNames(
-            'h-6 w-6 overflow-hidden border border-gray-200 group-hover:border-indigo-600 rounded-lg ',
+            'h-6 w-6 overflow-hidden border border-default-muted group-hover:border-primary-base rounded-lg ',
             'flex justify-center items-center',
           )}
         >

@@ -34,7 +34,7 @@ const LocaleDetectionModal = ({ localeData }: TProps) => {
             <div className="w-full h-fit  flex justify-end group">
               <SemanticBox
                 as="aside"
-                fill="glassy-default-accent"
+                fill="glassy-default-base"
                 p={{ dir: 'xy', size: 'sm' }}
                 m={{ dir: 'xy', size: 'sm' }}
                 className={classNames('shadow-xl z-50 rounded-lg ')}

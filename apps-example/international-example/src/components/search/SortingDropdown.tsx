@@ -7,6 +7,7 @@ import Dropdown from '@marulloc/components-library/Dropdown';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 import Typography from '../_draft/Typography';
+import SemanticBox from '../_draft/SemanticBox';
 
 const SortingDropdown = () => {
   const [{ sort: sortKey }, navigateWithQueryParams] = useSyncDataUrl({ keys: ['sort'] });
@@ -44,9 +45,11 @@ const SortingDropdown = () => {
 
       <Dropdown.Contents>
         {({ isOpen, closeDropdown }) => (
-          <div
+          <SemanticBox
+            as="div"
+            fill="glassy-default-base"
             className={classNames(
-              'bg-white bg-opacity-70 shadow-xl rounded-lg backdrop-blur-sm border border-gray-200',
+              '  shadow-xl rounded-lg   border border-default-muted',
               ' mt-2 -ml-8 p-3 text-sm  absolute  -inset-x-10 right-0 ',
             )}
           >
@@ -73,7 +76,7 @@ const SortingDropdown = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </SemanticBox>
         )}
       </Dropdown.Contents>
     </Dropdown>

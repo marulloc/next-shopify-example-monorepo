@@ -52,7 +52,7 @@ const Description = async ({ product, dict }: TProps) => {
             <Typography as="h4" size="lg" color="default-accent" className={classNames('font-semibold mb-2')}>
               {dictionary.mock.features.title}
             </Typography>
-            <ul className="list-disc pl-5 mb-4 text-gray-700">
+            <ul className="list-disc pl-5 mb-4 text-default-base">
               {dictionary.mock.features.li.map((contents, index) => (
                 <li key={`${product.title}-feature-${index}`}>
                   <Typography className="">{contents}</Typography>
@@ -65,7 +65,7 @@ const Description = async ({ product, dict }: TProps) => {
             <Typography as="h4" size="lg" color="default-accent" className={classNames('font-semibold mb-2')}>
               {dictionary.mock.specifications.title}
             </Typography>
-            <ul className="list-disc pl-5 text-gray-700">
+            <ul className="list-disc pl-5 text-default-base">
               {dictionary.mock.specifications.li.map((contents, index) => (
                 <li key={`${product.title}-spec-${index}`}>
                   <Typography className="">{contents}</Typography>
