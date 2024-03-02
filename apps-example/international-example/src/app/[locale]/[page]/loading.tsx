@@ -1,4 +1,3 @@
-import Card from '@/components/@common/semantic/Card';
 import Skeleton from '@/components/loading/Skeleton';
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
@@ -8,11 +7,7 @@ const StaticPageLoading = () => {
     <main className={classNames('flex-1 flex flex-col md:flex-row  ', ' border-b', 'border-gray-300')}>
       <div className={classNames('flex-1', localTheme.spacing.padding.xy.medium, 'max-w-4xl mx-auto')}>
         <section className=" p-0 ">
-          <Card
-            as="div"
-            level={2}
-            className={classNames('border-0  shadow-md bg-indigo-200 text-indigo-800 rounded-lg p-6  ')}
-          >
+          <div className={classNames('border-0  shadow-md bg-indigo-200 text-indigo-800 rounded-lg p-6  ')}>
             <div className={classNames('h-6 w-1/3 pb-3 mb-3')}>
               <Skeleton />
             </div>
@@ -27,7 +22,7 @@ const StaticPageLoading = () => {
                 <Skeleton />
               </div>
             </div>
-          </Card>
+          </div>
 
           <div className="prose mt-6 p-6">
             <div className="space-y-1">

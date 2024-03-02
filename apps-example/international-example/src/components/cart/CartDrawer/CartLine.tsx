@@ -11,8 +11,8 @@ import { localTheme } from '@/theme/local-theme';
 import IconButton from '../../IconButton';
 import { useCartLineOptimisticMutation } from '@/hooks/cart-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
-import Box from '@/components/@common/semantic/Box';
 import Typography from '@/components/_draft/Typography';
+import SemanticBox from '@/components/_draft/SemanticBox';
 
 type Props = {
   cartLine: ToolkitCartLine;
@@ -29,7 +29,7 @@ const CartLine = ({ cartLine }: Props) => {
 
   if (cartLine.quantity <= 0) return null;
   return (
-    <Box as="article" level={0} className={classNames('py-6 flex min-h-24 px-3 -mx-3 md:px-6 md:-mx-6')}>
+    <SemanticBox as="article" p={{ dir: 'xy', size: 'sm' }} className={classNames('flex min-h-24 md:p-4')}>
       <div className={classNames('h-24 aspect-square flex-shrink-0 overflow-hidden', 'rounded-lg')}>
         <Image
           src={cartLine.merchandise.product.featuredImage.url || ''}
@@ -68,7 +68,7 @@ const CartLine = ({ cartLine }: Props) => {
             </button>
           </div>
 
-          <div className={classNames('flex flex-row items-center rounded-lg', 'border', 'border-gray-300')}>
+          <div className={classNames('flex flex-row items-center rounded-lg', 'border', 'border-default-accent')}>
             <IconButton className="px-1" onClick={handleMinus}>
               <HiMinus className="h-4 w-4  " />
               <span className="sr-only">{dictionary.cart.CartLine.minusBtn.sr}</span>
@@ -88,7 +88,7 @@ const CartLine = ({ cartLine }: Props) => {
           </div>
         </div>
       </div>
-    </Box>
+    </SemanticBox>
   );
 };
 

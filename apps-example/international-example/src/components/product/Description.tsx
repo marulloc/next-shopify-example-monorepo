@@ -2,7 +2,6 @@ import { TDictionary } from '@/dictionaries';
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import Skeleton from '../loading/Skeleton';
-import Box from '../@common/semantic/Box';
 import Card from '../@common/semantic/Card';
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
 import Typography from '../_draft/Typography';
@@ -16,7 +15,7 @@ const Description = async ({ product, dict }: TProps) => {
   const dictionary = dict?.Description;
 
   return (
-    <Box as="div" level={0} className={classNames(localTheme.spacing.padding.xy.medium)}>
+    <div>
       <Typography as="h3" size="lg" className={classNames(localTheme.spacing.padding.b.small, 'font-bold')}>
         {dictionary.title}
       </Typography>
@@ -79,7 +78,7 @@ const Description = async ({ product, dict }: TProps) => {
           </div>
         </Card>
       </div>
-    </Box>
+    </div>
   );
 };
 

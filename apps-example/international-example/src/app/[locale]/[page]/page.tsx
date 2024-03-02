@@ -1,5 +1,4 @@
 import { getPage } from '@/@marulloc-shopify-nextapi/v24.01/services/page/service';
-import Box from '@/components/@common/semantic/Box';
 import Card from '@/components/@common/semantic/Card';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';

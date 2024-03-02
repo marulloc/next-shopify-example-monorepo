@@ -33,7 +33,7 @@ const ProductOptions = ({ product, dict }: TProps) => {
   }, [navigateWithParams, product.options, selectedOptions]);
 
   return (
-    <Card level={0} as="div" className={classNames('border-0', localTheme.spacing.padding.xy.medium)}>
+    <div>
       <div className={classNames(localTheme.spacing.padding.b.small)}>
         <Typography as="h1" size="xl" color="default-accent" className={classNames('font-semibold mb-1')}>
           {product.title}
@@ -139,7 +139,7 @@ const ProductOptions = ({ product, dict }: TProps) => {
           </div>
         </div>
       </form>
-    </Card>
+    </div>
   );
 };
 

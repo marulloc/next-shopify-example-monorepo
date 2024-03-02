@@ -14,10 +14,18 @@ import {
 import { classNames } from '@marulloc/components-library/utils';
 
 type TSemanticBoxSpacingProps = {
-  m?: { dir: ThemeSpacingMarginVariants; size: ThemeSpacingMarginSizes };
-  p?: { dir: ThemeSpacingPaddingVariants; size: ThemeSpacingPaddingSizes };
-  s?: { dir: ThemeSpacingSpaceVariants; size: ThemeSpacingSpaceSizes };
-  g?: { dir: ThemeSpacingGapVariants; size: ThemeSpacingGapSizes };
+  m?:
+    | { dir: ThemeSpacingMarginVariants; size: ThemeSpacingMarginSizes }
+    | { dir: ThemeSpacingMarginVariants; size: ThemeSpacingMarginSizes }[];
+  p?:
+    | { dir: ThemeSpacingPaddingVariants; size: ThemeSpacingPaddingSizes }
+    | { dir: ThemeSpacingPaddingVariants; size: ThemeSpacingPaddingSizes }[];
+  s?:
+    | { dir: ThemeSpacingSpaceVariants; size: ThemeSpacingSpaceSizes }
+    | { dir: ThemeSpacingSpaceVariants; size: ThemeSpacingSpaceSizes }[];
+  g?:
+    | { dir: ThemeSpacingGapVariants; size: ThemeSpacingGapSizes }
+    | { dir: ThemeSpacingGapVariants; size: ThemeSpacingGapSizes }[];
 };
 
 type TSemanticBoxFillProps = { fill?: ThemeFillVariants };
@@ -28,12 +36,24 @@ type TSemanticBoxProps<T extends React.ElementType = 'div'> = {
   TSemanticBoxSpacingProps &
   TSemanticBoxFillProps;
 
-const SemanticBox = ({ as, m, p, s, g, fill, ...rest }: TSemanticBoxProps) => {
+const SemanticBox = <T extends React.ElementType = 'div'>({ as, m, p, s, g, fill, ...rest }: TSemanticBoxProps<T>) => {
   const spacingStyle = classNames(
-    p && BOX_SPACING['padding'][p.dir][p.size],
-    m && BOX_SPACING['margin'][m.dir][m.size],
-    s && BOX_SPACING['space'][s.dir][s.size],
-    g && BOX_SPACING['gap'][g.dir][g.size],
+    p &&
+      (Array.isArray(p)
+        ? p.map(({ dir, size }) => BOX_SPACING['padding'][dir][size]).join(' ')
+        : BOX_SPACING['padding'][p.dir][p.size]),
+    m &&
+      (Array.isArray(m)
+        ? m.map(({ dir, size }) => BOX_SPACING['padding'][dir][size]).join(' ')
+        : BOX_SPACING['padding'][m.dir][m.size]),
+    s &&
+      (Array.isArray(s)
+        ? s.map(({ dir, size }) => BOX_SPACING['padding'][dir][size]).join(' ')
+        : BOX_SPACING['padding'][s.dir][s.size]),
+    g &&
+      (Array.isArray(g)
+        ? g.map(({ dir, size }) => BOX_SPACING['padding'][dir][size]).join(' ')
+        : BOX_SPACING['padding'][g.dir][g.size]),
   );
 
   const fillStyle = classNames(fill && FILL_COLOR[fill]);

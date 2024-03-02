@@ -7,8 +7,8 @@ import { Suspense } from 'react';
 import CollectionProducts, { CollectionProductsSkeleton } from '@/components/collection/CollectionProducts';
 import { localTheme } from '@/theme/local-theme';
 import { TDictionaries, getDictionary } from '@/dictionaries';
-import Box from '@/components/@common/semantic/Box';
 import Typography from '@/components/_draft/Typography';
+import SemanticBox from '@/components/_draft/SemanticBox';
 
 type TParams = { locale: string; collection: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };
@@ -39,28 +39,25 @@ const CollectionPage = async ({ params, searchParams }: { params: TParams; searc
   const dictionary = dict?.collection.CollectionProducts;
 
   return (
-    <Box as="main" level={0} className={classNames()}>
-      <div
-        className={classNames(
-          localTheme.spacing.padding.x.medium,
-          localTheme.spacing.padding.y.small,
-          localTheme.fill.base.main,
-          'border-gray-300',
-          'border-b',
-          'sticky top-16 z-20',
-          'bg-opacity-40 backdrop-blur-sm',
-        )}
+    <div>
+      <SemanticBox
+        as="header"
+        p={{ dir: 'xy', size: 'md' }}
+        fill="glassy-default-base"
+        className={classNames(' sticky top-16 z-20 border-b border-default-base ')}
       >
         <Typography as="h1">
           {dictionary.title}
           <span className="font-semibold text-default-accent">&quot;{collection?.title}&quot;</span>
         </Typography>
-      </div>
+      </SemanticBox>
 
-      <Suspense fallback={<CollectionProductsSkeleton />} key={`${handle}-${sort}`}>
-        <CollectionProducts collection={handle} sort={sort as ToolkitSortKey} locale={{ country, language }} />
-      </Suspense>
-    </Box>
+      <SemanticBox as="main" p={{ dir: 'xy', size: 'md' }}>
+        <Suspense fallback={<CollectionProductsSkeleton />} key={`${handle}-${sort}`}>
+          <CollectionProducts collection={handle} sort={sort as ToolkitSortKey} locale={{ country, language }} />
+        </Suspense>
+      </SemanticBox>
+    </div>
   );
 };
 

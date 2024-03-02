@@ -54,8 +54,8 @@ const config: Config = {
       ringColor: {
         default: {
           muted: 'rgb(229 231 235)', //=> gray-200
-          base: 'rgb(243 244 246)', //=> gray-100
-          accent: 'rgb(249 250 251)', //=> gray-50
+          base: 'rgb(209 213 219)', //=> gray-300
+          accent: 'rgb(156 163 175)', //=> gray-400
           contrast: 'rgb(0 0 0)',
         },
         primary: {
@@ -75,8 +75,8 @@ const config: Config = {
       borderColor: {
         default: {
           muted: 'rgb(229 231 235)', //=> gray-200
-          base: 'rgb(243 244 246)', //=> gray-100
-          accent: 'rgb(249 250 251)', //=> gray-50
+          base: 'rgb(209 213 219)', //=> gray-300
+          accent: 'rgb(156 163 175)', //=> gray-400
           contrast: 'rgb(0 0 0)',
         },
         primary: {
@@ -95,8 +95,8 @@ const config: Config = {
       divideColor: {
         default: {
           muted: 'rgb(229 231 235)', //=> gray-200
-          base: 'rgb(243 244 246)', //=> gray-100
-          accent: 'rgb(249 250 251)', //=> gray-50
+          base: 'rgb(209 213 219)', //=> gray-300
+          accent: 'rgb(156 163 175)', //=> gray-400
           contrast: 'rgb(0 0 0)',
         },
         primary: {

@@ -6,9 +6,8 @@ import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/Sea
 import { Suspense } from 'react';
 import SearchResult, { SearchResultSkeleton } from '@/components/search/SearchResult';
 import { ServerRuntime } from 'next';
-import Box from '@/components/@common/semantic/Box';
-import { delay } from '@/utils/asyncUtils';
 import Typography from '@/components/_draft/Typography';
+import SemanticBox from '@/components/_draft/SemanticBox';
 
 type TParams = { locale: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };
@@ -20,33 +19,30 @@ const SearchPage = async ({ params, searchParams }: { params: TParams; searchPar
   const { countryCode: country, languageCode: language } = splitLocale(params.locale);
 
   return (
-    <Box as="main" level={0}>
-      <div
-        className={classNames(
-          localTheme.spacing.padding.x.medium,
-          localTheme.spacing.padding.y.small,
-          localTheme.fill.base.main,
-          'border-gray-300',
-          'border-b',
-          'sticky top-16 z-20',
-          'bg-opacity-40 backdrop-blur-sm',
-        )}
+    <div className=" ">
+      <SemanticBox
+        as="header"
+        p={{ dir: 'xy', size: 'md' }}
+        fill="glassy-default-base"
+        className={classNames(' sticky top-16 z-20 border-b border-default-base ')}
       >
-        <Typography as="h1" className="sr-only">
-          Search Result
-        </Typography>
-        <div className="w-full rounded-xl bg-gray-50 bg-opacity-80">
+        <div className="w-full rounded-xl bg-default-accent/50 ">
           <SearchFakeInputTrigger />
         </div>
-      </div>
+        <Typography as="h1" className="sr-only">
+          Search result
+        </Typography>
+      </SemanticBox>
 
-      <Suspense
-        fallback={<SearchResultSkeleton />}
-        key={`${query}-${sort}-${filter}`} // for remount (making suspense)
-      >
-        <SearchResult query={query} sort={sort as ToolkitSortKey} locale={{ country, language }} />
-      </Suspense>
-    </Box>
+      <SemanticBox as="main" p={{ dir: 'xy', size: 'md' }}>
+        <Suspense
+          fallback={<SearchResultSkeleton />}
+          key={`${query}-${sort}-${filter}`} // for remount (making suspense)
+        >
+          <SearchResult query={query} sort={sort as ToolkitSortKey} locale={{ country, language }} />
+        </Suspense>
+      </SemanticBox>
+    </div>
   );
 };
 

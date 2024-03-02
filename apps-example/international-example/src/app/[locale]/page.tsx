@@ -1,8 +1,8 @@
 import { getCollectionProducts, getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
-import Box from '@/components/@common/semantic/Box';
 import CollectionList from '@/components/_draft/CollectionList';
 import ProductList from '@/components/_draft/ProductList';
+import SemanticBox from '@/components/_draft/SemanticBox';
 import Typography from '@/components/_draft/Typography';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
@@ -20,8 +20,8 @@ const Home = async ({ params }: { params: { locale: string } }) => {
   ]);
 
   return (
-    <Box as="main" level={0} className="-mt-16">
-      <Box as="section" level={0} className="relative max-h-screen ">
+    <SemanticBox as="main" className="-mt-16">
+      <section className="relative max-h-screen ">
         <div className="absolute inset-0">
           <Image
             src="/default-alt-images/information.png"
@@ -49,19 +49,19 @@ const Home = async ({ params }: { params: { locale: string } }) => {
             </div>
           </div>
         </div>
-      </Box>
+      </section>
 
       {/* Collections */}
-      <Box as="section" level={0} className={classNames(localTheme.spacing.padding.x.medium)}>
+      <SemanticBox as="section" p={{ dir: 'x', size: 'md' }}>
         <Typography as="h3" size="xl" color="default-base" className="tracking-wide font-semibold">
           Collections
         </Typography>
         <div className="mt-4 ">
           <CollectionList collections={collections} variant="big" />
         </div>
-      </Box>
+      </SemanticBox>
 
-      <Box as="section" level={0} className={classNames('mt-40 ', localTheme.spacing.padding.x.medium)}>
+      <SemanticBox as="section" p={{ dir: 'x', size: 'md' }} className="mt-32 mb-16">
         <div className="flex justify-between items-center">
           <Typography as="h3" size="xl" color="default-base" className="tracking-wide font-semibold">
             Products
@@ -79,12 +79,11 @@ const Home = async ({ params }: { params: { locale: string } }) => {
             </Typography>
           </Link>
         </div>
-
         <div className="mt-4 ">
           <ProductList products={products} variant="big" />
         </div>
-      </Box>
-    </Box>
+      </SemanticBox>
+    </SemanticBox>
   );
 };
 

@@ -6,7 +6,6 @@ import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
 import { HiXMark } from 'react-icons/hi2';
 import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-collection';
-import { localTheme } from '@/theme/local-theme';
 import IconButton from '@/components/IconButton';
 import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/SearchInputTrigger';
 import InitialIcon from '@/components/InitialIcon';
@@ -14,9 +13,9 @@ import LocaleIconTrigger from '@/components/locale/LocaleSelectModal/triggers/Lo
 import { usePortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 import GithubLink from './triggers/GithubLink';
-import Box from '@/components/@common/semantic/Box';
 import CollectionList from '@/components/_draft/CollectionList';
 import Typography from '@/components/_draft/Typography';
+import SemanticBox from '@/components/_draft/SemanticBox';
 
 type Props = {
   menu: ToolkitMenu;
@@ -31,34 +30,33 @@ const MenuDrawer = ({ menu, collections }: Props) => {
     <Drawer anchor="left" open={isActive} onClose={() => deactivate()}>
       <Drawer.Backdrop>
         {({ closeDrawer }) => (
-          <div
+          <SemanticBox
+            fill="glassy-backdrop"
             onClick={() => closeDrawer()}
-            className={classNames(' isolate w-full h-full', 'bg-gray-500 bg-opacity-40  ')}
+            className={classNames('isolate w-full h-full')}
           />
         )}
       </Drawer.Backdrop>
 
       <Drawer.Contents>
         {({ isOpen, closeDrawer }) => (
-          <Box
-            as="aside"
-            level={0}
+          <aside
             className={classNames(
               'isolate w-screen max-w-md  h-screen overflow-hidden ',
               'flex flex-col  divide-y divide-gray-200',
             )}
           >
-            <Box
+            <SemanticBox
               as="header"
-              variant="glassy"
-              level={2}
-              className={classNames('px-4 py-4 sm:px-6', 'flex items-center justify-between ')}
+              p={[{ dir: 'xy', size: 'sm' }]}
+              fill="glassy-default-accent"
+              className={classNames('flex items-center justify-between md:p-4 ')}
             >
               <h2 className="sr-only">Menu navigation panel</h2>
               <div className="relative w-full" onClick={() => closeDrawer()}>
                 <SearchFakeInputTrigger />
               </div>
-              <div className={classNames('ml-4 flex items-center border rounded-lg', 'border-gray-300')}>
+              <div className={classNames('ml-4 flex items-center border rounded-lg', 'border-default-muted')}>
                 <IconButton
                   srName="close panel"
                   className={classNames('text-default-muted hover:text-default-accent')}
@@ -68,13 +66,13 @@ const MenuDrawer = ({ menu, collections }: Props) => {
                   <span className="sr-only">{dictionary.closeBtn.sr}</span>
                 </IconButton>
               </div>
-            </Box>
+            </SemanticBox>
 
-            <Box
+            <SemanticBox
               as="section"
-              variant="glassy"
-              level={4}
-              className={classNames('flex-1 overflow-y-auto px-4 py-4 sm:px-6')}
+              fill="glassy-default-base"
+              p={[{ dir: 'xy', size: 'sm' }]}
+              className={classNames(' flex-1 overflow-y-auto md:p-4 ')}
             >
               <nav className="flex flex-1 flex-col">
                 <ul role="list" className="mt-2 flex flex-1 flex-col gap-y-14">
@@ -119,9 +117,14 @@ const MenuDrawer = ({ menu, collections }: Props) => {
                   </li>
                 </ul>
               </nav>
-            </Box>
+            </SemanticBox>
 
-            <Box as="footer" variant="glassy" level={2} className={classNames('px-6 py-6', 'divide-y divide-gray-200')}>
+            <SemanticBox
+              as="footer"
+              fill="glassy-default-accent"
+              p={{ dir: 'xy', size: 'sm' }}
+              className="md:p-4 divide-y divide-default-muted"
+            >
               <div onClick={() => closeDrawer()}>
                 <LocaleIconTrigger />
               </div>
@@ -135,8 +138,8 @@ const MenuDrawer = ({ menu, collections }: Props) => {
                   <span className=" ">{dictionary.githubRepoLink}</span>
                 </GithubLink>
               </div>
-            </Box>
-          </Box>
+            </SemanticBox>
+          </aside>
         )}
       </Drawer.Contents>
     </Drawer>

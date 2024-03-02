@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Carousel from '../Carousel';
 import Skeleton from '../loading/Skeleton';
 import Card from '../@common/semantic/Card';
-import Box from '../@common/semantic/Box';
 
 type TProps = {
   product: ToolkitProduct;
@@ -13,11 +12,7 @@ type TProps = {
 
 const ImageGallery = async ({ product }: TProps) => {
   return (
-    <Box
-      as="div"
-      level={0}
-      className={classNames(localTheme.spacing.padding.xy.medium, 'w-full  aspect-square rounded-lg overflow-hidden ')}
-    >
+    <div className={classNames('w-full h-full rounded-lg overflow-hidden ')}>
       <Carousel>
         {product.images.map((image, idx) => (
           <Card
@@ -37,7 +32,7 @@ const ImageGallery = async ({ product }: TProps) => {
           </Card>
         ))}
       </Carousel>
-    </Box>
+    </div>
   );
 };
 

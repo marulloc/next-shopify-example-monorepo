@@ -241,6 +241,8 @@ export const FILL_COLOR = {
   'default-accent': classNames('bg-default-accent'),
   'default-contrast': classNames('bg-default-contrast'),
 
-  // 'glassy-default': classNames(),
-  // 'glassy-backdrop': classNames(),
+  'glassy-default-muted': classNames('isolate bg-default-muted/60 backdrop-blur-sm'),
+  'glassy-default-base': classNames('isolate bg-default-base/80 backdrop-blur-sm'),
+  'glassy-default-accent': classNames('isolate bg-default-accent/90 backdrop-blur-sm'),
+  'glassy-backdrop': classNames('isolate bg-default-contrast/20  '),
 };

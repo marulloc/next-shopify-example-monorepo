@@ -1,5 +1,5 @@
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
-import Box from '@/components/@common/semantic/Box';
+import SemanticBox from '@/components/_draft/SemanticBox';
 import Typography from '@/components/_draft/Typography';
 import { TDictionaries, getDictionary } from '@/dictionaries';
 import { localTheme } from '@/theme/local-theme';
@@ -20,7 +20,7 @@ const Footer = async ({ locale }: Props) => {
   const dictionary = dict.pages.Main;
 
   return (
-    <Box as="footer" level={0} className="relative">
+    <SemanticBox as="footer" className="relative">
       <div className="absolute inset-0 group   ">
         <Image
           src={shopInfo.brand.coverImage.image.url}
@@ -37,7 +37,7 @@ const Footer = async ({ locale }: Props) => {
         />
       </div>
 
-      <Box as="section" level={0} className=" relative px-20 py-44  w-full h-full">
+      <section className=" relative px-20 py-44  w-full h-full">
         <Typography as="h3" size="3xl" className="tracking-tighter font-bold text-default-accent">
           {dictionary.information.h}
         </Typography>
@@ -47,8 +47,8 @@ const Footer = async ({ locale }: Props) => {
             {dictionary.information.p}
           </Typography>
         </div>
-      </Box>
-    </Box>
+      </section>
+    </SemanticBox>
   );
 };
 

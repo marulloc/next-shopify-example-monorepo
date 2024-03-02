@@ -5,10 +5,8 @@ import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
 import ScrollCarousel from '../ScrollCarousel';
-import { delay } from '@/utils/asyncUtils';
 import Skeleton from '@/components/loading/Skeleton';
 import { TDictionary } from '@/dictionaries';
-import Box from '../@common/semantic/Box';
 import Typography from '../_draft/Typography';
 
 type TProps = {
@@ -24,7 +22,7 @@ const Recommendations = async ({ product, dict, locale }: TProps) => {
   // await delay(2000);
 
   return (
-    <Box as="div" level={0} className={classNames(localTheme.spacing.padding.xy.medium, ' ')}>
+    <div>
       <Typography as="h3" size="lg" className={classNames(localTheme.spacing.padding.b.small, 'font-bold')}>
         {dictionary.title}
       </Typography>
@@ -41,7 +39,7 @@ const Recommendations = async ({ product, dict, locale }: TProps) => {
           </Link>
         ))}
       </ScrollCarousel>
-    </Box>
+    </div>
   );
 };
 

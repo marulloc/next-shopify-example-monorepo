@@ -3,15 +3,14 @@
 import { classNames } from '@marulloc/components-library/utils';
 import { HiXMark } from 'react-icons/hi2';
 import Link from 'next/link';
-import { localTheme } from '@/theme/local-theme';
 import IconButton from '@/components/IconButton';
 import Price from '@/components/Price';
 import CartLine from './CartLine';
 import React from 'react';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
-import Box from '@/components/@common/semantic/Box';
 import { useGetLoadableCart } from '@/hooks/cart-hooks';
 import Typography from '@/components/_draft/Typography';
+import SemanticBox from '@/components/_draft/SemanticBox';
 
 const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
   const { state, contents: cart } = useGetLoadableCart();
@@ -19,25 +18,23 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
 
   if (state !== 'hasValue') return null;
   return (
-    <Box
-      as="aside"
-      level={0}
+    <aside
       className={classNames(
         'isolate w-screen max-w-md h-screen overflow-hidden',
-        'flex flex-col  divide-y divide-gray-200',
+        'flex flex-col divide-y divide-default-muted ',
       )}
     >
-      <Box
+      <SemanticBox
         as="header"
-        variant="glassy"
-        level={2}
-        className={classNames('px-4 py-2 sm:py-4 sm:px-6', 'flex items-center justify-between ')}
+        p={[{ dir: 'xy', size: 'sm' }]}
+        fill="glassy-default-accent"
+        className={classNames('flex items-center justify-between md:p-4 ')}
       >
         <Typography as="h3" size="lg">
           {dictionary.title}
         </Typography>
 
-        <div className={classNames('ml-4 flex items-center border rounded-lg', 'border-gray-300')}>
+        <div className={classNames('ml-4 flex items-center border rounded-lg', 'border-default-muted')}>
           <IconButton
             srName="close panel"
             onClick={() => closeDrawer()}
@@ -47,21 +44,21 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
             <Typography className=" sr-only">{dictionary.closeBtn.sr}</Typography>
           </IconButton>
         </div>
-      </Box>
+      </SemanticBox>
 
-      <Box as="section" variant="glassy" level={4} className={classNames('flex-1 overflow-y-auto px-4 py-4 sm:px-6')}>
-        <ul role="list" className="-my-6 divide-y divide-gray-300">
+      <SemanticBox as="section" fill="glassy-default-base" className={classNames(' flex-1 overflow-y-auto    ')}>
+        <ul role="list" className=" divide-y divide-default-base ">
           {cart?.lines?.map((cartLine) => (
             <li key={`side-cart-${cartLine.merchandise.title}` + Math.random()}>
               <CartLine cartLine={cartLine} />
             </li>
           ))}
         </ul>
-      </Box>
+      </SemanticBox>
 
-      <Box as="footer" variant="glassy" level={2} className={classNames('px-6 py-6')}>
-        <div className={classNames('mb-6 ')}>
-          <section className="mb-1 flex items-center justify-between py-1">
+      <SemanticBox as="footer" fill="glassy-default-accent" p={{ dir: 'xy', size: 'sm' }} className="md:p-4">
+        <SemanticBox as="section" m={{ dir: 'b', size: 'sm' }}>
+          <div className="mb-1 flex items-center justify-between py-1">
             <Typography as="h4">{dictionary.footer.taxes.title}</Typography>
             <Typography as="p" color="primary-base" className=" font-semibold">
               <Price
@@ -69,14 +66,14 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
                 currencyCode={cart?.cost.totalTaxAmount?.currencyCode || ''}
               />
             </Typography>
-          </section>
+          </div>
 
-          <section className="mb-1 flex items-center justify-between py-1">
+          <div className="mb-1 flex items-center justify-between py-1">
             <Typography as="h4">{dictionary.footer.shipping.title}</Typography>
             <Typography as="p">{dictionary.footer.shipping.p}</Typography>
-          </section>
+          </div>
 
-          <section className="mb-1 flex items-center justify-between py-1">
+          <div className="mb-1 flex items-center justify-between py-1">
             <Typography as="h4">{dictionary.footer.total.title}</Typography>
             <Typography as="p" color="primary-base" className=" font-semibold">
               <Price
@@ -84,8 +81,8 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
                 currencyCode={cart?.cost.totalAmount?.currencyCode || ''}
               />
             </Typography>
-          </section>
-        </div>
+          </div>
+        </SemanticBox>
 
         <div className=" ">
           <Link
@@ -99,8 +96,8 @@ const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
             </Typography>
           </Link>
         </div>
-      </Box>
-    </Box>
+      </SemanticBox>
+    </aside>
   );
 };
 

@@ -5,7 +5,6 @@ import LocaleSelectModalChildrenTrigger from '../LocaleSelectModal/triggers/Loca
 import { useDetectLocaleMatch, useGetDictioanry } from '@/hooks/locale-hooks';
 import React from 'react';
 import { dictionaryReplacer } from '@/dictionaries/utils';
-import Box from '@/components/@common/semantic/Box';
 
 const CountryName = ({ name }: { name: string }) => <span className="font-bold  ">&quot;{name}&quot;</span>;
 
@@ -17,7 +16,7 @@ export const MatchedContents = ({ handleClose, detectedCountry, currentCountry }
   const dictionary = useGetDictioanry().locale.LocaleDetectionModal.MatchedContents;
 
   return (
-    <Box as="section" className="max-w-xl   pb-4 sm:pb-0 ">
+    <section className="max-w-xl  pb-4 sm:pb-0 ">
       <div className="flex">
         <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full   bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
           <HiCheck className="h-6 w-6 text-green-600  animate-pulse" aria-hidden="true" />
@@ -56,7 +55,7 @@ export const MatchedContents = ({ handleClose, detectedCountry, currentCountry }
           {dictionary.changeMarketBtn.title}
         </LocaleSelectModalChildrenTrigger>
       </div>
-    </Box>
+    </section>
   );
 };
 
@@ -64,7 +63,7 @@ export const NotMatchedContents = ({ handleClose, detectedCountry, currentCountr
   const dictionary = useGetDictioanry().locale.LocaleDetectionModal.NotMatchedContents;
 
   return (
-    <Box as="section" className="max-w-xl   pb-4 sm:pb-0 ">
+    <section className="max-w-xl  pb-4 sm:pb-0 ">
       <div className="flex">
         <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full   bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
           <HiExclamationTriangle className="h-6 w-6 text-red-600  animate-pulse" aria-hidden="true" />
@@ -108,14 +107,14 @@ export const NotMatchedContents = ({ handleClose, detectedCountry, currentCountr
           ])}
         </LocaleSelectModalChildrenTrigger>
       </div>
-    </Box>
+    </section>
   );
 };
 export const NotDetectedContents = ({ handleClose, currentCountry }: TContentsProps) => {
   const dictionary = useGetDictioanry().locale.LocaleDetectionModal.NotDetectedContents;
 
   return (
-    <Box as="section" className="max-w-xl   pb-4 sm:pb-0 ">
+    <section className="max-w-xl  pb-4 sm:pb-0 ">
       <div className="flex">
         <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full   bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
           <HiExclamationTriangle className="h-6 w-6 text-red-600  animate-pulse" aria-hidden="true" />
@@ -149,6 +148,6 @@ export const NotDetectedContents = ({ handleClose, currentCountry }: TContentsPr
           {dictionary.changeMarketBtn.title}
         </LocaleSelectModalChildrenTrigger>
       </div>
-    </Box>
+    </section>
   );
 };
