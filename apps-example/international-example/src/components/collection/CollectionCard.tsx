@@ -1,9 +1,9 @@
 import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-collection';
-import { localTheme } from '@/theme/local-theme';
+
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import InitialIcon from '../InitialIcon';
-import Card from '../@common/semantic/Card';
+import Typography from '../Typography';
 
 export type TCollectionCardProps = {
   variant: 'small' | 'big';
@@ -25,14 +25,7 @@ export default CollectionCard;
 
 const SmallCollectionCard = ({ collection, index }: Omit<TCollectionCardProps, 'variant'>) => {
   return (
-    <Card
-      level={0}
-      className={classNames(
-        'border-0',
-        'text-gray-700 hover:text-indigo-600  ',
-        'group flex gap-x-3 text-sm leading-6',
-      )}
-    >
+    <article className={classNames('text-default-base hover:text-primary-base group flex gap-x-3 items-center')}>
       {collection.image || index < 3 ? (
         <Image
           src={collection.image?.url || `/default-alt-images/collection-${index + 1}.png`}
@@ -40,24 +33,26 @@ const SmallCollectionCard = ({ collection, index }: Omit<TCollectionCardProps, '
           width={collection.image?.width || 30}
           height={collection.image?.height || 30}
           className={classNames(
-            'border-gray-200 group-hover:border-indigo-600 ',
+            'border-default-muted group-hover:border-primary-base ',
             'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border',
           )}
         />
       ) : (
         <InitialIcon initial={collection.title[0] || 'c'} />
       )}
-      <span className="truncate">{collection.title.toUpperCase()}</span>
-    </Card>
+      <Typography as="h4" size="sm" responsive={false}>
+        {collection.title.toUpperCase()}
+      </Typography>
+    </article>
   );
 };
 
 const BigCollectionCard = ({ collection, index }: Omit<TCollectionCardProps, 'variant'>) => {
   return (
-    <Card level={0} className="border-0">
+    <article className=" group">
       <div
         aria-hidden="true"
-        className="group aspect-h-2 aspect-w-3 overflow-hidden rounded-lg lg:aspect-h-6 lg:aspect-w-5  opacity-90 border"
+        className="  aspect-h-2 aspect-w-3 overflow-hidden rounded-lg lg:aspect-h-6 lg:aspect-w-5  opacity-90 border"
       >
         <Image
           src={collection.image?.url || `/default-alt-images/collection-${index + 1}.png`}
@@ -67,12 +62,17 @@ const BigCollectionCard = ({ collection, index }: Omit<TCollectionCardProps, 'va
           className="h-full w-full object-cover object-center group-hover:scale-110  transition-all duration-300  "
         />
       </div>
-      <h3 className={classNames('mt-4 font-semibold ', localTheme.text.size.small, localTheme.text.color.base.main)}>
+      <Typography
+        as="h4"
+        size="md"
+        color="default-base"
+        className={classNames('mt-4 font-semibold group-hover:text-primary-base ')}
+      >
         {collection.title.toUpperCase()}
-      </h3>
-      <p className={classNames('mt-1 text-sm  ', localTheme.text.size.small, localTheme.text.color.base.muted)}>
+      </Typography>
+      <Typography as="p" size="sm" color="default-muted" className={classNames('mt-0 text-sm  ')}>
         {collection.description || `default collection`}
-      </p>
-    </Card>
+      </Typography>
+    </article>
   );
 };

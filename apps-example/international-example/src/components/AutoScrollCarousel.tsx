@@ -1,13 +1,12 @@
 'use client';
 
-import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 type Props = {
   children: React.ReactNode;
 };
-const ScrollCarousel = ({ children }: Props) => {
+const AutoScrollCarousel = ({ children }: Props) => {
   const [direction, setDirection] = useState<'left' | 'right'>('right');
   const scrollRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<number | null>(null);
@@ -70,8 +69,7 @@ const ScrollCarousel = ({ children }: Props) => {
         ref={scrollRef}
         className={classNames(
           'overflow-auto  h-full w-full ',
-          'relative flex flex-nowrap    ',
-          localTheme.spacing.gap.x.medium,
+          'relative flex flex-nowrap  gap-x-4 sm:gap-x-6 md:gap-x-8  ',
           'hide-scrollbar',
         )}
       >
@@ -85,4 +83,4 @@ const ScrollCarousel = ({ children }: Props) => {
   );
 };
 
-export default ScrollCarousel;
+export default AutoScrollCarousel;

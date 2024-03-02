@@ -8,13 +8,13 @@ const GithubLink = ({ href, children }: TProps) => {
     <Link href={href} target="_blank" rel="noopener noreferrer" className="block ">
       <div
         className={classNames(
-          'text-gray-700 hover:text-indigo-600  ',
+          'text-default-accent hover:text-primary-base  ',
           'group flex gap-x-3 rounded-md  text-sm leading-6',
         )}
       >
         <div
           className={classNames(
-            'h-6 w-6 overflow-hidden border border-gray-200 group-hover:border-indigo-600 rounded-lg ',
+            'h-6 w-6 overflow-hidden border border-default-muted group-hover:border-primary-base rounded-lg ',
             'flex justify-center items-center',
           )}
         >

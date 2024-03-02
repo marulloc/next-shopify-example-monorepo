@@ -1,9 +1,8 @@
 import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-common';
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
-import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { localTheme } from '../theme/local-theme';
+import Typography from '../Typography';
 
 type Props = {
   country: ShopifyLocaleContext['country'];
@@ -24,18 +23,21 @@ const Logo = async ({ country, language }: Props) => {
           className="  rounded-md  w-10 h-10"
         />
       ) : (
-        <div
-          className={classNames(
-            // localTheme.text.size.small,
-            'text-xs',
-            localTheme.text.color.base.main,
-            localTheme.text.color.base.hover,
-            'leading-3  text-center ',
-          )}
-        >
-          {shopInfo.name.split(' ').map((token, idx) => (
-            <div key={`title-${token}-${idx}`}>{token}</div>
-          ))}
+        <div>
+          <Typography
+            as="p"
+            color="default-base"
+            size="xs"
+            responsive={false}
+            noWarn
+            className="text-center hover:text-default-accent"
+          >
+            {shopInfo.name.split(' ').map((token, idx) => (
+              <span className=" block " key={`title-${token}-${idx}`}>
+                {token}
+              </span>
+            ))}
+          </Typography>
         </div>
       )}
     </Link>

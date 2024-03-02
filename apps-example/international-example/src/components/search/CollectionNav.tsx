@@ -1,5 +1,5 @@
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
-import CollectionList from '@/components/_draft/CollectionList';
+import CollectionList from '@/components/collection/CollectionList';
 import Skeleton from '@/components/loading/Skeleton';
 import { delay } from '@/utils/asyncUtils';
 import { Suspense } from 'react';
@@ -11,7 +11,7 @@ type TCollectionNavProps = {
 const CollectionNavWrapper = async ({ locale }: TCollectionNavProps) => {
   return (
     <>
-      <h3 className="text-xs font-semibold leading-6 text-gray-500">All Collections</h3>
+      <h3 className="text-xs font-semibold leading-6 text-default-muted">All Collections</h3>
       <div className="mt-2">
         <Suspense
           fallback={

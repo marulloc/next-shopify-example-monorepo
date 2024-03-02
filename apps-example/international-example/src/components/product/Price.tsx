@@ -11,17 +11,17 @@ type Props = {
  * @returns
  */
 const Price = ({ currencyCode, amount, ...rest }: Props) => {
-  if (!currencyCode || !amount) return null;
+  if (!currencyCode || !amount) return <span>-</span>;
 
   return (
-    <p suppressHydrationWarning={true} {...rest}>
+    <span suppressHydrationWarning={true} {...rest}>
       {`${new Intl.NumberFormat(undefined, {
         style: 'currency',
         currency: currencyCode,
         currencyDisplay: 'narrowSymbol',
       }).format(parseFloat(amount as string))}`}
       <span className={classNames('ml-2 inline')}>{`${currencyCode}`}</span>
-    </p>
+    </span>
   );
 };
 
