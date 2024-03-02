@@ -5,7 +5,7 @@ import Drawer from '@marulloc/components-library/Drawer';
 import React from 'react';
 import { usePortalRecoil } from '@/hooks/portal-hooks';
 import CartContents from './CartContents';
-import SemanticBox from '@/components/_draft/SemanticBox';
+import SemanticBox from '@/components/SemanticBox';
 
 const CartDrawer = () => {
   const [{ isActive }, { deactivate }] = usePortalRecoil('cart-drawer');

@@ -1,6 +1,6 @@
 import { classNames } from '@marulloc/components-library/utils';
 
-import Price from '../Price';
+import Price from './Price';
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
 
 type Props<T extends React.ElementType = 'div'> = {

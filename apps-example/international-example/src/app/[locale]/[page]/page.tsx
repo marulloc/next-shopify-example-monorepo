@@ -4,8 +4,8 @@ import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import { Metadata, ServerRuntime } from 'next';
 import { notFound } from 'next/navigation';
-import Typography from '@/components/_draft/Typography';
-import SemanticBox from '@/components/_draft/SemanticBox';
+import Typography from '@/components/Typography';
+import SemanticBox from '@/components/SemanticBox';
 
 export const runtime: ServerRuntime = 'edge';
 

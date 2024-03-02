@@ -1,13 +1,12 @@
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
 import { getProductRecommendations } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
 import ProductCard from '@/components/product/ProductCard';
-
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
-import ScrollCarousel from '../ScrollCarousel';
+import AutoScrollCarousel from '../../AutoScrollCarousel';
 import Skeleton from '@/components/loading/Skeleton';
 import { TDictionary } from '@/dictionaries';
-import Typography from '../_draft/Typography';
+import Typography from '../../Typography';
 
 type TProps = {
   product: ToolkitProduct;
@@ -27,7 +26,7 @@ const Recommendations = async ({ product, dict, locale }: TProps) => {
         {dictionary.title}
       </Typography>
 
-      <ScrollCarousel>
+      <AutoScrollCarousel>
         {recommendations.map((recom) => (
           <Link
             href={recom.handleRoute}
@@ -38,7 +37,7 @@ const Recommendations = async ({ product, dict, locale }: TProps) => {
             <ProductCard variant="big" product={recom} priceDefaultOpen={false} />
           </Link>
         ))}
-      </ScrollCarousel>
+      </AutoScrollCarousel>
     </div>
   );
 };

@@ -12,10 +12,10 @@ import InitialIcon from '@/components/InitialIcon';
 import LocaleIconTrigger from '@/components/locale/LocaleSelectModal/triggers/LocaleSelectModalIconTrigger';
 import { usePortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
-import GithubLink from './triggers/GithubLink';
-import CollectionList from '@/components/_draft/CollectionList';
-import Typography from '@/components/_draft/Typography';
-import SemanticBox from '@/components/_draft/SemanticBox';
+import GithubLink from '../../github/GithubLink';
+import CollectionList from '@/components/collection/CollectionList';
+import Typography from '@/components/Typography';
+import SemanticBox from '@/components/SemanticBox';
 
 type Props = {
   menu: ToolkitMenu;

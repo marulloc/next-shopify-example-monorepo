@@ -5,14 +5,14 @@ import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@too
 import { classNames } from '@marulloc/components-library/utils';
 import React, { useEffect } from 'react';
 import ProductPrice from '@/components/product/ProductPrice';
-import Price from '@/components/Price';
+import Price from '@/components/product/Price';
 import LoadingDots from '@/components/loading/LoadingDots';
 import { useSelectVariant } from '@/hooks/useSelectProductVariant';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
-import AddToCartButton from '../cart/AddToCartButton';
+import AddToCartButton from '../../cart/AddToCartButton';
 import { TDictionary } from '@/dictionaries';
-import Skeleton from '../loading/Skeleton';
-import Typography from '../_draft/Typography';
+import Skeleton from '../../loading/Skeleton';
+import Typography from '../../Typography';
 
 type TProps = {
   product: ToolkitProduct;

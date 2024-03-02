@@ -1,10 +1,9 @@
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
-
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
-import Carousel from '../Carousel';
-import Skeleton from '../loading/Skeleton';
-import SemanticBox from '../_draft/SemanticBox';
+import SwipeableCarousel from '../../SwipeableCarousel';
+import Skeleton from '../../loading/Skeleton';
+import SemanticBox from '../../SemanticBox';
 
 type TProps = {
   product: ToolkitProduct;
@@ -13,7 +12,7 @@ type TProps = {
 const ImageGallery = async ({ product }: TProps) => {
   return (
     <div className={classNames('w-full h-full rounded-lg overflow-hidden ')}>
-      <Carousel>
+      <SwipeableCarousel>
         {product.images.map((image, idx) => (
           <SemanticBox
             as="figure"
@@ -30,7 +29,7 @@ const ImageGallery = async ({ product }: TProps) => {
             <figcaption className="sr-onyl">{image.altText || `${product.title}-image-${idx}`}</figcaption>
           </SemanticBox>
         ))}
-      </Carousel>
+      </SwipeableCarousel>
     </div>
   );
 };

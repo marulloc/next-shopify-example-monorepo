@@ -7,8 +7,8 @@ import { Suspense } from 'react';
 import CollectionProducts, { CollectionProductsSkeleton } from '@/components/collection/CollectionProducts';
 
 import { TDictionaries, getDictionary } from '@/dictionaries';
-import Typography from '@/components/_draft/Typography';
-import SemanticBox from '@/components/_draft/SemanticBox';
+import Typography from '@/components/Typography';
+import SemanticBox from '@/components/SemanticBox';
 
 type TParams = { locale: string; collection: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };

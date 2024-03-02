@@ -1,7 +1,7 @@
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import CollectionNav from '../../../components/search/CollectionNav';
-import SemanticBox from '@/components/_draft/SemanticBox';
+import SemanticBox from '@/components/SemanticBox';
 
 const Layout = async ({ children, params }: { children: React.ReactNode; params: { locale: string } }) => {
   const { countryCode: country, languageCode: language } = splitLocale(params.locale);

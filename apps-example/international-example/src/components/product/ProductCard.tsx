@@ -3,7 +3,7 @@ import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@too
 import { classNames } from '@marulloc/components-library/utils';
 import ProductPrice from './ProductPrice';
 import Image from 'next/image';
-import Typography from '../_draft/Typography';
+import Typography from '../Typography';
 
 export type TPRoductCardProps = TSmallProductCardProps | TBigProductCardProps;
 

@@ -3,7 +3,7 @@ import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import InitialIcon from '../InitialIcon';
-import Typography from '../_draft/Typography';
+import Typography from '../Typography';
 
 export type TCollectionCardProps = {
   variant: 'small' | 'big';

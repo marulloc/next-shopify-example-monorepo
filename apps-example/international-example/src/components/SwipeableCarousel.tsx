@@ -5,7 +5,7 @@ import { classNames } from '@marulloc/components-library/utils';
 import React, { useState, useEffect } from 'react';
 import { HiMiniChevronLeft, HiMiniChevronRight } from 'react-icons/hi2';
 
-const Carousel = ({ children }: { children: React.ReactElement[] }) => {
+const SwipeableCarousel = ({ children }: { children: React.ReactElement[] }) => {
   const [isMoving, setIsMoving] = useState(false);
   const [curIdx, setCurIdx] = useState(0);
   const [startX, setStartX] = useState(0); // for mobile
@@ -124,4 +124,4 @@ const Carousel = ({ children }: { children: React.ReactElement[] }) => {
   );
 };
 
-export default Carousel;
+export default SwipeableCarousel;

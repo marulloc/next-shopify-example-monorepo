@@ -6,8 +6,8 @@ import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/Sea
 import { Suspense } from 'react';
 import SearchResult, { SearchResultSkeleton } from '@/components/search/SearchResult';
 import { ServerRuntime } from 'next';
-import Typography from '@/components/_draft/Typography';
-import SemanticBox from '@/components/_draft/SemanticBox';
+import Typography from '@/components/Typography';
+import SemanticBox from '@/components/SemanticBox';
 
 type TParams = { locale: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };

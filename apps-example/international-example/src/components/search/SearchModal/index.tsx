@@ -12,10 +12,10 @@ import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import { usePortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry, useGetLocale } from '@/hooks/locale-hooks';
 import { RiEmotionSadLine } from 'react-icons/ri';
-import ProductList from '@/components/_draft/ProductList';
-import CollectionList from '@/components/_draft/CollectionList';
-import Typography from '@/components/_draft/Typography';
-import SemanticBox from '@/components/_draft/SemanticBox';
+import ProductList from '@/components/product/ProductList';
+import CollectionList from '@/components/collection/CollectionList';
+import Typography from '@/components/Typography';
+import SemanticBox from '@/components/SemanticBox';
 
 const SearchModal = () => {
   const [{ isActive }, { deactivate }] = usePortalRecoil('search-modal');

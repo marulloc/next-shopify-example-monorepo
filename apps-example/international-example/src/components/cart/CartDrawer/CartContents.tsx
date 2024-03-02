@@ -4,13 +4,13 @@ import { classNames } from '@marulloc/components-library/utils';
 import { HiXMark } from 'react-icons/hi2';
 import Link from 'next/link';
 import IconButton from '@/components/IconButton';
-import Price from '@/components/Price';
+import Price from '@/components/product/Price';
 import CartLine from './CartLine';
 import React from 'react';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 import { useGetLoadableCart } from '@/hooks/cart-hooks';
-import Typography from '@/components/_draft/Typography';
-import SemanticBox from '@/components/_draft/SemanticBox';
+import Typography from '@/components/Typography';
+import SemanticBox from '@/components/SemanticBox';
 
 const CartContents = ({ closeDrawer }: { closeDrawer: () => void }) => {
   const { state, contents: cart } = useGetLoadableCart();

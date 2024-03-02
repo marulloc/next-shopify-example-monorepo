@@ -1,9 +1,9 @@
 import { getProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
-import Description from '@/components/product/Description';
-import ImageGallery from '@/components/product/ImageGallery';
-import ProductOptions from '@/components/product/ProductOptions';
-import Recommendations, { RecommendationsSkeleton } from '@/components/product/Recommendations';
+import Description from '@/components/product/detail/Description';
+import ImageGallery from '@/components/product/detail/ImageGallery';
+import ProductOptions from '@/components/product/detail/ProductOptions';
+import Recommendations, { RecommendationsSkeleton } from '@/components/product/detail/Recommendations';
 import { TDictionaries, getDictionary } from '@/dictionaries';
 
 import { splitLocale } from '@/utils/locale';
@@ -11,7 +11,7 @@ import { delay } from '@/utils/asyncUtils';
 import { classNames } from '@marulloc/components-library/utils';
 import { Metadata, ServerRuntime } from 'next';
 import { Suspense } from 'react';
-import SemanticBox from '@/components/_draft/SemanticBox';
+import SemanticBox from '@/components/SemanticBox';
 
 export const runtime: ServerRuntime = 'edge';
 

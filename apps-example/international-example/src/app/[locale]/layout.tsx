@@ -3,10 +3,10 @@ import '../globals.css';
 import { getLocale, getMenu, getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { splitLocale } from '@/utils/locale';
 import Header from '../../components/shop/Header';
-import FloatingActionButton from '../../components/FloatingAction';
+import FloatingGithubLink from '../../components/github/FloatingGithubLink';
 import { classNames } from '@marulloc/components-library/utils';
 import RecoilProvider from '@/context/RecoilProvider';
-import MenuDrawer from '@/components/menu/MenuDrawer';
+import MenuDrawer from '@/components/shop/MenuDrawer';
 import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import LocaleSelectorModal from '@/components/locale/LocaleSelectModal';
 import SearchModal from '@/components/search/SearchModal';
@@ -16,7 +16,7 @@ import LocaleDetectionModal from '@/components/locale/LocaleDetectionModal';
 import { TDictionaries, getDictionary } from '@/dictionaries';
 import Footer from '@/components/shop/Footer';
 import { Suspense } from 'react';
-import SemanticBox from '@/components/_draft/SemanticBox';
+import SemanticBox from '@/components/SemanticBox';
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();
@@ -76,7 +76,7 @@ const RootLayout = async ({
               <SearchModal />
               <CartDrawer />
               <LocaleDetectionModal localeData={localeData} />
-              <FloatingActionButton locale={{ country, language }} />
+              <FloatingGithubLink locale={{ country, language }} />
               <SpeedInsights />
             </Suspense>
 

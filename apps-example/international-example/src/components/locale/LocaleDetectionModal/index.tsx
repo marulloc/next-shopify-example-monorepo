@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 import { MatchedContents, NotDetectedContents, NotMatchedContents } from './AlertContents';
 import { useDetectLocaleMatch } from '@/hooks/locale-hooks';
-import SemanticBox from '@/components/_draft/SemanticBox';
+import SemanticBox from '@/components/SemanticBox';
 
 type TProps = {
   localeData: ToolkitLocale;

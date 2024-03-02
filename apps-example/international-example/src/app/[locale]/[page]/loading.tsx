@@ -1,4 +1,4 @@
-import SemanticBox from '@/components/_draft/SemanticBox';
+import SemanticBox from '@/components/SemanticBox';
 import Skeleton from '@/components/loading/Skeleton';
 
 import { classNames } from '@marulloc/components-library/utils';

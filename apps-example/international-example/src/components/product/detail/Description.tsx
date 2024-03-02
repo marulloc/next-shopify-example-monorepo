@@ -1,10 +1,10 @@
 import { TDictionary } from '@/dictionaries';
 
 import { classNames } from '@marulloc/components-library/utils';
-import Skeleton from '../loading/Skeleton';
+import Skeleton from '../../loading/Skeleton';
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
-import Typography from '../_draft/Typography';
-import SemanticBox from '../_draft/SemanticBox';
+import Typography from '../../Typography';
+import SemanticBox from '../../SemanticBox';
 
 type TProps = {
   product: ToolkitProduct;

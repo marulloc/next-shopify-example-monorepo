@@ -1,9 +1,9 @@
 import { getCollectionProducts, getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
-import CollectionList from '@/components/_draft/CollectionList';
-import ProductList from '@/components/_draft/ProductList';
-import SemanticBox from '@/components/_draft/SemanticBox';
-import Typography from '@/components/_draft/Typography';
+import CollectionList from '@/components/collection/CollectionList';
+import ProductList from '@/components/product/ProductList';
+import SemanticBox from '@/components/SemanticBox';
+import Typography from '@/components/Typography';
 
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';

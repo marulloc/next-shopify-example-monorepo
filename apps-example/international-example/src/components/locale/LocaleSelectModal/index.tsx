@@ -10,7 +10,7 @@ import { usePortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry, useGetLocale, useSelectLocale } from '@/hooks/locale-hooks';
 import InitialIcon from '@/components/InitialIcon';
 import { isSameISOCode } from '@/utils/locale';
-import SemanticBox from '@/components/_draft/SemanticBox';
+import SemanticBox from '@/components/SemanticBox';
 
 type TProps = {} & Pick<ToolkitLocale, 'availableCountries' | 'availableLanguages'>;
 

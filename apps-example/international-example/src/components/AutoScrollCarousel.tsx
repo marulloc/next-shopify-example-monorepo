@@ -6,7 +6,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 type Props = {
   children: React.ReactNode;
 };
-const ScrollCarousel = ({ children }: Props) => {
+const AutoScrollCarousel = ({ children }: Props) => {
   const [direction, setDirection] = useState<'left' | 'right'>('right');
   const scrollRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<number | null>(null);
@@ -83,4 +83,4 @@ const ScrollCarousel = ({ children }: Props) => {
   );
 };
 
-export default ScrollCarousel;
+export default AutoScrollCarousel;

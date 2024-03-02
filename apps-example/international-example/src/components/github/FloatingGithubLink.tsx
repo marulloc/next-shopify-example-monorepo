@@ -6,7 +6,7 @@ import { GrGithub } from 'react-icons/gr';
 type TProps = {
   locale: { country: string; language: string };
 };
-const FloatingActionButton = async ({ locale }: TProps) => {
+const FloatingGithubLink = async ({ locale }: TProps) => {
   const dictionary = await (await getDictionary(locale.language.toLowerCase() as TDictionaries)).FloatingActionBtn;
   return (
     <div className={classNames('fixed bottom-0 left-0 z-20', 'pl-4 sm:pl-6 lg:pl-8')}>
@@ -25,4 +25,4 @@ const FloatingActionButton = async ({ locale }: TProps) => {
   );
 };
 
-export default FloatingActionButton;
+export default FloatingGithubLink;

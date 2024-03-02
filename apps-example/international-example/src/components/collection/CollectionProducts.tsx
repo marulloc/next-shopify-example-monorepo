@@ -6,8 +6,8 @@ import { TDictionaries, getDictionary } from '@/dictionaries';
 import { dictionaryReplacer } from '@/dictionaries/utils';
 
 import { classNames } from '@marulloc/components-library/utils';
-import ProductList from '../_draft/ProductList';
-import Typography from '../_draft/Typography';
+import ProductList from '../product/ProductList';
+import Typography from '../Typography';
 
 type TProps = {
   collection: string;

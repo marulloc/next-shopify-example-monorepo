@@ -1,7 +1,7 @@
-import { DescriptionSkeleton } from '@/components/product/Description';
-import { ImageGallerySkeleton } from '@/components/product/ImageGallery';
-import { ProductOptionsSkeleton } from '@/components/product/ProductOptions';
-import { RecommendationsSkeleton } from '@/components/product/Recommendations';
+import { DescriptionSkeleton } from '@/components/product/detail/Description';
+import { ImageGallerySkeleton } from '@/components/product/detail/ImageGallery';
+import { ProductOptionsSkeleton } from '@/components/product/detail/ProductOptions';
+import { RecommendationsSkeleton } from '@/components/product/detail/Recommendations';
 
 import { classNames } from '@marulloc/components-library/utils';
 

@@ -6,8 +6,8 @@ import Dropdown from '@marulloc/components-library/Dropdown';
 
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
-import Typography from '../_draft/Typography';
-import SemanticBox from '../_draft/SemanticBox';
+import Typography from '../Typography';
+import SemanticBox from '../SemanticBox';
 
 const SortingDropdown = () => {
   const [{ sort: sortKey }, navigateWithQueryParams] = useSyncDataUrl({ keys: ['sort'] });

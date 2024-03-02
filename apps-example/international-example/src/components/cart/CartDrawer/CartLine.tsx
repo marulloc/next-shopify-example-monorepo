@@ -3,7 +3,7 @@
 import { ToolkitCartLine } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-cart';
 import Image from 'next/image';
 import Link from 'next/link';
-import Price from '../../Price';
+import Price from '../../product/Price';
 import { classNames } from '@marulloc/components-library/utils';
 import { HiPlus, HiMinus } from 'react-icons/hi2';
 import React from 'react';
@@ -11,8 +11,8 @@ import React from 'react';
 import IconButton from '../../IconButton';
 import { useCartLineOptimisticMutation } from '@/hooks/cart-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
-import Typography from '@/components/_draft/Typography';
-import SemanticBox from '@/components/_draft/SemanticBox';
+import Typography from '@/components/Typography';
+import SemanticBox from '@/components/SemanticBox';
 
 type Props = {
   cartLine: ToolkitCartLine;

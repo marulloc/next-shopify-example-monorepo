@@ -1,6 +1,6 @@
 import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
-import SemanticBox from '@/components/_draft/SemanticBox';
-import Typography from '@/components/_draft/Typography';
+import SemanticBox from '@/components/SemanticBox';
+import Typography from '@/components/Typography';
 import { TDictionaries, getDictionary } from '@/dictionaries';
 
 import { classNames } from '@marulloc/components-library/utils';
