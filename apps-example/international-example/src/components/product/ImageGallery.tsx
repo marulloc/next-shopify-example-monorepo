@@ -4,7 +4,7 @@ import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import Carousel from '../Carousel';
 import Skeleton from '../loading/Skeleton';
-import Card from '../@common/semantic/Card';
+import SemanticBox from '../_draft/SemanticBox';
 
 type TProps = {
   product: ToolkitProduct;
@@ -15,9 +15,8 @@ const ImageGallery = async ({ product }: TProps) => {
     <div className={classNames('w-full h-full rounded-lg overflow-hidden ')}>
       <Carousel>
         {product.images.map((image, idx) => (
-          <Card
+          <SemanticBox
             as="figure"
-            level={2}
             key={`${product.title}-image-${idx}`}
             className="border-0 overflow-hidden w-full h-full"
           >
@@ -29,7 +28,7 @@ const ImageGallery = async ({ product }: TProps) => {
               className="w-full h-full object-cover object-center  "
             />
             <figcaption className="sr-onyl">{image.altText || `${product.title}-image-${idx}`}</figcaption>
-          </Card>
+          </SemanticBox>
         ))}
       </Carousel>
     </div>

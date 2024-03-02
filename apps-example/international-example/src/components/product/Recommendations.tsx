@@ -32,7 +32,7 @@ const Recommendations = async ({ product, dict, locale }: TProps) => {
           <Link
             href={recom.handleRoute}
             key={`${product.title}-recommendation-${recom.title}`}
-            className=" h-52 sm:h-64 md:h-80 lg:h-96 aspect-square  "
+            className="h-56 sm:h-64  md:h-72  aspect-square "
             prefetch={false}
           >
             <ProductCard variant="big" product={recom} priceDefaultOpen={false} />

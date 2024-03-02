@@ -76,7 +76,7 @@ const RootLayout = async ({
               />
               <SearchModal />
               <CartDrawer />
-              {/* <LocaleDetectionModal localeData={localeData} /> */}
+              <LocaleDetectionModal localeData={localeData} />
               <FloatingActionButton locale={{ country, language }} />
               <SpeedInsights />
             </Suspense>

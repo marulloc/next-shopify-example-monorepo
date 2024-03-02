@@ -12,7 +12,6 @@ import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import { usePortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry, useGetLocale } from '@/hooks/locale-hooks';
 import { RiEmotionSadLine } from 'react-icons/ri';
-import Card from '@/components/@common/semantic/Card';
 import ProductList from '@/components/_draft/ProductList';
 import CollectionList from '@/components/_draft/CollectionList';
 import Typography from '@/components/_draft/Typography';
@@ -58,22 +57,20 @@ const SearchModal = () => {
             className={classNames('absolute inset-x-0 top-0 md:top-20  flex justify-center')}
             onClick={() => closeModal()}
           >
-            <Card
-              as="aside"
-              level={0}
+            <aside
               onClick={(e) => e.stopPropagation()}
               className={classNames(
                 'h-screen md:h-fit  md:max-h-[calc(100vh-164px)] overflow-hidden',
-                'w-full max-w-3xl m-0 md:m-2',
-                'flex flex-col divide-y divide-default-base',
+                'w-full max-w-3xl m-0 md:m-2 md:rounded-lg',
+                'flex flex-col divide-y divide-default-base border-0',
               )}
             >
               <h2 className="sr-only">Search Items</h2>
               <SemanticBox
                 as="header"
-                p={[{ dir: 'xy', size: 'sm' }]}
+                p={[{ dir: 'xy', size: 'md' }]}
                 fill="glassy-default-accent"
-                className={classNames('flex items-center justify-between md:p-4 ')}
+                className={classNames('flex items-center justify-between ')}
               >
                 <form
                   onSubmit={(e) => {
@@ -189,7 +186,7 @@ const SearchModal = () => {
               <SemanticBox as="footer" fill="glassy-default-accent" p={{ dir: 'xy', size: 'sm' }} className="md:p-4">
                 <div className=" text-indigo-600 flex space-x-2 items-center justify-end  text-xs">{/*  */}</div>
               </SemanticBox>
-            </Card>
+            </aside>
           </div>
         )}
       </Modal.Contents>

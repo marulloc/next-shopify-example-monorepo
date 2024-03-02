@@ -14,7 +14,7 @@ const Header = async ({ locale }: Props) => {
   return (
     <SemanticBox
       as="header"
-      fill="glassy-default-muted"
+      fill="glassy-default-base"
       p={{ dir: 'x', size: 'md' }}
       className={classNames('border-b border-default-base  ', 'isolate sticky top-0 w-full z-30')}
     >

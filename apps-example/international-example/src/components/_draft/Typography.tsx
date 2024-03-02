@@ -20,7 +20,7 @@ const Typography = <T extends TAsTags = 'span'>({
   ...jsxProps
 }: TProps<T>) => {
   /** Handling Color Style */
-  const colorStyle = TYPOGRAPHY_COLOR[color ?? 'default-base'];
+  const colorStyle = color ? TYPOGRAPHY_COLOR[color] : classNames('text-inherit');
 
   /** Handling Size Style */
   const sizeStyle = TYPOGRAPHY_SIZE[size ?? 'md'][responsive ? 'responsive' : 'fixed'];

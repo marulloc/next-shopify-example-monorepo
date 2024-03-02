@@ -9,7 +9,6 @@ import ReactCountryFlag from 'react-country-flag';
 import { usePortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry, useGetLocale, useSelectLocale } from '@/hooks/locale-hooks';
 import InitialIcon from '@/components/InitialIcon';
-import Card from '@/components/@common/semantic/Card';
 import { isSameISOCode } from '@/utils/locale';
 import SemanticBox from '@/components/_draft/SemanticBox';
 
@@ -40,14 +39,13 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
             className={classNames('absolute inset-x-0 top-0 md:top-20  flex justify-center')}
             onClick={() => closeModal()}
           >
-            <Card
+            <SemanticBox
               as="aside"
-              level={0}
               onClick={(e) => e.stopPropagation()}
               className={classNames(
-                'h-screen md:h-fit  md:max-h-[calc(100vh-164px)] overflow-hidden',
-                'w-full max-w-3xl m-0 md:m-2',
-                'flex flex-col divide-y divide-default-base',
+                'h-screen md:h-fit md:max-h-[calc(100vh-164px)] overflow-hidden',
+                'w-full max-w-3xl m-0 md:m-2 md:rounded-lg',
+                'flex flex-col divide-y divide-default-base  ',
               )}
             >
               <SemanticBox
@@ -71,7 +69,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
 
               <SemanticBox
                 as="section"
-                p={[{ dir: 'xy', size: 'sm' }]}
+                p={[{ dir: 'xy', size: 'md' }]}
                 fill="glassy-default-base"
                 className={classNames('flex-1 overflow-y-auto md:p-4')}
               >
@@ -167,7 +165,7 @@ const LocaleSelectModal = ({ availableCountries, availableLanguages }: TProps) =
               <SemanticBox as="footer" fill="glassy-default-accent" p={{ dir: 'xy', size: 'sm' }} className="md:p-4">
                 <div className=" text-primary-base flex space-x-2 items-center justify-end  text-xs">{/*  */}</div>
               </SemanticBox>
-            </Card>
+            </SemanticBox>
           </div>
         )}
       </Modal.Contents>

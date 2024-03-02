@@ -44,16 +44,16 @@ const SemanticBox = <T extends React.ElementType = 'div'>({ as, m, p, s, g, fill
         : BOX_SPACING['padding'][p.dir][p.size]),
     m &&
       (Array.isArray(m)
-        ? m.map(({ dir, size }) => BOX_SPACING['padding'][dir][size]).join(' ')
-        : BOX_SPACING['padding'][m.dir][m.size]),
+        ? m.map(({ dir, size }) => BOX_SPACING['margin'][dir][size]).join(' ')
+        : BOX_SPACING['margin'][m.dir][m.size]),
     s &&
       (Array.isArray(s)
-        ? s.map(({ dir, size }) => BOX_SPACING['padding'][dir][size]).join(' ')
-        : BOX_SPACING['padding'][s.dir][s.size]),
+        ? s.map(({ dir, size }) => BOX_SPACING['space'][dir][size]).join(' ')
+        : BOX_SPACING['space'][s.dir][s.size]),
     g &&
       (Array.isArray(g)
-        ? g.map(({ dir, size }) => BOX_SPACING['padding'][dir][size]).join(' ')
-        : BOX_SPACING['padding'][g.dir][g.size]),
+        ? g.map(({ dir, size }) => BOX_SPACING['gap'][dir][size]).join(' ')
+        : BOX_SPACING['gap'][g.dir][g.size]),
   );
 
   const fillStyle = classNames(fill && FILL_COLOR[fill]);

@@ -10,7 +10,6 @@ import LoadingDots from '@/components/loading/LoadingDots';
 import { useSelectVariant } from '@/hooks/useSelectProductVariant';
 import { useSyncDataUrl } from '@/hooks/useSyncDataUrl';
 import AddToCartButton from '../cart/AddToCartButton';
-import Card from '../@common/semantic/Card';
 import { TDictionary } from '@/dictionaries';
 import Skeleton from '../loading/Skeleton';
 import Typography from '../_draft/Typography';

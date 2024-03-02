@@ -1,12 +1,11 @@
 import { getPage } from '@/@marulloc-shopify-nextapi/v24.01/services/page/service';
-import Card from '@/components/@common/semantic/Card';
 import { localTheme } from '@/theme/local-theme';
 import { splitLocale } from '@/utils/locale';
-import { delay } from '@/utils/asyncUtils';
 import { classNames } from '@marulloc/components-library/utils';
 import { Metadata, ServerRuntime } from 'next';
 import { notFound } from 'next/navigation';
 import Typography from '@/components/_draft/Typography';
+import SemanticBox from '@/components/_draft/SemanticBox';
 
 export const runtime: ServerRuntime = 'edge';
 
@@ -39,7 +38,7 @@ const StaticPage = async ({ params }: TPageParams) => {
   const [page] = await Promise.all([getPage(pageHandle, { country, language })]);
 
   return (
-    <main className={classNames('flex-1 flex flex-col md:flex-row  ', ' border-b', 'border-gray-300')}>
+    <div className={classNames('flex-1 flex flex-col md:flex-row  ', ' border-b', 'border-gray-300')}>
       <div className={classNames('flex-1', localTheme.spacing.padding.xy.medium, 'max-w-4xl mx-auto')}>
         <Typography as="p" size="xs" noWarn className="text-right mb-2">
           {`Last update : ${new Intl.DateTimeFormat(language, {
@@ -49,24 +48,25 @@ const StaticPage = async ({ params }: TPageParams) => {
           }).format(new Date(page.updatedAt))}`}
         </Typography>
 
-        <section className=" p-0 ">
-          <Card
+        <main>
+          <SemanticBox
             as="header"
-            level={2}
-            className={classNames('border-0  shadow-md bg-indigo-200 text-indigo-800 rounded-lg p-6  ')}
+            fill="primary-muted"
+            p={{ dir: 'xy', size: 'md' }}
+            className={classNames('rounded-lg w-full shadow-lg bg-opacity-30 text-primary-base')}
           >
-            <Typography as="h1" size="3xl" color="primary-accent" className="font-semibold mb-4">
+            <Typography as="h1" size="3xl" className="font-semibold mb-4">
               {page.title}
             </Typography>
-            <Typography as="p" size="sm" color="primary-accent" noWarn>
+            <Typography as="p" size="sm" noWarn>
               {page.bodySummary}
             </Typography>
-          </Card>
+          </SemanticBox>
 
-          <div className="prose mt-6 p-6" dangerouslySetInnerHTML={{ __html: page.body }} />
-        </section>
+          <section className="prose mt-6 p-6" dangerouslySetInnerHTML={{ __html: page.body }} />
+        </main>
       </div>
-    </main>
+    </div>
   );
 };
 

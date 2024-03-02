@@ -7,8 +7,8 @@ import { classNames } from '@marulloc/components-library/utils';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { MatchedContents, NotDetectedContents, NotMatchedContents } from './AlertContents';
-import Card from '@/components/@common/semantic/Card';
 import { useDetectLocaleMatch } from '@/hooks/locale-hooks';
+import SemanticBox from '@/components/_draft/SemanticBox';
 
 type TProps = {
   localeData: ToolkitLocale;
@@ -26,19 +26,24 @@ const LocaleDetectionModal = ({ localeData }: TProps) => {
   return (
     <Drawer anchor="bottom" open={isActive} onClose={() => setIsActive(false)}>
       <div>
-        <Drawer.Backdrop>{() => <div className="h-screen w-screen bg-white/40 bg-opacity-20  "></div>}</Drawer.Backdrop>
+        <Drawer.Backdrop>
+          {({ closeDrawer }) => (
+            <SemanticBox
+              fill="glassy-backdrop"
+              onClick={() => closeDrawer()}
+              className={classNames('isolate w-full h-full')}
+            />
+          )}
+        </Drawer.Backdrop>
         <Drawer.Contents>
           {({ closeDrawer }) => (
             <div className="w-full h-fit  flex justify-end group">
-              <Card
+              <SemanticBox
                 as="aside"
-                variant="glassy"
-                level={3}
-                className={classNames(
-                  'shadow-xl z-50',
-                  localTheme.spacing.padding.xy.small,
-                  localTheme.spacing.margin.xy.small,
-                )}
+                fill="glassy-default-accent"
+                p={{ dir: 'xy', size: 'sm' }}
+                m={{ dir: 'xy', size: 'sm' }}
+                className={classNames('shadow-xl z-50 rounded-lg  ')}
               >
                 {localeDetection?.status === 'matched' && (
                   <MatchedContents handleClose={closeDrawer} {...localeDetection} />
@@ -49,7 +54,7 @@ const LocaleDetectionModal = ({ localeData }: TProps) => {
                 {localeDetection?.status === 'not-detected' && (
                   <NotDetectedContents handleClose={closeDrawer} {...localeDetection} />
                 )}
-              </Card>
+              </SemanticBox>
             </div>
           )}
         </Drawer.Contents>

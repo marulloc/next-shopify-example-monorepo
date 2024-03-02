@@ -2,9 +2,9 @@ import { TDictionary } from '@/dictionaries';
 import { localTheme } from '@/theme/local-theme';
 import { classNames } from '@marulloc/components-library/utils';
 import Skeleton from '../loading/Skeleton';
-import Card from '../@common/semantic/Card';
 import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
 import Typography from '../_draft/Typography';
+import SemanticBox from '../_draft/SemanticBox';
 
 type TProps = {
   product: ToolkitProduct;
@@ -24,22 +24,23 @@ const Description = async ({ product, dict }: TProps) => {
       {/* {product.descriptionHtml && <div dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}></div>} */}
 
       <div>
-        <div className={classNames('mb-6  space-y-2')}>
+        <aside className={classNames('mb-6  space-y-2')}>
           {dictionary.mock.warning.map((contents, index) => (
-            <Card
+            <SemanticBox
               as="article"
-              level={2}
+              fill="primary-muted"
+              p={{ dir: 'xy', size: 'md' }}
               key={`${product.title}-info-${index}`}
-              className="p-4 bg-indigo-100 rounded-lg"
+              className=" bg-opacity-30 rounded-lg"
             >
               <Typography className=" " size="sm" noWarn color="primary-accent">
                 {contents}
               </Typography>
-            </Card>
+            </SemanticBox>
           ))}
-        </div>
+        </aside>
 
-        <Card as="section" level={0} className=" border-0 p-6 space-y-10 ">
+        <section className=" border-0 p-6 space-y-10 ">
           <div>
             <Typography as="h2" size="2xl" color="default-accent" className={classNames('font-bold mb-2')}>
               {product.title}
@@ -76,7 +77,7 @@ const Description = async ({ product, dict }: TProps) => {
           <div>
             <Typography className="mb-4">{dictionary.mock.summary.outro}</Typography>
           </div>
-        </Card>
+        </section>
       </div>
     </div>
   );
