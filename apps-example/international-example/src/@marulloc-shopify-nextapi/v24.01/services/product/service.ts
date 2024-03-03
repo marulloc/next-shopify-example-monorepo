@@ -13,7 +13,6 @@ import { GetProductRecommendationsService, GetProductService, GetProductsService
 export const getProduct = async (handle: string, locale?: ShopifyLocaleContext): Promise<ToolkitProduct> => {
   const res = await storeFetch<GetProductService>({
     query: getProductQuery,
-    // tags: [TAGS.products],
     variables: {
       handle,
       country: locale?.country?.toUpperCase(),
@@ -30,7 +29,6 @@ export const getProductRecommendations = async (
 ): Promise<ToolkitProduct[]> => {
   const res = await storeFetch<GetProductRecommendationsService>({
     query: getProductRecommendationsQuery,
-    // tags: [TAGS.products],
     variables: {
       productId,
       country: locale?.country?.toUpperCase(),
@@ -54,7 +52,6 @@ export const getProducts = async ({
 }): Promise<ToolkitProduct[]> => {
   const res = await storeFetch<GetProductsService>({
     query: getProductsQuery,
-    // tags: [TAGS.products],
     variables: {
       query,
       reverse,

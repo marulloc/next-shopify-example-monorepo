@@ -20,7 +20,6 @@ export const getLocale = async (locale?: ShopifyLocaleContext): Promise<ToolkitL
 export const getMenu = async (handle: string, language?: ShopifyLocaleContext['language']): Promise<ToolkitMenu> => {
   const res = await storeFetch<GetMenuService>({
     query: getMenuQuery,
-    // tags: [TAGS.collections]
     variables: {
       handle,
       language: language?.toUpperCase(),

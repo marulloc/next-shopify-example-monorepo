@@ -17,7 +17,6 @@ import { GetCollectionProductsService, GetCollectionService, GetCollectionsServi
 export const getCollection = async (handle: string, locale?: ShopifyLocaleContext): Promise<ToolkitCollection> => {
   const res = await storeFetch<GetCollectionService>({
     query: getCollectionQuery,
-    // tags: [TAGS.collections],
     variables: {
       handle,
       country: locale?.country?.toUpperCase(),
@@ -41,7 +40,6 @@ export const getCollectionProducts = async ({
 
   const res = await storeFetch<GetCollectionProductsService>({
     query: getCollectionProductsQuery,
-    // tags: [TAGS.collections, TAGS.products],
     variables: {
       handle: collection,
       reverse,
@@ -57,7 +55,6 @@ export const getCollectionProducts = async ({
 export const getCollections = async (locale?: ShopifyLocaleContext): Promise<ToolkitCollection[]> => {
   const res = await storeFetch<GetCollectionsService>({
     query: getCollectionsQuery,
-    // tags: [TAGS.collections]
     variables: {
       country: locale?.country?.toUpperCase(),
       language: locale?.language?.toUpperCase(),
