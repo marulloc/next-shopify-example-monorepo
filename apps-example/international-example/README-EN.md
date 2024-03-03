@@ -2,7 +2,7 @@
 
 - **README created by ChatGPT**
 - **[View Storefront Demo](https://shopify-storefront-monorepo-example-international-example.vercel.app/)**
-- **[한국어 README]()**
+- **[한국어 README](https://github.com/marulloc/shopify-storefront-monorepo-example/blob/master/apps-example/international-example/README.md)**
 
 <br/>
 
