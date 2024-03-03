@@ -2,7 +2,7 @@
 
 - **ChatGPT 가 생성한 Readme 입니다.**
 - **[View Storefront Demo](https://shopify-storefront-monorepo-example-international-example.vercel.app/)**
-- **[English README]()**
+- **[English README](https://github.com/marulloc/shopify-storefront-monorepo-example/blob/master/README-EN.md)**
 
 <br/>
 
