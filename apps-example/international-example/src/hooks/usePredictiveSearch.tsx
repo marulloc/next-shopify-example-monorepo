@@ -1,7 +1,7 @@
-import { ToolkitPredictiveSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-search';
-import { getPredictiveSearch } from '@/@marulloc-shopify-nextapi/v24.01/services/search/service';
 import { useCallback, useEffect, useState } from 'react';
 import { useGetLocale } from './locale-hooks';
+import { ToolkitPredictiveSearch } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
+import { getPredictiveSearch } from '@marulloc/shopify-next-api/v24.01/services';
 
 /**
  *

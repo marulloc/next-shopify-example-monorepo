@@ -1,13 +1,11 @@
 import type { Metadata } from 'next';
 import '../globals.css';
-// import { getLocale, getMenu, getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { splitLocale } from '@/utils/locale';
 import Header from '../../components/shop/Header';
 import FloatingGithubLink from '../../components/github/FloatingGithubLink';
 import { classNames } from '@marulloc/components-library/utils';
 import RecoilProvider from '@/context/RecoilProvider';
 import MenuDrawer from '@/components/shop/MenuDrawer';
-// import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import LocaleSelectorModal from '@/components/locale/LocaleSelectModal';
 import SearchModal from '@/components/search/SearchModal';
 import CartDrawer from '@/components/cart/CartDrawer';
@@ -76,18 +74,16 @@ const RootLayout = async ({
       <body className={classNames('relative   overflow-hidden')}>
         <SemanticBox as="div" fill="default-muted" className={classNames(' ')}>
           <RecoilProvider locale={{ country, language }} dictionary={dictionary}>
-            <Suspense>
-              <MenuDrawer menu={menu} collections={collections} />
-              <LocaleSelectorModal
-                availableCountries={localeData.availableCountries}
-                availableLanguages={localeData.availableLanguages}
-              />
-              <SearchModal />
-              <CartDrawer />
-              <LocaleDetectionModal localeData={localeData} />
-              <FloatingGithubLink locale={{ country, language }} />
-              <SpeedInsights />
-            </Suspense>
+            <MenuDrawer menu={menu} collections={collections} />
+            <LocaleSelectorModal
+              availableCountries={localeData.availableCountries}
+              availableLanguages={localeData.availableLanguages}
+            />
+            <SearchModal />
+            <CartDrawer />
+            <LocaleDetectionModal localeData={localeData} />
+            <FloatingGithubLink locale={{ country, language }} />
+            <SpeedInsights />
 
             <SemanticBox
               as="div"

@@ -1,8 +1,8 @@
-import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-common';
-import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import Image from 'next/image';
 import Link from 'next/link';
 import Typography from '../Typography';
+import { ShopifyLocaleContext } from '@marulloc/shopify-next-api/v24.01/@shopify-types';
+import { getShopInfo } from '@marulloc/shopify-next-api/v24.01/services';
 
 type Props = {
   country: ShopifyLocaleContext['country'];

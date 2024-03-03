@@ -1,6 +1,6 @@
 'use client';
 
-import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
+import { ToolkitProduct } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
 import { useCallback, useMemo, useState } from 'react';
 
 type TParams = {

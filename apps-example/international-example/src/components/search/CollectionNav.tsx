@@ -1,7 +1,7 @@
-import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import CollectionList from '@/components/collection/CollectionList';
 import Skeleton from '@/components/loading/Skeleton';
 import { delay } from '@/utils/asyncUtils';
+import { getCollections } from '@marulloc/shopify-next-api/v24.01/services';
 import { Suspense } from 'react';
 
 type TCollectionNavProps = {

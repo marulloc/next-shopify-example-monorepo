@@ -2,15 +2,10 @@
 
 import { DefaultValue, atom, selector } from 'recoil';
 import { atomLocale } from './locale-atoms';
-import { ToolkitCart } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-cart';
-import {
-  createCart,
-  getCart,
-  updateCartLines,
-  updateCartLocale,
-} from '@/@marulloc-shopify-nextapi/v24.01/services/cart/service';
 import { debounce } from '@/utils/asyncUtils';
 import { deepCompare } from '@/utils/compare';
+import { ToolkitCart } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
+import { createCart, getCart, updateCartLines, updateCartLocale } from '@marulloc/shopify-next-api/v24.01/services';
 
 const STORAGE_KEY = 'marulloc-cart';
 const store = typeof window !== 'undefined' ? window.localStorage : null;

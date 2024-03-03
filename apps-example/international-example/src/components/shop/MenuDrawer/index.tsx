@@ -1,11 +1,9 @@
 'use client';
 
-import { ToolkitMenu } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
 import Drawer from '@marulloc/components-library/Drawer';
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
 import { HiXMark } from 'react-icons/hi2';
-import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-collection';
 import IconButton from '@/components/IconButton';
 import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/SearchInputTrigger';
 import InitialIcon from '@/components/InitialIcon';
@@ -16,6 +14,7 @@ import GithubLink from '../../github/GithubLink';
 import CollectionList from '@/components/collection/CollectionList';
 import Typography from '@/components/Typography';
 import SemanticBox from '@/components/SemanticBox';
+import { ToolkitCollection, ToolkitMenu } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
 
 type Props = {
   menu: ToolkitMenu;
