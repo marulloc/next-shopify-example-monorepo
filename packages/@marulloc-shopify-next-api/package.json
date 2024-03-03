@@ -1,0 +1,13 @@
+{
+  "name": "@marulloc/shopify-next-api",
+  "version": "1.0.0",
+  "private": true,
+  "exports" : { 
+  },
+  "dependencies": { 
+    "typescript": "^5",
+    "react": "^18.2.0",
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.18"
+  }
+}
