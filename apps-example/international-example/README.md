@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# International Example Storefront
+
+[한국어 버전](README.ko.md)
+
+This project is a custom storefront that supports multilingual and multinational features, built with Next.js and leveraging the Shopify GraphQL API.
+
+<a href="YOUR_DEMO_LINK" target="_blank" style="background-color: #5a67d8; color: #f7fafc; padding: 8px 16px; border-radius: 0.25rem; text-decoration: none; box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);">
+  View Demo
+</a>
+
+<br>
 
 ## Getting Started
 
-First, run the development server:
+To run the project, use the command:
+`pnpm run dev --filter international-example`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+#### Required !!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. The project relies on three environment variables, as outlined in the `env.example` file.
+2. For a detailed look at our custom library for Shopify's API, refer to the `@marulloc-shopify-next-api` project within the monorepo.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<br>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features
 
-## Learn More
+### 1. API Integration
 
-To learn more about Next.js, take a look at the following resources:
+While the Shopify GraphQL API is used directly, our custom library, located in the monorepo's shared library (`@marulloc-shopify-next-api`), enhances the multilingual and multinational support. This library includes parsers and types that simplify the API response structure, making it easier to work with.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<br>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### 2. Multilingual and Multinational Support
 
-## Deploy on Vercel
+Although Shopify provides multilingual data via the GraphQL API's `@inContext` directive, we have implemented our dictionary for other content (see second screenshot for implementation details).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Localization is determined by the user agent's preferred language and geoIP. The available locales from Shopify are fetched via API. Our middleware uses the `negotiator` library to assign and redirect locales, optimizing performance by relying on a static list of locales.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The `apps/[locale]` dynamic routing initializes the locale context (implemented with Recoil atoms) upon route assignment.
+
+To alert users of potential differences in shipping or currency, we detect geoIP discrepancies and inform the user accordingly. Client-side cookie reading is handled by the `apps/api/locale-detection` API.
+
+<br>
+
+### 3. Dynamic Language Support
+
+We support dynamic insertion of variables and components in multiple languages through a function named `dictionaryReplace` located in `/dictionary/utils.tsx`.
+
+<br>
+
+### 4. State Management with Recoil
+
+All Shopify API-related contexts depend on the `atomLocale` for storing locale information.
+
+The `cartAtom` uses an optimistic UI approach, syncing with the cart via atom effects. It leverages local storage and Recoil's state management to provide an efficient and responsive cart experience.
+
+<br>
+
+### 5. Hooks Pattern
+
+We separate view logic from business logic using custom React hooks to keep our components clean and maintainable.
+
+<br>
+
+### 6. Styling with Tailwind CSS
+
+The project uses Tailwind CSS for styling, with a set of commonly used utility classes defined in `theme-constant.ts`. We minimize repetitive classes by using style variants through components like `<SemanticBox />` and `<Typography />`.
+
+---
+
+For a detailed look at our custom library for Shopify's API, refer to the `@marulloc-shopify-next-api` project within the monorepo.
