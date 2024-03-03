@@ -1,9 +1,8 @@
-import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
-
 import { classNames } from '@marulloc/components-library/utils';
 import ProductPrice from './ProductPrice';
 import Image from 'next/image';
 import Typography from '../Typography';
+import { ToolkitProduct } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
 
 export type TPRoductCardProps = TSmallProductCardProps | TBigProductCardProps;
 

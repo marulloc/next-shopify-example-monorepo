@@ -1,7 +1,5 @@
 'use client';
 
-import { ToolkitLocale } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
-
 import Drawer from '@marulloc/components-library/Drawer';
 import { classNames } from '@marulloc/components-library/utils';
 import { useEffect, useState } from 'react';
@@ -9,6 +7,7 @@ import React from 'react';
 import { MatchedContents, NotDetectedContents, NotMatchedContents } from './AlertContents';
 import { useDetectLocaleMatch } from '@/hooks/locale-hooks';
 import SemanticBox from '@/components/SemanticBox';
+import { ToolkitLocale } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
 
 type TProps = {
   localeData: ToolkitLocale;

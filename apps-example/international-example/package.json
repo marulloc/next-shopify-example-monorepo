@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@marulloc/components-library": "workspace:*",
+    "@marulloc/shopify-next-api": "workspace:*",
     "@vercel/speed-insights": "^1.0.10",
     "negotiator": "^0.6.3",
     "next": "14.1.0",

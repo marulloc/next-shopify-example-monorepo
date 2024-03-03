@@ -1,13 +1,11 @@
 import type { Metadata } from 'next';
 import '../globals.css';
-import { getLocale, getMenu, getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { splitLocale } from '@/utils/locale';
 import Header from '../../components/shop/Header';
 import FloatingGithubLink from '../../components/github/FloatingGithubLink';
 import { classNames } from '@marulloc/components-library/utils';
 import RecoilProvider from '@/context/RecoilProvider';
 import MenuDrawer from '@/components/shop/MenuDrawer';
-import { getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import LocaleSelectorModal from '@/components/locale/LocaleSelectModal';
 import SearchModal from '@/components/search/SearchModal';
 import CartDrawer from '@/components/cart/CartDrawer';
@@ -17,6 +15,15 @@ import { TDictionaries, getDictionary } from '@/dictionaries';
 import Footer from '@/components/shop/Footer';
 import { Suspense } from 'react';
 import SemanticBox from '@/components/SemanticBox';
+
+import { setShopifyNextConfig } from '@marulloc/shopify-next-api/v24.01';
+import { getCollections, getLocale, getMenu, getShopInfo } from '@marulloc/shopify-next-api/v24.01/services';
+
+setShopifyNextConfig({
+  storeDomain: process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || '',
+  apiVersion: process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION || '',
+  accessToken: process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN || '',
+});
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();
