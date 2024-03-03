@@ -1,9 +1,8 @@
-import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import SemanticBox from '@/components/SemanticBox';
 import Typography from '@/components/Typography';
 import { TDictionaries, getDictionary } from '@/dictionaries';
-
 import { classNames } from '@marulloc/components-library/utils';
+import { getShopInfo } from '@marulloc/shopify-next-api/v24.01/services';
 import Image from 'next/image';
 
 type Props = {

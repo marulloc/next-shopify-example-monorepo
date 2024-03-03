@@ -1,11 +1,10 @@
-import { getPage } from '@/@marulloc-shopify-nextapi/v24.01/services/page/service';
-
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import { Metadata, ServerRuntime } from 'next';
 import { notFound } from 'next/navigation';
 import Typography from '@/components/Typography';
 import SemanticBox from '@/components/SemanticBox';
+import { getPage } from '@marulloc/shopify-next-api/v24.01/services';
 
 export const runtime: ServerRuntime = 'edge';
 

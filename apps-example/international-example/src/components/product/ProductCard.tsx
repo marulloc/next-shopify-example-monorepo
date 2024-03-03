@@ -1,9 +1,8 @@
-import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
-
 import { classNames } from '@marulloc/components-library/utils';
 import ProductPrice from './ProductPrice';
 import Image from 'next/image';
 import Typography from '../Typography';
+import { ToolkitProduct } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
 
 export type TPRoductCardProps = TSmallProductCardProps | TBigProductCardProps;
 
@@ -47,10 +46,10 @@ const SmallProductCard = ({ product }: Omit<TSmallProductCardProps, 'variant'>) 
       </div>
 
       <div>
-        <Typography as="h4" color="default-accent" size="sm" className="group-hover:text-primary-base mb-1">
+        <Typography as="h4" color="default-accent" size="sm" noWarn className="group-hover:text-primary-base mb-1">
           {product.title}
         </Typography>
-        <Typography size="sm" color="default-muted" className="group-hover:text-primary-base">
+        <Typography size="sm" color="default-muted" noWarn className="group-hover:text-primary-base">
           <ProductPrice priceRange={product.priceRange} />
         </Typography>
       </div>

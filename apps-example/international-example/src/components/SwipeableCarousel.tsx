@@ -55,7 +55,6 @@ const SwipeableCarousel = ({ children }: { children: React.ReactElement[] }) => 
   return (
     <div className="w-full h-full relative group  ">
       <div
-        // id="carousel-container"
         className={classNames('w-full h-full  relative overflow-hidden  ')}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}

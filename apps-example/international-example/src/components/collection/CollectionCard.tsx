@@ -1,9 +1,8 @@
-import { ToolkitCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-collection';
-
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import InitialIcon from '../InitialIcon';
 import Typography from '../Typography';
+import { ToolkitCollection } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
 
 export type TCollectionCardProps = {
   variant: 'small' | 'big';
@@ -40,7 +39,7 @@ const SmallCollectionCard = ({ collection, index }: Omit<TCollectionCardProps, '
       ) : (
         <InitialIcon initial={collection.title[0] || 'c'} />
       )}
-      <Typography as="h4" size="sm" responsive={false}>
+      <Typography as="h4" size="sm" noWarn responsive={false}>
         {collection.title.toUpperCase()}
       </Typography>
     </article>
@@ -70,7 +69,7 @@ const BigCollectionCard = ({ collection, index }: Omit<TCollectionCardProps, 'va
       >
         {collection.title.toUpperCase()}
       </Typography>
-      <Typography as="p" size="sm" color="default-muted" className={classNames('mt-0 text-sm  ')}>
+      <Typography as="p" size="sm" color="default-muted" noWarn className={classNames('mt-0 text-sm  ')}>
         {collection.description || `default collection`}
       </Typography>
     </article>

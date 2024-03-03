@@ -1,11 +1,11 @@
 'use client';
 
-import { ShopifyProductVariant } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-product';
 import { useAddToCart } from '@/hooks/cart-hooks';
 import { useSetPortalRecoil } from '@/hooks/portal-hooks';
 import { useGetDictioanry } from '@/hooks/locale-hooks';
 import { classNames } from '@marulloc/components-library/utils';
 import { useMemo } from 'react';
+import { ShopifyProductVariant } from '@marulloc/shopify-next-api/v24.01/@shopify-types';
 
 type TAddToCartBtnStates = 'notYet' | 'soldOut' | 'waiting' | 'adding';
 

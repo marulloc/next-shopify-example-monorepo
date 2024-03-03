@@ -1,9 +1,9 @@
-import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import SwipeableCarousel from '../../SwipeableCarousel';
 import Skeleton from '../../loading/Skeleton';
 import SemanticBox from '../../SemanticBox';
+import { ToolkitProduct } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
 
 type TProps = {
   product: ToolkitProduct;

@@ -1,10 +1,10 @@
 import { classNames } from '@marulloc/components-library/utils';
 import MenuIconTrigger from './MenuDrawer/triggers/MenuIconTrigger';
-import { ShopifyLocaleContext } from '@/@marulloc-shopify-nextapi/v24.01/@shopify-types/shopify-common';
 import SearchIconTrigger from '../search/SearchModal/triggers/SearchIconTrigger';
 import Logo from './Logo';
 import CartIconTrigger from '../cart/CartDrawer/triggers/CartIconTrigger';
 import SemanticBox from '@/components/SemanticBox';
+import { ShopifyLocaleContext } from '@marulloc/shopify-next-api/v24.01/@shopify-types';
 
 type Props = {
   locale?: ShopifyLocaleContext;

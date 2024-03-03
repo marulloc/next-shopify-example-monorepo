@@ -1,5 +1,3 @@
-import { ToolkitProduct } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-product';
-import { getProductRecommendations } from '@/@marulloc-shopify-nextapi/v24.01/services/product/service';
 import ProductCard from '@/components/product/ProductCard';
 import { classNames } from '@marulloc/components-library/utils';
 import Link from 'next/link';
@@ -7,6 +5,8 @@ import AutoScrollCarousel from '../../AutoScrollCarousel';
 import Skeleton from '@/components/loading/Skeleton';
 import { TDictionary } from '@/dictionaries';
 import Typography from '../../Typography';
+import { getProductRecommendations } from '@marulloc/shopify-next-api/v24.01/services';
+import { ToolkitProduct } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
 
 type TProps = {
   product: ToolkitProduct;

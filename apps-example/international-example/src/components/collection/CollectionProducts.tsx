@@ -1,13 +1,12 @@
-import { ToolkitSortKey } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-search';
-import { getCollectionProducts } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import Skeleton from '@/components/loading/Skeleton';
 import SortingDropdown from '@/components/search/SortingDropdown';
 import { TDictionaries, getDictionary } from '@/dictionaries';
 import { dictionaryReplacer } from '@/dictionaries/utils';
-
 import { classNames } from '@marulloc/components-library/utils';
 import ProductList from '../product/ProductList';
 import Typography from '../Typography';
+import { ToolkitSortKey } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
+import { getCollectionProducts } from '@marulloc/shopify-next-api/v24.01/services';
 
 type TProps = {
   collection: string;
