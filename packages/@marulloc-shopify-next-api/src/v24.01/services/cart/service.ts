@@ -9,8 +9,8 @@ import {
 import { getCartQuery } from '../../@shopify-graphql/queries/cart';
 import { ShopifyCartLineUpdateInput } from '../../@shopify-types/shopify-cart';
 import { ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
-import { storeFetch } from '../../utils/storeFetch';
-import { ToolkitCart } from '../@toolkit-types/toolkit-cart';
+import { storeFetch } from '../../storeFetch';
+import { ToolkitCart } from '../../@toolkit-types/toolkit-cart';
 import { parseCart } from './parser';
 import {
   AddToCartService,

@@ -1,6 +1,6 @@
 import { ShopifyCollection } from '../../@shopify-types/shopify-collection';
 import { generateGIDRoute, generateHandleRoute } from '../../utils/routeGenerator';
-import { ToolkitCollection } from '../@toolkit-types/toolkit-collection';
+import { ToolkitCollection } from '../../@toolkit-types/toolkit-collection';
 
 export const parseCollection = (collection: ShopifyCollection): ToolkitCollection => {
   return {

@@ -1,5 +1,5 @@
 import { ShopifyCart } from '../../@shopify-types/shopify-cart';
-import { ToolkitCart } from '../@toolkit-types/toolkit-cart';
+import { ToolkitCart } from '../../@toolkit-types/toolkit-cart';
 import { flatConnection } from '../../utils/flat';
 import { parseProduct } from '../product/parser';
 

@@ -1,5 +1,5 @@
-import { ShopifyBaseCartLine, ShopifyCart } from '../../@shopify-types/shopify-cart';
-import { ShopifyMoney } from '../../@shopify-types/shopify-common';
+import { ShopifyBaseCartLine, ShopifyCart } from '../@shopify-types/shopify-cart';
+import { ShopifyMoney } from '../@shopify-types/shopify-common';
 import { ToolkitProduct } from './toolkit-product';
 
 export type ToolkitCartLine = Omit<ShopifyBaseCartLine, 'product'> & {

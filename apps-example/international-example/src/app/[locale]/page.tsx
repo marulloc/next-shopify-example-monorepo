@@ -1,14 +1,16 @@
-import { getCollectionProducts, getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
-import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
+// import { getCollectionProducts, getCollections } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
+// import { getShopInfo } from '@/@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import CollectionList from '@/components/collection/CollectionList';
 import ProductList from '@/components/product/ProductList';
 import SemanticBox from '@/components/SemanticBox';
 import Typography from '@/components/Typography';
-
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { setShopifyNextConfig } from '@marulloc/shopify-next-api/v24.01';
+import { getCollectionProducts, getCollections, getShopInfo } from '@marulloc/shopify-next-api/v24.01/services';
 
 const Home = async ({ params }: { params: { locale: string } }) => {
   const { countryCode: country, languageCode: language } = splitLocale(params.locale);

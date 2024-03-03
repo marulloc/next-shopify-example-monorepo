@@ -6,7 +6,7 @@ export const extractGid = (gid: ShopifyGid['hash']) => {
   const match = gid.match(regexParttern);
   if (match) {
     const [_, resource, id] = match;
-    return { resource, id };
+    return { resource, id } as { resource: string; id: string };
   } else {
     return { resource: 'undefined', id: 'undefined' };
   }

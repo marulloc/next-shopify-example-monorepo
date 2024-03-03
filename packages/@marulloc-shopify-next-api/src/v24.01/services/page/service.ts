@@ -2,7 +2,7 @@ import { getPageQuery, getPagesQuery } from '../../@shopify-graphql/queries/page
 import { ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
 import { flatConnection } from '../../utils/flat';
 import { storeFetch } from '../../storeFetch';
-import { ToolkitPage } from '../@toolkit-types/toolkit-page';
+import { ToolkitPage } from '../../@toolkit-types/toolkit-page';
 import { GetPageService, GetPagesService } from './types';
 
 export const getPage = async (handle: string, locale?: ShopifyLocaleContext): Promise<ToolkitPage> => {

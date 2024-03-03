@@ -1,4 +1,4 @@
-import { ShopifyLocalization, ShopifyMenuItem, ShopifyShopInfo } from '../../@shopify-types/shopify-shop';
+import { ShopifyLocalization, ShopifyMenuItem, ShopifyShopInfo } from '../@shopify-types/shopify-shop';
 
 export type ToolkitMenu = Array<ShopifyMenuItem>;
 

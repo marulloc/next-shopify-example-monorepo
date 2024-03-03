@@ -4,11 +4,11 @@ import {
   getCollectionsQuery,
 } from '../../@shopify-graphql/queries/collection';
 import { ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
+import { storeFetch } from '../../storeFetch';
 import { flatConnection } from '../../utils/flat';
-import { storeFetch } from '../../utils/storeFetch';
-import { ToolkitCollection } from '../@toolkit-types/toolkit-collection';
-import { ToolkitProduct } from '../@toolkit-types/toolkit-product';
-import { ToolkitSortKey } from '../@toolkit-types/toolkit-search';
+import { ToolkitCollection } from '../../@toolkit-types/toolkit-collection';
+import { ToolkitProduct } from '../../@toolkit-types/toolkit-product';
+import { ToolkitSortKey } from '../../@toolkit-types/toolkit-search';
 import { parseProducts } from '../product/parser';
 import { parseSortParams } from '../search/parser';
 import { parseCollection, parseCollections } from './parser';

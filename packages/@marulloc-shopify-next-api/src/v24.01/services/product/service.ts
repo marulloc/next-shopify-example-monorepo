@@ -4,9 +4,9 @@ import {
   getProductsQuery,
 } from '../../@shopify-graphql/queries/product';
 import { ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
+import { storeFetch } from '../../storeFetch';
 import { flatConnection } from '../../utils/flat';
-import { storeFetch } from '../../utils/storeFetch';
-import { ToolkitProduct } from '../@toolkit-types/toolkit-product';
+import { ToolkitProduct } from '../../@toolkit-types/toolkit-product';
 import { parseProduct, parseProducts } from './parser';
 import { GetProductRecommendationsService, GetProductService, GetProductsService } from './types';
 

@@ -1,7 +1,7 @@
 import { getLocaleQuery, getMenuQuery, getShopInfoQuery } from '../../@shopify-graphql/queries/shop';
 import { ShopifyLocaleContext } from '../../@shopify-types/shopify-common';
-import { storeFetch } from '../../utils/storeFetch';
-import { ToolkitLocale, ToolkitMenu, ToolkitShopInfo } from '../@toolkit-types/toolkit-shop';
+import { storeFetch } from '../../storeFetch';
+import { ToolkitLocale, ToolkitMenu, ToolkitShopInfo } from '../../@toolkit-types/toolkit-shop';
 import { parseLocale, parseMenu } from './parser';
 import { GetLocaleService, GetMenuService, GetShopInfoService } from './types';
 

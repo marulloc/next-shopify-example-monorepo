@@ -1,7 +1,7 @@
 import { ShopifyCollection } from '../../@shopify-types/shopify-collection';
 import { ShopifyProduct } from '../../@shopify-types/shopify-product';
 import { ShopifySortKey } from '../../@shopify-types/shopify-search';
-import { ToolkitPredictiveSearch } from '../@toolkit-types/toolkit-search';
+import { ToolkitPredictiveSearch } from '../../@toolkit-types/toolkit-search';
 import { parseCollection } from '../collection/parser';
 import { parseProduct } from '../product/parser';
 
