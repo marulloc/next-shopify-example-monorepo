@@ -16,14 +16,7 @@ import Footer from '@/components/shop/Footer';
 import { Suspense } from 'react';
 import SemanticBox from '@/components/SemanticBox';
 
-import { setShopifyNextConfig } from '@marulloc/shopify-next-api/v24.01';
 import { getCollections, getLocale, getMenu, getShopInfo } from '@marulloc/shopify-next-api/v24.01/services';
-
-setShopifyNextConfig({
-  storeDomain: process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || '',
-  apiVersion: process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION || '',
-  accessToken: process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN || '',
-});
 
 export const generateStaticParams = async () => {
   const { locales } = await getLocale();

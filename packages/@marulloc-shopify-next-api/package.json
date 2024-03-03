@@ -2,7 +2,7 @@
   "name": "@marulloc/shopify-next-api",
   "version": "1.0.0",
   "private": true,
-  "exports" : { 
+  "exports": {
     "./v24.01": "./src/v24.01/index.ts",
     "./v24.01/@shopify-graphql": "./src/v24.01/@shopify-graphql/index.ts",
     "./v24.01/@shopify-types": "./src/v24.01/@shopify-types/index.ts",
@@ -10,10 +10,11 @@
     "./v24.01/services": "./src/v24.01/services/index.ts",
     "./v24.01/utils": "./src/v24.01/utils/index.ts"
   },
-  "dependencies": { 
-    "typescript": "^5",
-    "react": "^18.2.0",
+  "dependencies": {
+    "@types/node": "^20",
     "@types/react": "^18.2.46",
-    "@types/react-dom": "^18.2.18"
+    "@types/react-dom": "^18.2.18",
+    "react": "^18.2.0",
+    "typescript": "^5"
   }
 }

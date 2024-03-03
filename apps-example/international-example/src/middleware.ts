@@ -1,13 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createNegotiatorFromNextRequest } from './negitoator';
 import { getLocale } from '@marulloc/shopify-next-api/v24.01/services';
-import { setShopifyNextConfig } from '@marulloc/shopify-next-api/v24.01';
-
-setShopifyNextConfig({
-  storeDomain: process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || '',
-  apiVersion: process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION || '',
-  accessToken: process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN || '',
-});
 
 export type TDetectionStatus = 'hasLocale' | 'referrerLocale' | 'newly-assigned';
 
