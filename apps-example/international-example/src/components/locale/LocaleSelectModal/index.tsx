@@ -1,6 +1,5 @@
 'use client';
 
-import { ToolkitLocale } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
 import Modal from '@marulloc/components-library/Modal';
 import { classNames } from '@marulloc/components-library/utils';
 import IconButton from '../../IconButton';
@@ -11,6 +10,7 @@ import { useGetDictioanry, useGetLocale, useSelectLocale } from '@/hooks/locale-
 import InitialIcon from '@/components/InitialIcon';
 import { isSameISOCode } from '@/utils/locale';
 import SemanticBox from '@/components/SemanticBox';
+import { ToolkitLocale } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
 
 type TProps = {} & Pick<ToolkitLocale, 'availableCountries' | 'availableLanguages'>;
 

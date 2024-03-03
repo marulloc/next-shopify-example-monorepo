@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getLocale } from './@marulloc-shopify-nextapi/v24.01/services/shop/service';
 import { createNegotiatorFromNextRequest } from './negitoator';
+import { getLocale } from '@marulloc/shopify-next-api/v24.01/services';
+import { setShopifyNextConfig } from '@marulloc/shopify-next-api/v24.01';
+
+setShopifyNextConfig({
+  storeDomain: process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || '',
+  apiVersion: process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION || '',
+  accessToken: process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN || '',
+});
 
 export type TDetectionStatus = 'hasLocale' | 'referrerLocale' | 'newly-assigned';
 
@@ -48,8 +55,6 @@ const middleware = async (request: NextRequest) => {
 
 export const config = {
   matcher: ['/((?!api|_next/static|_next/image|default-alt-images/|favicon.ico).*)'],
-  // matcher:
-  //   '/:path((?!_next|favicon.ico|next.svg|vercel.svg|default/collection-0.png|default/collection-1.png|default/collection-2.png|default/collection-3.png|default/information.png).*)',
 };
 
 export default middleware;

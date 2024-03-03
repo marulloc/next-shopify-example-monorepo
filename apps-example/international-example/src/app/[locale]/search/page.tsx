@@ -1,5 +1,3 @@
-import { ToolkitSortKey } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-search';
-
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import SearchFakeInputTrigger from '@/components/search/SearchModal/triggers/SearchInputTrigger';
@@ -8,6 +6,7 @@ import SearchResult, { SearchResultSkeleton } from '@/components/search/SearchRe
 import { ServerRuntime } from 'next';
 import Typography from '@/components/Typography';
 import SemanticBox from '@/components/SemanticBox';
+import { ToolkitSortKey } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
 
 type TParams = { locale: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };

@@ -1,14 +1,13 @@
-import { ToolkitSortKey } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-search';
-import { getCollection } from '@/@marulloc-shopify-nextapi/v24.01/services/collection/service';
 import { splitLocale } from '@/utils/locale';
 import { classNames } from '@marulloc/components-library/utils';
 import { Metadata, ServerRuntime } from 'next';
 import { Suspense } from 'react';
 import CollectionProducts, { CollectionProductsSkeleton } from '@/components/collection/CollectionProducts';
-
 import { TDictionaries, getDictionary } from '@/dictionaries';
 import Typography from '@/components/Typography';
 import SemanticBox from '@/components/SemanticBox';
+import { getCollection } from '@marulloc/shopify-next-api/v24.01/services';
+import { ToolkitSortKey } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
 
 type TParams = { locale: string; collection: string };
 type TSearchParams = { [key: string]: string | string[] | undefined };

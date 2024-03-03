@@ -1,8 +1,8 @@
 'use client';
 
-import { ToolkitLocale } from '@/@marulloc-shopify-nextapi/v24.01/services/@toolkit-types/toolkit-shop';
 import { atomDictionary, atomLocale } from '@/context/locale-atoms';
 import { isSameISOCode } from '@/utils/locale';
+import { ToolkitLocale } from '@marulloc/shopify-next-api/v24.01/@toolkit-types';
 import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
