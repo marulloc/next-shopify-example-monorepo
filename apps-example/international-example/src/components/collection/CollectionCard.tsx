@@ -39,7 +39,7 @@ const SmallCollectionCard = ({ collection, index }: Omit<TCollectionCardProps, '
       ) : (
         <InitialIcon initial={collection.title[0] || 'c'} />
       )}
-      <Typography as="h4" size="sm" responsive={false}>
+      <Typography as="h4" size="sm" noWarn responsive={false}>
         {collection.title.toUpperCase()}
       </Typography>
     </article>
@@ -69,7 +69,7 @@ const BigCollectionCard = ({ collection, index }: Omit<TCollectionCardProps, 'va
       >
         {collection.title.toUpperCase()}
       </Typography>
-      <Typography as="p" size="sm" color="default-muted" className={classNames('mt-0 text-sm  ')}>
+      <Typography as="p" size="sm" color="default-muted" noWarn className={classNames('mt-0 text-sm  ')}>
         {collection.description || `default collection`}
       </Typography>
     </article>
