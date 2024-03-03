@@ -76,7 +76,7 @@ const MenuDrawer = ({ menu, collections }: Props) => {
               <nav className="flex flex-1 flex-col">
                 <ul role="list" className="mt-2 flex flex-1 flex-col gap-y-14">
                   <li>
-                    <Typography as="h4" size="xs" color="default-muted" className=" tracking-wider">
+                    <Typography as="h4" size="xs" noWarn color="default-muted" className=" tracking-wider">
                       Menu
                     </Typography>
                     <div className="mt-2">
@@ -103,7 +103,7 @@ const MenuDrawer = ({ menu, collections }: Props) => {
                   </li>
 
                   <li>
-                    <Typography as="h4" size="xs" color="default-muted" className=" tracking-wider">
+                    <Typography as="h4" size="xs" noWarn color="default-muted" className=" tracking-wider">
                       Collections
                     </Typography>
                     <div className="mt-2">
