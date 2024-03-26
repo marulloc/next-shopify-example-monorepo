@@ -1,4 +1,4 @@
-# Shopify-Storefront-Monorepo-Example
+# Next-Shopify-Example-Monorepo
 
 - **README created by ChatGPT.**
 - **[View Storefront Demo](https://shopify-storefront-monorepo-example-international-example.vercel.app/)**
