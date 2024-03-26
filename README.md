@@ -1,4 +1,4 @@
-# Shopify-Storefront-Monorepo-Example
+# Next-Shopify-Example-Monorepo
 
 - **ChatGPT 가 생성한 Readme 입니다.**
 - **[View Storefront Demo](https://shopify-storefront-monorepo-example-international-example.vercel.app/)**
